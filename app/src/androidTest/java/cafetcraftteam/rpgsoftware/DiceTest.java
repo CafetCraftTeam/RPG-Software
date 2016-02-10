@@ -17,9 +17,8 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class DiceTest {
-    int Inf = 1;
-    int Max = 100;
-    private Dice D = new Dice(Inf,Max);
+    private Dice D6 = new Dice(6);
+    private Dice D100 = new Dice(100);
 
     @Before
     public void init() {
@@ -27,14 +26,18 @@ public class DiceTest {
 
     @Test
     public void DiceBoundaryTest() {
-        assertEquals(Inf,D.getInf());
-        assertEquals(Max,D.getMax());
+        assertEquals(6,D6.getMax());
+        assertEquals(100,D100.getMax());
     }
     @Test
     public void DiceOverflowTest() {
         for (int i=0; i<10000; i++){
-            int number = D.diceGenerator();
-            assertTrue(number<=Max && number>=Inf);
+            int number = D6.diceGenerator();
+            assertTrue(number<=6 && number>=1);
+        }
+        for (int i=0; i<10000; i++){
+            int number = D100.diceGenerator();
+            assertTrue(number<=100 && number>=1);
         }
     }
 }

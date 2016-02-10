@@ -26,4 +26,9 @@ public class Dice {
         mInf = Inf;
         mMax = Max;
     }
+
+    public Dice(int Max){
+        mInf = 1;
+        mMax = Max;
+    }
 }
