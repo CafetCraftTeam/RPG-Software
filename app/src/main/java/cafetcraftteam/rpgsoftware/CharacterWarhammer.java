@@ -10,16 +10,18 @@ public class CharacterWarhammer extends Character {
     /*
     Personal Details
      */
-    private static int mAge ;
-    private static String mSex;
-    private static String mEyecolor;
-    private static int mHeight ;
-    private static String mHaircolor;
-    private static int mWeight ;
-    private static String mSA ;
-    private static int mNbBrSis ;
-    private static String mBirthPlace;
-    private static String mDistinctifSign;
+    private final int mAge ;
+    private final String mSex;
+    private final String mEyecolor;
+    private final int mHeight ;
+    private final String mHaircolor;
+    private final int mWeight ;
+    private final String mSA ;
+    private final int mNbBrSis ;
+    private final String mBirthPlace;
+    private final String mDistinctifSign;
+
+
         /*
     Main Profile
      */
@@ -48,6 +50,20 @@ public class CharacterWarhammer extends Character {
 
     private Map mBasicAbilities;
     private Map mAdvanAbilities;
+
+    CharacterWarhammer(String Name, String RealName, String Campaign, String Year, String Race, int Age, String Sex, String Eyecolor, int Height, String Haircolor, int Weight, String SA, int NbBrSis, String BirthPlace, String DistinctifSign){
+        super(Name, RealName, Campaign, Year, Race);
+        mAge = Age;
+        mSex = Sex;
+        mEyecolor = Eyecolor;
+        mHeight = Height;
+        mHaircolor = Haircolor;
+        mWeight = Weight;
+        mSA = SA;
+        mNbBrSis = NbBrSis;
+        mBirthPlace = BirthPlace;
+        mDistinctifSign = DistinctifSign;
+    }
 
 
 
