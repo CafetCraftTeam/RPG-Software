@@ -29,8 +29,8 @@ public class CharacterWarhammer extends Character {
      */
     
     private String mProfession;
-    private Map mPrimaryProfile;
-    private Map mSecondaryProfile;
+    private HashMap<Char,Integer> mPrimaryProfile;
+    private HashMap<Char,Integer> mSecondaryProfile;
 
     private int mMovement;
     private int mTotalFortune;
@@ -43,7 +43,7 @@ public class CharacterWarhammer extends Character {
      */
     private HashMap<Integer,String> mWeapons;
     private HashMap<Integer,String> mArmor;
-    private HashMap<String,Integer> mDefensePoints;
+    private HashMap<Bodypart,Integer> mDefensePoints;
     private HashMap<Integer,String> mEquipment;
 
             /*
@@ -65,13 +65,12 @@ public class CharacterWarhammer extends Character {
         mNbBrSis = NbBrSis;
         mBirthPlace = BirthPlace;
         mDistinctifSign = DistinctifSign;
-
-        mDefensePoints.put("head", 0);
-        mDefensePoints.put("torso", 0);
-        mDefensePoints.put("leftarm", 0);
-        mDefensePoints.put("rightarm", 0);
-        mDefensePoints.put("leftleg", 0);
-        mDefensePoints.put("rightleg", 0);
+        mDefensePoints.put(Bodypart.HEAD, 0);
+        mDefensePoints.put(Bodypart.TORSO, 0);
+        mDefensePoints.put(Bodypart.LEFTARM, 0);
+        mDefensePoints.put(Bodypart.RIGHTARM, 0);
+        mDefensePoints.put(Bodypart.LEFTLEG, 0);
+        mDefensePoints.put(Bodypart.RIGHTLEG, 0);
         mBasicSkills.put("Animal Care", "Skill");
         mBasicSkills.put("Charm", "Skill");
         mBasicSkills.put("Command", "Skill");
@@ -102,20 +101,20 @@ public class CharacterWarhammer extends Character {
         this.mProfession = mProfession;
     }
 
-    public Map getmPrimaryProfile() {
-        return mPrimaryProfile;
+    public Integer getPrimaryProfile(Char C) {
+        return mPrimaryProfile.get(C);
     }
 
-    public void setmPrimaryProfile(Map mPrimaryProfile) {
-        this.mPrimaryProfile = mPrimaryProfile;
+    public void setPrimaryProfile(Char C, int Value) {
+        this.mPrimaryProfile.put(C, Value);
     }
 
-    public Map getmSecondaryProfile() {
-        return mSecondaryProfile;
+    public Integer getSecondaryProfile(Char C) {
+        return mSecondaryProfile.get(C);
     }
 
-    public void setmSecondaryProfile(Map mSecondaryProfile) {
-        this.mSecondaryProfile = mSecondaryProfile;
+    public void setSecondaryProfile(Char C, int Value) {
+        this.mSecondaryProfile.put(C, Value);
     }
 
     public int getmMovement() {
@@ -174,48 +173,12 @@ public class CharacterWarhammer extends Character {
         this.mArmor.put(id, Armor);
     }
 
-    public int getDefensePoints(String bodypart) throws IllegalAccessException{
-        switch (bodypart) {
-            case "head":
-                return mDefensePoints.get(bodypart);
-            case "torso":
-                return mDefensePoints.get(bodypart);
-            case "leftarm":
-                return mDefensePoints.get(bodypart);
-            case "rightarm":
-                return mDefensePoints.get(bodypart);
-            case "leftleg":
-                return mDefensePoints.get(bodypart);
-            case "rightleg":
-                return mDefensePoints.get(bodypart);
-            default:
-                throw new IllegalArgumentException("No body part is called like " + bodypart);
-        }
+    public int getDefensePoints(Bodypart bodypart){
+        return mDefensePoints.get(bodypart);
     }
 
-    public void setDefensePoints(String bodypart, int Value) throws IllegalAccessException{
-        switch (bodypart) {
-            case "head":
-                this.mDefensePoints.put("head", Value);
-                break;
-            case "torso":
-                this.mDefensePoints.put("torso", Value);
-                break;
-            case "leftarm":
-                this.mDefensePoints.put("leftarm", Value);
-                break;
-            case "rightarm":
-                this.mDefensePoints.put("rightarm", Value);
-                break;
-            case "leftleg":
-                this.mDefensePoints.put("leftleg", Value);
-                break;
-            case "rightleg":
-                this.mDefensePoints.put("rightleg", Value);
-                break;
-            default:
-                throw new IllegalArgumentException("No body part is called like " + bodypart);
-        }
+    public void setDefensePoints(Bodypart bodypart, int Value){
+        this.mDefensePoints.put(bodypart, Value);
     }
 
     public void setBasicSkill(String Skillname, String Skill) throws IllegalAccessException {
