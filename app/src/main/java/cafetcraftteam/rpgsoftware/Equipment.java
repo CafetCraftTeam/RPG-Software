@@ -7,21 +7,23 @@ public class Equipment
 {
     public enum Quality
     {
-        BAD,
-        NORMAL,
-        EXCEPTIONAL
+        POOR,
+        COMMON,
+        GOOD,
+        BEST,
+        MAGICAL
     }
 
     private String mName;
-    private int mEncomberment;
-    private Quality mQuatilty;
+    private int mEncumbering;
+    private Quality mQuality;
     private String mDescription;
 
-    public Equipment(String name, int encomberment, Quality quality, String description)
+    public Equipment(String name, int encumbering, Quality quality, String description)
     {
         mName = name;
-        mEncomberment = encomberment;
-        mQuatilty = quality;
+        mEncumbering = encumbering;
+        mQuality = quality;
         mDescription = description;
     }
 
@@ -29,12 +31,12 @@ public class Equipment
         return mName;
     }
 
-    public int getEncomberment() {
-        return mEncomberment;
+    public int getEncumbering() {
+        return mEncumbering;
     }
 
     public Quality getQuatilty() {
-        return mQuatilty;
+        return mQuality;
     }
 
     public String getDescription() {
