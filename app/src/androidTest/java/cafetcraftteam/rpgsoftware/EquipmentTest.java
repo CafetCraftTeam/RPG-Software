@@ -24,7 +24,7 @@ public class EquipmentTest
     private Equipment equipment = new Equipment(mName, mEncumbering, mQuality, mDescription);
 
     @Test
-    void creationTest() {
+    public void creationTest() {
         assertEquals(mName, equipment.getName());
         assertEquals(mEncumbering, equipment.getEncumbering());
         assertEquals(mQuality, equipment.getQuatilty());

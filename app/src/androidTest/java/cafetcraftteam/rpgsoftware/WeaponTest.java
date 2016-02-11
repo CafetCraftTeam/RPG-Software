@@ -28,7 +28,7 @@ public class WeaponTest
             mQualities);
 
     @Test
-    void creationTest() {
+    public void creationTest() {
         assertEquals(mName, weapon.getName());
         assertEquals(mEncumbering, weapon.getEncumbering());
         assertEquals(mQuality, weapon.getQuatilty());
