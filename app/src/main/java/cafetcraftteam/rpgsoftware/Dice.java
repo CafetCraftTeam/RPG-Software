@@ -5,30 +5,36 @@ import java.util.Random;
 /**
  * Created by defig on 10.02.2016.
  */
-public class Dice {
+public class Dice
+{
     private int mInf;
     private int mMax;
 
-    public int diceGenerator(){
+    public int diceGenerator()
+    {
         Random number = new Random();
-        return number.nextInt(mMax-mInf)+mInf;
+        return number.nextInt(mMax - mInf) + mInf;
     }
 
-    public int getInf(){
+    public int getInf()
+    {
         return mInf;
     }
 
-    public int getMax(){
+    public int getMax()
+    {
         return mMax;
     }
 
-    public Dice(int Inf,int Max){
-        mInf = Inf;
-        mMax = Max;
+    public Dice(int inf, int max)
+    {
+        mInf = inf;
+        mMax = max;
     }
 
-    public Dice(int Max){
+    public Dice(int max)
+    {
         mInf = 1;
-        mMax = Max;
+        mMax = max;
     }
 }
