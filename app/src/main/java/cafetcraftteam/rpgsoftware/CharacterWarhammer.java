@@ -174,6 +174,25 @@ public class CharacterWarhammer extends Character {
         this.mArmor.put(id, Armor);
     }
 
+    public int getDefensePoints(String bodypart) throws IllegalAccessException{
+        switch (bodypart) {
+            case "head":
+                return mDefensePoints.get(bodypart);
+            case "torso":
+                return mDefensePoints.get(bodypart);
+            case "leftarm":
+                return mDefensePoints.get(bodypart);
+            case "rightarm":
+                return mDefensePoints.get(bodypart);
+            case "leftleg":
+                return mDefensePoints.get(bodypart);
+            case "rightleg":
+                return mDefensePoints.get(bodypart);
+            default:
+                throw new IllegalArgumentException("No body part is called like " + bodypart);
+        }
+    }
+
     public void setDefensePoints(String bodypart, int Value) throws IllegalAccessException{
         switch (bodypart) {
             case "head":
