@@ -93,11 +93,11 @@ public class CharacterWarhammer extends Character {
         mBasicSkills.put("Swim", "Skill");
     }
 
-    public String getmProfession() {
+    public String getProfession() {
         return mProfession;
     }
 
-    public void setmProfession(String mProfession) {
+    public void setProfession(String mProfession) {
         this.mProfession = mProfession;
     }
 
@@ -117,43 +117,43 @@ public class CharacterWarhammer extends Character {
         this.mSecondaryProfile.put(C, Value);
     }
 
-    public int getmMovement() {
+    public int getMovement() {
         return mMovement;
     }
 
-    public void setmMovement(int mMovement) {
+    public void setMovement(int mMovement) {
         this.mMovement = mMovement;
     }
 
-    public int getmTotalFortune() {
+    public int getTotalFortune() {
         return mTotalFortune;
     }
 
-    public void setmTotalFortune(int mTotalFortune) {
+    public void setTotalFortune(int mTotalFortune) {
         this.mTotalFortune = mTotalFortune;
     }
 
-    public int getmActualFortune() {
+    public int getActualFortune() {
         return mActualFortune;
     }
 
-    public void setmActualFortune(int mActualFortune) {
+    public void setActualFortune(int mActualFortune) {
         this.mActualFortune = mActualFortune;
     }
 
-    public int getmTotalWounds() {
+    public int getTotalWounds() {
         return mTotalWounds;
     }
 
-    public void setmTotalWounds(int mTotalWounds) {
+    public void setTotalWounds(int mTotalWounds) {
         this.mTotalWounds = mTotalWounds;
     }
 
-    public int getmActualWounds() {
+    public int getActualWounds() {
         return mActualWounds;
     }
 
-    public void setmActualWounds(int mActualWounds) {
+    public void setActualWounds(int mActualWounds) {
         this.mActualWounds = mActualWounds;
     }
 
