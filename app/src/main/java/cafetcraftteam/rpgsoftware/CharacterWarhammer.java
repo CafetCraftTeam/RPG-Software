@@ -5,7 +5,8 @@ import java.util.Map;
 /**
  * Created by Pujima on 10/02/2016.
  */
-public class CharacterWarhammer extends Character {
+public class CharacterWarhammer extends Character
+{
 
     /*
     Personal Details
@@ -23,7 +24,7 @@ public class CharacterWarhammer extends Character {
         /*
     Main Profile
      */
-    
+
     private String mProfession;
     private Map mPrimaryProfile;
     private Map mSecondaryProfile;
