@@ -22,23 +22,23 @@ public class Character {
         mRace = Race;
     }
 
-    public String getmName() {
+    public String getName() {
         return mName;
     }
 
-    public String getmRealName() {
+    public String getRealName() {
         return mRealName;
     }
 
-    public String getmCampaign() {
+    public String getCampaign() {
         return mCampaign;
     }
 
-    public String getmYear() {
+    public String getYear() {
         return mYear;
     }
 
-    public String getmRace() {
+    public String getRace() {
         return mRace;
     }
 }

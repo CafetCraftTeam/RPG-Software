@@ -27,8 +27,8 @@ public class CharacterWarhammer extends Character {
      */
     
     private String mProfession;
-    private HashMap<Characteristic,Integer> mPrimaryProfile;
-    private HashMap<Characteristic,Integer> mSecondaryProfile;
+    private HashMap<PrimCharacteristic,Integer> mPrimaryProfile;
+    private HashMap<SecondCharacteristic,Integer> mSecondaryProfile;
 
     private int mMovement;
     private int mTotalFortune;
@@ -66,6 +66,15 @@ public class CharacterWarhammer extends Character {
         mNbBrSis = NbBrSis;
         mBirthPlace = BirthPlace;
         mDistinctifSign = DistinctifSign;
+        mPrimaryProfile = new HashMap<>();
+        mSecondaryProfile = new HashMap<>();
+        mWeapons = new HashMap<>();
+        mArmor = new HashMap<>();
+        mDefensePoints = new HashMap<>();
+        mEquipment = new HashMap<>();
+        mBasicSkills = new HashMap<>();
+        mAdvanSkills = new HashMap<>();
+        
         mDefensePoints.put(Bodypart.HEAD, 0);
         mDefensePoints.put(Bodypart.TORSO, 0);
         mDefensePoints.put(Bodypart.LEFTARM, 0);
@@ -94,27 +103,67 @@ public class CharacterWarhammer extends Character {
         mBasicSkills.put("Swim", "Skill");
     }
 
+    public int getAge() {
+        return mAge;
+    }
+
+    public String getSex() {
+        return mSex;
+    }
+
+    public String getEyecolor() {
+        return mEyecolor;
+    }
+
+    public int getHeight() {
+        return mHeight;
+    }
+
+    public String getHaircolor() {
+        return mHaircolor;
+    }
+
+    public int getWeight() {
+        return mWeight;
+    }
+
+    public String getSA() {
+        return mSA;
+    }
+
+    public int getNbBrSis() {
+        return mNbBrSis;
+    }
+
+    public String getBirthPlace() {
+        return mBirthPlace;
+    }
+
+    public String getDistinctifSign() {
+        return mDistinctifSign;
+    }
+
     public String getProfession() {
         return mProfession;
     }
 
-    public void setmProfession(String Profession) {
+    public void setProfession(String Profession) {
         this.mProfession = Profession;
     }
 
-    public Integer getPrimaryProfile(Characteristic c) {
+    public Integer getPrimaryProfile(PrimCharacteristic c) {
         return mPrimaryProfile.get(c);
     }
 
-    public void setPrimaryProfile(Characteristic c, int Value) {
+    public void setPrimaryProfile(PrimCharacteristic c, int Value) {
         this.mPrimaryProfile.put(c, Value);
     }
 
-    public Integer getSecondaryProfile(Characteristic c) {
+    public Integer getSecondaryProfile(SecondCharacteristic c) {
         return mSecondaryProfile.get(c);
     }
 
-    public void setSecondaryProfile(Characteristic c, int Value) {
+    public void setSecondaryProfile(SecondCharacteristic c, int Value) {
         this.mSecondaryProfile.put(c, Value);
     }
 
@@ -122,7 +171,7 @@ public class CharacterWarhammer extends Character {
         return mMovement;
     }
 
-    public void setmMovement(int Movement) {
+    public void setMovement(int Movement) {
         this.mMovement = Movement;
     }
 
@@ -130,7 +179,7 @@ public class CharacterWarhammer extends Character {
         return mTotalFortune;
     }
 
-    public void setmTotalFortune(int TotalFortune) {
+    public void setTotalFortune(int TotalFortune) {
         this.mTotalFortune = TotalFortune;
     }
 
@@ -138,7 +187,7 @@ public class CharacterWarhammer extends Character {
         return mActualFortune;
     }
 
-    public void setmActualFortune(int ActualFortune) {
+    public void setActualFortune(int ActualFortune) {
         this.mActualFortune = ActualFortune;
     }
 
@@ -146,7 +195,7 @@ public class CharacterWarhammer extends Character {
         return mTotalWounds;
     }
 
-    public void setmTotalWounds(int TotalWounds) {
+    public void setTotalWounds(int TotalWounds) {
         this.mTotalWounds = TotalWounds;
     }
 
@@ -154,7 +203,7 @@ public class CharacterWarhammer extends Character {
         return mActualWounds;
     }
 
-    public void setmActualWounds(int ActualWounds) {
+    public void setActualWounds(int ActualWounds) {
         this.mActualWounds = ActualWounds;
     }
 
