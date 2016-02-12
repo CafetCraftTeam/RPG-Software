@@ -94,7 +94,7 @@ public class CharacterWarhammer extends Character {
         mBasicSkills.put("Swim", "Skill");
     }
 
-    public String getmProfession() {
+    public String getProfession() {
         return mProfession;
     }
 
@@ -118,7 +118,7 @@ public class CharacterWarhammer extends Character {
         this.mSecondaryProfile.put(c, Value);
     }
 
-    public int getmMovement() {
+    public int getMovement() {
         return mMovement;
     }
 
@@ -126,7 +126,7 @@ public class CharacterWarhammer extends Character {
         this.mMovement = Movement;
     }
 
-    public int getmTotalFortune() {
+    public int getTotalFortune() {
         return mTotalFortune;
     }
 
@@ -134,7 +134,7 @@ public class CharacterWarhammer extends Character {
         this.mTotalFortune = TotalFortune;
     }
 
-    public int getmActualFortune() {
+    public int getActualFortune() {
         return mActualFortune;
     }
 
@@ -142,7 +142,7 @@ public class CharacterWarhammer extends Character {
         this.mActualFortune = ActualFortune;
     }
 
-    public int getmTotalWounds() {
+    public int getTotalWounds() {
         return mTotalWounds;
     }
 
@@ -150,7 +150,7 @@ public class CharacterWarhammer extends Character {
         this.mTotalWounds = TotalWounds;
     }
 
-    public int getmActualWounds() {
+    public int getActualWounds() {
         return mActualWounds;
     }
 
