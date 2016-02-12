@@ -1,8 +1,6 @@
 package cafetcraftteam.rpgsoftware;
 
-import java.security.InvalidKeyException;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Pujima on 10/02/2016.
@@ -29,8 +27,8 @@ public class CharacterWarhammer extends Character {
      */
     
     private String mProfession;
-    private HashMap<Char,Integer> mPrimaryProfile;
-    private HashMap<Char,Integer> mSecondaryProfile;
+    private HashMap<Characteristic,Integer> mPrimaryProfile;
+    private HashMap<Characteristic,Integer> mSecondaryProfile;
 
     private int mMovement;
     private int mTotalFortune;
@@ -53,7 +51,10 @@ public class CharacterWarhammer extends Character {
     private HashMap<String,String> mBasicSkills;
     private HashMap<String,String> mAdvanSkills;
 
-    CharacterWarhammer(String Name, String RealName, String Campaign, String Year, String Race, int Age, String Sex, String Eyecolor, int Height, String Haircolor, int Weight, String SA, int NbBrSis, String BirthPlace, String DistinctifSign){
+    CharacterWarhammer(String Name, String RealName, String Campaign, String Year, String Race,
+                       int Age, String Sex, String Eyecolor, int Height, String Haircolor,
+                       int Weight, String SA, int NbBrSis, String BirthPlace, String DistinctifSign)
+    {
         super(Name, RealName, Campaign, Year, Race);
         mAge = Age;
         mSex = Sex;
@@ -97,64 +98,64 @@ public class CharacterWarhammer extends Character {
         return mProfession;
     }
 
-    public void setmProfession(String mProfession) {
-        this.mProfession = mProfession;
+    public void setmProfession(String Profession) {
+        this.mProfession = Profession;
     }
 
-    public Integer getPrimaryProfile(Char C) {
-        return mPrimaryProfile.get(C);
+    public Integer getPrimaryProfile(Characteristic c) {
+        return mPrimaryProfile.get(c);
     }
 
-    public void setPrimaryProfile(Char C, int Value) {
-        this.mPrimaryProfile.put(C, Value);
+    public void setPrimaryProfile(Characteristic c, int Value) {
+        this.mPrimaryProfile.put(c, Value);
     }
 
-    public Integer getSecondaryProfile(Char C) {
-        return mSecondaryProfile.get(C);
+    public Integer getSecondaryProfile(Characteristic c) {
+        return mSecondaryProfile.get(c);
     }
 
-    public void setSecondaryProfile(Char C, int Value) {
-        this.mSecondaryProfile.put(C, Value);
+    public void setSecondaryProfile(Characteristic c, int Value) {
+        this.mSecondaryProfile.put(c, Value);
     }
 
     public int getmMovement() {
         return mMovement;
     }
 
-    public void setmMovement(int mMovement) {
-        this.mMovement = mMovement;
+    public void setmMovement(int Movement) {
+        this.mMovement = Movement;
     }
 
     public int getmTotalFortune() {
         return mTotalFortune;
     }
 
-    public void setmTotalFortune(int mTotalFortune) {
-        this.mTotalFortune = mTotalFortune;
+    public void setmTotalFortune(int TotalFortune) {
+        this.mTotalFortune = TotalFortune;
     }
 
     public int getmActualFortune() {
         return mActualFortune;
     }
 
-    public void setmActualFortune(int mActualFortune) {
-        this.mActualFortune = mActualFortune;
+    public void setmActualFortune(int ActualFortune) {
+        this.mActualFortune = ActualFortune;
     }
 
     public int getmTotalWounds() {
         return mTotalWounds;
     }
 
-    public void setmTotalWounds(int mTotalWounds) {
-        this.mTotalWounds = mTotalWounds;
+    public void setmTotalWounds(int TotalWounds) {
+        this.mTotalWounds = TotalWounds;
     }
 
     public int getmActualWounds() {
         return mActualWounds;
     }
 
-    public void setmActualWounds(int mActualWounds) {
-        this.mActualWounds = mActualWounds;
+    public void setmActualWounds(int ActualWounds) {
+        this.mActualWounds = ActualWounds;
     }
 
             /*
