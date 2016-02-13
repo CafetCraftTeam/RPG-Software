@@ -34,7 +34,7 @@ public class RangeWeaponTest
     public void creationTest() {
         assertEquals(mName, rangeWeapon.getName());
         assertEquals(mEncumbering, rangeWeapon.getEncumbering());
-        assertEquals(mQuality, rangeWeapon.getQuatilty());
+        assertEquals(mQuality, rangeWeapon.getQuality());
         assertEquals(mDescription, rangeWeapon.getDescription());
         assertEquals(mGroup, rangeWeapon.getGroup());
         assertEquals(mQualities, rangeWeapon.getQualities());

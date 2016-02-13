@@ -35,7 +35,7 @@ public class Equipment
         return mEncumbering;
     }
 
-    public Quality getQuatilty() {
+    public Quality getQuality() {
         return mQuality;
     }
 

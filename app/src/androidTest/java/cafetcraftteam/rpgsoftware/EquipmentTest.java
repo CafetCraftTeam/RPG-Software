@@ -27,7 +27,7 @@ public class EquipmentTest
     public void creationTest() {
         assertEquals(mName, equipment.getName());
         assertEquals(mEncumbering, equipment.getEncumbering());
-        assertEquals(mQuality, equipment.getQuatilty());
+        assertEquals(mQuality, equipment.getQuality());
         assertEquals(mDescription, equipment.getDescription());
     }
 }

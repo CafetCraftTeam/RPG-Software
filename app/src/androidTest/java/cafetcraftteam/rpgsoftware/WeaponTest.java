@@ -31,7 +31,7 @@ public class WeaponTest
     public void creationTest() {
         assertEquals(mName, weapon.getName());
         assertEquals(mEncumbering, weapon.getEncumbering());
-        assertEquals(mQuality, weapon.getQuatilty());
+        assertEquals(mQuality, weapon.getQuality());
         assertEquals(mDescription, weapon.getDescription());
         assertEquals(mGroup, weapon.getGroup());
         assertEquals(mQualities, weapon.getQualities());
