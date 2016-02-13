@@ -1,29 +1,14 @@
 machine:
   environment:
-    ANDROID_HOME: /home/ubuntu/android
+    ANDROID_HOME: /usr/local/android-sdk-linux
 
 dependencies:
-  pre:
-    - echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-21.1.2,android-21,extra-google-m2repository,extra-google-google_play_services,extra-android-support,extra-android-m2repository
   cache_directories:
     - ~/.android
     - ~/android
   override:
-    - sh ./install-dependencies.sh
-    - cp ./GleanAndroid/ci.properties ./GleanAndroid/local.properties
-    - cd ./GleanAndroid/ && bash ./gradlew dependencies -x lint
+    - bash install-dependencies.sh
 
 test:
   override:
-    # create emulator
-    - emulator -avd circleci-android22:
-        background: true
-        parallel: true
-    # wait for it to boot
-    - circle-android wait-for-boot
-    #  tests
-    - cd ./GleanAndroid/ && bash ./gradlew connectedAndroidTestStagingDebug -PtestSize=small -PdisablePreDex --continue -x lint
-    # copy the build outputs to artifacts
-    - cp -r GleanAndroid/Impraise-Android/build/outputs $CIRCLE_ARTIFACTS
-    # copy the test results to the test results directory.
-    - cp -r GleanAndroid/Impraise-Android/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
+  - ./gradlew check
