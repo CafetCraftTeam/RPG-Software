@@ -30,5 +30,4 @@ test:
         # wait for it to boot
         - circle-android wait-for-boot
         #  tests
-        - (./gradlew assemble):
-            timeout: 360
+        - bash ./gradlew connectedAndroidTestStagingDebug -PtestSize=small -PdisablePreDex --continue -x lint
