@@ -10,6 +10,7 @@ machine:
     environment:
         ANDROID_HOME: /usr/local/android-sdk-linux
         ADB_INSTALL_TIMEOUT: "20"
+        TERM: "dumb"
 
 dependencies:
     cache_directories:
