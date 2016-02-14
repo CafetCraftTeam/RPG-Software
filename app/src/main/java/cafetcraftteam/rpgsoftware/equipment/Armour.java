@@ -1,5 +1,10 @@
 package cafetcraftteam.rpgsoftware.equipment;
 
+import android.support.annotation.NonNull;
+
+import java.util.NoSuchElementException;
+import java.util.Set;
+
 import cafetcraftteam.rpgsoftware.BodyPart;
 
 /**
@@ -8,22 +13,31 @@ import cafetcraftteam.rpgsoftware.BodyPart;
 public class Armour extends Equipment
 {
     private int mArmourPoint;
-    private final BodyPart mProtectedPart;
+    private final Set<BodyPart> mProtectedParts;
 
-    public Armour(String name, int encumbering, Quality quality, String description, int armourPoint,
-                  BodyPart protectedPart)
+    public Armour(String name, int encumbering, @NonNull Quality quality, String description, int armourPoint,
+                  @NonNull Set<BodyPart> protectedParts)
     {
         super(name, encumbering, quality, description);
 
+        if (protectedParts.isEmpty()) {
+            throw new NoSuchElementException("No protected parts by this armour");
+        }
+
         mArmourPoint = armourPoint;
-        mProtectedPart = protectedPart;
+        mProtectedParts = protectedParts;
     }
 
     public int getArmourPoint() {
         return mArmourPoint;
     }
 
-    public BodyPart getProtectedPart() {
-        return mProtectedPart;
+    public Set<BodyPart> getProtectedParts() {
+        return mProtectedParts;
+    }
+
+    public boolean isProtected(BodyPart bodyPart)
+    {
+        return mProtectedParts.contains(bodyPart);
     }
 }
