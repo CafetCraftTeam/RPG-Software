@@ -5,5 +5,5 @@ package cafetcraftteam.rpgsoftware;
  */
 public enum BodyPart
 {
-    HEAD,TORSO, LEFT_ARM, RIGHT_ARM, LEFT_LEG, RIGHT_LEG
+    HEAD, TORSO, LEFT_ARM, RIGHT_ARM, LEFT_LEG, RIGHT_LEG
 }

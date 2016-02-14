@@ -13,7 +13,6 @@ public class Equipment
         BEST,
         MAGICAL
     }
-// test
 
     private String mName;
     private int mEncumbering;

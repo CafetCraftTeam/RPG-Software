@@ -26,8 +26,4 @@ public class Armour extends Equipment
     public BodyPart getProtectedPart() {
         return mProtectedPart;
     }
-
-    public void setArmourPoint(int armourPoint) {
-        mArmourPoint = armourPoint;
-    }
 }
