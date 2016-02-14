@@ -8,7 +8,7 @@ import cafetcraftteam.rpgsoftware.BodyPart;
 public class Armour extends Equipment
 {
     private int mArmourPoint;
-    private BodyPart mProtectedPart;
+    private final BodyPart mProtectedPart;
 
     public Armour(String name, int encumbering, Quality quality, String description, int armourPoint,
                   BodyPart protectedPart)
