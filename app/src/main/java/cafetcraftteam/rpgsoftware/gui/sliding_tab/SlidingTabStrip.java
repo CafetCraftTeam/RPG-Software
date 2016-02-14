@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package cafetcraftteam.rpgsoftware.sliding_tab;
+package cafetcraftteam.rpgsoftware.gui.sliding_tab;
 
 import android.content.Context;
 import android.graphics.Canvas;

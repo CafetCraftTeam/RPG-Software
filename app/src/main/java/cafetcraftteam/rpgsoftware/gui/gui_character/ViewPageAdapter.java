@@ -1,4 +1,4 @@
-package cafetcraftteam.rpgsoftware;
+package cafetcraftteam.rpgsoftware.gui.gui_character;
 
 /**
  * Created by Pujima on 14/02/2016.
@@ -9,9 +9,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.List;
 
-import cafetcraftteam.rpgsoftware.CharacterGeneralFragment;
-import cafetcraftteam.rpgsoftware.CharacterInventoryFragment;
-import cafetcraftteam.rpgsoftware.CharacterSkillFragment;
+import cafetcraftteam.rpgsoftware.gui.gui_character.CharacterGeneralFragment;
+import cafetcraftteam.rpgsoftware.gui.gui_character.CharacterInventoryFragment;
+import cafetcraftteam.rpgsoftware.gui.gui_character.CharacterSkillFragment;
 
 /**
  * Fragment page adapter that holds the creation and management of the 3 main tabs
