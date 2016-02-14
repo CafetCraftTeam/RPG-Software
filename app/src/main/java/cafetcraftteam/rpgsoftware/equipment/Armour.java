@@ -21,7 +21,7 @@ public class Armour extends Equipment
         super(name, encumbering, quality, description);
 
         if (protectedParts.isEmpty()) {
-            throw new NoSuchElementException("No protected parts by this armour");
+            throw new InstantiationError("No body parts protected by this armour");
         }
 
         mArmourPoint = armourPoint;

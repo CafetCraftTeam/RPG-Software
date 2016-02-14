@@ -53,4 +53,12 @@ public class ArmourTest
         assertEquals(mProtectedParts, mArmour.getProtectedParts());
         assertTrue(mArmour.isProtected(BodyPart.TORSO));
     }
+
+    @Test(expected = InstantiationError.class)
+    public void cannotCreateWithEmptyProtectedParts() {
+        Set<BodyPart> emptyProtectedParts = new HashSet<>();
+
+        new Armour(mName, mEncumbering, mQuality, mDescription, mArmourPoint,
+                emptyProtectedParts);
+    }
 }
