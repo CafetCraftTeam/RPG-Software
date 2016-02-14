@@ -31,7 +31,7 @@ test:
         - circle-android wait-for-boot
         # run tests  against the emulator.
         - ADB_INSTALL_TIMEOUT=10 ./gradlew connectedAndroidTest
-            timeout: 300
+            timeout: 360
         # copy the test results to the test results directory.
         - cp -r /home/ubuntu/RPG-Software/app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
         
