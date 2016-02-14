@@ -24,14 +24,14 @@ dependencies:
 test:
     override:
         # create emulator
-        #- emulator -avd circleci-android22:
-        #    background: true
-        #    parallel: true
+        - emulator -avd circleci-android22:
+            background: true
+            parallel: true
         # wait for it to boot
-        # - circle-android wait-for-boot
+         - circle-android wait-for-boot
         # run tests  against the emulator.
-        #- ./gradlew connectedAndroidTest
+        - ./gradlew connectedAndroidTest
         # copy the test results to the test results directory.
-        #- cp -r my-project/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
+        - cp -r my-project/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
         
         #- bash ./gradlew assemble
