@@ -1,4 +1,6 @@
-package cafetcraftteam.rpgsoftware;
+package cafetcraftteam.rpgsoftware.equipment;
+
+import cafetcraftteam.rpgsoftware.equipment.Equipment;
 
 /**
  * Created by Gautier on 11/02/2016.

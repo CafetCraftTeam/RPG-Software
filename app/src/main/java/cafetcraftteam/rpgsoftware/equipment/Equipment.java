@@ -1,4 +1,4 @@
-package cafetcraftteam.rpgsoftware;
+package cafetcraftteam.rpgsoftware.equipment;
 
 /**
  * Created by Gautier on 10/02/2016.
@@ -43,4 +43,5 @@ public class Equipment
     public String getDescription() {
         return mDescription;
     }
+
 }
