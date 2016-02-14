@@ -24,10 +24,10 @@ dependencies:
 test:
     override:
         # create emulator
-        - emulator -avd circleci-android22:
-            background: true
-            parallel: true
+        #- emulator -avd circleci-android22:
+        #    background: true
+        #    parallel: true
         # wait for it to boot
-        - circle-android wait-for-boot
+        # - circle-android wait-for-boot
         #  tests
-        - bash ./gradlew connectedAndroidTestStagingDebug -PtestSize=small -PdisablePreDex --continue -x lint
+        - bash ./gradlew assemble
