@@ -21,19 +21,21 @@ public class WeaponTest
 {
     private String mName = "Bottle";
     private int mEncumbering = 10;
+    private int mPrice = 100;
     private Equipment.Quality mQuality = Equipment.Quality.COMMON;
     private String mDescription = "It's a simple bottle";
 
     private String mGroup = "Two-Handed";
     private String mQualities = "Armour Piercing";
 
-    private Weapon weapon = new Weapon(mName, mEncumbering, mQuality, mDescription, mGroup,
+    private Weapon weapon = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription, mGroup,
             mQualities);
 
     @Test
     public void creationTest() {
         assertEquals(mName, weapon.getName());
         assertEquals(mEncumbering, weapon.getEncumbering());
+        assertEquals(mPrice, weapon.getPrice());
         assertEquals(mQuality, weapon.getQuality());
         assertEquals(mDescription, weapon.getDescription());
         assertEquals(mGroup, weapon.getGroup());

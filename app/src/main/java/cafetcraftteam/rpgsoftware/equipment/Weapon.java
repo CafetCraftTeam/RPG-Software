@@ -8,10 +8,10 @@ public class Weapon extends Equipment
     private String mGroup;
     private String mQualities;
 
-    public Weapon(String name, int encumbering, Quality quality, String description, String group,
-                  String qualities)
+    public Weapon(String name, int encumbering, int price, Quality quality, String description,
+                  String group, String qualities)
     {
-        super(name, encumbering, quality, description);
+        super(name, encumbering, price, quality, description);
         mGroup = group;
         mQualities = qualities;
     }

@@ -15,10 +15,10 @@ public class Armour extends Equipment
     private int mArmourPoint;
     private final Set<BodyPart> mProtectedParts;
 
-    public Armour(String name, int encumbering, @NonNull Quality quality, String description, int armourPoint,
-                  @NonNull Set<BodyPart> protectedParts)
+    public Armour(String name, int encumbering, int price, @NonNull Quality quality,
+                  String description, int armourPoint, @NonNull Set<BodyPart> protectedParts)
     {
-        super(name, encumbering, quality, description);
+        super(name, encumbering, price, quality, description);
 
         if (protectedParts.isEmpty()) {
             throw new InstantiationError("No body parts protected by this armour");

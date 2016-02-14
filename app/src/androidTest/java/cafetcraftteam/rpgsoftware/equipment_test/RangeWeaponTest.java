@@ -21,6 +21,7 @@ public class RangeWeaponTest
 {
     private String mName = "Bottle";
     private int mEncumbering = 10;
+    private int mPrice = 100;
     private Equipment.Quality mQuality = Equipment.Quality.COMMON;
     private String mDescription = "It's a simple bottle";
     private String mGroup = "Crossbow";
@@ -30,13 +31,14 @@ public class RangeWeaponTest
     private int mLongRange = 48;
     private double mReload = 1;
 
-    private RangeWeapon rangeWeapon = new RangeWeapon(mName, mEncumbering, mQuality, mDescription,
-            mGroup, mQualities, mShortRange, mLongRange, mReload);
+    private RangeWeapon rangeWeapon = new RangeWeapon(mName, mEncumbering, mPrice, mQuality,
+            mDescription, mGroup, mQualities, mShortRange, mLongRange, mReload);
 
     @Test
     public void creationTest() {
         assertEquals(mName, rangeWeapon.getName());
         assertEquals(mEncumbering, rangeWeapon.getEncumbering());
+        assertEquals(mPrice, rangeWeapon.getPrice());
         assertEquals(mQuality, rangeWeapon.getQuality());
         assertEquals(mDescription, rangeWeapon.getDescription());
         assertEquals(mGroup, rangeWeapon.getGroup());

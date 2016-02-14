@@ -27,6 +27,7 @@ public class ArmourTest
 {
     private String mName = "Leather Jerkin";
     private int mEncumbering = 40;
+    private int mPrice = 100;
     private Equipment.Quality mQuality = Equipment.Quality.COMMON;
     private String mDescription = "It's a simple leather jerkin";
 
@@ -39,7 +40,7 @@ public class ArmourTest
     public void init() {
         mProtectedParts.add(BodyPart.TORSO);
 
-        mArmour = new Armour(mName, mEncumbering, mQuality, mDescription, mArmourPoint,
+        mArmour = new Armour(mName, mEncumbering, mPrice, mQuality, mDescription, mArmourPoint,
                 mProtectedParts);
     }
 
@@ -47,6 +48,7 @@ public class ArmourTest
     public void creationTest() {
         assertEquals(mName, mArmour.getName());
         assertEquals(mEncumbering, mArmour.getEncumbering());
+        assertEquals(mPrice, mArmour.getPrice());
         assertEquals(mQuality, mArmour.getQuality());
         assertEquals(mDescription, mArmour.getDescription());
         assertEquals(mArmourPoint, mArmour.getArmourPoint());
@@ -58,7 +60,7 @@ public class ArmourTest
     public void cannotCreateWithEmptyProtectedParts() {
         Set<BodyPart> emptyProtectedParts = new HashSet<>();
 
-        new Armour(mName, mEncumbering, mQuality, mDescription, mArmourPoint,
+        new Armour(mName, mEncumbering, mPrice, mQuality, mDescription, mArmourPoint,
                 emptyProtectedParts);
     }
 }

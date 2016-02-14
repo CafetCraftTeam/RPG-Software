@@ -20,15 +20,17 @@ public class EquipmentTest
 {
     private String mName = "Bottle";
     private int mEncumbering = 10;
+    private int mPrice = 100;
     private Equipment.Quality mQuality = Equipment.Quality.COMMON;
     private String mDescription = "It's a simple bottle";
 
-    private Equipment equipment = new Equipment(mName, mEncumbering, mQuality, mDescription);
+    private Equipment equipment = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
 
     @Test
     public void creationTest() {
         assertEquals(mName, equipment.getName());
         assertEquals(mEncumbering, equipment.getEncumbering());
+        assertEquals(mPrice, equipment.getPrice());
         assertEquals(mQuality, equipment.getQuality());
         assertEquals(mDescription, equipment.getDescription());
     }

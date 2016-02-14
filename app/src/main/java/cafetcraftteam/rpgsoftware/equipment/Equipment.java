@@ -16,13 +16,15 @@ public class Equipment
 
     private String mName;
     private int mEncumbering;
+    private int mPrice;
     private Quality mQuality;
     private String mDescription;
 
-    public Equipment(String name, int encumbering, Quality quality, String description)
+    public Equipment(String name, int encumbering, int price, Quality quality, String description)
     {
         mName = name;
         mEncumbering = encumbering;
+        mPrice = price;
         mQuality = quality;
         mDescription = description;
     }
@@ -33,6 +35,10 @@ public class Equipment
 
     public int getEncumbering() {
         return mEncumbering;
+    }
+
+    public int getPrice() {
+        return mPrice;
     }
 
     public Quality getQuality() {
