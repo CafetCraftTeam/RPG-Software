@@ -17,11 +17,11 @@ public class Equipment
         MAGICAL
     }
 
-    private String mName;
-    private int mEncumbering;
-    private int mPrice;
-    private Quality mQuality;
-    private String mDescription;
+    private final String mName;
+    private final int mEncumbering;
+    private final int mPrice;
+    private final Quality mQuality;
+    private final String mDescription;
 
     public Equipment(String name, int encumbering, int price, Quality quality, String description)
     {
