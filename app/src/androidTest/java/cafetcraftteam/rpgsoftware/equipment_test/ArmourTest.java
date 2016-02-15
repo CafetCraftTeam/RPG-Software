@@ -7,7 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.EnumMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import cafetcraftteam.rpgsoftware.BodyPart;
@@ -15,6 +17,8 @@ import cafetcraftteam.rpgsoftware.equipment.Armour;
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotSame;
+import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
 
 /**
@@ -32,32 +36,31 @@ public class ArmourTest
     private String mDescription = "It's a simple leather jerkin";
 
     private int mArmourPoint = 1;
-    private Set<BodyPart> mProtectedParts = new HashSet<>();
+    private BodyPart mBodyPart = BodyPart.TORSO;
+    private Map<BodyPart, Integer> mProtectedParts = new EnumMap<>(BodyPart.class);
 
     private Armour mArmour;
 
     @Before
     public void init() {
-        mProtectedParts.add(BodyPart.TORSO);
+        mProtectedParts.put(mBodyPart, mArmourPoint);
 
-        mArmour = new Armour(mName, mEncumbering, mPrice, mQuality, mDescription, mArmourPoint,
-                mProtectedParts);
+        mArmour = new Armour(mName, mEncumbering, mPrice, mQuality, mDescription, mProtectedParts);
     }
 
     @Test
     public void creationTest() {
         Equipment equipment = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
         assertEquals(equipment, mArmour);
-        assertEquals(mArmourPoint, mArmour.getArmourPoint());
-        assertEquals(mProtectedParts, mArmour.getProtectedParts());
-        assertTrue(mArmour.isProtected(BodyPart.TORSO));
+        assertEquals(mArmourPoint, mArmour.getArmourPoint(mBodyPart));
+        assertEquals(0, mArmour.getArmourPoint(BodyPart.HEAD));
+        assertTrue(mArmour.isProtected(mBodyPart));
     }
 
     @Test(expected = InstantiationError.class)
     public void cannotCreateWithEmptyProtectedParts() {
-        Set<BodyPart> emptyProtectedParts = new HashSet<>();
+        Map<BodyPart, Integer> emptyProtectedParts = new EnumMap<>(BodyPart.class);
 
-        new Armour(mName, mEncumbering, mPrice, mQuality, mDescription, mArmourPoint,
-                emptyProtectedParts);
+        new Armour(mName, mEncumbering, mPrice, mQuality, mDescription, emptyProtectedParts);
     }
 }

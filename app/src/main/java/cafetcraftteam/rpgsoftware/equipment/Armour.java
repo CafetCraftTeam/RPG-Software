@@ -2,7 +2,8 @@ package cafetcraftteam.rpgsoftware.equipment;
 
 import android.support.annotation.NonNull;
 
-import java.util.NoSuchElementException;
+import java.util.EnumMap;
+import java.util.Map;
 import java.util.Set;
 
 import cafetcraftteam.rpgsoftware.BodyPart;
@@ -12,11 +13,10 @@ import cafetcraftteam.rpgsoftware.BodyPart;
  */
 public class Armour extends Equipment
 {
-    private int mArmourPoint;
-    private final Set<BodyPart> mProtectedParts;
+    private final Map<BodyPart, Integer> mProtectedParts;
 
     public Armour(String name, int encumbering, int price, @NonNull Quality quality,
-                  String description, int armourPoint, @NonNull Set<BodyPart> protectedParts)
+                  String description, @NonNull Map<BodyPart, Integer> protectedParts)
     {
         super(name, encumbering, price, quality, description);
 
@@ -24,20 +24,21 @@ public class Armour extends Equipment
             throw new InstantiationError("No body parts protected by this armour");
         }
 
-        mArmourPoint = armourPoint;
         mProtectedParts = protectedParts;
     }
 
-    public int getArmourPoint() {
-        return mArmourPoint;
-    }
-
-    public Set<BodyPart> getProtectedParts() {
-        return mProtectedParts;
+    public int getArmourPoint(BodyPart bodyPart) {
+        if (mProtectedParts.containsKey(bodyPart))
+        {
+            return mProtectedParts.get(bodyPart);
+        }
+        else {
+            return 0;
+        }
     }
 
     public boolean isProtected(BodyPart bodyPart)
     {
-        return mProtectedParts.contains(bodyPart);
+        return mProtectedParts.containsKey(bodyPart);
     }
 }
