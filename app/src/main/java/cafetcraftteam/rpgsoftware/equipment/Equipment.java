@@ -1,6 +1,7 @@
 package cafetcraftteam.rpgsoftware.equipment;
 
-import java.util.Objects;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * Created by Gautier on 10/02/2016.
@@ -53,45 +54,37 @@ public class Equipment
 
     @Override
     public boolean equals(Object object) {
+        if (object == null) {
+            return false;
+        }
+
         //Verify if it's not the same object
         if (object == this) {
             return true;
         }
 
-        if (object instanceof Equipment) {
-            Equipment other = (Equipment) object;
-
-            // Verify all the relevant attributes (the description is not)
-            if (!mName.equals(other.mName)) {
-                return false;
-            }
-            if (mEncumbering != other.mEncumbering) {
-                return false;
-            }
-            if (mPrice != other.mPrice) {
-                return false;
-            }
-            if (mQuality != other.mQuality) {
-                return false;
-            }
-
-            return true;
+        if (!(object instanceof Equipment)) {
+            return false;
         }
 
-        return false;
+        Equipment other = (Equipment) object;
+
+        return new EqualsBuilder()
+                .append(mName, other.mName)
+                .append(mEncumbering, other.mEncumbering)
+                .append(mPrice, other.mPrice)
+                .append(mQuality, other.mQuality)
+                .isEquals();
     }
 
     @Override
     public int hashCode() {
-        int result = 3;
-        final int multiplier = 13;
-
-        result = multiplier*result + mName.hashCode();
-        result = multiplier*result + mEncumbering;
-        result = multiplier*result + mPrice;
-        result = multiplier*result + mQuality.ordinal();
-
-        return result;
+        return new HashCodeBuilder(3, 13)
+                .append(mName)
+                .append(mEncumbering)
+                .append(mPrice)
+                .append(mQuality)
+                .toHashCode();
     }
 
 }
