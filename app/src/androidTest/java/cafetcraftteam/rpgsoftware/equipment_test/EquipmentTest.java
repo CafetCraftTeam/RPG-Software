@@ -81,4 +81,16 @@ public class EquipmentTest
         assertNotSame("x = otherQuality", mEquipment.hashCode(), otherQuality.hashCode());
         assertEquals("x = otherDescription", mEquipment.hashCode(), otherDescription.hashCode());
     }
+
+    @Test
+    public void setDescriptionTest() {
+        Equipment descriptionChanged = new Equipment(mName, mEncumbering, mPrice, mQuality,
+                mDescription);
+
+        assertEquals(mEquipment, descriptionChanged);
+
+        descriptionChanged.setDescription("New description");
+
+        assertEquals(mEquipment, descriptionChanged);
+    }
 }

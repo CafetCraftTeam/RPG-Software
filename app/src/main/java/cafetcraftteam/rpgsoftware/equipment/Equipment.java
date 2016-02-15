@@ -21,7 +21,7 @@ public class Equipment
     private final int mEncumbering;
     private final int mPrice;
     private final Quality mQuality;
-    private final String mDescription;
+    private String mDescription;
 
     public Equipment(String name, int encumbering, int price, Quality quality, String description)
     {
@@ -50,6 +50,10 @@ public class Equipment
 
     public String getDescription() {
         return mDescription;
+    }
+
+    public void setDescription(String desciption) {
+        mDescription = desciption;
     }
 
     @Override
