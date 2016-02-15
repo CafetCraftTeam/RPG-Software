@@ -74,6 +74,8 @@ public class Equipment
             if (mQuality != other.mQuality) {
                 return false;
             }
+
+            return true;
         }
 
         return false;
