@@ -46,11 +46,8 @@ public class ArmourTest
 
     @Test
     public void creationTest() {
-        assertEquals(mName, mArmour.getName());
-        assertEquals(mEncumbering, mArmour.getEncumbering());
-        assertEquals(mPrice, mArmour.getPrice());
-        assertEquals(mQuality, mArmour.getQuality());
-        assertEquals(mDescription, mArmour.getDescription());
+        Equipment equipment = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
+        assertEquals(equipment, mArmour);
         assertEquals(mArmourPoint, mArmour.getArmourPoint());
         assertEquals(mProtectedParts, mArmour.getProtectedParts());
         assertTrue(mArmour.isProtected(BodyPart.TORSO));

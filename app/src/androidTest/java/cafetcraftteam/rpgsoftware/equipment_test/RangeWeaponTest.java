@@ -31,20 +31,17 @@ public class RangeWeaponTest
     private int mLongRange = 48;
     private double mReload = 1;
 
-    private RangeWeapon rangeWeapon = new RangeWeapon(mName, mEncumbering, mPrice, mQuality,
+    private RangeWeapon mRangeWeapon = new RangeWeapon(mName, mEncumbering, mPrice, mQuality,
             mDescription, mGroup, mQualities, mShortRange, mLongRange, mReload);
 
     @Test
     public void creationTest() {
-        assertEquals(mName, rangeWeapon.getName());
-        assertEquals(mEncumbering, rangeWeapon.getEncumbering());
-        assertEquals(mPrice, rangeWeapon.getPrice());
-        assertEquals(mQuality, rangeWeapon.getQuality());
-        assertEquals(mDescription, rangeWeapon.getDescription());
-        assertEquals(mGroup, rangeWeapon.getGroup());
-        assertEquals(mQualities, rangeWeapon.getQualities());
-        assertEquals(mShortRange, rangeWeapon.getShortRange());
-        assertEquals(mLongRange, rangeWeapon.getLongRange());
-        assertEquals(mReload, rangeWeapon.getReload());
+        Equipment equipment = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
+        assertEquals(equipment, mRangeWeapon);
+        assertEquals(mGroup, mRangeWeapon.getGroup());
+        assertEquals(mQualities, mRangeWeapon.getQualities());
+        assertEquals(mShortRange, mRangeWeapon.getShortRange());
+        assertEquals(mLongRange, mRangeWeapon.getLongRange());
+        assertEquals(mReload, mRangeWeapon.getReload());
     }
 }

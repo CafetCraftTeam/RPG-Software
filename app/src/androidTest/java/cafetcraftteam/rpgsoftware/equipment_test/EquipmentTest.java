@@ -27,20 +27,20 @@ public class EquipmentTest
     private Equipment.Quality mQuality = Equipment.Quality.COMMON;
     private String mDescription = "It's a simple bottle";
 
-    private Equipment equipment = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
+    private Equipment mEquipment = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
 
     @Test
     public void creationTest() {
-        assertEquals(mName, equipment.getName());
-        assertEquals(mEncumbering, equipment.getEncumbering());
-        assertEquals(mPrice, equipment.getPrice());
-        assertEquals(mQuality, equipment.getQuality());
-        assertEquals(mDescription, equipment.getDescription());
+        assertEquals(mName, mEquipment.getName());
+        assertEquals(mEncumbering, mEquipment.getEncumbering());
+        assertEquals(mPrice, mEquipment.getPrice());
+        assertEquals(mQuality, mEquipment.getQuality());
+        assertEquals(mDescription, mEquipment.getDescription());
     }
 
     @Test
     public void equalsTest() {
-        Equipment same = equipment;
+        Equipment same = mEquipment;
         Equipment deepCopy = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
         Equipment otherName = new Equipment("Toto", mEncumbering, mPrice, mQuality, mDescription);
         Equipment otherEncumbering = new Equipment(mName, 1, mPrice, mQuality, mDescription);
@@ -49,20 +49,20 @@ public class EquipmentTest
                 mDescription);
         Equipment otherDescription = new Equipment(mName, mEncumbering, mPrice, mQuality, "Plop");
 
-        assertTrue("x=x", equipment.equals(equipment));
-        assertTrue("x = same", equipment.equals(same));
-        assertTrue("x = deepCopy", equipment.equals(deepCopy));
-        assertFalse("x = otherName", equipment.equals(otherName));
-        assertFalse("otherName = x", otherName.equals(equipment));
-        assertFalse("x = otherEncumbering", equipment.equals(otherEncumbering));
-        assertFalse("x = otherPrice", equipment.equals(otherPrice));
-        assertFalse("x = otherQuality", equipment.equals(otherQuality));
-        assertTrue("x = otherDescription", equipment.equals(otherDescription));
+        assertTrue("x=x", mEquipment.equals(mEquipment));
+        assertTrue("x = same", mEquipment.equals(same));
+        assertTrue("x = deepCopy", mEquipment.equals(deepCopy));
+        assertFalse("x = otherName", mEquipment.equals(otherName));
+        assertFalse("otherName = x", otherName.equals(mEquipment));
+        assertFalse("x = otherEncumbering", mEquipment.equals(otherEncumbering));
+        assertFalse("x = otherPrice", mEquipment.equals(otherPrice));
+        assertFalse("x = otherQuality", mEquipment.equals(otherQuality));
+        assertTrue("x = otherDescription", mEquipment.equals(otherDescription));
     }
 
     @Test
     public void hashCodeTest() {
-        Equipment same = equipment;
+        Equipment same = mEquipment;
         Equipment deepCopy = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
         Equipment otherName = new Equipment("Toto", mEncumbering, mPrice, mQuality, mDescription);
         Equipment otherEncumbering = new Equipment(mName, 1, mPrice, mQuality, mDescription);
@@ -71,13 +71,13 @@ public class EquipmentTest
                 mDescription);
         Equipment otherDescription = new Equipment(mName, mEncumbering, mPrice, mQuality, "Plop");
 
-        assertEquals("x=x", equipment.hashCode(), equipment.hashCode());
-        assertEquals("x = same", equipment.hashCode(), same.hashCode());
-        assertEquals("x = deepCopy", equipment.hashCode(), deepCopy.hashCode());
-        assertNotSame("x = otherName", equipment.hashCode(), otherName.hashCode());
-        assertNotSame("x = otherEncumbering", equipment.hashCode(), otherEncumbering.hashCode());
-        assertNotSame("x = otherPrice", equipment.hashCode(), otherPrice.hashCode());
-        assertNotSame("x = otherQuality", equipment.hashCode(), otherQuality.hashCode());
-        assertEquals("x = otherDescription", equipment.hashCode(), otherDescription.hashCode());
+        assertEquals("x=x", mEquipment.hashCode(), mEquipment.hashCode());
+        assertEquals("x = same", mEquipment.hashCode(), same.hashCode());
+        assertEquals("x = deepCopy", mEquipment.hashCode(), deepCopy.hashCode());
+        assertNotSame("x = otherName", mEquipment.hashCode(), otherName.hashCode());
+        assertNotSame("x = otherEncumbering", mEquipment.hashCode(), otherEncumbering.hashCode());
+        assertNotSame("x = otherPrice", mEquipment.hashCode(), otherPrice.hashCode());
+        assertNotSame("x = otherQuality", mEquipment.hashCode(), otherQuality.hashCode());
+        assertEquals("x = otherDescription", mEquipment.hashCode(), otherDescription.hashCode());
     }
 }

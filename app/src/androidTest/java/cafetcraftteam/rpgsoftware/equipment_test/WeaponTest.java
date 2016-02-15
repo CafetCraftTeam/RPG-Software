@@ -28,18 +28,15 @@ public class WeaponTest
     private String mGroup = "Two-Handed";
     private String mQualities = "Armour Piercing";
 
-    private Weapon weapon = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription, mGroup,
+    private Weapon mWeapon = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription, mGroup,
             mQualities);
 
     @Test
     public void creationTest() {
-        assertEquals(mName, weapon.getName());
-        assertEquals(mEncumbering, weapon.getEncumbering());
-        assertEquals(mPrice, weapon.getPrice());
-        assertEquals(mQuality, weapon.getQuality());
-        assertEquals(mDescription, weapon.getDescription());
-        assertEquals(mGroup, weapon.getGroup());
-        assertEquals(mQualities, weapon.getQualities());
+        Equipment equipment = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
+        assertEquals(equipment, mWeapon);
+        assertEquals(mGroup, mWeapon.getGroup());
+        assertEquals(mQualities, mWeapon.getQualities());
     }
 
 }
