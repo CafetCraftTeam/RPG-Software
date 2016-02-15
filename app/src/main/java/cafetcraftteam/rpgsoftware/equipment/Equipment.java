@@ -1,10 +1,12 @@
 package cafetcraftteam.rpgsoftware.equipment;
 
+import android.support.annotation.NonNull;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
- * Created by Gautier on 10/02/2016.
+ * Class for all the equipment
  */
 public class Equipment
 {
@@ -17,14 +19,34 @@ public class Equipment
         MAGICAL
     }
 
-    private final String mName;
-    private final int mEncumbering;
-    private final int mPrice;
-    private final Quality mQuality;
+    private final String mName; // the name of the object
+    private final int mEncumbering; // the encumbering of the object
+    private final int mPrice; // the price of the object
+    private final Quality mQuality; // the quality of the object
+    // the description of the object, not characteristic of the object, could be empty or change without changing the properties
     private String mDescription;
 
-    public Equipment(String name, int encumbering, int price, Quality quality, String description)
+    /**
+     * Constructor of an equipment
+     * @param name the name of the equipment, must not be null or empty
+     * @param encumbering the encumbering of the equipment, must be positive
+     * @param price the price of the equipment, must be positive
+     * @param quality the quality of the equipment as an enum Quality, must be not null
+     * @param description the description of the equipment, could be empty, but not null
+     */
+    public Equipment(@NonNull String name, int encumbering, int price,@NonNull Quality quality,
+                     @NonNull String description)
     {
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException("The name must not be empty");
+        }
+        if (encumbering < 0) {
+            throw new IllegalArgumentException("The encumbering must be positive");
+        }
+        if (price < 0) {
+            throw new IllegalArgumentException("The price must be positive");
+        }
+
         mName = name;
         mEncumbering = encumbering;
         mPrice = price;
@@ -32,10 +54,18 @@ public class Equipment
         mDescription = description;
     }
 
+    /**
+     * Getter of the name of the equipment
+     * @return the name
+     */
     public String getName(){
         return mName;
     }
 
+    /**
+     * Getter of the encumbering of the object
+     * @return the encumbering
+     */
     public int getEncumbering() {
         return mEncumbering;
     }
