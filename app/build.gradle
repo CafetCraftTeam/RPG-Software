@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        com.android.ddmlib.DdmPreferences.setTimeOut(60000)
     }
     buildTypes {
         release {
@@ -24,6 +25,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'org.apache.commons:commons-lang3:3.4'
 
     androidTestCompile 'com.android.support:support-annotations:23.1.1'
     androidTestCompile 'com.android.support.test:runner:0.3'
