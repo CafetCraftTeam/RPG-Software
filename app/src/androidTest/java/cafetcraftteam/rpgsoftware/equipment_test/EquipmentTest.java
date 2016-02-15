@@ -49,6 +49,7 @@ public class EquipmentTest
                 mDescription);
         Equipment otherDescription = new Equipment(mName, mEncumbering, mPrice, mQuality, "Plop");
 
+        assertFalse("x=null", mEquipment.equals(null));
         assertTrue("x=x", mEquipment.equals(mEquipment));
         assertTrue("x = same", mEquipment.equals(same));
         assertTrue("x = deepCopy", mEquipment.equals(deepCopy));
