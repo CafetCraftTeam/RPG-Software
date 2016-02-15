@@ -10,6 +10,7 @@ import cafetcraftteam.rpgsoftware.equipment.Equipment;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertNotSame;
 import static junit.framework.Assert.assertTrue;
 
 /**
@@ -57,5 +58,26 @@ public class EquipmentTest
         assertFalse("x = otherPrice", equipment.equals(otherPrice));
         assertFalse("x = otherQuality", equipment.equals(otherQuality));
         assertTrue("x = otherDescription", equipment.equals(otherDescription));
+    }
+
+    @Test
+    public void hashCodeTest() {
+        Equipment same = equipment;
+        Equipment deepCopy = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
+        Equipment otherName = new Equipment("Toto", mEncumbering, mPrice, mQuality, mDescription);
+        Equipment otherEncumbering = new Equipment(mName, 1, mPrice, mQuality, mDescription);
+        Equipment otherPrice = new Equipment(mName, mEncumbering, 1, mQuality, mDescription);
+        Equipment otherQuality = new Equipment(mName, mEncumbering, mPrice, Equipment.Quality.BEST,
+                mDescription);
+        Equipment otherDescription = new Equipment(mName, mEncumbering, mPrice, mQuality, "Plop");
+
+        assertEquals("x=x", equipment.hashCode(), equipment.hashCode());
+        assertEquals("x = same", equipment.hashCode(), same.hashCode());
+        assertEquals("x = deepCopy", equipment.hashCode(), deepCopy.hashCode());
+        assertNotSame("x = otherName", equipment.hashCode(), otherName.hashCode());
+        assertNotSame("x = otherEncumbering", equipment.hashCode(), otherEncumbering.hashCode());
+        assertNotSame("x = otherPrice", equipment.hashCode(), otherPrice.hashCode());
+        assertNotSame("x = otherQuality", equipment.hashCode(), otherQuality.hashCode());
+        assertEquals("x = otherDescription", equipment.hashCode(), otherDescription.hashCode());
     }
 }
