@@ -11,6 +11,7 @@ import cafetcraftteam.rpgsoftware.equipment.Weapon;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertNotSame;
 import static junit.framework.Assert.assertTrue;
 
 /**
@@ -73,6 +74,38 @@ public class WeaponTest
         assertTrue("x = otherDescription", mWeapon.equals(otherDescription));
         assertFalse("x = otherGroup", mWeapon.equals(otherGroup));
         assertFalse("x = otherQualities", mWeapon.equals(otherQualities));
+    }
+
+    @Test
+public void hashCodeTest() {
+        Weapon same = mWeapon;
+        Weapon deepCopy = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
+                mGroup, mQualities);
+        Weapon otherName = new Weapon("Toto", mEncumbering, mPrice, mQuality, mDescription,
+                mGroup, mQualities);
+        Weapon otherEncumbering = new Weapon(mName, 1, mPrice, mQuality, mDescription, mGroup,
+                mQualities);
+        Weapon otherPrice = new Weapon(mName, mEncumbering, 1, mQuality, mDescription, mGroup,
+                mQualities);
+        Weapon otherQuality = new Weapon(mName, mEncumbering, mPrice, Equipment.Quality.BEST,
+                mDescription, mGroup, mQualities);
+        Weapon otherDescription = new Weapon(mName, mEncumbering, mPrice, mQuality, "Plop",
+                mGroup, mQualities);
+        Weapon otherGroup = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
+                "Plop", mQualities);
+        Weapon otherQualities = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
+                mGroup, "Sharp");
+
+        assertEquals("x=x", mWeapon.hashCode(), mWeapon.hashCode());
+        assertEquals("x = same", mWeapon.hashCode(), same.hashCode());
+        assertEquals("x = deepCopy", mWeapon.hashCode(), deepCopy.hashCode());
+        assertNotSame("x = otherName", mWeapon.hashCode(), otherName.hashCode());
+        assertNotSame("x = otherEncumbering", mWeapon.hashCode(), otherEncumbering.hashCode());
+        assertNotSame("x = otherPrice", mWeapon.hashCode(), otherPrice.hashCode());
+        assertNotSame("x = otherQuality", mWeapon.hashCode(), otherQuality.hashCode());
+        assertEquals("x = otherDescription", mWeapon.hashCode(), otherDescription.hashCode());
+        assertNotSame("x = otherGroup", mWeapon.hashCode(), otherGroup.hashCode());
+        assertNotSame("x = otherQualities", mWeapon.hashCode(), otherQualities.hashCode());
     }
 
 }
