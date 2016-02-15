@@ -8,8 +8,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  */
 public class Weapon extends Equipment
 {
-    private String mGroup;
-    private String mQualities;
+    private final String mGroup;
+    private final String mQualities;
 
     public Weapon(String name, int encumbering, int price, Quality quality, String description,
                   String group, String qualities)

@@ -5,9 +5,9 @@ package cafetcraftteam.rpgsoftware.equipment;
  */
 public class RangeWeapon extends Weapon
 {
-    private int mShortRange;
-    private int mLongRange;
-    private double mReload;
+    private final int mShortRange;
+    private final int mLongRange;
+    private final double mReload;
 
     public RangeWeapon(String name, int encumbering, int price, Quality quality, String description,
                        String group, String qualities, int shortRange, int longRange, double reload)
