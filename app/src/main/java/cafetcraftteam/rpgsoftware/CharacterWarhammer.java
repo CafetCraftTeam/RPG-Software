@@ -42,7 +42,7 @@ public class CharacterWarhammer extends Character
      */
     private HashMap<Integer,String> mWeapons;
     private HashMap<Integer,String> mArmor;
-    private HashMap<Bodypart,Integer> mDefensePoints;
+    private HashMap<BodyPart,Integer> mDefensePoints;
     private HashMap<Integer,String> mEquipment;
 
             /*
@@ -76,12 +76,12 @@ public class CharacterWarhammer extends Character
         mBasicSkills = new HashMap<>();
         mAdvanSkills = new HashMap<>();
         
-        mDefensePoints.put(Bodypart.HEAD, 0);
-        mDefensePoints.put(Bodypart.TORSO, 0);
-        mDefensePoints.put(Bodypart.LEFTARM, 0);
-        mDefensePoints.put(Bodypart.RIGHTARM, 0);
-        mDefensePoints.put(Bodypart.LEFTLEG, 0);
-        mDefensePoints.put(Bodypart.RIGHTLEG, 0);
+        mDefensePoints.put(BodyPart.HEAD, 0);
+        mDefensePoints.put(BodyPart.TORSO, 0);
+        mDefensePoints.put(BodyPart.LEFT_ARM, 0);
+        mDefensePoints.put(BodyPart.RIGHT_ARM, 0);
+        mDefensePoints.put(BodyPart.LEFT_LEG, 0);
+        mDefensePoints.put(BodyPart.RIGHT_LEG, 0);
         mBasicSkills.put("Animal Care", "Skill");
         mBasicSkills.put("Charm", "Skill");
         mBasicSkills.put("Command", "Skill");
@@ -224,12 +224,12 @@ public class CharacterWarhammer extends Character
         this.mArmor.put(id, Armor);
     }
 
-    public int getDefensePoints(Bodypart bodypart){
-        return mDefensePoints.get(bodypart);
+    public int getDefensePoints(BodyPart bodyPart){
+        return mDefensePoints.get(bodyPart);
     }
 
-    public void setDefensePoints(Bodypart bodypart, int Value){
-        this.mDefensePoints.put(bodypart, Value);
+    public void setDefensePoints(BodyPart bodyPart, int Value){
+        this.mDefensePoints.put(bodyPart, Value);
     }
 
     public void setBasicSkill(String Skillname, String Skill) throws IllegalAccessException {
