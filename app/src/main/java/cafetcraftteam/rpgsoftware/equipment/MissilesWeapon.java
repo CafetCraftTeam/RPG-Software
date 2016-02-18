@@ -3,6 +3,9 @@ package cafetcraftteam.rpgsoftware.equipment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.Set;
 
 /**
@@ -54,7 +57,8 @@ public class MissilesWeapon extends Weapon
             longRange = shortRange;
             shortRange = temp;
         }
-        if (reload < 0) {
+        if (reload < 0)
+        {
             throw new IllegalArgumentException("The time of reload must be positive or zero");
         }
 
@@ -66,6 +70,7 @@ public class MissilesWeapon extends Weapon
 
     /**
      * Getter for the short range of the weapon
+     *
      * @return the short range of the weapon
      */
     public int getShortRange()
@@ -75,6 +80,7 @@ public class MissilesWeapon extends Weapon
 
     /**
      * Getter for the long range of the weapon
+     *
      * @return the long range of the weapon
      */
     public int getLongRange()
@@ -84,10 +90,62 @@ public class MissilesWeapon extends Weapon
 
     /**
      * Getter of the time for reload the weapon
+     *
      * @return the time to reload the weapon
      */
     public double getReload()
     {
         return mReload;
+    }
+
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     *
+     * @param object the reference object with which to compare.
+     * @return true if this object is the same as the obj argument; false otherwise.
+     */
+    @Override
+    public boolean equals(Object object)
+    {
+        if (object == null)
+        {
+            return false;
+        }
+
+        if (object == this)
+        {
+            return true;
+        }
+
+        // usage of instanceof for consistency with inheritance
+        if (!(object instanceof Equipment))
+        {
+            return false;
+        }
+
+        MissilesWeapon other = (MissilesWeapon) object;
+
+        return new EqualsBuilder()
+                .appendSuper(super.equals(object))
+                .append(mShortRange, other.mShortRange)
+                .append(mLongRange, other.mLongRange)
+                .append(mReload, other.mReload)
+                .isEquals();
+    }
+
+    /**
+     * Returns a hash code value for the object.
+     *
+     * @return a hash code value for this object.
+     */
+    @Override
+    public int hashCode()
+    {
+        return new HashCodeBuilder(41, 191)
+                .appendSuper(super.hashCode())
+                .append(mShortRange)
+                .append(mLongRange)
+                .append(mReload)
+                .toHashCode();
     }
 }
