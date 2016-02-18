@@ -28,7 +28,7 @@ public class WeaponTest
     private Equipment.Quality mQuality = Equipment.Quality.COMMON;
     private String mDescription = "It's a simple bottle";
 
-    private String mGroup = "Two-Handed";
+    private Weapon.Group mGroup = Weapon.Group.TWO_HANDED;
     private String mQualities = "Armour Piercing";
 
     private Weapon mWeapon = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription, mGroup,
@@ -58,7 +58,7 @@ public class WeaponTest
         Weapon otherDescription = new Weapon(mName, mEncumbering, mPrice, mQuality, "Plop", mGroup,
                 mQualities);
         Weapon otherGroup = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
-                "Plop", mQualities);
+                Weapon.Group.THROWING, mQualities);
         Weapon otherQualities = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
                 mGroup, "Sharp");
 
@@ -92,7 +92,7 @@ public void hashCodeTest() {
         Weapon otherDescription = new Weapon(mName, mEncumbering, mPrice, mQuality, "Plop",
                 mGroup, mQualities);
         Weapon otherGroup = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
-                "Plop", mQualities);
+                Weapon.Group.FENCING, mQualities);
         Weapon otherQualities = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
                 mGroup, "Sharp");
 

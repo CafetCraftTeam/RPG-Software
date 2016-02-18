@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
 import cafetcraftteam.rpgsoftware.equipment.RangeWeapon;
+import cafetcraftteam.rpgsoftware.equipment.Weapon;
 
 import static junit.framework.Assert.assertEquals;
 
@@ -24,7 +25,7 @@ public class RangeWeaponTest
     private int mPrice = 100;
     private Equipment.Quality mQuality = Equipment.Quality.COMMON;
     private String mDescription = "It's a simple bottle";
-    private String mGroup = "Crossbow";
+    private Weapon.Group mGroup = Weapon.Group.LONGBOW;
     private String mQualities = "Armour Piercing";
 
     private int mShortRange = 24;

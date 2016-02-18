@@ -15,7 +15,7 @@ import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
 
 /**
- * Created by Gautier on 11/02/2016.
+ * Class of test of the Equipment
  */
 
 @RunWith(AndroidJUnit4.class)
