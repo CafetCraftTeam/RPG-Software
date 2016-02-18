@@ -14,6 +14,9 @@ import cafetcraftteam.rpgsoftware.equipment.MissilesWeapon;
 import cafetcraftteam.rpgsoftware.equipment.Weapon;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertNotSame;
+import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
 
 /**
@@ -97,7 +100,8 @@ public class MissilesWeaponTest
     }
 
     @Test
-    public void contractRespectReload() {
+    public void contractRespectReload()
+    {
         // Reload must not be null
         try
         {
@@ -113,5 +117,95 @@ public class MissilesWeaponTest
         MissilesWeapon missilesWeapon = new MissilesWeapon(mName, mEncumbering, mPrice, mQuality,
                 mDescription, mGroup, mQualities, mShortRange, mLongRange, 0);
         assertEquals(0.0, missilesWeapon.getReload());
+    }
+
+    @Test
+    public void equalsTest()
+    {
+        MissilesWeapon same = mMissilesWeapon;
+        MissilesWeapon deepCopy = new MissilesWeapon(mName, mEncumbering, mPrice, mQuality,
+                mDescription, mGroup, mQualities, mShortRange, mLongRange, mReload);
+        MissilesWeapon otherName = new MissilesWeapon("Toto", mEncumbering, mPrice, mQuality,
+                mDescription, mGroup, mQualities, mShortRange, mLongRange, mReload);
+        MissilesWeapon otherEncumbering = new MissilesWeapon(mName, 1, mPrice, mQuality,
+                mDescription, mGroup, mQualities, mShortRange, mLongRange, mReload);
+        MissilesWeapon otherPrice = new MissilesWeapon(mName, mEncumbering, 1, mQuality,
+                mDescription, mGroup, mQualities, mShortRange, mLongRange, mReload);
+        MissilesWeapon otherQuality = new MissilesWeapon(mName, mEncumbering, mPrice,
+                Equipment.Quality.BEST, mDescription, mGroup, mQualities, mShortRange, mLongRange,
+                mReload);
+        MissilesWeapon otherDescription = new MissilesWeapon(mName, mEncumbering, mPrice, mQuality,
+                "Plop", mGroup, mQualities, mShortRange, mLongRange, mReload);
+        MissilesWeapon otherGroup = new MissilesWeapon(mName, mEncumbering, mPrice, mQuality,
+                mDescription, Weapon.Group.THROWING, mQualities, mShortRange, mLongRange, mReload);
+        MissilesWeapon otherQualities = new MissilesWeapon(mName, mEncumbering, mPrice, mQuality,
+                mDescription, mGroup, EnumSet.of(Weapon.Qualities.SLOW), mShortRange, mLongRange,
+                mReload);
+        MissilesWeapon otherShortRange = new MissilesWeapon(mName, mEncumbering, mPrice, mQuality,
+                mDescription, mGroup, mQualities, 12, mLongRange,mReload);
+        MissilesWeapon otherLongRange = new MissilesWeapon(mName, mEncumbering, mPrice, mQuality,
+                mDescription, mGroup, mQualities, mShortRange, 72,mReload);
+        MissilesWeapon otherReload = new MissilesWeapon(mName, mEncumbering, mPrice, mQuality,
+                mDescription, mGroup, mQualities, mShortRange, mLongRange,0.5);
+
+        assertFalse("x=null", mMissilesWeapon.equals(null));
+        assertTrue("x=x", mMissilesWeapon.equals(mMissilesWeapon));
+        assertTrue("x = same", mMissilesWeapon.equals(same));
+        assertTrue("x = deepCopy", mMissilesWeapon.equals(deepCopy));
+        assertFalse("x = otherName", mMissilesWeapon.equals(otherName));
+        assertFalse("otherName = x", otherName.equals(mMissilesWeapon));
+        assertFalse("x = otherEncumbering", mMissilesWeapon.equals(otherEncumbering));
+        assertFalse("x = otherPrice", mMissilesWeapon.equals(otherPrice));
+        assertFalse("x = otherQuality", mMissilesWeapon.equals(otherQuality));
+        assertTrue("x = otherDescription", mMissilesWeapon.equals(otherDescription));
+        assertFalse("x = otherGroup", mMissilesWeapon.equals(otherGroup));
+        assertFalse("x = otherQualities", mMissilesWeapon.equals(otherQualities));
+        assertFalse("x = otherShortRange", mMissilesWeapon.equals(otherShortRange));
+        assertFalse("x = otherLongRange", mMissilesWeapon.equals(otherLongRange));
+        assertFalse("x = otherReload", mMissilesWeapon.equals(otherReload));
+    }
+
+    @Test
+    public void hashCodeTest()
+    {
+        MissilesWeapon same = mMissilesWeapon;
+        MissilesWeapon deepCopy = new MissilesWeapon(mName, mEncumbering, mPrice, mQuality,
+                mDescription, mGroup, mQualities, mShortRange, mLongRange, mReload);
+        MissilesWeapon otherName = new MissilesWeapon("Toto", mEncumbering, mPrice, mQuality,
+                mDescription, mGroup, mQualities, mShortRange, mLongRange, mReload);
+        MissilesWeapon otherEncumbering = new MissilesWeapon(mName, 1, mPrice, mQuality,
+                mDescription, mGroup, mQualities, mShortRange, mLongRange, mReload);
+        MissilesWeapon otherPrice = new MissilesWeapon(mName, mEncumbering, 1, mQuality,
+                mDescription, mGroup, mQualities, mShortRange, mLongRange, mReload);
+        MissilesWeapon otherQuality = new MissilesWeapon(mName, mEncumbering, mPrice,
+                Equipment.Quality.BEST, mDescription, mGroup, mQualities, mShortRange, mLongRange,
+                mReload);
+        MissilesWeapon otherDescription = new MissilesWeapon(mName, mEncumbering, mPrice, mQuality,
+                "Plop", mGroup, mQualities, mShortRange, mLongRange, mReload);
+        MissilesWeapon otherGroup = new MissilesWeapon(mName, mEncumbering, mPrice, mQuality,
+                mDescription, Weapon.Group.THROWING, mQualities, mShortRange, mLongRange, mReload);
+        MissilesWeapon otherQualities = new MissilesWeapon(mName, mEncumbering, mPrice, mQuality,
+                mDescription, mGroup, EnumSet.of(Weapon.Qualities.SLOW), mShortRange, mLongRange,
+                mReload);
+        MissilesWeapon otherShortRange = new MissilesWeapon(mName, mEncumbering, mPrice, mQuality,
+                mDescription, mGroup, mQualities, 12, mLongRange,mReload);
+        MissilesWeapon otherLongRange = new MissilesWeapon(mName, mEncumbering, mPrice, mQuality,
+                mDescription, mGroup, mQualities, mShortRange, 72,mReload);
+        MissilesWeapon otherReload = new MissilesWeapon(mName, mEncumbering, mPrice, mQuality,
+                mDescription, mGroup, mQualities, mShortRange, mLongRange,0.5);
+
+        assertEquals("x=x", mMissilesWeapon.hashCode(), mMissilesWeapon.hashCode());
+        assertEquals("x = same", mMissilesWeapon.hashCode(), same.hashCode());
+        assertEquals("x = deepCopy", mMissilesWeapon.hashCode(), deepCopy.hashCode());
+        assertNotSame("x = otherName", mMissilesWeapon.hashCode(), otherName.hashCode());
+        assertNotSame("x = otherEncumbering", mMissilesWeapon.hashCode(), otherEncumbering.hashCode());
+        assertNotSame("x = otherPrice", mMissilesWeapon.hashCode(), otherPrice.hashCode());
+        assertNotSame("x = otherQuality", mMissilesWeapon.hashCode(), otherQuality.hashCode());
+        assertEquals("x = otherDescription", mMissilesWeapon.hashCode(), otherDescription.hashCode());
+        assertNotSame("x = otherGroup", mMissilesWeapon.hashCode(), otherGroup.hashCode());
+        assertNotSame("x = otherQualities", mMissilesWeapon.hashCode(), otherQualities.hashCode());
+        assertNotSame("x = otherShortRange", mMissilesWeapon.hashCode(), otherShortRange.hashCode());
+        assertNotSame("x = otherLongRange", mMissilesWeapon.hashCode(), otherLongRange.hashCode());
+        assertNotSame("x = otherReload", mMissilesWeapon.hashCode(), otherReload.hashCode());
     }
 }
