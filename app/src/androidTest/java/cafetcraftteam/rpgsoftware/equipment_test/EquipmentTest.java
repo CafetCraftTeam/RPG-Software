@@ -31,7 +31,8 @@ public class EquipmentTest
     private Equipment mEquipment = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
 
     @Test
-    public void creationTest() {
+    public void creationTest()
+    {
         assertEquals(mName, mEquipment.getName());
         assertEquals(mEncumbering, mEquipment.getEncumbering());
         assertEquals(mPrice, mEquipment.getPrice());
@@ -40,102 +41,95 @@ public class EquipmentTest
     }
 
     @Test
-    public void contractRespectName() {
+    public void contractRespectName()
+    {
         // name must not be null
-        try {
+        try
+        {
             new Equipment(null, mEncumbering, mPrice, mQuality, mDescription);
             fail("Null name don't generate an exception");
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e)
+        {
             // success
         }
 
         // name must not be empty
-        try {
+        try
+        {
             new Equipment("", mEncumbering, mPrice, mQuality, mDescription);
             fail("Empty name don't generate an exception");
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e)
+        {
             // success
         }
     }
 
     @Test
-    public void contractRespectEncumbering() {
+    public void contractRespectEncumbering()
+    {
         // encumbering must not be negative
-        try {
+        try
+        {
             new Equipment(mName, -mEncumbering, mPrice, mQuality, mDescription);
             fail("Negative encumbering don't generate an exception");
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e)
+        {
             // success
         }
 
         // zero as encumbering is valid
-        try {
-            new Equipment(mName, 0, mPrice, mQuality, mDescription);
-        }
-        catch (IllegalArgumentException e) {
-            fail("Zero encumbering generate an exception");
-        }
+        Equipment equipment = new Equipment(mName, 0, mPrice, mQuality, mDescription);
+        assertEquals(0, equipment.getEncumbering());
     }
 
     @Test
-    public void contractRespectPrice() {
+    public void contractRespectPrice()
+    {
         // price must not be negative
-        try {
+        try
+        {
             new Equipment(mName, mEncumbering, -mPrice, mQuality, mDescription);
             fail("Negative price don't generate an exception");
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e)
+        {
             // success
         }
 
         // zero as price is valid
-        try {
-            new Equipment(mName, mEncumbering, 0, mQuality, mDescription);
-        }
-        catch (IllegalArgumentException e) {
-            fail("Zero price generate an exception");
-        }
+        Equipment equipment = new Equipment(mName, mEncumbering, 0, mQuality, mDescription);
+        assertEquals(0, equipment.getPrice());
     }
 
     @Test
-    public void contractRespectQuality() {
+    public void contractRespectQuality()
+    {
         // quality must not be null
-        try {
+        try
+        {
             new Equipment(mName, mEncumbering, mPrice, null, mDescription);
             fail("Null quality don't generate an exception");
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e)
+        {
             // success
         }
     }
 
     @Test
-    public void contractRespectDescription() {
+    public void contractRespectDescription()
+    {
         // description can be null
-        try {
-            new Equipment(mName, mEncumbering, mPrice, mQuality, null);
-        }
-        catch (IllegalArgumentException e) {
-            fail("Null description generate an exception");
-        }
+        Equipment equipment = new Equipment(mName, mEncumbering, mPrice, mQuality, null);
+        assertEquals("", equipment.getDescription());
 
         // description can be empty
-        try {
-            new Equipment(mName, mEncumbering, mPrice, mQuality, "");
-        }
-        catch (IllegalArgumentException e) {
-            fail("Empty description generate an exception");
-        }
+        Equipment equipment1 = new Equipment(mName, mEncumbering, mPrice, mQuality, "");
+        assertEquals("", equipment1.getDescription());
     }
 
 
-
-
     @Test
-    public void equalsTest() {
+    public void equalsTest()
+    {
         Equipment same = mEquipment;
         Equipment deepCopy = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
         Equipment otherName = new Equipment("Toto", mEncumbering, mPrice, mQuality, mDescription);
@@ -158,7 +152,8 @@ public class EquipmentTest
     }
 
     @Test
-    public void hashCodeTest() {
+    public void hashCodeTest()
+    {
         Equipment same = mEquipment;
         Equipment deepCopy = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
         Equipment otherName = new Equipment("Toto", mEncumbering, mPrice, mQuality, mDescription);
@@ -179,7 +174,8 @@ public class EquipmentTest
     }
 
     @Test
-    public void setDescriptionTest() {
+    public void setDescriptionTest()
+    {
         Equipment descriptionChanged = new Equipment(mName, mEncumbering, mPrice, mQuality,
                 mDescription);
 
