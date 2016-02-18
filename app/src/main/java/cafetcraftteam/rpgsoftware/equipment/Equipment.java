@@ -10,6 +10,9 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  */
 public class Equipment
 {
+    /**
+     * Enumeration of the different quality available for an equipment
+     */
     public enum Quality
     {
         POOR,
@@ -37,14 +40,15 @@ public class Equipment
     public Equipment(@NonNull String name, int encumbering, int price,@NonNull Quality quality,
                      @NonNull String description)
     {
+        //Contract of the
         if (name.isEmpty()) {
             throw new IllegalArgumentException("The name must not be empty");
         }
         if (encumbering < 0) {
-            throw new IllegalArgumentException("The encumbering must be positive");
+            throw new IllegalArgumentException("The encumbering must be positive or null");
         }
         if (price < 0) {
-            throw new IllegalArgumentException("The price must be positive");
+            throw new IllegalArgumentException("The price must be positive or null");
         }
 
         mName = name;
@@ -63,29 +67,52 @@ public class Equipment
     }
 
     /**
-     * Getter of the encumbering of the object
+     * Getter of the encumbering of the equipment
      * @return the encumbering
      */
     public int getEncumbering() {
         return mEncumbering;
     }
 
+    /**
+     * Getter of the price of the equipment
+     * @return the price as a number of pennies
+     */
     public int getPrice() {
         return mPrice;
     }
 
+    /**
+     * Getter of the quality of the equipment
+     * @return the quality as an enum
+     */
     public Quality getQuality() {
         return mQuality;
     }
 
+    /**
+     * Getter of the optional description of the equipment, if it have not been given this return
+     * a simple empty string.
+     * @return the description of the equipment
+     */
     public String getDescription() {
         return mDescription;
     }
 
+    /**
+     * Setter of the description of the equipment. This is not characteristic of an equipment,
+     * therefor you can change it at any time without changing the behaviour of the equipment.
+     * @param desciption
+     */
     public void setDescription(String desciption) {
         mDescription = desciption;
     }
 
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     * @param object the reference object with which to compare.
+     * @return true if this object is the same as the obj argument; false otherwise.
+     */
     @Override
     public boolean equals(Object object) {
         if (object == null) {
@@ -111,6 +138,10 @@ public class Equipment
                 .isEquals();
     }
 
+    /**
+     * Returns a hash code value for the object.
+     * @return a hash code value for this object.
+     */
     @Override
     public int hashCode() {
         return new HashCodeBuilder(3, 13)
