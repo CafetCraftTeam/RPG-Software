@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.Set;
 
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
@@ -16,6 +17,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotSame;
 import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.fail;
 
 /**
  * Created by Gautier on 11/02/2016.
@@ -38,7 +40,8 @@ public class WeaponTest
             mQualities);
 
     @Test
-    public void creationTest() {
+    public void creationTest()
+    {
         Equipment equipment = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
         assertEquals(equipment, mWeapon);
         assertEquals(mGroup, mWeapon.getGroup());
@@ -46,7 +49,35 @@ public class WeaponTest
     }
 
     @Test
-    public void equalsTest() {
+    public void contractRespectGroup()
+    {
+        // group must not be null
+        try
+        {
+            new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription, null, mQualities);
+            fail("Null group don't generate an exception");
+        } catch (IllegalArgumentException e)
+        {
+            // success
+        }
+    }
+
+    @Test
+    public void contractRespectQualities()
+    {
+        // qualities can be null
+        Weapon weapon = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription, mGroup, null);
+        assertEquals(EnumSet.of(Weapon.Qualities.NONE), weapon.getQualities());
+
+        // qualities can be empty
+        Weapon weapon1 = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription, mGroup,
+                new HashSet<Weapon.Qualities>());
+        assertEquals(EnumSet.of(Weapon.Qualities.NONE), weapon1.getQualities());
+    }
+
+    @Test
+    public void equalsTest()
+    {
         Weapon same = mWeapon;
         Weapon deepCopy = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription, mGroup,
                 mQualities);
@@ -80,7 +111,8 @@ public class WeaponTest
     }
 
     @Test
-public void hashCodeTest() {
+    public void hashCodeTest()
+    {
         Weapon same = mWeapon;
         Weapon deepCopy = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
                 mGroup, mQualities);

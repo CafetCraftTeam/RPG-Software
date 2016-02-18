@@ -66,7 +66,7 @@ public class Weapon extends Equipment
      * @param quality     the quality of the weapon, must not be null
      * @param description the description of the weapon, if null replace by an empty string
      * @param group       the group of the weapon, must not be null
-     * @param qualities   the qualities of the weapon, if null replace by the NONE Qualities
+     * @param qualities   the qualities of the weapon, if null or empty replace by the NONE Qualities
      */
     public Weapon(@NonNull String name, int encumbering, int price, @NonNull Quality quality,
                   @Nullable String description, @NonNull Group group,
