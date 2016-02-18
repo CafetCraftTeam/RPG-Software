@@ -1,5 +1,7 @@
 package cafetcraftteam.rpgsoftware.equipment;
 
+import android.support.annotation.NonNull;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -9,7 +11,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public class Weapon extends Equipment
 {
     // the different groups possible for the weapons
-    public enum Group {
+    public enum Group
+    {
         ORDINARY,
         CAVALRY,
         CROSSBOW,
@@ -25,7 +28,8 @@ public class Weapon extends Equipment
         TWO_HANDED
     }
 
-    public enum Qualities {
+    public enum Qualities
+    {
         ARMOUR_PIERCING,
         BALANCED,
         DEFENSIVE,
@@ -48,8 +52,19 @@ public class Weapon extends Equipment
     // the qualities of the weapon
     private final Qualities mQualities;
 
-    public Weapon(String name, int encumbering, int price, Quality quality, String description,
-                  Group group, Qualities qualities)
+    /**
+     * Constructor of the class weapon
+     *
+     * @param name        the name of the weapon
+     * @param encumbering the encumbering of the weapon
+     * @param price       the price of the weapon
+     * @param quality     the quality of the weapon
+     * @param description the description of the weapon
+     * @param group       the group of the weapon
+     * @param qualities   the qualities of the weapon
+     */
+    public Weapon(@NonNull String name, int encumbering, int price, @NonNull Quality quality,
+                  @NonNull String description, @NonNull Group group, @NonNull Qualities qualities)
     {
         super(name, encumbering, price, quality, description);
         mGroup = group;
@@ -67,17 +82,21 @@ public class Weapon extends Equipment
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (object == null) {
+    public boolean equals(Object object)
+    {
+        if (object == null)
+        {
             return false;
         }
 
         //Verify if it's not the same object
-        if (object == this) {
+        if (object == this)
+        {
             return true;
         }
 
-        if (!(object instanceof  Weapon)) {
+        if (!(object instanceof Weapon))
+        {
             return false;
         }
 
@@ -91,7 +110,8 @@ public class Weapon extends Equipment
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         return new HashCodeBuilder(5, 19)
                 .appendSuper(super.hashCode())
                 .append(mGroup)
