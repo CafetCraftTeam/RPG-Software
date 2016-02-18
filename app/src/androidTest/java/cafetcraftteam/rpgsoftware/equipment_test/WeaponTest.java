@@ -6,6 +6,9 @@ import android.test.suitebuilder.annotation.LargeTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.EnumSet;
+import java.util.Set;
+
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
 import cafetcraftteam.rpgsoftware.equipment.Weapon;
 
@@ -29,7 +32,7 @@ public class WeaponTest
     private String mDescription = "It's a simple bottle";
 
     private Weapon.Group mGroup = Weapon.Group.TWO_HANDED;
-    private Weapon.Qualities mQualities = Weapon.Qualities.ARMOUR_PIERCING;
+    private Set<Weapon.Qualities> mQualities = EnumSet.of(Weapon.Qualities.ARMOUR_PIERCING);
 
     private Weapon mWeapon = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription, mGroup,
             mQualities);
@@ -60,7 +63,7 @@ public class WeaponTest
         Weapon otherGroup = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
                 Weapon.Group.THROWING, mQualities);
         Weapon otherQualities = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
-                mGroup, Weapon.Qualities.SLOW);
+                mGroup, EnumSet.of(Weapon.Qualities.SLOW));
 
         assertFalse("x=null", mWeapon.equals(null));
         assertTrue("x=x", mWeapon.equals(mWeapon));
@@ -94,7 +97,7 @@ public void hashCodeTest() {
         Weapon otherGroup = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
                 Weapon.Group.FENCING, mQualities);
         Weapon otherQualities = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
-                mGroup, Weapon.Qualities.IMPACT);
+                mGroup, EnumSet.of(Weapon.Qualities.IMPACT));
 
         assertEquals("x=x", mWeapon.hashCode(), mWeapon.hashCode());
         assertEquals("x = same", mWeapon.hashCode(), same.hashCode());

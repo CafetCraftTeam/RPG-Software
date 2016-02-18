@@ -6,6 +6,9 @@ import android.support.annotation.Nullable;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import java.util.EnumSet;
+import java.util.Set;
+
 /**
  * Class of the Weapons
  */
@@ -52,7 +55,7 @@ public class Weapon extends Equipment
     private final Group mGroup;
 
     // the qualities of the weapon
-    private final Qualities mQualities;
+    private final Set<Qualities> mQualities;
 
     /**
      * Constructor of the class weapon
@@ -66,7 +69,8 @@ public class Weapon extends Equipment
      * @param qualities   the qualities of the weapon, if null replace by the NONE Qualities
      */
     public Weapon(@NonNull String name, int encumbering, int price, @NonNull Quality quality,
-                  @Nullable String description, @NonNull Group group, @Nullable Qualities qualities)
+                  @Nullable String description, @NonNull Group group,
+                  @Nullable Set<Qualities> qualities)
     {
         super(name, encumbering, price, quality, description);
 
@@ -75,9 +79,9 @@ public class Weapon extends Equipment
         {
             throw new IllegalArgumentException("The group of the weapon must not be null");
         }
-        if (qualities == null)
+        if (qualities == null || qualities.isEmpty())
         {
-            qualities = Qualities.NONE;
+            qualities = EnumSet.of(Qualities.NONE);
         }
 
         mGroup = group;
@@ -99,7 +103,7 @@ public class Weapon extends Equipment
      *
      * @return the qualities of the weapon
      */
-    public Qualities getQualities()
+    public Set<Qualities> getQualities()
     {
         return mQualities;
     }

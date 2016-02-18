@@ -6,6 +6,9 @@ import android.test.suitebuilder.annotation.LargeTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.EnumSet;
+import java.util.Set;
+
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
 import cafetcraftteam.rpgsoftware.equipment.RangeWeapon;
 import cafetcraftteam.rpgsoftware.equipment.Weapon;
@@ -26,7 +29,7 @@ public class RangeWeaponTest
     private Equipment.Quality mQuality = Equipment.Quality.COMMON;
     private String mDescription = "It's a simple bottle";
     private Weapon.Group mGroup = Weapon.Group.LONGBOW;
-    private Weapon.Qualities mQualities = Weapon.Qualities.DEFENSIVE;
+    private Set<Weapon.Qualities> mQualities = EnumSet.of(Weapon.Qualities.DEFENSIVE);
 
     private int mShortRange = 24;
     private int mLongRange = 48;
