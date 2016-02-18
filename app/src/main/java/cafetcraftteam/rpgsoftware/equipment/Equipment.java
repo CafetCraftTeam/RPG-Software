@@ -1,6 +1,7 @@
 package cafetcraftteam.rpgsoftware.equipment;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -35,20 +36,27 @@ public class Equipment
      * @param encumbering the encumbering of the equipment, must be positive
      * @param price the price of the equipment, must be positive
      * @param quality the quality of the equipment as an enum Quality, must be not null
-     * @param description the description of the equipment, could be empty, but not null
+     * @param description the description of the equipment, could be empty, if null is passed the
+     *                    description is set to an empty string
      */
     public Equipment(@NonNull String name, int encumbering, int price,@NonNull Quality quality,
-                     @NonNull String description)
+                     @Nullable String description)
     {
         //Contract of the constructor
-        if (name.isEmpty()) {
-            throw new IllegalArgumentException("The name must not be empty");
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("The name must not be empty or null");
         }
         if (encumbering < 0) {
-            throw new IllegalArgumentException("The encumbering must be positive or null");
+            throw new IllegalArgumentException("The encumbering must be positive or zero");
         }
         if (price < 0) {
-            throw new IllegalArgumentException("The price must be positive or null");
+            throw new IllegalArgumentException("The price must be positive or zero");
+        }
+        if (quality == null) {
+            throw new IllegalArgumentException("The quality must not be null");
+        }
+        if (description == null) {
+            description = "";
         }
 
         mName = name;
@@ -118,7 +126,7 @@ public class Equipment
         if (object == null) {
             return false;
         }
-        
+
         if (object == this) {
             return true;
         }
