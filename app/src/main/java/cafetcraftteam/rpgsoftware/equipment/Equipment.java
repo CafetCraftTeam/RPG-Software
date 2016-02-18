@@ -40,7 +40,7 @@ public class Equipment
     public Equipment(@NonNull String name, int encumbering, int price,@NonNull Quality quality,
                      @NonNull String description)
     {
-        //Contract of the
+        //Contract of the constructor
         if (name.isEmpty()) {
             throw new IllegalArgumentException("The name must not be empty");
         }
@@ -102,10 +102,10 @@ public class Equipment
     /**
      * Setter of the description of the equipment. This is not characteristic of an equipment,
      * therefor you can change it at any time without changing the behaviour of the equipment.
-     * @param desciption
+     * @param description the future description of the equipment. Must be not null, but can be empty.
      */
-    public void setDescription(String desciption) {
-        mDescription = desciption;
+    public void setDescription(@NonNull String description) {
+        mDescription = description;
     }
 
     /**
@@ -118,12 +118,12 @@ public class Equipment
         if (object == null) {
             return false;
         }
-
-        //Verify if it's not the same object
+        
         if (object == this) {
             return true;
         }
 
+        // usage of instanceof for consistency with inheritance
         if (!(object instanceof Equipment)) {
             return false;
         }
