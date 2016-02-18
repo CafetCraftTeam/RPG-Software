@@ -1,6 +1,7 @@
 package cafetcraftteam.rpgsoftware.equipment;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -36,6 +37,7 @@ public class Weapon extends Equipment
         EXPERIMENTAL,
         FAST,
         IMPACT,
+        NONE,
         PRECISE,
         PUMMELLING,
         SHRAPNEL,
@@ -55,32 +57,58 @@ public class Weapon extends Equipment
     /**
      * Constructor of the class weapon
      *
-     * @param name        the name of the weapon
-     * @param encumbering the encumbering of the weapon
-     * @param price       the price of the weapon
-     * @param quality     the quality of the weapon
-     * @param description the description of the weapon
-     * @param group       the group of the weapon
-     * @param qualities   the qualities of the weapon
+     * @param name        the name of the weapon, must not be empty or null
+     * @param encumbering the encumbering of the weapon, must be positive or zero
+     * @param price       the price of the weapon, must be positive or zero
+     * @param quality     the quality of the weapon, must not be null
+     * @param description the description of the weapon, if null replace by an empty string
+     * @param group       the group of the weapon, must not be null
+     * @param qualities   the qualities of the weapon, if null replace by the NONE Qualities
      */
     public Weapon(@NonNull String name, int encumbering, int price, @NonNull Quality quality,
-                  @NonNull String description, @NonNull Group group, @NonNull Qualities qualities)
+                  @Nullable String description, @NonNull Group group, @Nullable Qualities qualities)
     {
         super(name, encumbering, price, quality, description);
+
+        // verification of the contract of the constructor
+        if (group == null)
+        {
+            throw new IllegalArgumentException("The group of the weapon must not be null");
+        }
+        if (qualities == null)
+        {
+            qualities = Qualities.NONE;
+        }
+
         mGroup = group;
         mQualities = qualities;
     }
 
+    /**
+     * Getter of the group of the weapon
+     *
+     * @return the group of the weapon
+     */
     public Group getGroup()
     {
         return mGroup;
     }
 
+    /**
+     * Getter of the qualities of the weapon
+     *
+     * @return the qualities of the weapon
+     */
     public Qualities getQualities()
     {
         return mQualities;
     }
 
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     * @param object the reference object with which to compare.
+     * @return true if this object is the same as the obj argument; false otherwise.
+     */
     @Override
     public boolean equals(Object object)
     {
@@ -109,6 +137,10 @@ public class Weapon extends Equipment
                 .isEquals();
     }
 
+    /**
+     * Returns a hash code value for the object.
+     * @return a hash code value for this object.
+     */
     @Override
     public int hashCode()
     {
