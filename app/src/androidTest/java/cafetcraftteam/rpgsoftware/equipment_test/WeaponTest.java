@@ -29,7 +29,7 @@ public class WeaponTest
     private String mDescription = "It's a simple bottle";
 
     private Weapon.Group mGroup = Weapon.Group.TWO_HANDED;
-    private String mQualities = "Armour Piercing";
+    private Weapon.Qualities mQualities = Weapon.Qualities.ARMOUR_PIERCING;
 
     private Weapon mWeapon = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription, mGroup,
             mQualities);
@@ -60,7 +60,7 @@ public class WeaponTest
         Weapon otherGroup = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
                 Weapon.Group.THROWING, mQualities);
         Weapon otherQualities = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
-                mGroup, "Sharp");
+                mGroup, Weapon.Qualities.SLOW);
 
         assertFalse("x=null", mWeapon.equals(null));
         assertTrue("x=x", mWeapon.equals(mWeapon));
@@ -94,7 +94,7 @@ public void hashCodeTest() {
         Weapon otherGroup = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
                 Weapon.Group.FENCING, mQualities);
         Weapon otherQualities = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
-                mGroup, "Sharp");
+                mGroup, Weapon.Qualities.IMPACT);
 
         assertEquals("x=x", mWeapon.hashCode(), mWeapon.hashCode());
         assertEquals("x = same", mWeapon.hashCode(), same.hashCode());

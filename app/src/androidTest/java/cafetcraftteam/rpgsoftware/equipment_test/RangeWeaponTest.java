@@ -26,7 +26,7 @@ public class RangeWeaponTest
     private Equipment.Quality mQuality = Equipment.Quality.COMMON;
     private String mDescription = "It's a simple bottle";
     private Weapon.Group mGroup = Weapon.Group.LONGBOW;
-    private String mQualities = "Armour Piercing";
+    private Weapon.Qualities mQualities = Weapon.Qualities.DEFENSIVE;
 
     private int mShortRange = 24;
     private int mLongRange = 48;

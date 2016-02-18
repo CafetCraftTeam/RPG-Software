@@ -8,6 +8,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  */
 public class Weapon extends Equipment
 {
+    // the different groups possible for the weapons
     public enum Group {
         ORDINARY,
         CAVALRY,
@@ -24,14 +25,31 @@ public class Weapon extends Equipment
         TWO_HANDED
     }
 
+    public enum Qualities {
+        ARMOUR_PIERCING,
+        BALANCED,
+        DEFENSIVE,
+        EXPERIMENTAL,
+        FAST,
+        IMPACT,
+        PRECISE,
+        PUMMELLING,
+        SHRAPNEL,
+        SLOW,
+        SNARE,
+        SPECIAL,
+        TIRING,
+        UNRELIABLE
+    }
+
     // The weapon group of the weapon
     private final Group mGroup;
 
     // the qualities of the weapon
-    private final String mQualities;
+    private final Qualities mQualities;
 
     public Weapon(String name, int encumbering, int price, Quality quality, String description,
-                  Group group, String qualities)
+                  Group group, Qualities qualities)
     {
         super(name, encumbering, price, quality, description);
         mGroup = group;
@@ -43,7 +61,7 @@ public class Weapon extends Equipment
         return mGroup;
     }
 
-    public String getQualities()
+    public Qualities getQualities()
     {
         return mQualities;
     }

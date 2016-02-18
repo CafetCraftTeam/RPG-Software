@@ -10,7 +10,7 @@ public class RangeWeapon extends Weapon
     private final double mReload;
 
     public RangeWeapon(String name, int encumbering, int price, Quality quality, String description,
-                       Group group, String qualities, int shortRange, int longRange, double reload)
+                       Group group, Qualities qualities, int shortRange, int longRange, double reload)
     {
         super(name, encumbering, price, quality, description, group, qualities);
         mShortRange = shortRange;
