@@ -1,5 +1,8 @@
 package cafetcraftteam.rpgsoftware.equipment;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import java.util.Set;
 
 /**
@@ -29,8 +32,9 @@ public class MissilesWeapon extends Weapon
      *                    short range, the two values are swap
      * @param reload      the time to reload the weapon (in round), must be positive or zero
      */
-    public MissilesWeapon(String name, int encumbering, int price, Quality quality, String description,
-                          Group group, Set<Qualities> qualities, int shortRange, int longRange,
+    public MissilesWeapon(@NonNull String name, int encumbering, int price, @NonNull Quality quality,
+                          @Nullable String description, @NonNull Group group,
+                          @Nullable Set<Qualities> qualities, int shortRange, int longRange,
                           double reload)
     {
         super(name, encumbering, price, quality, description, group, qualities);
@@ -50,6 +54,9 @@ public class MissilesWeapon extends Weapon
             longRange = shortRange;
             shortRange = temp;
         }
+        if (reload < 0) {
+            throw new IllegalArgumentException("The time of reload must be positive or zero");
+        }
 
         mShortRange = shortRange;
         mLongRange = longRange;
@@ -57,16 +64,28 @@ public class MissilesWeapon extends Weapon
         mReload = reload;
     }
 
+    /**
+     * Getter for the short range of the weapon
+     * @return the short range of the weapon
+     */
     public int getShortRange()
     {
         return mShortRange;
     }
 
+    /**
+     * Getter for the long range of the weapon
+     * @return the long range of the weapon
+     */
     public int getLongRange()
     {
         return mLongRange;
     }
 
+    /**
+     * Getter of the time for reload the weapon
+     * @return the time to reload the weapon
+     */
     public double getReload()
     {
         return mReload;
