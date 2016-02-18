@@ -10,7 +10,7 @@ import java.util.EnumSet;
 import java.util.Set;
 
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
-import cafetcraftteam.rpgsoftware.equipment.RangeWeapon;
+import cafetcraftteam.rpgsoftware.equipment.MissilesWeapon;
 import cafetcraftteam.rpgsoftware.equipment.Weapon;
 
 import static junit.framework.Assert.assertEquals;
@@ -21,7 +21,7 @@ import static junit.framework.Assert.assertEquals;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class RangeWeaponTest
+public class MissilesWeaponTest
 {
     private String mName = "Bottle";
     private int mEncumbering = 10;
@@ -35,17 +35,17 @@ public class RangeWeaponTest
     private int mLongRange = 48;
     private double mReload = 1;
 
-    private RangeWeapon mRangeWeapon = new RangeWeapon(mName, mEncumbering, mPrice, mQuality,
+    private MissilesWeapon mMissilesWeapon = new MissilesWeapon(mName, mEncumbering, mPrice, mQuality,
             mDescription, mGroup, mQualities, mShortRange, mLongRange, mReload);
 
     @Test
     public void creationTest() {
         Equipment equipment = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
-        assertEquals(equipment, mRangeWeapon);
-        assertEquals(mGroup, mRangeWeapon.getGroup());
-        assertEquals(mQualities, mRangeWeapon.getQualities());
-        assertEquals(mShortRange, mRangeWeapon.getShortRange());
-        assertEquals(mLongRange, mRangeWeapon.getLongRange());
-        assertEquals(mReload, mRangeWeapon.getReload());
+        assertEquals(equipment, mMissilesWeapon);
+        assertEquals(mGroup, mMissilesWeapon.getGroup());
+        assertEquals(mQualities, mMissilesWeapon.getQualities());
+        assertEquals(mShortRange, mMissilesWeapon.getShortRange());
+        assertEquals(mLongRange, mMissilesWeapon.getLongRange());
+        assertEquals(mReload, mMissilesWeapon.getReload());
     }
 }
