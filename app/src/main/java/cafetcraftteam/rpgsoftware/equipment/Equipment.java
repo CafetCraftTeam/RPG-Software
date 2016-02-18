@@ -32,30 +32,36 @@ public class Equipment
 
     /**
      * Constructor of an equipment
-     * @param name the name of the equipment, must not be null or empty
+     *
+     * @param name        the name of the equipment, must not be null or empty
      * @param encumbering the encumbering of the equipment, must be positive
-     * @param price the price of the equipment, must be positive
-     * @param quality the quality of the equipment as an enum Quality, must be not null
+     * @param price       the price of the equipment, must be positive
+     * @param quality     the quality of the equipment as an enum Quality, must be not null
      * @param description the description of the equipment, could be empty, if null is passed the
      *                    description is set to an empty string
      */
-    public Equipment(@NonNull String name, int encumbering, int price,@NonNull Quality quality,
+    public Equipment(@NonNull String name, int encumbering, int price, @NonNull Quality quality,
                      @Nullable String description)
     {
         //Contract of the constructor
-        if (name == null || name.isEmpty()) {
+        if (name == null || name.isEmpty())
+        {
             throw new IllegalArgumentException("The name must not be empty or null");
         }
-        if (encumbering < 0) {
+        if (encumbering < 0)
+        {
             throw new IllegalArgumentException("The encumbering must be positive or zero");
         }
-        if (price < 0) {
+        if (price < 0)
+        {
             throw new IllegalArgumentException("The price must be positive or zero");
         }
-        if (quality == null) {
+        if (quality == null)
+        {
             throw new IllegalArgumentException("The quality must not be null");
         }
-        if (description == null) {
+        if (description == null)
+        {
             description = "";
         }
 
@@ -68,71 +74,88 @@ public class Equipment
 
     /**
      * Getter of the name of the equipment
+     *
      * @return the name
      */
-    public String getName(){
+    public String getName()
+    {
         return mName;
     }
 
     /**
      * Getter of the encumbering of the equipment
+     *
      * @return the encumbering
      */
-    public int getEncumbering() {
+    public int getEncumbering()
+    {
         return mEncumbering;
     }
 
     /**
      * Getter of the price of the equipment
+     *
      * @return the price as a number of pennies
      */
-    public int getPrice() {
+    public int getPrice()
+    {
         return mPrice;
     }
 
     /**
      * Getter of the quality of the equipment
+     *
      * @return the quality as an enum
      */
-    public Quality getQuality() {
+    public Quality getQuality()
+    {
         return mQuality;
     }
 
     /**
      * Getter of the optional description of the equipment, if it have not been given this return
      * a simple empty string.
+     *
      * @return the description of the equipment
      */
-    public String getDescription() {
+    public String getDescription()
+    {
         return mDescription;
     }
 
     /**
      * Setter of the description of the equipment. This is not characteristic of an equipment,
      * therefor you can change it at any time without changing the behaviour of the equipment.
+     *
      * @param description the future description of the equipment. Must be not null, but can be empty.
      */
-    public void setDescription(@NonNull String description) {
+    public void setDescription(@NonNull String description)
+    {
         mDescription = description;
     }
 
     /**
      * Indicates whether some other object is "equal to" this one.
+     *
      * @param object the reference object with which to compare.
      * @return true if this object is the same as the obj argument; false otherwise.
      */
     @Override
-    public boolean equals(Object object) {
-        if (object == null) {
+    public boolean equals(Object object)
+    {
+        if (object == null)
+        {
             return false;
         }
 
-        if (object == this) {
+        if (object == this)
+        {
             return true;
         }
 
         // usage of instanceof for consistency with inheritance
-        if (!(object instanceof Equipment)) {
+        if (!(object instanceof Equipment))
+        {
             return false;
         }
 
@@ -148,10 +171,12 @@ public class Equipment
 
     /**
      * Returns a hash code value for the object.
+     *
      * @return a hash code value for this object.
      */
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         return new HashCodeBuilder(3, 13)
                 .append(mName)
                 .append(mEncumbering)

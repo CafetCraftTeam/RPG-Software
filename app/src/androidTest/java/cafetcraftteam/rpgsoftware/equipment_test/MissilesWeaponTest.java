@@ -39,7 +39,8 @@ public class MissilesWeaponTest
             mDescription, mGroup, mQualities, mShortRange, mLongRange, mReload);
 
     @Test
-    public void creationTest() {
+    public void creationTest()
+    {
         Equipment equipment = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
         assertEquals(equipment, mMissilesWeapon);
         assertEquals(mGroup, mMissilesWeapon.getGroup());

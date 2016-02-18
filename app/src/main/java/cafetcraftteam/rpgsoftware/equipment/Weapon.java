@@ -110,6 +110,7 @@ public class Weapon extends Equipment
 
     /**
      * Indicates whether some other object is "equal to" this one.
+     *
      * @param object the reference object with which to compare.
      * @return true if this object is the same as the obj argument; false otherwise.
      */
@@ -143,6 +144,7 @@ public class Weapon extends Equipment
 
     /**
      * Returns a hash code value for the object.
+     *
      * @return a hash code value for this object.
      */
     @Override

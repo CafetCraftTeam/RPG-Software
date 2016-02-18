@@ -18,19 +18,21 @@ public class Armour extends Equipment
     {
         super(name, encumbering, price, quality, description);
 
-        if (protectedParts.isEmpty()) {
+        if (protectedParts.isEmpty())
+        {
             throw new InstantiationError("No body parts protected by this armour");
         }
 
         mProtectedParts = protectedParts;
     }
 
-    public int getArmourPoint(BodyPart bodyPart) {
+    public int getArmourPoint(BodyPart bodyPart)
+    {
         if (mProtectedParts.containsKey(bodyPart))
         {
             return mProtectedParts.get(bodyPart);
-        }
-        else {
+        } else
+        {
             return 0;
         }
     }
