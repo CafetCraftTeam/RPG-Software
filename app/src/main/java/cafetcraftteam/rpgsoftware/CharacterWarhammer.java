@@ -11,7 +11,6 @@ public class CharacterWarhammer extends Character
     Personal Details
      */
     private final int mAge ;
-    private final Sex mSex;
     private final String mEyecolor;
     private final int mHeight ;
     private final String mHaircolor;
@@ -55,9 +54,8 @@ public class CharacterWarhammer extends Character
                        int Age, Sex Sex, String Eyecolor, int Height, String Haircolor,
                        int Weight, String SA, int NbBrSis, String BirthPlace, String DistinctifSign)
     {
-        super(Name, Year, Race);
+        super(Name, Year, Race, Sex);
         mAge = Age;
-        mSex = Sex;
         mEyecolor = Eyecolor;
         mHeight = Height;
         mHaircolor = Haircolor;
@@ -105,10 +103,6 @@ public class CharacterWarhammer extends Character
 
     public int getAge() {
         return mAge;
-    }
-
-    public Sex getSex() {
-        return mSex;
     }
 
     public String getEyecolor() {

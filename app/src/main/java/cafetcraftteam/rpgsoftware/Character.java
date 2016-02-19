@@ -16,11 +16,13 @@ public class Character {
     private final String mName;
     private final String mYear;
     private final String mRace;
+    private final Sex mSex;
 
-    Character(String Name, String Year, String Race){
+    Character(String Name, String Year, String Race, Sex sex){
         mName = Name;
         mYear = Year;
         mRace = Race;
+        mSex = sex;
     }
 
     public String getName() {
@@ -34,4 +36,9 @@ public class Character {
     public String getRace() {
         return mRace;
     }
+
+    public Sex getSex() {
+        return mSex;
+    }
+
 }
