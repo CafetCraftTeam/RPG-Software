@@ -15,8 +15,8 @@ import static junit.framework.Assert.assertEquals;
 @LargeTest
 public class CharacterWarhammerTest {
 
-    private CharacterWarhammer Pujima = new CharacterWarhammer("Pujima","cerschae","Warhammer","1662",
-            "Human",36,"M","blue",185,"Braun",78,"Lion",2,"Birthplace","None");
+    private CharacterWarhammer Pujima = new CharacterWarhammer("Pujima","1662","Human",36,
+            Character.Sex.MALE,"blue",185,"Braun",78,"Lion",2,"Birthplace","None");
 
     @Before
     public void init() {
@@ -24,12 +24,10 @@ public class CharacterWarhammerTest {
     @Test
     public void TestConstructor() {
         assertEquals("Pujima",Pujima.getName());
-        assertEquals("cerschae",Pujima.getRealName());
-        assertEquals("Warhammer",Pujima.getCampaign());
         assertEquals("1662",Pujima.getYear());
         assertEquals("Human",Pujima.getRace());
         assertEquals(36,Pujima.getAge());
-        assertEquals("M",Pujima.getSex());
+        assertEquals(Character.Sex.MALE,Pujima.getSex());
         assertEquals("blue",Pujima.getEyecolor());
         assertEquals(185,Pujima.getHeight());
         assertEquals("Braun",Pujima.getHaircolor());

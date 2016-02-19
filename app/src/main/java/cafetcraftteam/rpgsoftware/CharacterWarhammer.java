@@ -7,12 +7,11 @@ import java.util.HashMap;
  */
 public class CharacterWarhammer extends Character
 {
-
     /*
     Personal Details
      */
     private final int mAge ;
-    private final String mSex;
+    private final Sex mSex;
     private final String mEyecolor;
     private final int mHeight ;
     private final String mHaircolor;
@@ -52,11 +51,11 @@ public class CharacterWarhammer extends Character
     private HashMap<String,String> mBasicSkills;
     private HashMap<String,String> mAdvanSkills;
 
-    CharacterWarhammer(String Name, String RealName, String Campaign, String Year, String Race,
-                       int Age, String Sex, String Eyecolor, int Height, String Haircolor,
+    CharacterWarhammer(String Name, String Year, String Race,
+                       int Age, Sex Sex, String Eyecolor, int Height, String Haircolor,
                        int Weight, String SA, int NbBrSis, String BirthPlace, String DistinctifSign)
     {
-        super(Name, RealName, Campaign, Year, Race);
+        super(Name, Year, Race);
         mAge = Age;
         mSex = Sex;
         mEyecolor = Eyecolor;
@@ -108,7 +107,7 @@ public class CharacterWarhammer extends Character
         return mAge;
     }
 
-    public String getSex() {
+    public Sex getSex() {
         return mSex;
     }
 

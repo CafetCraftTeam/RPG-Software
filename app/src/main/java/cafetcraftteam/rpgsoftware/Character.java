@@ -5,6 +5,11 @@ package cafetcraftteam.rpgsoftware;
  */
 public class Character {
 
+    public enum Sex {
+        FEMALE,
+        MALE
+    }
+
     /*
     Character and Player Information
      */
@@ -12,7 +17,7 @@ public class Character {
     private final String mYear;
     private final String mRace;
 
-    Character(String Name, String RealName, String Campaign, String Year, String Race){
+    Character(String Name, String Year, String Race){
         mName = Name;
         mYear = Year;
         mRace = Race;
