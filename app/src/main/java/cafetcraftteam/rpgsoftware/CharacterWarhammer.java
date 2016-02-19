@@ -10,11 +10,11 @@ public class CharacterWarhammer extends Character
     /*
     Personal Details
      */
-    private final int mAge ;
+    private final int mAge;
     private final String mEyeColour;
-    private final int mHeight ;
+    private final int mHeight;
     private final String mHairColour;
-    private final int mWeight ;
+    private final int mWeight;
     private final String mStarSign;
     private final int mNumberOfSiblings;
     private final String mBirthPlace;
@@ -26,8 +26,8 @@ public class CharacterWarhammer extends Character
      */
 
     private String mProfession;
-    private HashMap<PrimCharacteristic,Integer> mPrimaryProfile;
-    private HashMap<SecondCharacteristic,Integer> mSecondaryProfile;
+    private HashMap<PrimCharacteristic, Integer> mPrimaryProfile;
+    private HashMap<SecondCharacteristic, Integer> mSecondaryProfile;
 
     private int mMovement;
     private int mTotalFortune;
@@ -35,20 +35,20 @@ public class CharacterWarhammer extends Character
     private int mTotalWounds;
     private int mActualWounds;
 
-            /*
-    Equipment
-     */
-    private HashMap<Integer,String> mWeapons;
-    private HashMap<Integer,String> mArmor;
-    private HashMap<BodyPart,Integer> mDefensePoints;
-    private HashMap<Integer,String> mEquipment;
+    /*
+Equipment
+*/
+    private HashMap<Integer, String> mWeapons;
+    private HashMap<Integer, String> mArmor;
+    private HashMap<BodyPart, Integer> mDefensePoints;
+    private HashMap<Integer, String> mEquipment;
 
             /*
     Abilities and Talents
      */
 
-    private HashMap<String,String> mBasicSkills;
-    private HashMap<String,String> mAdvanSkills;
+    private HashMap<String, String> mBasicSkills;
+    private HashMap<String, String> mAdvanSkills;
 
     CharacterWarhammer(String Name, String Year, String Race,
                        int Age, Sex Sex, String Eyecolor, int Height, String Haircolor,
@@ -72,7 +72,7 @@ public class CharacterWarhammer extends Character
         mEquipment = new HashMap<>();
         mBasicSkills = new HashMap<>();
         mAdvanSkills = new HashMap<>();
-        
+
         mDefensePoints.put(BodyPart.HEAD, 0);
         mDefensePoints.put(BodyPart.TORSO, 0);
         mDefensePoints.put(BodyPart.LEFT_ARM, 0);
@@ -101,103 +101,128 @@ public class CharacterWarhammer extends Character
         mBasicSkills.put("Swim", "Skill");
     }
 
-    public int getAge() {
+    public int getAge()
+    {
         return mAge;
     }
 
-    public String getEyecolor() {
+    public String getEyecolor()
+    {
         return mEyeColour;
     }
 
-    public int getHeight() {
+    public int getHeight()
+    {
         return mHeight;
     }
 
-    public String getHaircolor() {
+    public String getHaircolor()
+    {
         return mHairColour;
     }
 
-    public int getWeight() {
+    public int getWeight()
+    {
         return mWeight;
     }
 
-    public String getSA() {
+    public String getSA()
+    {
         return mStarSign;
     }
 
-    public int getNbBrSis() {
+    public int getNbBrSis()
+    {
         return mNumberOfSiblings;
     }
 
-    public String getBirthPlace() {
+    public String getBirthPlace()
+    {
         return mBirthPlace;
     }
 
-    public String getDistinctifSign() {
+    public String getDistinctifSign()
+    {
         return mDistinguishingMark;
     }
 
-    public String getProfession() {
+    public String getProfession()
+    {
         return mProfession;
     }
 
-    public void setProfession(String Profession) {
+    public void setProfession(String Profession)
+    {
         this.mProfession = Profession;
     }
 
-    public Integer getPrimaryProfile(PrimCharacteristic c) {
+    public Integer getPrimaryProfile(PrimCharacteristic c)
+    {
         return mPrimaryProfile.get(c);
     }
 
-    public void setPrimaryProfile(PrimCharacteristic c, int Value) {
+    public void setPrimaryProfile(PrimCharacteristic c, int Value)
+    {
         this.mPrimaryProfile.put(c, Value);
     }
 
-    public Integer getSecondaryProfile(SecondCharacteristic c) {
+    public Integer getSecondaryProfile(SecondCharacteristic c)
+    {
         return mSecondaryProfile.get(c);
     }
 
-    public void setSecondaryProfile(SecondCharacteristic c, int Value) {
+    public void setSecondaryProfile(SecondCharacteristic c, int Value)
+    {
         this.mSecondaryProfile.put(c, Value);
     }
 
-    public int getMovement() {
+    public int getMovement()
+    {
         return mMovement;
     }
 
-    public void setMovement(int Movement) {
+    public void setMovement(int Movement)
+    {
         this.mMovement = Movement;
     }
 
-    public int getTotalFortune() {
+    public int getTotalFortune()
+    {
         return mTotalFortune;
     }
 
-    public void setTotalFortune(int TotalFortune) {
+    public void setTotalFortune(int TotalFortune)
+    {
         this.mTotalFortune = TotalFortune;
     }
 
-    public int getActualFortune() {
+    public int getActualFortune()
+    {
         return mActualFortune;
     }
 
-    public void setActualFortune(int ActualFortune) {
+    public void setActualFortune(int ActualFortune)
+    {
         this.mActualFortune = ActualFortune;
     }
 
-    public int getTotalWounds() {
+    public int getTotalWounds()
+    {
         return mTotalWounds;
     }
 
-    public void setTotalWounds(int TotalWounds) {
+    public void setTotalWounds(int TotalWounds)
+    {
         this.mTotalWounds = TotalWounds;
     }
 
-    public int getActualWounds() {
+    public int getActualWounds()
+    {
         return mActualWounds;
     }
 
-    public void setActualWounds(int ActualWounds) {
+    public void setActualWounds(int ActualWounds)
+    {
         this.mActualWounds = ActualWounds;
     }
 
@@ -205,28 +230,35 @@ public class CharacterWarhammer extends Character
     Under Constructions waiting for Equipment class
      */
 
-    public void addEquipment(int id, String Equipment) {
+    public void addEquipment(int id, String Equipment)
+    {
         this.mEquipment.put(id, Equipment);
     }
 
-    public void addWeapons(int id, String Weapon) {
+    public void addWeapons(int id, String Weapon)
+    {
         this.mWeapons.put(id, Weapon);
     }
 
-    public void addArmor(int id, String Armor) {
+    public void addArmor(int id, String Armor)
+    {
         this.mArmor.put(id, Armor);
     }
 
-    public int getDefensePoints(BodyPart bodyPart){
+    public int getDefensePoints(BodyPart bodyPart)
+    {
         return mDefensePoints.get(bodyPart);
     }
 
-    public void setDefensePoints(BodyPart bodyPart, int Value){
+    public void setDefensePoints(BodyPart bodyPart, int Value)
+    {
         this.mDefensePoints.put(bodyPart, Value);
     }
 
-    public void setBasicSkill(String Skillname, String Skill) throws IllegalAccessException {
-        switch (Skillname) {
+    public void setBasicSkill(String Skillname, String Skill) throws IllegalAccessException
+    {
+        switch (Skillname)
+        {
             case "Animal Care":
                 mBasicSkills.put("Animal Care", Skill);
                 break;
@@ -292,7 +324,8 @@ public class CharacterWarhammer extends Character
         }
     }
 
-    public void setAdvanSkills(String Skillname, String Skill) {
+    public void setAdvanSkills(String Skillname, String Skill)
+    {
         this.mAdvanSkills.put(Skillname, Skill);
     }
 }
