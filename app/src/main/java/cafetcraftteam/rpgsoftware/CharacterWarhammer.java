@@ -11,14 +11,14 @@ public class CharacterWarhammer extends Character
     Personal Details
      */
     private final int mAge ;
-    private final String mEyecolor;
+    private final String mEyeColour;
     private final int mHeight ;
-    private final String mHaircolor;
+    private final String mHairColour;
     private final int mWeight ;
-    private final String mSA ;
-    private final int mNbBrSis ;
+    private final String mStarSign;
+    private final int mNumberOfSiblings;
     private final String mBirthPlace;
-    private final String mDistinctifSign;
+    private final String mDistinguishingMark;
 
 
         /*
@@ -56,14 +56,14 @@ public class CharacterWarhammer extends Character
     {
         super(Name, Year, Race, Sex);
         mAge = Age;
-        mEyecolor = Eyecolor;
+        mEyeColour = Eyecolor;
         mHeight = Height;
-        mHaircolor = Haircolor;
+        mHairColour = Haircolor;
         mWeight = Weight;
-        mSA = SA;
-        mNbBrSis = NbBrSis;
+        mStarSign = SA;
+        mNumberOfSiblings = NbBrSis;
         mBirthPlace = BirthPlace;
-        mDistinctifSign = DistinctifSign;
+        mDistinguishingMark = DistinctifSign;
         mPrimaryProfile = new HashMap<>();
         mSecondaryProfile = new HashMap<>();
         mWeapons = new HashMap<>();
@@ -106,7 +106,7 @@ public class CharacterWarhammer extends Character
     }
 
     public String getEyecolor() {
-        return mEyecolor;
+        return mEyeColour;
     }
 
     public int getHeight() {
@@ -114,7 +114,7 @@ public class CharacterWarhammer extends Character
     }
 
     public String getHaircolor() {
-        return mHaircolor;
+        return mHairColour;
     }
 
     public int getWeight() {
@@ -122,11 +122,11 @@ public class CharacterWarhammer extends Character
     }
 
     public String getSA() {
-        return mSA;
+        return mStarSign;
     }
 
     public int getNbBrSis() {
-        return mNbBrSis;
+        return mNumberOfSiblings;
     }
 
     public String getBirthPlace() {
@@ -134,7 +134,7 @@ public class CharacterWarhammer extends Character
     }
 
     public String getDistinctifSign() {
-        return mDistinctifSign;
+        return mDistinguishingMark;
     }
 
     public String getProfession() {
