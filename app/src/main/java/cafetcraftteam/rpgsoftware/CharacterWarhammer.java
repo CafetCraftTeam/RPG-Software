@@ -7,14 +7,8 @@ import java.util.HashMap;
  */
 public class CharacterWarhammer extends Character
 {
-    /*
-    Personal Details
-     */
-    private final int mAge;
     private final String mEyeColour;
-    private final int mHeight;
     private final String mHairColour;
-    private final int mWeight;
     private final String mStarSign;
     private final int mNumberOfSiblings;
     private final String mBirthPlace;
@@ -54,12 +48,9 @@ Equipment
                        int Age, Sex Sex, String Eyecolor, int Height, String Haircolor,
                        int Weight, String SA, int NbBrSis, String BirthPlace, String DistinctifSign)
     {
-        super(Name, Year, Race, Sex);
-        mAge = Age;
+        super(Name, Year, Race, Sex, Weight, Height, Age);
         mEyeColour = Eyecolor;
-        mHeight = Height;
         mHairColour = Haircolor;
-        mWeight = Weight;
         mStarSign = SA;
         mNumberOfSiblings = NbBrSis;
         mBirthPlace = BirthPlace;
@@ -101,29 +92,14 @@ Equipment
         mBasicSkills.put("Swim", "Skill");
     }
 
-    public int getAge()
-    {
-        return mAge;
-    }
-
     public String getEyecolor()
     {
         return mEyeColour;
     }
 
-    public int getHeight()
-    {
-        return mHeight;
-    }
-
     public String getHaircolor()
     {
         return mHairColour;
-    }
-
-    public int getWeight()
-    {
-        return mWeight;
     }
 
     public String getSA()
