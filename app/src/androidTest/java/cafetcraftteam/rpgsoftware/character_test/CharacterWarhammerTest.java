@@ -34,14 +34,14 @@ public class CharacterWarhammerTest {
         assertEquals(Character.Race.HUMAN,Pujima.getRace());
         assertEquals(36,Pujima.getAge());
         assertEquals(Character.Sex.MALE,Pujima.getSex());
-        assertEquals("blue",Pujima.getEyecolor());
+        assertEquals("blue",Pujima.getEyeColour());
         assertEquals(185,Pujima.getHeight());
-        assertEquals("Braun",Pujima.getHaircolor());
+        assertEquals("Braun",Pujima.getHairColour());
         assertEquals(78,Pujima.getWeight());
-        assertEquals("Lion",Pujima.getSA());
-        assertEquals(2,Pujima.getNbBrSis());
+        assertEquals("Lion",Pujima.getStarSign());
+        assertEquals(2,Pujima.getNumberOfSiblings());
         assertEquals("Birthplace",Pujima.getBirthPlace());
-        assertEquals("None",Pujima.getDistinctifSign());
+        assertEquals("None",Pujima.getDistinguishingMark());
     }
     @Test
     public void TestProfession() {

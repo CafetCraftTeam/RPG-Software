@@ -49,13 +49,13 @@ Equipment
     private HashMap<String, String> mAdvanSkills;
 
     public CharacterWarhammer(String name, String year, Race race,
-                       int age, Sex sex, String eyeColor, int height, String hairColor,
+                       int age, Sex sex, String eyeColour, int height, String hairColour,
                        int weight, String starSign, int numberOfSiblings, String birthPlace,
                        String distinguishSign)
     {
         super(name, year, race, sex, weight, height, age);
-        mEyeColour = eyeColor;
-        mHairColour = hairColor;
+        mEyeColour = eyeColour;
+        mHairColour = hairColour;
         mStarSign = starSign;
         mNumberOfSiblings = numberOfSiblings;
         mBirthPlace = birthPlace;
@@ -97,22 +97,28 @@ Equipment
         mBasicSkills.put("Swim", "Skill");
     }
 
-    public String getEyecolor()
+    /*
+    ================================================================================================
+    --------Getter----------------------------------------------------------------------------------
+    ================================================================================================
+     */
+
+    public String getEyeColour()
     {
         return mEyeColour;
     }
 
-    public String getHaircolor()
+    public String getHairColour()
     {
         return mHairColour;
     }
 
-    public String getSA()
+    public String getStarSign()
     {
         return mStarSign;
     }
 
-    public int getNbBrSis()
+    public int getNumberOfSiblings()
     {
         return mNumberOfSiblings;
     }
@@ -122,7 +128,7 @@ Equipment
         return mBirthPlace;
     }
 
-    public String getDistinctifSign()
+    public String getDistinguishingMark()
     {
         return mDistinguishingMark;
     }
@@ -131,6 +137,12 @@ Equipment
     {
         return mProfession;
     }
+
+    /*
+    ================================================================================================
+    --------Setter----------------------------------------------------------------------------------
+    ================================================================================================
+     */
 
     public void setProfession(String Profession)
     {
