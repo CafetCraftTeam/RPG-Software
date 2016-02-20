@@ -1,11 +1,15 @@
-package cafetcraftteam.rpgsoftware;
+package cafetcraftteam.rpgsoftware.character;
 
 import java.util.HashMap;
+
+import cafetcraftteam.rpgsoftware.BodyPart;
+import cafetcraftteam.rpgsoftware.PrimCharacteristic;
+import cafetcraftteam.rpgsoftware.SecondCharacteristic;
 
 /**
  * Created by Pujima on 10/02/2016.
  */
-public class CharacterWarhammer extends Character
+public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Character
 {
     private final String mEyeColour;
     private final String mHairColour;
@@ -44,7 +48,7 @@ Equipment
     private HashMap<String, String> mBasicSkills;
     private HashMap<String, String> mAdvanSkills;
 
-    CharacterWarhammer(String name, String year, Race race,
+    public CharacterWarhammer(String name, String year, Race race,
                        int age, Sex sex, String eyeColor, int height, String hairColor,
                        int weight, String starSign, int numberOfSiblings, String birthPlace,
                        String distinguishSign)

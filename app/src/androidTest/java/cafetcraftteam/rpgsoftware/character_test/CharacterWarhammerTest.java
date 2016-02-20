@@ -1,4 +1,4 @@
-package cafetcraftteam.rpgsoftware;
+package cafetcraftteam.rpgsoftware.character_test;
 
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
@@ -8,6 +8,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 
+import cafetcraftteam.rpgsoftware.BodyPart;
+import cafetcraftteam.rpgsoftware.character.Character;
+import cafetcraftteam.rpgsoftware.character.CharacterWarhammer;
+import cafetcraftteam.rpgsoftware.PrimCharacteristic;
+import cafetcraftteam.rpgsoftware.SecondCharacteristic;
+
 import static junit.framework.Assert.assertEquals;
 
 
@@ -15,7 +21,7 @@ import static junit.framework.Assert.assertEquals;
 @LargeTest
 public class CharacterWarhammerTest {
 
-    private CharacterWarhammer Pujima = new CharacterWarhammer("Pujima","1662", Character.Race.HUMAN,
+    private CharacterWarhammer Pujima = new CharacterWarhammer("Pujima","1662", cafetcraftteam.rpgsoftware.character.Character.Race.HUMAN,
             36, Character.Sex.MALE,"blue",185,"Braun",78,"Lion",2,"Birthplace","None");
 
     @Before
@@ -25,7 +31,7 @@ public class CharacterWarhammerTest {
     public void TestConstructor() {
         assertEquals("Pujima",Pujima.getName());
         assertEquals("1662",Pujima.getYear());
-        assertEquals("Human",Pujima.getRace());
+        assertEquals(Character.Race.HUMAN,Pujima.getRace());
         assertEquals(36,Pujima.getAge());
         assertEquals(Character.Sex.MALE,Pujima.getSex());
         assertEquals("blue",Pujima.getEyecolor());

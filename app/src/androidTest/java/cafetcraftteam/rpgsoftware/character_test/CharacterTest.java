@@ -1,10 +1,12 @@
-package cafetcraftteam.rpgsoftware;
+package cafetcraftteam.rpgsoftware.character_test;
 
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import cafetcraftteam.rpgsoftware.character.Character;
 
 import static junit.framework.Assert.assertEquals;
 
@@ -18,7 +20,7 @@ public class CharacterTest
 {
     private final String mName = "Toto";
     private final String mYear = "1900";
-    private final Character.Race mRace = Character.Race.DWARF;
+    private final cafetcraftteam.rpgsoftware.character.Character.Race mRace = Character.Race.DWARF;
     private final Character.Sex mSex = Character.Sex.FEMALE;
     private final int mAge = 100;
     private final int mHeight = 120;

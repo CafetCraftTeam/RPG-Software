@@ -1,4 +1,4 @@
-package cafetcraftteam.rpgsoftware;
+package cafetcraftteam.rpgsoftware.character;
 
 /**
  * Created by Pujima on 10/02/2016.
@@ -35,7 +35,7 @@ public class Character
     private final int mHeight;
     private final int mWeight;
 
-    Character(String name, String year, Race race, Sex sex, int weight, int height, int age)
+    public Character(String name, String year, Race race, Sex sex, int weight, int height, int age)
     {
         mName = name;
         mYear = year;
