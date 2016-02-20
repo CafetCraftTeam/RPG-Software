@@ -17,13 +17,13 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     private final int mNumberOfSiblings;
     private final String mBirthPlace;
     private final String mDistinguishingMark;
+    private String mProfession;
 
 
         /*
     Main Profile
      */
 
-    private String mProfession;
     private HashMap<PrimCharacteristic, Integer> mPrimaryProfile;
     private HashMap<SecondCharacteristic, Integer> mSecondaryProfile;
 
