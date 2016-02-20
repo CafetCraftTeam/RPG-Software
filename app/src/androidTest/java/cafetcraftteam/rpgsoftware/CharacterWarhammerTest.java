@@ -15,8 +15,8 @@ import static junit.framework.Assert.assertEquals;
 @LargeTest
 public class CharacterWarhammerTest {
 
-    private CharacterWarhammer Pujima = new CharacterWarhammer("Pujima","1662","Human",36,
-            Character.Sex.MALE,"blue",185,"Braun",78,"Lion",2,"Birthplace","None");
+    private CharacterWarhammer Pujima = new CharacterWarhammer("Pujima","1662", Character.Race.HUMAN,
+            36, Character.Sex.MALE,"blue",185,"Braun",78,"Lion",2,"Birthplace","None");
 
     @Before
     public void init() {

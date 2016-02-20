@@ -18,7 +18,7 @@ public class CharacterTest
 {
     private final String mName = "Toto";
     private final String mYear = "1900";
-    private final String mRace = "Dwarf";
+    private final Character.Race mRace = Character.Race.DWARF;
     private final Character.Sex mSex = Character.Sex.FEMALE;
     private final int mAge = 100;
     private final int mHeight = 120;

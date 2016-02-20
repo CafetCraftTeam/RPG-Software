@@ -44,17 +44,18 @@ Equipment
     private HashMap<String, String> mBasicSkills;
     private HashMap<String, String> mAdvanSkills;
 
-    CharacterWarhammer(String Name, String Year, String Race,
-                       int Age, Sex Sex, String Eyecolor, int Height, String Haircolor,
-                       int Weight, String SA, int NbBrSis, String BirthPlace, String DistinctifSign)
+    CharacterWarhammer(String name, String year, Race race,
+                       int age, Sex sex, String eyeColor, int height, String hairColor,
+                       int weight, String starSign, int numberOfSiblings, String birthPlace,
+                       String distinguishSign)
     {
-        super(Name, Year, Race, Sex, Weight, Height, Age);
-        mEyeColour = Eyecolor;
-        mHairColour = Haircolor;
-        mStarSign = SA;
-        mNumberOfSiblings = NbBrSis;
-        mBirthPlace = BirthPlace;
-        mDistinguishingMark = DistinctifSign;
+        super(name, year, race, sex, weight, height, age);
+        mEyeColour = eyeColor;
+        mHairColour = hairColor;
+        mStarSign = starSign;
+        mNumberOfSiblings = numberOfSiblings;
+        mBirthPlace = birthPlace;
+        mDistinguishingMark = distinguishSign;
         mPrimaryProfile = new HashMap<>();
         mSecondaryProfile = new HashMap<>();
         mWeapons = new HashMap<>();
