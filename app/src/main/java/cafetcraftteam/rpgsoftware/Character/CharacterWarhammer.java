@@ -2,7 +2,6 @@ package cafetcraftteam.rpgsoftware.character;
 
 import java.util.HashMap;
 
-import cafetcraftteam.rpgsoftware.BodyPart;
 import cafetcraftteam.rpgsoftware.PrimCharacteristic;
 import cafetcraftteam.rpgsoftware.SecondCharacteristic;
 
@@ -11,6 +10,16 @@ import cafetcraftteam.rpgsoftware.SecondCharacteristic;
  */
 public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Character
 {
+    public enum BodyPart
+    {
+        HEAD,
+        TORSO,
+        LEFT_ARM,
+        RIGHT_ARM,
+        LEFT_LEG,
+        RIGHT_LEG
+    }
+
     private final String mEyeColour;
     private final String mHairColour;
     private final String mStarSign;

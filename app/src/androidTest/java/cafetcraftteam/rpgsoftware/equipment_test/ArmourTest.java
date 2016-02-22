@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import java.util.EnumMap;
 import java.util.Map;
 
-import cafetcraftteam.rpgsoftware.BodyPart;
+import cafetcraftteam.rpgsoftware.character.CharacterWarhammer;
 import cafetcraftteam.rpgsoftware.equipment.Armour;
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
 
@@ -32,8 +32,9 @@ public class ArmourTest
     private String mDescription = "It's a simple leather jerkin";
 
     private int mArmourPoint = 1;
-    private BodyPart mBodyPart = BodyPart.TORSO;
-    private Map<BodyPart, Integer> mProtectedParts = new EnumMap<>(BodyPart.class);
+    private CharacterWarhammer.BodyPart mBodyPart = CharacterWarhammer.BodyPart.TORSO;
+    private Map<CharacterWarhammer.BodyPart, Integer> mProtectedParts =
+            new EnumMap<>(CharacterWarhammer.BodyPart.class);
 
     private Armour mArmour;
 
@@ -49,13 +50,14 @@ public class ArmourTest
         Equipment equipment = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
         assertEquals(equipment, mArmour);
         assertEquals(mArmourPoint, mArmour.getArmourPoint(mBodyPart));
-        assertEquals(0, mArmour.getArmourPoint(BodyPart.HEAD));
+        assertEquals(0, mArmour.getArmourPoint(CharacterWarhammer.BodyPart.HEAD));
         assertTrue(mArmour.isProtected(mBodyPart));
     }
 
     @Test(expected = InstantiationError.class)
     public void cannotCreateWithEmptyProtectedParts() {
-        Map<BodyPart, Integer> emptyProtectedParts = new EnumMap<>(BodyPart.class);
+        Map<CharacterWarhammer.BodyPart, Integer> emptyProtectedParts =
+                new EnumMap<>(CharacterWarhammer.BodyPart.class);
 
         new Armour(mName, mEncumbering, mPrice, mQuality, mDescription, emptyProtectedParts);
     }

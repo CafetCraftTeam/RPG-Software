@@ -4,17 +4,18 @@ import android.support.annotation.NonNull;
 
 import java.util.Map;
 
-import cafetcraftteam.rpgsoftware.BodyPart;
+import cafetcraftteam.rpgsoftware.character.CharacterWarhammer;
+
 
 /**
  * Created by Gautier on 14/02/2016.
  */
 public class Armour extends Equipment
 {
-    private final Map<BodyPart, Integer> mProtectedParts;
+    private final Map<CharacterWarhammer.BodyPart, Integer> mProtectedParts;
 
     public Armour(String name, int encumbering, int price, @NonNull Quality quality,
-                  String description, @NonNull Map<BodyPart, Integer> protectedParts)
+                  String description, @NonNull Map<CharacterWarhammer.BodyPart, Integer> protectedParts)
     {
         super(name, encumbering, price, quality, description);
 
@@ -25,7 +26,7 @@ public class Armour extends Equipment
         mProtectedParts = protectedParts;
     }
 
-    public int getArmourPoint(BodyPart bodyPart) {
+    public int getArmourPoint(CharacterWarhammer.BodyPart bodyPart) {
         if (mProtectedParts.containsKey(bodyPart))
         {
             return mProtectedParts.get(bodyPart);
@@ -35,7 +36,7 @@ public class Armour extends Equipment
         }
     }
 
-    public boolean isProtected(BodyPart bodyPart)
+    public boolean isProtected(CharacterWarhammer.BodyPart bodyPart)
     {
         return mProtectedParts.containsKey(bodyPart);
     }

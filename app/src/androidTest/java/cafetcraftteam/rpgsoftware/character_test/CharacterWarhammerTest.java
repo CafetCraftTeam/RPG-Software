@@ -8,7 +8,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 
-import cafetcraftteam.rpgsoftware.BodyPart;
 import cafetcraftteam.rpgsoftware.character.Character;
 import cafetcraftteam.rpgsoftware.character.CharacterWarhammer;
 import cafetcraftteam.rpgsoftware.PrimCharacteristic;
@@ -85,8 +84,8 @@ public class CharacterWarhammerTest {
     }
     @Test
     public void TestDefensePoints() {
-        Pujima.setDefensePoints(BodyPart.HEAD, 2);
-        assertEquals(2,Pujima.getDefensePoints(BodyPart.HEAD));
+        Pujima.setDefensePoints(CharacterWarhammer.BodyPart.HEAD, 2);
+        assertEquals(2,Pujima.getDefensePoints(CharacterWarhammer.BodyPart.HEAD));
     }
 }
 
