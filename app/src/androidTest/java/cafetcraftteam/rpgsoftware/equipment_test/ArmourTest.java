@@ -39,14 +39,16 @@ public class ArmourTest
     private Armour mArmour;
 
     @Before
-    public void init() {
+    public void init()
+    {
         mProtectedParts.put(mBodyPart, mArmourPoint);
 
         mArmour = new Armour(mName, mEncumbering, mPrice, mQuality, mDescription, mProtectedParts);
     }
 
     @Test
-    public void creationTest() {
+    public void creationTest()
+    {
         Equipment equipment = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
         assertEquals(equipment, mArmour);
         assertEquals(mArmourPoint, mArmour.getArmourPoint(mBodyPart));
@@ -55,7 +57,8 @@ public class ArmourTest
     }
 
     @Test(expected = InstantiationError.class)
-    public void cannotCreateWithEmptyProtectedParts() {
+    public void cannotCreateWithEmptyProtectedParts()
+    {
         Map<CharacterWarhammer.BodyPart, Integer> emptyProtectedParts =
                 new EnumMap<>(CharacterWarhammer.BodyPart.class);
 
