@@ -12,9 +12,10 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotSame;
 import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.fail;
 
 /**
- * Created by Gautier on 11/02/2016.
+ * Class of test of the Equipment
  */
 
 @RunWith(AndroidJUnit4.class)
@@ -30,7 +31,8 @@ public class EquipmentTest
     private Equipment mEquipment = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
 
     @Test
-    public void creationTest() {
+    public void creationTest()
+    {
         assertEquals(mName, mEquipment.getName());
         assertEquals(mEncumbering, mEquipment.getEncumbering());
         assertEquals(mPrice, mEquipment.getPrice());
@@ -39,7 +41,95 @@ public class EquipmentTest
     }
 
     @Test
-    public void equalsTest() {
+    public void contractRespectName()
+    {
+        // name must not be null
+        try
+        {
+            new Equipment(null, mEncumbering, mPrice, mQuality, mDescription);
+            fail("Null name don't generate an exception");
+        } catch (IllegalArgumentException e)
+        {
+            // success
+        }
+
+        // name must not be empty
+        try
+        {
+            new Equipment("", mEncumbering, mPrice, mQuality, mDescription);
+            fail("Empty name don't generate an exception");
+        } catch (IllegalArgumentException e)
+        {
+            // success
+        }
+    }
+
+    @Test
+    public void contractRespectEncumbering()
+    {
+        // encumbering must not be negative
+        try
+        {
+            new Equipment(mName, -mEncumbering, mPrice, mQuality, mDescription);
+            fail("Negative encumbering don't generate an exception");
+        } catch (IllegalArgumentException e)
+        {
+            // success
+        }
+
+        // zero as encumbering is valid
+        Equipment equipment = new Equipment(mName, 0, mPrice, mQuality, mDescription);
+        assertEquals(0, equipment.getEncumbering());
+    }
+
+    @Test
+    public void contractRespectPrice()
+    {
+        // price must not be negative
+        try
+        {
+            new Equipment(mName, mEncumbering, -mPrice, mQuality, mDescription);
+            fail("Negative price don't generate an exception");
+        } catch (IllegalArgumentException e)
+        {
+            // success
+        }
+
+        // zero as price is valid
+        Equipment equipment = new Equipment(mName, mEncumbering, 0, mQuality, mDescription);
+        assertEquals(0, equipment.getPrice());
+    }
+
+    @Test
+    public void contractRespectQuality()
+    {
+        // quality must not be null
+        try
+        {
+            new Equipment(mName, mEncumbering, mPrice, null, mDescription);
+            fail("Null quality don't generate an exception");
+        } catch (IllegalArgumentException e)
+        {
+            // success
+        }
+    }
+
+    @Test
+    public void contractRespectDescription()
+    {
+        // description can be null
+        Equipment equipment = new Equipment(mName, mEncumbering, mPrice, mQuality, null);
+        assertEquals("", equipment.getDescription());
+
+        // description can be empty
+        Equipment equipment1 = new Equipment(mName, mEncumbering, mPrice, mQuality, "");
+        assertEquals("", equipment1.getDescription());
+    }
+
+
+    @Test
+    public void equalsTest()
+    {
         Equipment same = mEquipment;
         Equipment deepCopy = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
         Equipment otherName = new Equipment("Toto", mEncumbering, mPrice, mQuality, mDescription);
@@ -62,7 +152,8 @@ public class EquipmentTest
     }
 
     @Test
-    public void hashCodeTest() {
+    public void hashCodeTest()
+    {
         Equipment same = mEquipment;
         Equipment deepCopy = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
         Equipment otherName = new Equipment("Toto", mEncumbering, mPrice, mQuality, mDescription);
@@ -83,7 +174,8 @@ public class EquipmentTest
     }
 
     @Test
-    public void setDescriptionTest() {
+    public void setDescriptionTest()
+    {
         Equipment descriptionChanged = new Equipment(mName, mEncumbering, mPrice, mQuality,
                 mDescription);
 
