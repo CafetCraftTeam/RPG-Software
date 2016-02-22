@@ -28,7 +28,7 @@ public class UserTest
 
     @Test
     public void addCharacterTest() {
-        Character character = CharacterWarhammer.ancesterGurdill();
+        Character character = CharacterWarhammer.ancestorGurdill();
 
         mUser.addCharacter(character);
 
