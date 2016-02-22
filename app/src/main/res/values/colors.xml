@@ -11,4 +11,7 @@
     <color name="defaultTextColor">#3F4043</color>
     <color name="backgroundLoginScreen">#0b0a01</color>
     <color name="textColorLoginScreen">#747165</color>
+    <color name="frame">#b4b4b4</color>
+    <color name="frame_solid">#eee</color>
+    <color name="frame_background">#bcbcbc</color>
 </resources>
