@@ -1,4 +1,4 @@
-package cafetcraftteam.rpgsoftware;
+package cafetcraftteam.rpgsoftware.gui.gui_character;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,12 +10,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import cafetcraftteam.rpgsoftware.R;
+
 /**
  * Created by Pujima on 22/02/2016.
  */
-public class ListViewDemoAdapter extends ArrayAdapter<ListViewItem> {
+public class InventoryAdapter extends ArrayAdapter<InventoryItem> {
 
-    public ListViewDemoAdapter(Context context, List<ListViewItem> items) {
+    public InventoryAdapter(Context context, List<InventoryItem> items) {
         super(context, R.layout.listview_item, items);
     }
 
@@ -40,7 +42,7 @@ public class ListViewDemoAdapter extends ArrayAdapter<ListViewItem> {
         }
 
         // update the item view
-        ListViewItem item = getItem(position);
+        InventoryItem item = getItem(position);
         viewHolder.ivIcon.setImageDrawable(item.icon);
         viewHolder.tvTitle.setText(item.title);
         viewHolder.tvDescription.setText(item.description);
