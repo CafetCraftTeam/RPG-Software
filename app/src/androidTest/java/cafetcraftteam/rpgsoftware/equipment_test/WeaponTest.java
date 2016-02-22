@@ -6,6 +6,10 @@ import android.test.suitebuilder.annotation.LargeTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.Set;
+
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
 import cafetcraftteam.rpgsoftware.equipment.Weapon;
 
@@ -13,6 +17,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotSame;
 import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.fail;
 
 /**
  * Created by Gautier on 11/02/2016.
@@ -28,14 +33,15 @@ public class WeaponTest
     private Equipment.Quality mQuality = Equipment.Quality.COMMON;
     private String mDescription = "It's a simple bottle";
 
-    private String mGroup = "Two-Handed";
-    private String mQualities = "Armour Piercing";
+    private Weapon.Group mGroup = Weapon.Group.TWO_HANDED;
+    private Set<Weapon.Qualities> mQualities = EnumSet.of(Weapon.Qualities.ARMOUR_PIERCING);
 
     private Weapon mWeapon = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription, mGroup,
             mQualities);
 
     @Test
-    public void creationTest() {
+    public void creationTest()
+    {
         Equipment equipment = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
         assertEquals(equipment, mWeapon);
         assertEquals(mGroup, mWeapon.getGroup());
@@ -43,7 +49,35 @@ public class WeaponTest
     }
 
     @Test
-    public void equalsTest() {
+    public void contractRespectGroup()
+    {
+        // group must not be null
+        try
+        {
+            new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription, null, mQualities);
+            fail("Null group don't generate an exception");
+        } catch (IllegalArgumentException e)
+        {
+            // success
+        }
+    }
+
+    @Test
+    public void contractRespectQualities()
+    {
+        // qualities can be null
+        Weapon weapon = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription, mGroup, null);
+        assertEquals(EnumSet.of(Weapon.Qualities.NONE), weapon.getQualities());
+
+        // qualities can be empty
+        Weapon weapon1 = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription, mGroup,
+                new HashSet<Weapon.Qualities>());
+        assertEquals(EnumSet.of(Weapon.Qualities.NONE), weapon1.getQualities());
+    }
+
+    @Test
+    public void equalsTest()
+    {
         Weapon same = mWeapon;
         Weapon deepCopy = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription, mGroup,
                 mQualities);
@@ -58,9 +92,9 @@ public class WeaponTest
         Weapon otherDescription = new Weapon(mName, mEncumbering, mPrice, mQuality, "Plop", mGroup,
                 mQualities);
         Weapon otherGroup = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
-                "Plop", mQualities);
+                Weapon.Group.THROWING, mQualities);
         Weapon otherQualities = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
-                mGroup, "Sharp");
+                mGroup, EnumSet.of(Weapon.Qualities.SLOW));
 
         assertFalse("x=null", mWeapon.equals(null));
         assertTrue("x=x", mWeapon.equals(mWeapon));
@@ -77,7 +111,8 @@ public class WeaponTest
     }
 
     @Test
-public void hashCodeTest() {
+    public void hashCodeTest()
+    {
         Weapon same = mWeapon;
         Weapon deepCopy = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
                 mGroup, mQualities);
@@ -92,9 +127,9 @@ public void hashCodeTest() {
         Weapon otherDescription = new Weapon(mName, mEncumbering, mPrice, mQuality, "Plop",
                 mGroup, mQualities);
         Weapon otherGroup = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
-                "Plop", mQualities);
+                Weapon.Group.FENCING, mQualities);
         Weapon otherQualities = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
-                mGroup, "Sharp");
+                mGroup, EnumSet.of(Weapon.Qualities.IMPACT));
 
         assertEquals("x=x", mWeapon.hashCode(), mWeapon.hashCode());
         assertEquals("x = same", mWeapon.hashCode(), same.hashCode());
