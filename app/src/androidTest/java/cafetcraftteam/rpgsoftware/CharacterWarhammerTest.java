@@ -46,13 +46,13 @@ public class CharacterWarhammerTest {
     }
     @Test
     public void TestPrimaryProfile() {
-        Pujima.setPrimaryProfile(PrimCharacteristic.CC, 30);
-        assertEquals(Integer.valueOf(30),Pujima.getPrimaryProfile(PrimCharacteristic.CC));
+        Pujima.setPrimaryProfile(Characteristic.Primary.WS, 30);
+        assertEquals(Integer.valueOf(30),Pujima.getPrimaryProfile(Characteristic.Primary.WS));
     }
     @Test
     public void TestSecondaryProfile() {
-        Pujima.setSecondaryProfile(SecondCharacteristic.A, 30);
-        assertEquals(Integer.valueOf(30),Pujima.getSecondaryProfile(SecondCharacteristic.A));
+        Pujima.setSecondaryProfile(Characteristic.Secondary.A, 30);
+        assertEquals(Integer.valueOf(30),Pujima.getSecondaryProfile(Characteristic.Secondary.A));
     }
     @Test
     public void TestMovement() {

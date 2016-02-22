@@ -7,7 +7,7 @@ public class Skill {
 
     private String mName;
     //Verifier le type enum créé par Christoph dans CharacterWarhammer
-    private PrimCharacteristic mChar;
+    private Characteristic.Primary mChar;
     private int mLevel;
     private int mBonus;
 
@@ -23,7 +23,7 @@ public class Skill {
         return mName;
     }
     //Verifier le type de retour
-    public PrimCharacteristic getChar() {
+    public Characteristic.Primary getChar() {
         return mChar;
     }
 
@@ -44,7 +44,7 @@ public class Skill {
     }
 
     //Changer le type de Char par le enum créé dans Charactere Warhamer
-    public Skill(String Name, PrimCharacteristic Charact, int Level, int Bonus) throws Exception {
+    public Skill(String Name, Characteristic.Primary Charact, int Level, int Bonus) throws Exception {
         //Verifier la longueur max d'un nom
         if(Name.length() > 12 || Name.length() < 1) {
             throw new Exception("Le nom est trop long ou trop court");

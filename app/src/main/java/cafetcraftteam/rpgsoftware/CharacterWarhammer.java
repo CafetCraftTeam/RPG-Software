@@ -28,8 +28,8 @@ public class CharacterWarhammer extends Character
      */
 
     private String mProfession;
-    private HashMap<PrimCharacteristic,Integer> mPrimaryProfile;
-    private HashMap<SecondCharacteristic,Integer> mSecondaryProfile;
+    private HashMap<Characteristic.Primary,Integer> mPrimaryProfile;
+    private HashMap<Characteristic.Secondary,Integer> mSecondaryProfile;
 
     private int mMovement;
     private int mTotalFortune;
@@ -152,19 +152,19 @@ public class CharacterWarhammer extends Character
         this.mProfession = Profession;
     }
 
-    public Integer getPrimaryProfile(PrimCharacteristic c) {
+    public Integer getPrimaryProfile(Characteristic.Primary c) {
         return mPrimaryProfile.get(c);
     }
 
-    public void setPrimaryProfile(PrimCharacteristic c, int Value) {
+    public void setPrimaryProfile(Characteristic.Primary c, int Value) {
         this.mPrimaryProfile.put(c, Value);
     }
 
-    public Integer getSecondaryProfile(SecondCharacteristic c) {
+    public Integer getSecondaryProfile(Characteristic.Secondary c) {
         return mSecondaryProfile.get(c);
     }
 
-    public void setSecondaryProfile(SecondCharacteristic c, int Value) {
+    public void setSecondaryProfile(Characteristic.Secondary c, int Value) {
         this.mSecondaryProfile.put(c, Value);
     }
 
