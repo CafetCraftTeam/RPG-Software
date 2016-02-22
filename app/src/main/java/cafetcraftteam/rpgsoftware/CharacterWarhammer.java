@@ -302,4 +302,11 @@ public class CharacterWarhammer extends Character
     public void setAdvanSkills(String Skillname, String Skill) {
         this.mAdvanSkills.put(Skillname, Skill);
     }
+
+    public static CharacterWarhammer ancestorGurdill() {
+        return new CharacterWarhammer("Ancêtre Gurdill",
+                "Toto",
+                "La quète du tout","1900","Nain", 80, "Mâle", "Blue", 150, "Green", 100, "GAstre", 2,
+                "Karak-a-karak", "Nain");
+    }
 }
