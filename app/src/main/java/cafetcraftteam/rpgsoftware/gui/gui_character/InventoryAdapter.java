@@ -18,7 +18,7 @@ import cafetcraftteam.rpgsoftware.R;
 public class InventoryAdapter extends ArrayAdapter<InventoryItem> {
 
     public InventoryAdapter(Context context, List<InventoryItem> items) {
-        super(context, R.layout.listview_item, items);
+        super(context, R.layout.list_inventory_item, items);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class InventoryAdapter extends ArrayAdapter<InventoryItem> {
         if(convertView == null) {
             // inflate the GridView item layout
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.listview_item, parent, false);
+            convertView = inflater.inflate(R.layout.list_inventory_item, parent, false);
 
             // initialize the view holder
             viewHolder = new ViewHolder();

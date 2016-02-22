@@ -1,13 +1,15 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".gui.gui_character.CharacterSkillFragment">
+    android:background="@drawable/parchment"
+    android:orientation="vertical" >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ExpandableListView
+        android:id="@+id/expListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="310dp"
+        android:layout_weight="0.14" >
+    </ExpandableListView>
 
-</FrameLayout>
+</LinearLayout>
