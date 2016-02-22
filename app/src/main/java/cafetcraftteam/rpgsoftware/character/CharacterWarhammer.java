@@ -332,9 +332,19 @@ Equipment
     }
 
     public static CharacterWarhammer ancestorGurdill() {
-        return new CharacterWarhammer("Ancêtre Gurdill",
-                "Toto",
-                "La quète du tout","1900","Nain", 80, "Mâle", "Blue", 150, "Green", 100, "GAstre", 2,
-                "Karak-a-karak", "Nain");
+        return new CharacterWarhammer(
+                "Ancêtre Gurdill",
+                "1900",
+                Race.DWARF,
+                80,
+                Sex.MALE,
+                "Blue",
+                150,
+                "Green",
+                100,
+                "GAstre",
+                2,
+                "Karak-a-karak",
+                "Nain");
     }
 }

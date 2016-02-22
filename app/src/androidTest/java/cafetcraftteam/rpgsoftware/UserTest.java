@@ -6,6 +6,9 @@ import android.test.suitebuilder.annotation.LargeTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import cafetcraftteam.rpgsoftware.character.*;
+import cafetcraftteam.rpgsoftware.character.Character;
+
 import static junit.framework.Assert.assertEquals;
 
 /**
