@@ -61,4 +61,75 @@ public class Characteristic
     {
         return mPrimary.get(Primary.WS);
     }
+
+    public int getBallisticSkill()
+    {
+        return mPrimary.get(Primary.BS);
+    }
+
+    public int getStrength()
+    {
+        return mPrimary.get(Primary.S);
+    }
+
+    public int getToughness()
+    {
+        return mPrimary.get(Primary.T);
+    }
+
+    public int getAgility()
+    {
+        return mPrimary.get(Primary.AG);
+    }
+
+    public int getIntelligence()
+    {
+        return mPrimary.get(Primary.INT);
+    }
+
+    public int getWillPower()
+    {
+        return mPrimary.get(Primary.WP);
+    }
+
+    public int getAttacks()
+    {
+        return mSecondary.get(Secondary.A);
+    }
+
+    public int getWounds()
+    {
+        return mSecondary.get(Secondary.W);
+    }
+
+    public int getStrengthBonus()
+    {
+        return mSecondary.get(Secondary.SB);
+    }
+
+    public int getToughnessBonus()
+    {
+        return mSecondary.get(Secondary.TB);
+    }
+
+    public int getMovement()
+    {
+        return mSecondary.get(Secondary.M);
+    }
+
+    public int getMagic()
+    {
+        return mSecondary.get(Secondary.MAG);
+    }
+
+    public int getInsanityPoints()
+    {
+        return mSecondary.get(Secondary.IP);
+    }
+
+    public int getFatePoints()
+    {
+        return mSecondary.get(Secondary.FP);
+    }
+
 }

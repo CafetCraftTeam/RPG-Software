@@ -48,7 +48,22 @@ public class CharacteristicTest
     );
 
     @Test
-    public void creationTest() {
+    public void creationTest()
+    {
         assertEquals(mWeaponSkill, mCharacteristic.getWeaponSkill());
+        assertEquals(mBallisticSkill, mCharacteristic.getBallisticSkill());
+        assertEquals(mStrength, mCharacteristic.getStrength());
+        assertEquals(mToughness, mCharacteristic.getToughness());
+        assertEquals(mAgility, mCharacteristic.getAgility());
+        assertEquals(mIntelligence, mCharacteristic.getIntelligence());
+        assertEquals(mWillPower, mCharacteristic.getWillPower());
+        assertEquals(mAttacks, mCharacteristic.getAttacks());
+        assertEquals(mWounds, mCharacteristic.getWounds());
+        assertEquals(Math.floor(mStrength/10.0), mCharacteristic.getStrengthBonus());
+        assertEquals(Math.floor(mToughness/10.0), mCharacteristic.getToughnessBonus());
+        assertEquals(mMovement, mCharacteristic.getMovement());
+        assertEquals(mMagic, mCharacteristic.getMagic());
+        assertEquals(mInsanityPoint, mCharacteristic.getInsanityPoints());
+        assertEquals(mFatePoint, mCharacteristic.getFatePoints());
     }
 }
