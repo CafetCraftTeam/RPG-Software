@@ -16,9 +16,10 @@ import cafetcraftteam.rpgsoftware.equipment.Equipment;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.fail;
 
 /**
- * Created by Gautier on 14/02/2016.
+ * Class that test the Armour class
  */
 
 @RunWith(AndroidJUnit4.class)
@@ -55,11 +56,60 @@ public class ArmourTest
         assertTrue(mArmour.isProtected(mBodyPart));
     }
 
-    @Test(expected = InstantiationError.class)
-    public void cannotCreateWithEmptyProtectedParts()
-    {
-        Map<BodyPart, Integer> emptyProtectedParts = new EnumMap<>(BodyPart.class);
+    @Test
+    public void contractRespectProtectedParts() {
+        // protectedParts must not be null
+        try
+        {
+            new Armour(mName, mEncumbering, mPrice, mQuality, mDescription, null);
+        }
+        catch (InstantiationError e){
+            // success
+        }
 
-        new Armour(mName, mEncumbering, mPrice, mQuality, mDescription, emptyProtectedParts);
+        // protected parts must not be empty
+        Map<BodyPart, Integer> emptyProtectedParts = new EnumMap<>(BodyPart.class);
+        try
+        {
+            new Armour(mName, mEncumbering, mPrice, mQuality, mDescription, emptyProtectedParts);
+            fail("Null protected parts don't generate an error");
+        }
+        catch (InstantiationError e){
+            // success
+        }
+
+        // protectedParts must not contains negative values
+        Map<BodyPart, Integer> negativeProtectedParts =
+                new EnumMap<>(BodyPart.class);
+        negativeProtectedParts.put(BodyPart.RIGHT_ARM, -1);
+        try {
+            new Armour(mName, mEncumbering, mPrice, mQuality, mDescription, negativeProtectedParts);
+            fail("A negative value of protection in protected parts have not generate an error");
+        }
+        catch (InstantiationError e) {
+            // success
+        }
+
+        // protectedParts can contains zero values but this will be deleted
+        Map<BodyPart, Integer> onlyZeroProtectedParts =
+                new EnumMap<>(BodyPart.class);
+        onlyZeroProtectedParts.put(BodyPart.LEFT_ARM, 0);
+        try
+        {
+            new Armour(mName, mEncumbering, mPrice, mQuality, mDescription,
+                    onlyZeroProtectedParts);
+            fail("Zero as protection value will be remove, leading to an empty map");
+        }
+        catch (InstantiationError e) {
+            // success error generated
+        }
+
+        Map<BodyPart, Integer> zeroProtectedParts =
+                new EnumMap<>(BodyPart.class);
+        zeroProtectedParts.put(BodyPart.RIGHT_LEG, 0);
+        zeroProtectedParts.put(BodyPart.RIGHT_ARM, 1);
+        Armour zeroArmour = new Armour(mName, mEncumbering, mPrice, mQuality, mDescription,
+                zeroProtectedParts);
+        assertEquals(false, zeroArmour.isProtected(BodyPart.LEFT_ARM));
     }
 }
