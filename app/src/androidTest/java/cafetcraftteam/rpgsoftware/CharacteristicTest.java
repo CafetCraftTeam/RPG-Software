@@ -59,8 +59,8 @@ public class CharacteristicTest
         assertEquals(mWillPower, mCharacteristic.getWillPower());
         assertEquals(mAttacks, mCharacteristic.getAttacks());
         assertEquals(mWounds, mCharacteristic.getWounds());
-        assertEquals(Math.floor(mStrength/10.0), mCharacteristic.getStrengthBonus());
-        assertEquals(Math.floor(mToughness/10.0), mCharacteristic.getToughnessBonus());
+        assertEquals(mStrength/10, mCharacteristic.getStrengthBonus());
+        assertEquals(mToughness/10, mCharacteristic.getToughnessBonus());
         assertEquals(mMovement, mCharacteristic.getMovement());
         assertEquals(mMagic, mCharacteristic.getMagic());
         assertEquals(mInsanityPoint, mCharacteristic.getInsanityPoints());
