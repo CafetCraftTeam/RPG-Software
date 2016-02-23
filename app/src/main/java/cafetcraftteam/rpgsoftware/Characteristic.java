@@ -192,6 +192,14 @@ public class Characteristic {
     public int getFatePoints() {
         return mSecondary.get(Secondary.FP);
     }
+
+    public int getPrimaryCharacteristic(Primary primaryCharacteristic) {
+        return mPrimary.get(primaryCharacteristic);
+    }
+
+    public int getSecondaryCharacteristic(Secondary secondaryCharacteristic) {
+        return mSecondary.get(secondaryCharacteristic);
+    }
     //endregion=====================================================================================
 
     // region SETTER================================================================================

@@ -745,6 +745,46 @@ public class CharacteristicTest {
     }
     //endregion=====================================================================================
 
+    @Test
+    public void getPrimaryTest() {
+        assertEquals(mWeaponSkill,
+                mCharacteristic.getPrimaryCharacteristic(Characteristic.Primary.WS));
+        assertEquals(mBallisticSkill,
+                mCharacteristic.getPrimaryCharacteristic(Characteristic.Primary.BS));
+        assertEquals(mStrength,
+                mCharacteristic.getPrimaryCharacteristic(Characteristic.Primary.S));
+        assertEquals(mToughness,
+                mCharacteristic.getPrimaryCharacteristic(Characteristic.Primary.T));
+        assertEquals(mAgility,
+                mCharacteristic.getPrimaryCharacteristic(Characteristic.Primary.AG));
+        assertEquals(mIntelligence,
+                mCharacteristic.getPrimaryCharacteristic(Characteristic.Primary.INT));
+        assertEquals(mWillPower,
+                mCharacteristic.getPrimaryCharacteristic(Characteristic.Primary.WP));
+        assertEquals(mFellowship,
+                mCharacteristic.getPrimaryCharacteristic(Characteristic.Primary.FEL));
+    }
+
+    @Test
+    public void getSecondaryTest() {
+        assertEquals(mAttacks,
+                mCharacteristic.getSecondaryCharacteristic(Characteristic.Secondary.A));
+        assertEquals(mWounds,
+                mCharacteristic.getSecondaryCharacteristic(Characteristic.Secondary.W));
+        assertEquals(mStrength/10,
+                mCharacteristic.getSecondaryCharacteristic(Characteristic.Secondary.SB));
+        assertEquals(mToughness/10,
+                mCharacteristic.getSecondaryCharacteristic(Characteristic.Secondary.TB));
+        assertEquals(mMovement,
+                mCharacteristic.getSecondaryCharacteristic(Characteristic.Secondary.M));
+        assertEquals(mMagic,
+                mCharacteristic.getSecondaryCharacteristic(Characteristic.Secondary.MAG));
+        assertEquals(mInsanityPoints,
+                mCharacteristic.getSecondaryCharacteristic(Characteristic.Secondary.IP));
+        assertEquals(mFatePoints,
+                mCharacteristic.getSecondaryCharacteristic(Characteristic.Secondary.FP));
+    }
+
     // region SETTER TEST===========================================================================
     @Test
     public void setterWeaponSkill() {
