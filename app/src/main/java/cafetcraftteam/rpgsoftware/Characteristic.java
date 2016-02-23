@@ -35,7 +35,7 @@ public class Characteristic {
      *
      * @param weaponSkill    the value of weapon skill, must be strictly positive
      * @param ballisticSkill the value of the ballistic skill, must be strictly positive
-     * @param fellowship     the value of the attacks, must be strictly positive
+     * @param strength       the value of the strength, must be strictly positive
      * @param toughness      the value of the toughness, must be strictly positive
      * @param agility        the value of the agility, must be strictly positive
      * @param intelligence   the value of the intelligence, must be strictly positive

@@ -11,7 +11,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.fail;
 
 /**
- * Created by Gautier on 22/02/2016.
+ * Class that testing the characteristic class
  */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
