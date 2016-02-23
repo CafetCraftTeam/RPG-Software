@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import java.util.Collections;
 import java.util.Map;
 
-import cafetcraftteam.rpgsoftware.character.CharacterWarhammer;
+import cafetcraftteam.rpgsoftware.character.CharacterWarhammer.BodyPart;
 
 
 /**
@@ -15,7 +15,7 @@ import cafetcraftteam.rpgsoftware.character.CharacterWarhammer;
 public class Armour extends Equipment
 {
     // the protected parts of the body and the value of the armour on this part
-    private final Map<CharacterWarhammer.BodyPart, Integer> mProtectedParts;
+    private final Map<BodyPart, Integer> mProtectedParts;
 
     /**
      * Constructor of an armour

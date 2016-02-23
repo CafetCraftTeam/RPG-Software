@@ -11,6 +11,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 import cafetcraftteam.rpgsoftware.character.CharacterWarhammer;
+import cafetcraftteam.rpgsoftware.character.CharacterWarhammer.BodyPart;
 import cafetcraftteam.rpgsoftware.equipment.Armour;
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
 
