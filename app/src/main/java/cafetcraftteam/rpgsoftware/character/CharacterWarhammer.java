@@ -2,14 +2,18 @@ package cafetcraftteam.rpgsoftware.character;
 
 import java.util.HashMap;
 
+import cafetcraftteam.rpgsoftware.Characteristic;
 import cafetcraftteam.rpgsoftware.PrimCharacteristic;
 import cafetcraftteam.rpgsoftware.SecondCharacteristic;
 
 /**
- * Created by Pujima on 10/02/2016.
+ * Class that contains all the information of a Warhammer character
  */
 public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Character
 {
+    /**
+     * The body part of in Warhammer
+     */
     public enum BodyPart
     {
         HEAD,
@@ -20,6 +24,9 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         RIGHT_LEG
     }
 
+    /**
+     * The personal information of the character
+     */
     private final String mEyeColour;
     private final String mHairColour;
     private final String mStarSign;
@@ -33,8 +40,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     Main Profile
      */
 
-    private HashMap<PrimCharacteristic, Integer> mPrimaryProfile;
-    private HashMap<SecondCharacteristic, Integer> mSecondaryProfile;
+    private Characteristic mCharacteristic;
 
     private int mMovement;
     private int mTotalFortune;
@@ -69,8 +75,6 @@ Equipment
         mNumberOfSiblings = numberOfSiblings;
         mBirthPlace = birthPlace;
         mDistinguishingMark = distinguishSign;
-        mPrimaryProfile = new HashMap<>();
-        mSecondaryProfile = new HashMap<>();
         mWeapons = new HashMap<>();
         mArmor = new HashMap<>();
         mDefensePoints = new HashMap<>();
@@ -158,25 +162,25 @@ Equipment
         this.mProfession = Profession;
     }
 
-    public Integer getPrimaryProfile(PrimCharacteristic c)
+    public int getPrimaryProfile(Characteristic.Primary primaryCharacteristic)
     {
-        return mPrimaryProfile.get(c);
+        return mCharacteristic.getPrimaryCharacteristic(primaryCharacteristic);
     }
 
-    public void setPrimaryProfile(PrimCharacteristic c, int Value)
+    /*public void setPrimaryProfile(PrimCharacteristic c, int Value)
     {
         this.mPrimaryProfile.put(c, Value);
-    }
+    }*/
 
-    public Integer getSecondaryProfile(SecondCharacteristic c)
+    public int getSecondaryProfile(Characteristic.Secondary secondaryCharacteristic)
     {
-        return mSecondaryProfile.get(c);
+        return mCharacteristic.getSecondaryCharacteristic(secondaryCharacteristic);
     }
 
-    public void setSecondaryProfile(SecondCharacteristic c, int Value)
+    /*public void setSecondaryProfile(SecondCharacteristic c, int Value)
     {
         this.mSecondaryProfile.put(c, Value);
-    }
+    }*/
 
     public int getMovement()
     {
