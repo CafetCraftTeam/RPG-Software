@@ -157,6 +157,10 @@ public class Characteristic {
         return mPrimary.get(Primary.WP);
     }
 
+    public int getFellowship() {
+        return mPrimary.get(Primary.FEL);
+    }
+
     public int getAttacks() {
         return mSecondary.get(Secondary.A);
     }
