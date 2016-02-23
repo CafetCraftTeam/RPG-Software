@@ -10,8 +10,6 @@ import org.junit.runner.RunWith;
 
 import cafetcraftteam.rpgsoftware.character.Character;
 import cafetcraftteam.rpgsoftware.character.CharacterWarhammer;
-import cafetcraftteam.rpgsoftware.PrimCharacteristic;
-import cafetcraftteam.rpgsoftware.SecondCharacteristic;
 
 import static junit.framework.Assert.assertEquals;
 

@@ -3,8 +3,6 @@ package cafetcraftteam.rpgsoftware.character;
 import java.util.HashMap;
 
 import cafetcraftteam.rpgsoftware.Characteristic;
-import cafetcraftteam.rpgsoftware.PrimCharacteristic;
-import cafetcraftteam.rpgsoftware.SecondCharacteristic;
 
 /**
  * Class that contains all the information of a Warhammer character
