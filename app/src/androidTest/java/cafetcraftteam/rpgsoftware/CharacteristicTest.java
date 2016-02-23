@@ -74,6 +74,7 @@ public class CharacteristicTest
         assertEquals(mFatePoints, mCharacteristic.getFatePoints());
     }
 
+    // region CONTRACT RESPECT TEST=================================================================
     @Test
     public void contractRespectWeaponSkill() {
         // the weapon skill must be positive
@@ -767,4 +768,7 @@ public class CharacteristicTest
         );
         assertEquals(0, zeroFatePoints.getFatePoints());
     }
+    //endregion=====================================================================================
+
+
 }

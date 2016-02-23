@@ -35,7 +35,7 @@ public class Characteristic {
      *
      * @param weaponSkill    the value of weapon skill, must be strictly positive
      * @param ballisticSkill the value of the ballistic skill, must be strictly positive
-     * @param strength       the value of the strength, must be strictly positive
+     * @param fellowship     the value of the attacks, must be strictly positive
      * @param toughness      the value of the toughness, must be strictly positive
      * @param agility        the value of the agility, must be strictly positive
      * @param intelligence   the value of the intelligence, must be strictly positive
@@ -190,11 +190,117 @@ public class Characteristic {
     }
     //endregion=====================================================================================
 
+    // region SETTER================================================================================
     public void setWeaponSkill(int weaponSkill) {
-        if (weaponSkill <=0) {
+        if (weaponSkill <= 0) {
             throw new IllegalArgumentException("The weapon skill must be strictly positive");
         }
 
         mPrimary.put(Primary.WS, weaponSkill);
     }
+
+    public void setBallisticSkill(int ballisticSkill) {
+        if (ballisticSkill <= 0) {
+            throw new IllegalArgumentException("The ballistic skill must be strictly positive");
+        }
+
+        mPrimary.put(Primary.BS, ballisticSkill);
+    }
+
+    public void setStrength(int strength) {
+        if (strength <= 0) {
+            throw new IllegalArgumentException("The strength must be strictly positive");
+        }
+
+        mPrimary.put(Primary.S, strength);
+    }
+
+    public void setToughness(int toughness) {
+        if (toughness <= 0) {
+            throw new IllegalArgumentException("The toughness must be strictly positive");
+        }
+
+        mPrimary.put(Primary.T, toughness);
+    }
+
+    public void setAgility(int agility) {
+        if (agility <= 0) {
+            throw new IllegalArgumentException("The agility must be strictly positive");
+        }
+
+        mPrimary.put(Primary.AG, agility);
+    }
+
+    public void setIntelligence(int intelligence) {
+        if (intelligence <= 0) {
+            throw new IllegalArgumentException("The intelligence must be strictly positive");
+        }
+
+        mPrimary.put(Primary.INT, intelligence);
+    }
+
+    public void setWillPower(int willPower) {
+        if (willPower <= 0) {
+            throw new IllegalArgumentException("The will power must be strictly positive");
+        }
+
+        mPrimary.put(Primary.WP, willPower);
+    }
+
+    public void setFellowship(int fellowship) {
+        if (fellowship <= 0) {
+            throw new IllegalArgumentException("The fellowship must be strictly positive");
+        }
+
+        mPrimary.put(Primary.FEL, fellowship);
+    }
+
+    public void setAttacks(int attacks) {
+        if (attacks < 0) {
+            throw new IllegalArgumentException("The number of attacks must be positive");
+        }
+
+        mSecondary.put(Secondary.A, attacks);
+    }
+
+    public void setWounds(int wounds) {
+        if (wounds <= 0) {
+            throw new IllegalArgumentException("The wounds must be strictly positive");
+        }
+
+        mSecondary.put(Secondary.W, wounds);
+    }
+
+    public void setMovement(int movement) {
+        if (movement <= 0) {
+            throw new IllegalArgumentException("The movement must be strictly positive");
+        }
+
+        mSecondary.put(Secondary.M, movement);
+    }
+
+    public void setMagic(int magic) {
+        if (magic < 0) {
+            throw new IllegalArgumentException("The magic must be positive");
+        }
+
+        mSecondary.put(Secondary.MAG, magic);
+    }
+
+    public void setInsanityPoints(int insanityPoints) {
+        if (insanityPoints < 0) {
+            throw new IllegalArgumentException("The number of insanity points must be positive");
+        }
+
+        mSecondary.put(Secondary.IP, insanityPoints);
+    }
+
+    public void setFatePoints(int fatePoints) {
+        if (fatePoints < 0) {
+            throw new IllegalArgumentException("The number of fate points must be positive");
+        }
+
+        mSecondary.put(Secondary.FP, fatePoints);
+    }
+    // endregion====================================================================================
 }
