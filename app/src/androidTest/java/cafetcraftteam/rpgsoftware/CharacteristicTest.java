@@ -3,6 +3,7 @@ package cafetcraftteam.rpgsoftware;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -31,22 +32,27 @@ public class CharacteristicTest
     private final int mInsanityPoints = 1;
     private final int mFatePoints = 1;
 
-    private final Characteristic mCharacteristic = new Characteristic(
-            mWeaponSkill,
-            mBallisticSkill,
-            mStrength,
-            mToughness,
-            mAgility,
-            mIntelligence,
-            mWillPower,
-            mFellowship,
-            mAttacks,
-            mWounds,
-            mMovement,
-            mMagic,
-            mInsanityPoints,
-            mFatePoints
-    );
+    private Characteristic mCharacteristic;
+
+    @Before
+    public void initiate() throws InstantiationException  {
+        mCharacteristic = new Characteristic(
+                mWeaponSkill,
+                mBallisticSkill,
+                mStrength,
+                mToughness,
+                mAgility,
+                mIntelligence,
+                mWillPower,
+                mFellowship,
+                mAttacks,
+                mWounds,
+                mMovement,
+                mMagic,
+                mInsanityPoints,
+                mFatePoints
+        );
+    }
 
     @Test
     public void creationTest()
@@ -90,7 +96,7 @@ public class CharacteristicTest
             );
             fail("A negative weapon skill have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The weapon skill must be strictly positive", e.getMessage());
         }
 
@@ -114,7 +120,7 @@ public class CharacteristicTest
             );
             fail("A zero weapon skill have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The weapon skill must be strictly positive", e.getMessage());
         }
     }
@@ -141,7 +147,7 @@ public class CharacteristicTest
             );
             fail("A negative ballistic skill have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The ballistic skill must be strictly positive", e.getMessage());
         }
 
@@ -165,7 +171,7 @@ public class CharacteristicTest
             );
             fail("A zero ballistic skill have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The ballistic skill must be strictly positive", e.getMessage());
         }
     }
@@ -192,7 +198,7 @@ public class CharacteristicTest
             );
             fail("A negative strength have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The strength must be strictly positive", e.getMessage());
         }
 
@@ -216,7 +222,7 @@ public class CharacteristicTest
             );
             fail("A zero strength have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The strength must be strictly positive", e.getMessage());
         }
     }
@@ -243,7 +249,7 @@ public class CharacteristicTest
             );
             fail("A negative toughness have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The toughness must be strictly positive", e.getMessage());
         }
 
@@ -267,7 +273,7 @@ public class CharacteristicTest
             );
             fail("A zero toughness have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The toughness must be strictly positive", e.getMessage());
         }
     }
@@ -294,7 +300,7 @@ public class CharacteristicTest
             );
             fail("A negative agility have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The agility must be strictly positive", e.getMessage());
         }
 
@@ -318,7 +324,7 @@ public class CharacteristicTest
             );
             fail("A zero agility have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The agility must be strictly positive", e.getMessage());
         }
     }
@@ -345,7 +351,7 @@ public class CharacteristicTest
             );
             fail("A negative intelligence have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The intelligence must be strictly positive", e.getMessage());
         }
 
@@ -369,7 +375,7 @@ public class CharacteristicTest
             );
             fail("A zero intelligence have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The intelligence must be strictly positive", e.getMessage());
         }
     }
@@ -396,7 +402,7 @@ public class CharacteristicTest
             );
             fail("A negative will power have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The will power must be strictly positive", e.getMessage());
         }
 
@@ -420,7 +426,7 @@ public class CharacteristicTest
             );
             fail("A zero will power have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The will power must be strictly positive", e.getMessage());
         }
     }
@@ -447,7 +453,7 @@ public class CharacteristicTest
             );
             fail("A negative fellowship have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The fellowship must be strictly positive", e.getMessage());
         }
 
@@ -471,13 +477,13 @@ public class CharacteristicTest
             );
             fail("A zero fellowship have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The fellowship must be strictly positive", e.getMessage());
         }
     }
 
     @Test
-    public void contractRespectAttacks() {
+    public void contractRespectAttacks() throws InstantiationException  {
         // the number of attacks must be positive
         try {
             new Characteristic(
@@ -498,7 +504,7 @@ public class CharacteristicTest
             );
             fail("A negative number of attacks have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The number of attacks must be positive", e.getMessage());
         }
 
@@ -544,7 +550,7 @@ public class CharacteristicTest
             );
             fail("A negative number of wounds have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The number of wounds must be strictly positive", e.getMessage());
         }
 
@@ -568,7 +574,7 @@ public class CharacteristicTest
             );
             fail("A zero number of wounds have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The number of wounds must be strictly positive", e.getMessage());
         }
     }
@@ -595,7 +601,7 @@ public class CharacteristicTest
             );
             fail("A negative movement have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The movement must be strictly positive", e.getMessage());
         }
 
@@ -619,13 +625,13 @@ public class CharacteristicTest
             );
             fail("A zero movement have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The movement must be strictly positive", e.getMessage());
         }
     }
 
     @Test
-    public void contractRespectMagic() {
+    public void contractRespectMagic() throws InstantiationException  {
         // the magic must be positive
         try {
             new Characteristic(
@@ -646,7 +652,7 @@ public class CharacteristicTest
             );
             fail("A negative magic have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The magic must be positive", e.getMessage());
         }
 
@@ -671,7 +677,7 @@ public class CharacteristicTest
     }
 
     @Test
-    public void contractRespectInsanityPoints() {
+    public void contractRespectInsanityPoints() throws InstantiationException  {
         // the number of insanity points must be positive
         try {
             new Characteristic(
@@ -692,7 +698,7 @@ public class CharacteristicTest
             );
             fail("A negative number of insanity points have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The number of insanity points must be positive", e.getMessage());
         }
 
@@ -717,7 +723,7 @@ public class CharacteristicTest
     }
 
     @Test
-    public void contractRespectFatePoints() {
+    public void contractRespectFatePoints() throws InstantiationException  {
         // the number of fate points must be positive
         try {
             new Characteristic(
@@ -738,7 +744,7 @@ public class CharacteristicTest
             );
             fail("A negative number of fate points have not throw an exception");
         }
-        catch (InstantiationError e){
+        catch (InstantiationException e){
             assertEquals("The number of fate points must be positive", e.getMessage());
         }
 

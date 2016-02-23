@@ -24,11 +24,11 @@ public class Characteristic {
     /**
      * map containing all the values for every characteristic in the primary profile
      */
-    private Map<Primary, Integer> mPrimary;
+    private final Map<Primary, Integer> mPrimary;
     /**
      * map containing all the values for every characteristic in the secondary profile
      */
-    private Map<Secondary, Integer> mSecondary;
+    private final Map<Secondary, Integer> mSecondary;
 
     /**
      * Constructor of the Characteristic class
@@ -61,49 +61,51 @@ public class Characteristic {
                           int movement,
                           int magic,
                           int insanityPoints,
-                          int fatePoints) {
+                          int fatePoints) throws InstantiationException {
+        //region CONTRACT CONTROL-------------------------------------------------------------------
         if (weaponSkill <= 0) {
-            throw new InstantiationError("The weapon skill must be strictly positive");
+            throw new InstantiationException("The weapon skill must be strictly positive");
         }
         if (ballisticSkill <= 0) {
-            throw new InstantiationError("The ballistic skill must be strictly positive");
+            throw new InstantiationException("The ballistic skill must be strictly positive");
         }
         if (strength <= 0) {
-            throw new InstantiationError("The strength must be strictly positive");
+            throw new InstantiationException("The strength must be strictly positive");
         }
         if (toughness <= 0) {
-            throw new InstantiationError("The toughness must be strictly positive");
+            throw new InstantiationException("The toughness must be strictly positive");
         }
         if (agility <= 0) {
-            throw new InstantiationError("The agility must be strictly positive");
+            throw new InstantiationException("The agility must be strictly positive");
         }
         if (intelligence <= 0) {
-            throw new InstantiationError("The intelligence must be strictly positive");
+            throw new InstantiationException("The intelligence must be strictly positive");
         }
         if (willPower <= 0) {
-            throw new InstantiationError("The will power must be strictly positive");
+            throw new InstantiationException("The will power must be strictly positive");
         }
         if (fellowship <= 0) {
-            throw new InstantiationError("The fellowship must be strictly positive");
+            throw new InstantiationException("The fellowship must be strictly positive");
         }
         if (attacks < 0) {
-            throw new InstantiationError("The number of attacks must be positive");
+            throw new InstantiationException("The number of attacks must be positive");
         }
         if (wounds <= 0) {
-            throw new InstantiationError("The number of wounds must be strictly positive");
+            throw new InstantiationException("The number of wounds must be strictly positive");
         }
         if (movement <= 0) {
-            throw new InstantiationError("The movement must be strictly positive");
+            throw new InstantiationException("The movement must be strictly positive");
         }
         if (magic < 0) {
-            throw new InstantiationError("The magic must be positive");
+            throw new InstantiationException("The magic must be positive");
         }
         if (insanityPoints < 0) {
-            throw new InstantiationError("The number of insanity points must be positive");
+            throw new InstantiationException("The number of insanity points must be positive");
         }
         if (fatePoints < 0) {
-            throw new InstantiationError("The number of fate points must be positive");
+            throw new InstantiationException("The number of fate points must be positive");
         }
+        //endregion---------------------------------------------------------------------------------
 
         mPrimary = new EnumMap<>(Primary.class);
         mPrimary.put(Primary.WS, weaponSkill);
@@ -126,6 +128,7 @@ public class Characteristic {
         mSecondary.put(Secondary.FP, fatePoints);
     }
 
+    //region GETTER=================================================================================
     public int getWeaponSkill() {
         return mPrimary.get(Primary.WS);
     }
@@ -185,5 +188,13 @@ public class Characteristic {
     public int getFatePoints() {
         return mSecondary.get(Secondary.FP);
     }
+    //endregion=====================================================================================
 
+    public void setWeaponSkill(int weaponSkill) {
+        if (weaponSkill <=0) {
+            throw new IllegalArgumentException("The weapon skill must be strictly positive");
+        }
+
+        mPrimary.put(Primary.WS, weaponSkill);
+    }
 }
