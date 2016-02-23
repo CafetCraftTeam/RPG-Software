@@ -7,13 +7,11 @@ import cafetcraftteam.rpgsoftware.Characteristic;
 /**
  * Class that contains all the information of a Warhammer character
  */
-public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Character
-{
+public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Character {
     /**
      * The body part of in Warhammer
      */
-    public enum BodyPart
-    {
+    public enum BodyPart {
         HEAD,
         TORSO,
         LEFT_ARM,
@@ -30,7 +28,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     private final String mStarSign;
     private final int mNumberOfSiblings;
     private final String mBirthPlace;
-    private final String mDistinguishingMark;
+    private final String mDistinguishingMarks;
     private String mProfession;
 
 
@@ -40,10 +38,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
     private Characteristic mCharacteristic;
 
-    private int mMovement;
-    private int mTotalFortune;
     private int mActualFortune;
-    private int mTotalWounds;
     private int mActualWounds;
 
     /*
@@ -61,18 +56,28 @@ Equipment
     private HashMap<String, String> mBasicSkills;
     private HashMap<String, String> mAdvanSkills;
 
-    public CharacterWarhammer(String name, String year, Race race,
-                       int age, Sex sex, String eyeColour, int height, String hairColour,
-                       int weight, String starSign, int numberOfSiblings, String birthPlace,
-                       String distinguishSign)
-    {
+    public CharacterWarhammer(
+            String name,
+            String year,
+            Race race,
+            int age,
+            Sex sex,
+            String eyeColour,
+            int height,
+            String hairColour,
+            int weight,
+            String starSign,
+            int numberOfSiblings,
+            String birthPlace,
+            String distinguishingMarks
+    ) {
         super(name, year, race, sex, weight, height, age);
         mEyeColour = eyeColour;
         mHairColour = hairColour;
         mStarSign = starSign;
         mNumberOfSiblings = numberOfSiblings;
         mBirthPlace = birthPlace;
-        mDistinguishingMark = distinguishSign;
+        mDistinguishingMarks = distinguishingMarks;
         mWeapons = new HashMap<>();
         mArmor = new HashMap<>();
         mDefensePoints = new HashMap<>();
@@ -114,38 +119,31 @@ Equipment
     ================================================================================================
      */
 
-    public String getEyeColour()
-    {
+    public String getEyeColour() {
         return mEyeColour;
     }
 
-    public String getHairColour()
-    {
+    public String getHairColour() {
         return mHairColour;
     }
 
-    public String getStarSign()
-    {
+    public String getStarSign() {
         return mStarSign;
     }
 
-    public int getNumberOfSiblings()
-    {
+    public int getNumberOfSiblings() {
         return mNumberOfSiblings;
     }
 
-    public String getBirthPlace()
-    {
+    public String getBirthPlace() {
         return mBirthPlace;
     }
 
-    public String getDistinguishingMark()
-    {
-        return mDistinguishingMark;
+    public String getDistinguishingMark() {
+        return mDistinguishingMarks;
     }
 
-    public String getProfession()
-    {
+    public String getProfession() {
         return mProfession;
     }
 
@@ -155,13 +153,11 @@ Equipment
     ================================================================================================
      */
 
-    public void setProfession(String Profession)
-    {
+    public void setProfession(String Profession) {
         this.mProfession = Profession;
     }
 
-    public int getPrimaryProfile(Characteristic.Primary primaryCharacteristic)
-    {
+    public int getPrimaryProfile(Characteristic.Primary primaryCharacteristic) {
         return mCharacteristic.getPrimaryCharacteristic(primaryCharacteristic);
     }
 
@@ -170,8 +166,7 @@ Equipment
         this.mPrimaryProfile.put(c, Value);
     }*/
 
-    public int getSecondaryProfile(Characteristic.Secondary secondaryCharacteristic)
-    {
+    public int getSecondaryProfile(Characteristic.Secondary secondaryCharacteristic) {
         return mCharacteristic.getSecondaryCharacteristic(secondaryCharacteristic);
     }
 
@@ -180,89 +175,48 @@ Equipment
         this.mSecondaryProfile.put(c, Value);
     }*/
 
-    public int getMovement()
-    {
-        return mMovement;
-    }
-
-    public void setMovement(int Movement)
-    {
-        this.mMovement = Movement;
-    }
-
-    public int getTotalFortune()
-    {
-        return mTotalFortune;
-    }
-
-    public void setTotalFortune(int TotalFortune)
-    {
-        this.mTotalFortune = TotalFortune;
-    }
-
-    public int getActualFortune()
-    {
+    public int getActualFortune() {
         return mActualFortune;
     }
 
-    public void setActualFortune(int ActualFortune)
-    {
-        this.mActualFortune = ActualFortune;
+    public void setActualFortune(int ActualFortune) {
+        mActualFortune = ActualFortune;
     }
 
-    public int getTotalWounds()
-    {
-        return mTotalWounds;
-    }
-
-    public void setTotalWounds(int TotalWounds)
-    {
-        this.mTotalWounds = TotalWounds;
-    }
-
-    public int getActualWounds()
-    {
+    public int getActualWounds() {
         return mActualWounds;
     }
 
-    public void setActualWounds(int ActualWounds)
-    {
-        this.mActualWounds = ActualWounds;
+    public void setActualWounds(int ActualWounds) {
+        mActualWounds = ActualWounds;
     }
 
             /*
     Under Constructions waiting for Equipment class
      */
 
-    public void addEquipment(int id, String Equipment)
-    {
+    public void addEquipment(int id, String Equipment) {
         this.mEquipment.put(id, Equipment);
     }
 
-    public void addWeapons(int id, String Weapon)
-    {
+    public void addWeapons(int id, String Weapon) {
         this.mWeapons.put(id, Weapon);
     }
 
-    public void addArmor(int id, String Armor)
-    {
+    public void addArmor(int id, String Armor) {
         this.mArmor.put(id, Armor);
     }
 
-    public int getDefensePoints(BodyPart bodyPart)
-    {
+    public int getDefensePoints(BodyPart bodyPart) {
         return mDefensePoints.get(bodyPart);
     }
 
-    public void setDefensePoints(BodyPart bodyPart, int Value)
-    {
+    public void setDefensePoints(BodyPart bodyPart, int Value) {
         this.mDefensePoints.put(bodyPart, Value);
     }
 
-    public void setBasicSkill(String Skillname, String Skill) throws IllegalAccessException
-    {
-        switch (Skillname)
-        {
+    public void setBasicSkill(String Skillname, String Skill) throws IllegalAccessException {
+        switch (Skillname) {
             case "Animal Care":
                 mBasicSkills.put("Animal Care", Skill);
                 break;
@@ -328,14 +282,13 @@ Equipment
         }
     }
 
-    public void setAdvanSkills(String Skillname, String Skill)
-    {
+    public void setAdvanSkills(String Skillname, String Skill) {
         this.mAdvanSkills.put(Skillname, Skill);
     }
 
     public static CharacterWarhammer ancestorGurdill() {
         return new CharacterWarhammer(
-                "Ancêtre Gurdill",
+                "Ancestor Gurdill",
                 "1900",
                 Race.DWARF,
                 80,
