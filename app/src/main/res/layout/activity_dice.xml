@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="Throw the dice"
         android:id="@+id/button_throw"
-        android:layout_marginTop="87dp"
+        android:layout_marginTop="33dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -24,27 +24,47 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Result :"
         android:id="@+id/textView_Result"
-        android:layout_marginTop="40dp"
-        android:layout_below="@+id/numberPicker_Range"
+        android:layout_marginTop="47dp"
+        android:layout_below="@+id/numberPickerMin"
         android:layout_centerHorizontal="true" />
 
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/numberPicker_Range"
+        android:id="@+id/numberPickerMin"
+        android:longClickable="true"
+        android:orientation="horizontal"
         android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/button_throw"
-        android:layout_alignEnd="@+id/button_throw"
-        android:orientation="vertical" />
+        android:layout_toLeftOf="@+id/textView_Result"
+        android:layout_toStartOf="@+id/textView_Result" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Size of dice : "
+        android:text="Min :"
         android:id="@+id/textView96"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/numberPicker_Range"
-        android:layout_toStartOf="@+id/numberPicker_Range" />
+        android:layout_above="@+id/numberPickerMin"
+        android:layout_alignLeft="@+id/numberPickerMin"
+        android:layout_alignStart="@+id/numberPickerMin" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPickerMax"
+        android:layout_below="@+id/textView96"
+        android:layout_toRightOf="@+id/textView_Result"
+        android:layout_toEndOf="@+id/textView_Result"
+        android:orientation="horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Max :"
+        android:id="@+id/textView97"
+        android:layout_alignTop="@+id/textView96"
+        android:layout_alignLeft="@+id/numberPickerMax"
+        android:layout_alignStart="@+id/numberPickerMax" />
 
 </RelativeLayout>
