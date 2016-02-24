@@ -80,11 +80,6 @@ public class CharacterWarhammerTest {
         Pujima.setActualWounds(2);
         assertEquals(2, Pujima.getActualWounds());
     }
-    @Test
-    public void TestDefensePoints() {
-        Pujima.setDefensePoints(CharacterWarhammer.BodyPart.HEAD, 2);
-        assertEquals(2,Pujima.getDefensePoints(CharacterWarhammer.BodyPart.HEAD));
-    }
 }
 
 

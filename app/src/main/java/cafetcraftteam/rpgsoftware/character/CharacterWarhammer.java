@@ -1,15 +1,22 @@
 package cafetcraftteam.rpgsoftware.character;
 
+import android.support.annotation.NonNull;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import cafetcraftteam.rpgsoftware.Characteristic;
+import cafetcraftteam.rpgsoftware.equipment.Armour;
+import cafetcraftteam.rpgsoftware.equipment.Equipment;
 
 /**
  * Class that contains all the information of a Warhammer character
  */
 public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Character {
     /**
-     * The body part of in Warhammer
+     * The body part of a character in Warhammer
      */
     public enum BodyPart {
         HEAD,
@@ -18,6 +25,46 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         RIGHT_ARM,
         LEFT_LEG,
         RIGHT_LEG
+    }
+
+    /**
+     * The hand used by a weapon
+     */
+    public enum Handle {
+        LEFT,
+        RIGHT,
+        BOTH
+    }
+
+    private class Hand {
+        private Equipment mLeft;
+        private Equipment mRight;
+
+        public Hand(Equipment left, Equipment right) {
+            mLeft = left;
+            mRight = right;
+        }
+
+        public Equipment getLeft() {
+            return mLeft;
+        }
+
+        public Equipment getRight() {
+            return mRight;
+        }
+
+        public void useLeft(Equipment equipment) {
+            mLeft = equipment;
+        }
+
+        public void useRight(Equipment equipment) {
+            mRight = equipment;
+        }
+
+        public void useBoth(Equipment equipment) {
+            mLeft = equipment;
+            mRight = equipment;
+        }
     }
 
     /**
@@ -32,27 +79,24 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     private String mProfession;
 
 
-        /*
-    Main Profile
+    /**
+     * Main profile
      */
-
     private Characteristic mCharacteristic;
 
     private int mActualFortune;
     private int mActualWounds;
 
-    /*
-Equipment
-*/
-    private HashMap<Integer, String> mWeapons;
-    private HashMap<Integer, String> mArmor;
-    private HashMap<BodyPart, Integer> mDefensePoints;
-    private HashMap<Integer, String> mEquipment;
-
-            /*
-    Abilities and Talents
+    /**
+     * Equipment
      */
+    private Hand mActualWeapons; // the weapons actually in the hand of the character
+    private List<Armour> mActualArmor; // the armor(s) actually wore by the character
+    private Map<Equipment, Integer> mEquipment; // all the equipment of the player
 
+    /**
+     * Abilities and Talents
+     */
     private HashMap<String, String> mBasicSkills;
     private HashMap<String, String> mAdvanSkills;
 
@@ -78,19 +122,12 @@ Equipment
         mNumberOfSiblings = numberOfSiblings;
         mBirthPlace = birthPlace;
         mDistinguishingMarks = distinguishingMarks;
-        mWeapons = new HashMap<>();
-        mArmor = new HashMap<>();
-        mDefensePoints = new HashMap<>();
+        mActualWeapons = new Hand(null, null);
+        mActualArmor = new ArrayList<>();
         mEquipment = new HashMap<>();
         mBasicSkills = new HashMap<>();
         mAdvanSkills = new HashMap<>();
 
-        mDefensePoints.put(BodyPart.HEAD, 0);
-        mDefensePoints.put(BodyPart.TORSO, 0);
-        mDefensePoints.put(BodyPart.LEFT_ARM, 0);
-        mDefensePoints.put(BodyPart.RIGHT_ARM, 0);
-        mDefensePoints.put(BodyPart.LEFT_LEG, 0);
-        mDefensePoints.put(BodyPart.RIGHT_LEG, 0);
         mBasicSkills.put("Animal Care", "Skill");
         mBasicSkills.put("Charm", "Skill");
         mBasicSkills.put("Command", "Skill");
@@ -113,12 +150,8 @@ Equipment
         mBasicSkills.put("Swim", "Skill");
     }
 
-    /*
-    ================================================================================================
-    --------Getter----------------------------------------------------------------------------------
-    ================================================================================================
-     */
 
+    // region GETTER================================================================================
     public String getEyeColour() {
         return mEyeColour;
     }
@@ -146,13 +179,9 @@ Equipment
     public String getProfession() {
         return mProfession;
     }
+    //endregion=====================================================================================
 
-    /*
-    ================================================================================================
-    --------Setter----------------------------------------------------------------------------------
-    ================================================================================================
-     */
-
+    //region SETTER=================================================================================
     public void setProfession(String Profession) {
         this.mProfession = Profession;
     }
@@ -195,24 +224,74 @@ Equipment
     Under Constructions waiting for Equipment class
      */
 
-    public void addEquipment(int id, String Equipment) {
-        this.mEquipment.put(id, Equipment);
+    public void addEquipment(@NonNull Equipment equipment) {
+        if (equipment == null) {
+            throw new IllegalArgumentException("The equipment must be not null");
+        }
+
+        if (mEquipment.containsKey(equipment)) {
+            mEquipment.put(equipment, mEquipment.get(equipment) + 1);
+        } else {
+            mEquipment.put(equipment, 1);
+        }
     }
 
-    public void addWeapons(int id, String Weapon) {
-        this.mWeapons.put(id, Weapon);
+    public void handleEquipment(@NonNull Equipment equipment, @NonNull Handle handle) {
+        if (equipment == null) {
+            throw new IllegalArgumentException("The equipment must be not null");
+        }
+        if (handle == null) {
+            throw new IllegalArgumentException("The handle must be not null");
+        }
+        if (!mEquipment.containsKey(equipment)) {
+            mEquipment.put(equipment, 1);
+        }
+
+        switch (handle) {
+            case LEFT:
+                mActualWeapons.useLeft(equipment);
+                break;
+            case RIGHT:
+                mActualWeapons.useRight(equipment);
+                break;
+            case BOTH:
+                mActualWeapons.useBoth(equipment);
+                break;
+            default:
+                throw new EnumConstantNotPresentException(Handle.class, "The hand asked is not present");
+        }
     }
 
-    public void addArmor(int id, String Armor) {
-        this.mArmor.put(id, Armor);
+    public void wearAnArmour(@NonNull Armour armour) {
+        if (armour == null) {
+            throw new IllegalArgumentException("The armour must be not null");
+        }
+        if (!mEquipment.containsKey(armour)) {
+            mEquipment.put(armour, 1);
+        }
+
+        // verify that there is no other armour on the body part covered by this one
+        for (Armour woreArmour : mActualArmor) {
+            for (BodyPart bodyPart : BodyPart.values()) {
+                if (woreArmour.isProtected(bodyPart) && armour.isProtected(bodyPart)) {
+                    throw new IllegalArgumentException("The armour could not be wore, there is " +
+                            "already an armour on this body part " + bodyPart.toString());
+                }
+            }
+        }
+
+        // everything is OK
+        mActualArmor.add(armour);
     }
 
     public int getDefensePoints(BodyPart bodyPart) {
-        return mDefensePoints.get(bodyPart);
-    }
+        int defensePoints = 0;
 
-    public void setDefensePoints(BodyPart bodyPart, int Value) {
-        this.mDefensePoints.put(bodyPart, Value);
+        for (Armour armour : mActualArmor) {
+            defensePoints += armour.getArmourPoint(bodyPart);
+        }
+
+        return defensePoints;
     }
 
     public void setBasicSkill(String Skillname, String Skill) throws IllegalAccessException {
@@ -285,6 +364,7 @@ Equipment
     public void setAdvanSkills(String Skillname, String Skill) {
         this.mAdvanSkills.put(Skillname, Skill);
     }
+    //endregion=====================================================================================
 
     public static CharacterWarhammer ancestorGurdill() {
         return new CharacterWarhammer(
