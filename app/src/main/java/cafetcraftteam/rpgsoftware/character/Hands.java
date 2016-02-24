@@ -56,43 +56,118 @@ public class Hands {
     }
 
     /**
-     * Assign the given equipment to the left hand
+     * Unsheathe the equipment given with the left hand. This hand must be empty, otherwise an
+     * IllegalStateException is thrown
      *
-     * @param leftHandEquipment the equipment to assign to the left hand, could be null
-     * @return the previous equipment in the left hand, could be null if there is none
+     * @param equipment the equipment to handle in the left hand, must be not null
      */
-    @Nullable
-    public Equipment equipLeft(@Nullable Equipment leftHandEquipment) {
-        Equipment returnEquipment = mLeft;
-        mLeft = leftHandEquipment;
-        return returnEquipment;
+    public void unsheatheLeft(@NonNull Equipment equipment) {
+        if (equipment == null) {
+            throw new IllegalArgumentException("The equipment must not be null");
+        }
+
+        // verify that the left hand is empty
+        if (mLeft != null) {
+            throw new IllegalStateException("The left hand must be empty to unsheathe something " +
+                    "with it");
+        }
+
+        mLeft = equipment;
     }
 
     /**
-     * Assign the given equipment to the right hand
+     * Unsheathe the equipment given with the right hand. This hand must be empty, otherwise an
+     * IllegalStateException is thrown
      *
-     * @param rightHandEquipment the equipment to assign to the right hand, could be null
-     * @return the previous equipment in the right hand, could be null if there is none
+     * @param equipment the equipment to handle in the right hand, must be not null
      */
-    @Nullable
-    public Equipment equipRight(@Nullable Equipment rightHandEquipment) {
-        Equipment returnEquipment = mRight;
-        mRight = rightHandEquipment;
-        return returnEquipment;
+    public void unsheatheRight(@NonNull Equipment equipment) {
+        if (equipment == null) {
+            throw new IllegalArgumentException("The equipment must not be null");
+        }
+
+        // verify that the right hand is empty
+        if (mRight != null) {
+            throw new IllegalStateException("The right hand must be empty to unsheathe something" +
+                    " with it");
+        }
+
+        mRight = equipment;
     }
 
     /**
-     * Assign the given equipment to both hand
+     * Unsheathe the equipment given with both hand. The hands must be empty, otherwise an
+     * IllegalStateException is thrown
      *
-     * @param bothHandsEquipment the equipment to assign to both hand, could be null
-     * @return the previous equipments in both hand as a Pair, with the left in first and the right
-     * in second, could be a pair of null if there is none
+     * @param equipment the equipment to handle in both hand, must be not null
+     */
+    public void unsheatheBoth(@NonNull Equipment equipment) {
+        // verify that the both hand is empty
+        if (equipment == null) {
+            throw new IllegalArgumentException("The equipment must not be null");
+        }
+        if (mLeft != null || mRight != null) {
+            throw new IllegalStateException("Both hands must be empty to unsheathe something with it");
+        }
+
+        mLeft = equipment;
+        mRight = equipment;
+    }
+
+    /**
+     * Sheathe the equipment actually in the left hand. This hand must not be empty, otherwise an
+     * IllegalStateException is thrown
+     *
+     * @return the equipment previously in the left hand, always not null
      */
     @NonNull
-    public Pair<Equipment, Equipment> equipBoth(@Nullable Equipment bothHandsEquipment) {
-        Pair<Equipment, Equipment> previousEquipments = new Pair<>(mLeft, mRight);
-        mLeft = bothHandsEquipment;
-        mRight = bothHandsEquipment;
-        return previousEquipments;
+    public Equipment sheatheLeft() {
+        // verify that the left hand is not empty
+        if (mLeft == null) {
+            throw new IllegalStateException("The left hand must not be empty");
+        }
+
+        Equipment sheatheEquipment = mLeft;
+        mLeft = null;
+        return sheatheEquipment;
+    }
+
+    /**
+     * Sheathe the equipment actually in the right hand. This hand must not be empty, otherwise an
+     * IllegalStateException is thrown
+     *
+     * @return the equipment previously in the right hand, always not null
+     */
+    @NonNull
+    public Equipment sheatheRight() {
+        // verify that the right hand is not empty
+        if (mRight == null) {
+            throw new IllegalStateException("The right hand must not be empty");
+        }
+
+        Equipment sheatheEquipment = mRight;
+        mRight = null;
+        return sheatheEquipment;
+    }
+
+    /**
+     * Sheathe the equipment actually in both hand. The hand must not be both empty, otherwise an
+     * IllegalStateException is thrown
+     *
+     * @return the equipments previously in the both hand as a Pair, with the left equipment in
+     * first and the right one in second, always not null, but one of the argument of the pair
+     * could be null
+     */
+    @NonNull
+    public Pair<Equipment, Equipment> sheatheBoth() {
+        // verify that the both hand are empty
+        if (mLeft == null && mRight == null) {
+            throw new IllegalStateException("Both hand must not be empty");
+        }
+
+        Pair<Equipment, Equipment> sheatheEquipments = new Pair<>(mLeft, mRight);
+        mLeft = null;
+        mRight = null;
+        return sheatheEquipments;
     }
 }

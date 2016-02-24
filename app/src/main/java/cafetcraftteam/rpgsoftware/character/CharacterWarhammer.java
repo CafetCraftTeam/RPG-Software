@@ -322,13 +322,13 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
         switch (handle) {
             case LEFT:
-                mActualWeapons.equipLeft(equipment);
+                mActualWeapons.unsheatheLeft(equipment);
                 break;
             case RIGHT:
-                mActualWeapons.equipRight(equipment);
+                mActualWeapons.unsheatheRight(equipment);
                 break;
             case BOTH:
-                mActualWeapons.equipBoth(equipment);
+                mActualWeapons.unsheatheBoth(equipment);
                 break;
             default:
                 throw new EnumConstantNotPresentException(Hands.Handle.class, "The hand asked is not present");
