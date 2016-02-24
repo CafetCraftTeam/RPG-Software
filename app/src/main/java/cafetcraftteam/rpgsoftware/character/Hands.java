@@ -2,7 +2,6 @@ package cafetcraftteam.rpgsoftware.character;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;

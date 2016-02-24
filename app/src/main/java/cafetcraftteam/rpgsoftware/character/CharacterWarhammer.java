@@ -52,7 +52,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
      * Equipment
      */
     private Hands mActualWeapons; // the weapons actually in the hand of the character
-    private List<Armour> mActualArmor; // the armor(s) actually wore by the character
+    private List<Armour> mActualArmour; // the armor(s) actually wore by the character
     // all the equipment of the character that is not actually used
     private Map<Equipment, Integer> mInventory;
 
@@ -133,7 +133,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
         // initialization of the equipment
         mActualWeapons = new Hands(null, null);
-        mActualArmor = new ArrayList<>();
+        mActualArmour = new ArrayList<>();
         mInventory = new HashMap<>();
 
         // initialization of the skills
@@ -332,7 +332,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
      * @param handle    the hand(s) used to take this object, the hand(s) must be empty or an
      *                  IllegalStateException is thrown
      */
-    public void takeObject(@NonNull Equipment equipment, @NonNull Hands.Handle handle) {
+    public void takeItem(@NonNull Equipment equipment, @NonNull Hands.Handle handle) {
         if (equipment == null) {
             throw new IllegalArgumentException("The equipment to take must not be null");
         }
@@ -356,7 +356,19 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         }
     }
 
-    public List<Equipment> dropObject(Hands.Handle handle) {
+    /**
+     * Drop an equipment from the handle given. The hand(s) must be not empty or an
+     * IllegalStateException is thrown
+     *
+     * @param handle the hand(s) of which the equipment will be drop, must be not null
+     * @return the equipment previously in the hand(s), always not null
+     */
+    @NonNull
+    public List<Equipment> dropObject(@NonNull Hands.Handle handle) {
+        if (handle == null) {
+            throw new IllegalArgumentException("The handle must not be null");
+        }
+
         List<Equipment> dropEquipment = new ArrayList<>();
         switch (handle) {
             case LEFT:
@@ -368,42 +380,11 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
             case BOTH:
                 dropEquipment.addAll(mActualWeapons.sheatheBoth());
                 break;
-        }
-        // TODO
-        return dropEquipment;
-    }
-
-    /**
-     * Define the equipment handle in the hand(s) given.
-     *
-     * @param equipment the equipment to handle, the equipment must be already in the inventory
-     *                  of the character, must be not null
-     * @param handle    the hand(s) in which the equipment will be handle, must be not null
-     */
-    public void equip(@NonNull Equipment equipment, @NonNull Hands.Handle handle) {
-        if (equipment == null) {
-            throw new IllegalArgumentException("The equipment must be not null");
-        }
-        if (handle == null) {
-            throw new IllegalArgumentException("The handle must be not null");
-        }
-        if (!mInventory.containsKey(equipment)) {
-            mInventory.put(equipment, 1);
-        }
-
-        switch (handle) {
-            case LEFT:
-                mActualWeapons.unsheatheLeft(equipment);
-                break;
-            case RIGHT:
-                mActualWeapons.unsheatheRight(equipment);
-                break;
-            case BOTH:
-                mActualWeapons.unsheatheBoth(equipment);
-                break;
             default:
-                throw new EnumConstantNotPresentException(Hands.Handle.class, "The hand asked is not present");
+                throw new EnumConstantNotPresentException(Hands.Handle.class, "The handle ask is " +
+                        "not present");
         }
+        return dropEquipment;
     }
 
     /**
@@ -416,12 +397,9 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         if (armour == null) {
             throw new IllegalArgumentException("The armour must be not null");
         }
-        if (!mInventory.containsKey(armour)) {
-            mInventory.put(armour, 1);
-        }
 
         // verify that there is no other armour on the body part covered by this one
-        for (Armour woreArmour : mActualArmor) {
+        for (Armour woreArmour : mActualArmour) {
             for (BodyPart bodyPart : BodyPart.values()) {
                 if (woreArmour.isProtected(bodyPart) && armour.isProtected(bodyPart)) {
                     throw new IllegalArgumentException("The armour could not be wore, there is " +
@@ -431,13 +409,81 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         }
 
         // everything is OK
-        mActualArmor.add(armour);
+        mActualArmour.add(armour);
+    }
+
+    /**
+     * Take off the armour that protect the body part passed in argument. If it cover multiple body
+     * part, it will be remove from all these body part
+     *
+     * @param bodyPart the body part from which the armor will be removed, if the body part is not
+     *                 covered, throw an IllegalStateException, must be not null
+     * @return the armour remove, always not null
+     */
+    @NonNull
+    public Armour takeOffArmour(@NonNull BodyPart bodyPart) {
+        if (bodyPart == null) {
+            throw new IllegalArgumentException("The body part must not be null");
+        }
+        if (!isProtected(bodyPart)) {
+            throw new IllegalStateException("The body part must be protected");
+        }
+
+        Armour removedArmour = null;
+        for (Armour armour: mActualArmour){
+            if (armour.isProtected(bodyPart)) {
+                removedArmour = armour;
+                break;
+            }
+        }
+
+        mActualArmour.remove(removedArmour);
+        return removedArmour;
+    }
+
+    /**
+     * Take off the armour given in argument. If this armour is not actually wore throw an
+     * IllegalArgumentException.
+     * @param armour the armour that will be take off, must be not null
+     * @return the armour take off, always not null
+     */
+    @NonNull
+    public Armour takeOffArmour(@NonNull Armour armour) {
+        if (armour == null) {
+            throw new IllegalArgumentException("The armour must not be null");
+        }
+        if (!mActualArmour.contains(armour)) {
+            throw new IllegalArgumentException("The armour given must be actually wore");
+        }
+
+        mActualArmour.remove(armour);
+
+        return armour;
+    }
+
+    /**
+     * Is a body part actually covered by an armour
+     *
+     * @param bodyPart the body part to test, must be not null
+     * @return true if there at least one actual wore armour that protect this body part,
+     * false otherwise
+     */
+    public boolean isProtected(@NonNull BodyPart bodyPart) {
+        if (bodyPart == null) {
+            throw new IllegalArgumentException("The body part should not be null");
+        }
+
+        boolean isProtected = false;
+        for (Armour armour : mActualArmour) {
+            isProtected = isProtected || armour.isProtected(bodyPart);
+        }
+        return isProtected;
     }
 
     public int getDefensePoints(BodyPart bodyPart) {
         int defensePoints = 0;
 
-        for (Armour armour : mActualArmor) {
+        for (Armour armour : mActualArmour) {
             defensePoints += armour.getArmourPoint(bodyPart);
         }
 
