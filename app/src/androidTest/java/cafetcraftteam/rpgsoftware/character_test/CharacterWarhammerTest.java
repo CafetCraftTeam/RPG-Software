@@ -243,7 +243,7 @@ public class CharacterWarhammerTest {
     @Test
     public void TestActualFortune() {
         Pujima.setActualFortune(2);
-        assertEquals(2, Pujima.getActualFortune());
+        assertEquals(2, Pujima.getActualFortunePoints());
     }
 
     /*@Test

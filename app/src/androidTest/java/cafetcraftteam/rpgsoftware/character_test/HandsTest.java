@@ -53,7 +53,7 @@ public class HandsTest {
                 mLeft.getDescription()
         );
 
-        assertEquals(mLeft, mHands.useLeft(differentLeft));
+        assertEquals(mLeft, mHands.equipLeft(differentLeft));
 
         assertEquals(differentLeft, mHands.getLeft());
         assertNotSame(mLeft, mHands.getLeft());
@@ -69,7 +69,7 @@ public class HandsTest {
                 mRight.getDescription()
         );
 
-        assertEquals(mRight, mHands.useRight(differentRight));
+        assertEquals(mRight, mHands.equipRight(differentRight));
 
         assertEquals(differentRight, mHands.getRight());
         assertNotSame(mRight, mHands.getRight());
@@ -86,7 +86,7 @@ public class HandsTest {
         );
 
         Pair<Equipment, Equipment> previousEquipment = new Pair<>(mLeft, mRight);
-        assertEquals(previousEquipment, mHands.useBoth(differentBoth));
+        assertEquals(previousEquipment, mHands.equipBoth(differentBoth));
 
         assertEquals(differentBoth, mHands.getLeft());
         assertNotSame(mLeft, mHands.getLeft());

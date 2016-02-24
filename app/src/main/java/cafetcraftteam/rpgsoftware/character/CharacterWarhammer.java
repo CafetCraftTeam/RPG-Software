@@ -236,6 +236,28 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     }
     // endregion------------------------------------------------------------------------------------
 
+    // region Main Profile--------------------------------------------------------------------------
+
+    /**
+     * The actual number of fortune points of the character
+     *
+     * @return the actual number of fortune points, always positive
+     */
+    public int getActualFortunePoints() {
+        return mActualFortune;
+    }
+
+    /**
+     * The actual number of wounds points of the character
+     *
+     * @return the actual number of wounds points, always positive
+     */
+    public int getActualWounds() {
+        return mActualWounds;
+    }
+
+    // endregion------------------------------------------------------------------------------------
+
     //endregion=====================================================================================
 
     //region SETTER=================================================================================
@@ -247,30 +269,12 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         return mCharacteristic.getPrimaryCharacteristic(primaryCharacteristic);
     }
 
-    /*public void setPrimaryProfile(PrimCharacteristic c, int Value)
-    {
-        this.mPrimaryProfile.put(c, Value);
-    }*/
-
     public int getSecondaryProfile(Characteristic.Secondary secondaryCharacteristic) {
         return mCharacteristic.getSecondaryCharacteristic(secondaryCharacteristic);
     }
 
-    /*public void setSecondaryProfile(SecondCharacteristic c, int Value)
-    {
-        this.mSecondaryProfile.put(c, Value);
-    }*/
-
-    public int getActualFortune() {
-        return mActualFortune;
-    }
-
     public void setActualFortune(int ActualFortune) {
         mActualFortune = ActualFortune;
-    }
-
-    public int getActualWounds() {
-        return mActualWounds;
     }
 
     public void setActualWounds(int ActualWounds) {
@@ -281,6 +285,11 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     Under Constructions waiting for Equipment class
      */
 
+    /**
+     * Method that allow to add some equipment to the character
+     *
+     * @param equipment the equipment to add, must be not null
+     */
     public void addEquipment(@NonNull Equipment equipment) {
         if (equipment == null) {
             throw new IllegalArgumentException("The equipment must be not null");
@@ -293,6 +302,13 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         }
     }
 
+    /**
+     * Define the equipment handle in the hand(s) given.
+     *
+     * @param equipment the equipment to handle, if the equipment is not already in the inventory
+     *                  of the character, it will be added, must be not null
+     * @param handle    the hand(s) in which the equipment will be handle, must be not null
+     */
     public void handleEquipment(@NonNull Equipment equipment, @NonNull Hands.Handle handle) {
         if (equipment == null) {
             throw new IllegalArgumentException("The equipment must be not null");
@@ -306,19 +322,24 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
         switch (handle) {
             case LEFT:
-                mActualWeapons.useLeft(equipment);
+                mActualWeapons.equipLeft(equipment);
                 break;
             case RIGHT:
-                mActualWeapons.useRight(equipment);
+                mActualWeapons.equipRight(equipment);
                 break;
             case BOTH:
-                mActualWeapons.useBoth(equipment);
+                mActualWeapons.equipBoth(equipment);
                 break;
             default:
                 throw new EnumConstantNotPresentException(Hands.Handle.class, "The hand asked is not present");
         }
     }
 
+    /**
+     * Wear the armour given
+     * @param armour the armour to wear, must be not null. If the body part(s) used by this armour
+     *               is(are) already occupy by an armour throw an IllegalArgumentException
+     */
     public void wearAnArmour(@NonNull Armour armour) {
         if (armour == null) {
             throw new IllegalArgumentException("The armour must be not null");
@@ -435,10 +456,10 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
                     80,
                     "Blue",
                     "Green",
-                    "GAstre",
+                    "The Big Cross",
                     2,
                     "Karak-a-karak",
-                    "Nain");
+                    "Dwarf");
         } catch (InstantiationException instantiationError) {
             throw new InstantiationError("There is a problem in the constructor of CharacterWarhammer");
         }

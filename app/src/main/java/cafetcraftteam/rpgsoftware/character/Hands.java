@@ -62,7 +62,7 @@ public class Hands {
      * @return the previous equipment in the left hand, could be null if there is none
      */
     @Nullable
-    public Equipment useLeft(@Nullable Equipment leftHandEquipment) {
+    public Equipment equipLeft(@Nullable Equipment leftHandEquipment) {
         Equipment returnEquipment = mLeft;
         mLeft = leftHandEquipment;
         return returnEquipment;
@@ -75,7 +75,7 @@ public class Hands {
      * @return the previous equipment in the right hand, could be null if there is none
      */
     @Nullable
-    public Equipment useRight(@Nullable Equipment rightHandEquipment) {
+    public Equipment equipRight(@Nullable Equipment rightHandEquipment) {
         Equipment returnEquipment = mRight;
         mRight = rightHandEquipment;
         return returnEquipment;
@@ -89,7 +89,7 @@ public class Hands {
      * in second, could be a pair of null if there is none
      */
     @NonNull
-    public Pair<Equipment, Equipment> useBoth(@Nullable Equipment bothHandsEquipment) {
+    public Pair<Equipment, Equipment> equipBoth(@Nullable Equipment bothHandsEquipment) {
         Pair<Equipment, Equipment> previousEquipments = new Pair<>(mLeft, mRight);
         mLeft = bothHandsEquipment;
         mRight = bothHandsEquipment;
