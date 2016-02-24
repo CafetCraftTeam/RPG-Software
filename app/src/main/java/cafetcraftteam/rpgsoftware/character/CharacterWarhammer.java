@@ -1,6 +1,7 @@
 package cafetcraftteam.rpgsoftware.character;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -60,21 +61,66 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     private HashMap<String, String> mBasicSkills;
     private HashMap<String, String> mAdvanSkills;
 
+    /**
+     * Constructor of a Warhammer character
+     *
+     * @param name                the name of the character, must be not null and non empty
+     * @param race                the race of the character, must be not null
+     * @param sex                 the sex of the character, must be not null
+     * @param weight              the weight of the character in kilogram, must be positive
+     * @param height              the height of the character in meter, must be positive
+     * @param age                 the age of the character in years, must be positive
+     * @param eyeColour           the eye colour of the character as a string,
+     *                            could be null or empty, if null replace by an empty string
+     * @param hairColour          the hair colour of the character as a string,
+     *                            could be null or empty, if null replace by an empty string
+     * @param starSign            the star sign of the character as a string,
+     *                            could be null or empty, if null replace by an empty string
+     * @param numberOfSiblings    the number of siblings of the character, must be positive
+     * @param birthPlace          the birthplace of the character as a string,
+     *                            could be null or empty, if null replace by an empty string
+     * @param distinguishingMarks the distinguishing marks of the character as a string,
+     *                            could be null or empty, if null replace by an empty string
+     * @throws InstantiationException
+     */
     public CharacterWarhammer(
             @NonNull String name,
             @NonNull Race race,
-            int age,
             @NonNull Sex sex,
-            String eyeColour,
-            int height,
-            String hairColour,
             int weight,
-            String starSign,
+            int height,
+            int age,
+            @Nullable String eyeColour,
+            @Nullable String hairColour,
+            @Nullable String starSign,
             int numberOfSiblings,
-            String birthPlace,
-            String distinguishingMarks
+            @Nullable String birthPlace,
+            @Nullable String distinguishingMarks
     ) throws InstantiationException {
         super(name, race, sex, weight, height, age);
+
+        // region CONTRACT--------------------------------------------------------------------------
+
+        if (eyeColour == null) {
+            eyeColour = "";
+        }
+        if (hairColour == null) {
+            hairColour = "";
+        }
+        if (starSign == null) {
+            starSign = "";
+        }
+        if (numberOfSiblings < 0) {
+            throw new InstantiationException("The number of siblings must be positive or zero");
+        }
+        if (birthPlace == null) {
+            birthPlace = "";
+        }
+        if (distinguishingMarks == null) {
+            distinguishingMarks = "";
+        }
+
+        // endregion--------------------------------------------------------------------------------
 
         // initialization of the personal information
         mEyeColour = eyeColour;
@@ -123,8 +169,9 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     /**
      * Getter of the eyes colour of the character
      *
-     * @return the eyes colour as a string
+     * @return the eyes colour as a string, could be empty but not null
      */
+    @NonNull
     public String getEyeColour() {
         return mEyeColour;
     }
@@ -132,8 +179,9 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     /**
      * Getter of the hair colour of the character
      *
-     * @return the hair colour as a string
+     * @return the hair colour as a string, could be empty but not null
      */
+    @NonNull
     public String getHairColour() {
         return mHairColour;
     }
@@ -141,8 +189,9 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     /**
      * Getter of the star sign of the character
      *
-     * @return the star sign as a string
+     * @return the star sign as a string, could be empty but not null
      */
+    @NonNull
     public String getStarSign() {
         return mStarSign;
     }
@@ -159,8 +208,9 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     /**
      * Getter of the birthplace of the character
      *
-     * @return the birthplace as a string
+     * @return the birthplace as a string, could be empty but not null
      */
+    @NonNull
     public String getBirthPlace() {
         return mBirthPlace;
     }
@@ -168,8 +218,9 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     /**
      * Getter of the distinguishing marks of the character
      *
-     * @return the distinguishing marks as a string
+     * @return the distinguishing marks as a string, could be empty but not null
      */
+    @NonNull
     public String getDistinguishingMark() {
         return mDistinguishingMarks;
     }
@@ -177,8 +228,9 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     /**
      * Getter of the profession of the character
      *
-     * @return the profession as a string
+     * @return the profession as a string, could be empty but not null
      */
+    @NonNull
     public String getProfession() {
         return mProfession;
     }
@@ -377,12 +429,12 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
             characterWarhammer = new CharacterWarhammer(
                     "Ancestor Gurdill",
                     Race.DWARF,
-                    80,
                     Sex.MALE,
-                    "Blue",
-                    150,
-                    "Green",
                     100,
+                    150,
+                    80,
+                    "Blue",
+                    "Green",
                     "GAstre",
                     2,
                     "Karak-a-karak",
