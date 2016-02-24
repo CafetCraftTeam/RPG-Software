@@ -266,6 +266,18 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
     // endregion------------------------------------------------------------------------------------
 
+    // region Equipment-----------------------------------------------------------------------------
+
+    /**
+     * Getter of the inventory, the part of the equipment of the player that is not actually in use
+     * @return the inventory of the character
+     */
+    public Map<Equipment, Integer> getInventory() {
+        return mInventory;
+    }
+
+    // endregion------------------------------------------------------------------------------------
+
     //endregion=====================================================================================
 
     //region SETTER=================================================================================

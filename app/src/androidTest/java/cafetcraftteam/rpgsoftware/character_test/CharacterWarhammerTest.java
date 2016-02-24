@@ -9,8 +9,11 @@ import org.junit.runner.RunWith;
 
 import cafetcraftteam.rpgsoftware.character.Character;
 import cafetcraftteam.rpgsoftware.character.CharacterWarhammer;
+import cafetcraftteam.rpgsoftware.equipment.Equipment;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
 
 /**
@@ -36,6 +39,14 @@ public class CharacterWarhammerTest {
     private final String mProfession = "";
 
     private CharacterWarhammer Pujima;
+
+    private final Equipment mEquipment = new Equipment(
+            "Book",
+            1,
+            20,
+            Equipment.Quality.COMMON,
+            ""
+    );
 
     @Before
     public void init() throws InstantiationException {
@@ -270,6 +281,73 @@ public class CharacterWarhammerTest {
         Pujima.setActualWounds(2);
         assertEquals(2, Pujima.getActualWounds());
     }
+
+    // region EQUIPMENT=============================================================================
+
+    @Test
+    public void addEquipmentTest() {
+        // add an equipment
+        Pujima.addEquipment(mEquipment);
+
+        assertTrue(Pujima.getInventory().containsKey(mEquipment));
+        assertEquals(1, (int) Pujima.getInventory().get(mEquipment));
+
+        // add multiple time the equipment
+        Pujima.addEquipment(mEquipment);
+        assertEquals(2, (int) Pujima.getInventory().get(mEquipment));
+
+        Pujima.addEquipment(mEquipment);
+        assertEquals(3, (int) Pujima.getInventory().get(mEquipment));
+
+        // add a null equipment should throw an exception
+        try {
+            Pujima.addEquipment(null);
+            fail("add a null equipment should throw an exception");
+        } catch (IllegalArgumentException e) {
+            assertEquals("The equipment must be not null", e.getMessage());
+        }
+    }
+
+    @Test
+    public void removeEquipmentTest() {
+        // remove an equipment which is not already in the inventory should throw an exception
+        try {
+            Pujima.removeEquipment(mEquipment);
+            fail("remove an equipment which is not already in the inventory should throw an exception");
+        } catch (IllegalArgumentException e) {
+            assertEquals("The equipment to remove must already be in the inventory", e.getMessage());
+        }
+
+        //remove an equipment
+        Pujima.addEquipment(mEquipment);
+        Pujima.addEquipment(mEquipment);
+        Pujima.addEquipment(mEquipment);
+
+        Pujima.removeEquipment(mEquipment);
+        assertEquals(1, Pujima.getInventory().size());
+        assertTrue(Pujima.getInventory().containsKey(mEquipment));
+        assertEquals(2, (int) Pujima.getInventory().get(mEquipment));
+
+        Pujima.removeEquipment(mEquipment);
+        assertEquals(1, Pujima.getInventory().size());
+        assertTrue(Pujima.getInventory().containsKey(mEquipment));
+        assertEquals(1, (int) Pujima.getInventory().get(mEquipment));
+
+        Pujima.removeEquipment(mEquipment);
+        assertEquals(0, Pujima.getInventory().size());
+        assertFalse(Pujima.getInventory().containsKey(mEquipment));
+
+        // remove a null equipment should throw an exception
+        Pujima.addEquipment(mEquipment);
+        try {
+            Pujima.removeEquipment(null);
+            fail("remove a null equipment should throw an exception");
+        } catch (IllegalArgumentException e) {
+            assertEquals("The equipment to remove should not be null", e.getMessage());
+        }
+    }
+
+    // endregion====================================================================================
 }
 
 
