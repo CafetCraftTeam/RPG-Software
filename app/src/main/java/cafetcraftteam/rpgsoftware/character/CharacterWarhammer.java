@@ -211,7 +211,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
      * @return the birthplace as a string, could be empty but not null
      */
     @NonNull
-    public String getBirthPlace() {
+    public String getBirthplace() {
         return mBirthPlace;
     }
 
@@ -221,7 +221,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
      * @return the distinguishing marks as a string, could be empty but not null
      */
     @NonNull
-    public String getDistinguishingMark() {
+    public String getDistinguishingMarks() {
         return mDistinguishingMarks;
     }
 
