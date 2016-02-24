@@ -61,11 +61,10 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     private HashMap<String, String> mAdvanSkills;
 
     public CharacterWarhammer(
-            String name,
-            String year,
-            Race race,
+            @NonNull String name,
+            @NonNull Race race,
             int age,
-            Sex sex,
+            @NonNull Sex sex,
             String eyeColour,
             int height,
             String hairColour,
@@ -74,10 +73,10 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
             int numberOfSiblings,
             String birthPlace,
             String distinguishingMarks
-    ) {
-        super(name, year, race, sex, weight, height, age);
+    ) throws InstantiationException {
+        super(name, race, sex, weight, height, age);
 
-        // initialization of the personal informations
+        // initialization of the personal information
         mEyeColour = eyeColour;
         mHairColour = hairColour;
         mStarSign = starSign;
@@ -119,8 +118,11 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
     // region GETTER================================================================================
 
+    // region Personal information------------------------------------------------------------------
+
     /**
      * Getter of the eyes colour of the character
+     *
      * @return the eyes colour as a string
      */
     public String getEyeColour() {
@@ -129,6 +131,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
     /**
      * Getter of the hair colour of the character
+     *
      * @return the hair colour as a string
      */
     public String getHairColour() {
@@ -137,6 +140,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
     /**
      * Getter of the star sign of the character
+     *
      * @return the star sign as a string
      */
     public String getStarSign() {
@@ -145,6 +149,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
     /**
      * Getter of the number of siblings of the character
+     *
      * @return the number of siblings as a positive integer
      */
     public int getNumberOfSiblings() {
@@ -153,6 +158,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
     /**
      * Getter of the birthplace of the character
+     *
      * @return the birthplace as a string
      */
     public String getBirthPlace() {
@@ -161,6 +167,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
     /**
      * Getter of the distinguishing marks of the character
+     *
      * @return the distinguishing marks as a string
      */
     public String getDistinguishingMark() {
@@ -169,11 +176,14 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
     /**
      * Getter of the profession of the character
+     *
      * @return the profession as a string
      */
     public String getProfession() {
         return mProfession;
     }
+    // endregion------------------------------------------------------------------------------------
+
     //endregion=====================================================================================
 
     //region SETTER=================================================================================
@@ -362,19 +372,24 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     //endregion=====================================================================================
 
     public static CharacterWarhammer ancestorGurdill() {
-        return new CharacterWarhammer(
-                "Ancestor Gurdill",
-                "1900",
-                Race.DWARF,
-                80,
-                Sex.MALE,
-                "Blue",
-                150,
-                "Green",
-                100,
-                "GAstre",
-                2,
-                "Karak-a-karak",
-                "Nain");
+        CharacterWarhammer characterWarhammer;
+        try {
+            characterWarhammer = new CharacterWarhammer(
+                    "Ancestor Gurdill",
+                    Race.DWARF,
+                    80,
+                    Sex.MALE,
+                    "Blue",
+                    150,
+                    "Green",
+                    100,
+                    "GAstre",
+                    2,
+                    "Karak-a-karak",
+                    "Nain");
+        } catch (InstantiationException instantiationError) {
+            throw new InstantiationError("There is a problem in the constructor of CharacterWarhammer");
+        }
+        return characterWarhammer;
     }
 }

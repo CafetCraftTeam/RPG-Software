@@ -18,16 +18,29 @@ import static junit.framework.Assert.assertEquals;
 @LargeTest
 public class CharacterWarhammerTest {
 
-    private CharacterWarhammer Pujima = new CharacterWarhammer("Pujima","1662", cafetcraftteam.rpgsoftware.character.Character.Race.HUMAN,
-            36, Character.Sex.MALE,"blue",185,"Braun",78,"Lion",2,"Birthplace","None");
+    private CharacterWarhammer Pujima;
 
     @Before
-    public void init() {
+    public void init() throws InstantiationException {
+        Pujima = new CharacterWarhammer(
+                "Pujima",
+                cafetcraftteam.rpgsoftware.character.Character.Race.HUMAN,
+                36,
+                Character.Sex.MALE,
+                "blue",
+                185,
+                "Braun",
+                78,
+                "Lion",
+                2,
+                "Birthplace",
+                "None"
+        );
     }
+
     @Test
     public void TestConstructor() {
         assertEquals("Pujima",Pujima.getName());
-        assertEquals("1662",Pujima.getYear());
         assertEquals(Character.Race.HUMAN,Pujima.getRace());
         assertEquals(36,Pujima.getAge());
         assertEquals(Character.Sex.MALE,Pujima.getSex());
@@ -40,6 +53,7 @@ public class CharacterWarhammerTest {
         assertEquals("Birthplace",Pujima.getBirthPlace());
         assertEquals("None",Pujima.getDistinguishingMark());
     }
+
     @Test
     public void TestProfession() {
         Pujima.setProfession("Worker");
