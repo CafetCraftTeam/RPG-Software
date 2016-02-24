@@ -50,7 +50,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     /**
      * Equipment
      */
-    private Hand mActualWeapons; // the weapons actually in the hand of the character
+    private Hands mActualWeapons; // the weapons actually in the hand of the character
     private List<Armour> mActualArmor; // the armor(s) actually wore by the character
     private Map<Equipment, Integer> mEquipment; // all the equipment of the player
 
@@ -82,7 +82,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         mNumberOfSiblings = numberOfSiblings;
         mBirthPlace = birthPlace;
         mDistinguishingMarks = distinguishingMarks;
-        mActualWeapons = new Hand(null, null);
+        mActualWeapons = new Hands(null, null);
         mActualArmor = new ArrayList<>();
         mEquipment = new HashMap<>();
         mBasicSkills = new HashMap<>();
@@ -196,7 +196,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         }
     }
 
-    public void handleEquipment(@NonNull Equipment equipment, @NonNull Hand.Handle handle) {
+    public void handleEquipment(@NonNull Equipment equipment, @NonNull Hands.Handle handle) {
         if (equipment == null) {
             throw new IllegalArgumentException("The equipment must be not null");
         }
@@ -218,7 +218,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
                 mActualWeapons.useBoth(equipment);
                 break;
             default:
-                throw new EnumConstantNotPresentException(Hand.Handle.class, "The hand asked is not present");
+                throw new EnumConstantNotPresentException(Hands.Handle.class, "The hand asked is not present");
         }
     }
 

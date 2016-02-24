@@ -2,22 +2,23 @@ package cafetcraftteam.rpgsoftware.character_test;
 
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
+import android.util.Pair;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import cafetcraftteam.rpgsoftware.character.Hand;
+import cafetcraftteam.rpgsoftware.character.Hands;
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotSame;
 
 /**
- * Class that test Hand
+ * Class that test Hands
  */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class HandTest {
+public class HandsTest {
     private final Equipment mLeft = new Equipment(
             "Left hand equipment",
             20,
@@ -34,12 +35,12 @@ public class HandTest {
             ""
     );
 
-    private final Hand mHand = new Hand(mLeft, mRight);
+    private final Hands mHands = new Hands(mLeft, mRight);
 
     @Test
     public void creationTest() {
-        assertEquals(mLeft, mHand.getLeft());
-        assertEquals(mRight, mHand.getRight());
+        assertEquals(mLeft, mHands.getLeft());
+        assertEquals(mRight, mHands.getRight());
     }
 
     @Test
@@ -52,10 +53,10 @@ public class HandTest {
                 mLeft.getDescription()
         );
 
-        mHand.useLeft(differentLeft);
+        assertEquals(mLeft, mHands.useLeft(differentLeft));
 
-        assertEquals(differentLeft, mHand.getLeft());
-        assertNotSame(mLeft, mHand.getLeft());
+        assertEquals(differentLeft, mHands.getLeft());
+        assertNotSame(mLeft, mHands.getLeft());
     }
 
     @Test
@@ -68,10 +69,10 @@ public class HandTest {
                 mRight.getDescription()
         );
 
-        mHand.useRight(differentRight);
+        assertEquals(mRight, mHands.useRight(differentRight));
 
-        assertEquals(differentRight, mHand.getRight());
-        assertNotSame(mRight, mHand.getRight());
+        assertEquals(differentRight, mHands.getRight());
+        assertNotSame(mRight, mHands.getRight());
     }
 
     @Test
@@ -84,11 +85,12 @@ public class HandTest {
                 mLeft.getDescription()
         );
 
-        mHand.useBoth(differentBoth);
+        Pair<Equipment, Equipment> previousEquipment = new Pair<>(mLeft, mRight);
+        assertEquals(previousEquipment, mHands.useBoth(differentBoth));
 
-        assertEquals(differentBoth, mHand.getLeft());
-        assertNotSame(mLeft, mHand.getLeft());
-        assertEquals(differentBoth, mHand.getRight());
-        assertNotSame(mRight, mHand.getRight());
+        assertEquals(differentBoth, mHands.getLeft());
+        assertNotSame(mLeft, mHands.getLeft());
+        assertEquals(differentBoth, mHands.getRight());
+        assertNotSame(mRight, mHands.getRight());
     }
 }
