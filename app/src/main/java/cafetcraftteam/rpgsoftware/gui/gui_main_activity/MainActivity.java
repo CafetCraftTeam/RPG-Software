@@ -1,4 +1,4 @@
-package cafetcraftteam.rpgsoftware;
+package cafetcraftteam.rpgsoftware.gui.gui_main_activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import cafetcraftteam.rpgsoftware.DiceActivity;
+import cafetcraftteam.rpgsoftware.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,14 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         button_des.setOnClickListener(new ButtonDiceListener(this));
 
-        button_perso.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Perso", Toast.LENGTH_SHORT).show();
-                Activity PersoActivity = (Activity) v.getContext();
-                Intent intent_perso = new Intent(PersoActivity,DiceActivity.class);
-            }
-        });
+        button_perso.setOnClickListener(new ButtonPersoListener(this));
     }
 
     @Override
