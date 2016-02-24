@@ -325,7 +325,14 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         }
     }
 
-    public void take(@NonNull Equipment equipment,@NonNull Hands.Handle handle) {
+    /**
+     * Take something in your hand(s). They must be empty
+     *
+     * @param equipment the equipment to take, must not be null
+     * @param handle    the hand(s) used to take this object, the hand(s) must be empty or an
+     *                  IllegalStateException is thrown
+     */
+    public void takeObject(@NonNull Equipment equipment, @NonNull Hands.Handle handle) {
         if (equipment == null) {
             throw new IllegalArgumentException("The equipment to take must not be null");
         }
@@ -333,7 +340,37 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
             throw new IllegalArgumentException("The handle for taking must not be null");
         }
 
-        //TODO
+        switch (handle) {
+            case LEFT:
+                mActualWeapons.unsheatheLeft(equipment);
+                break;
+            case RIGHT:
+                mActualWeapons.unsheatheRight(equipment);
+                break;
+            case BOTH:
+                mActualWeapons.unsheatheBoth(equipment);
+                break;
+            default:
+                throw new EnumConstantNotPresentException(Hands.Handle.class, "The handle ask is " +
+                        "not present");
+        }
+    }
+
+    public List<Equipment> dropObject(Hands.Handle handle) {
+        List<Equipment> dropEquipment = new ArrayList<>();
+        switch (handle) {
+            case LEFT:
+                dropEquipment.add(mActualWeapons.sheatheLeft());
+                break;
+            case RIGHT:
+                dropEquipment.add(mActualWeapons.sheatheRight());
+                break;
+            case BOTH:
+                dropEquipment.addAll(mActualWeapons.sheatheBoth());
+                break;
+        }
+        // TODO
+        return dropEquipment;
     }
 
     /**
