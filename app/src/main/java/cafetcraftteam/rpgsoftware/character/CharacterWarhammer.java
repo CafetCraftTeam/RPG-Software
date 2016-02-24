@@ -433,7 +433,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         for (Armour woreArmour : mActualArmour) {
             for (BodyPart bodyPart : BodyPart.values()) {
                 if (woreArmour.isProtected(bodyPart) && armour.isProtected(bodyPart)) {
-                    throw new IllegalArgumentException("The armour could not be wore, there is " +
+                    throw new IllegalStateException("The armour could not be wore, there is " +
                             "already an armour on this body part " + bodyPart.toString());
                 }
             }

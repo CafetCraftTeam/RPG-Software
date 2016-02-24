@@ -7,11 +7,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 import cafetcraftteam.rpgsoftware.character.Character;
 import cafetcraftteam.rpgsoftware.character.CharacterWarhammer;
 import cafetcraftteam.rpgsoftware.character.Hands;
+import cafetcraftteam.rpgsoftware.equipment.Armour;
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
 
 import static junit.framework.Assert.assertEquals;
@@ -51,6 +54,10 @@ public class CharacterWarhammerTest {
             ""
     );
 
+    private Armour mArmour;
+    private final Map<CharacterWarhammer.BodyPart, Integer> mProtectedParts
+            = new EnumMap<>(CharacterWarhammer.BodyPart.class);
+
     @Before
     public void init() throws InstantiationException {
         Pujima = new CharacterWarhammer(
@@ -67,6 +74,17 @@ public class CharacterWarhammerTest {
                 mBirthplace,
                 mDistinguishingMarks,
                 mProfession
+        );
+
+        mProtectedParts.put(CharacterWarhammer.BodyPart.LEFT_ARM, 1);
+
+        mArmour = new Armour(
+                "Leather",
+                80,
+                1000,
+                Equipment.Quality.COMMON,
+                "",
+                mProtectedParts
         );
     }
 
@@ -447,6 +465,116 @@ public class CharacterWarhammerTest {
         assertEquals(2, bothDroppedItem.size());
         assertEquals(mEquipment, bothDroppedItem.get(0));
         assertEquals(mEquipment, bothDroppedItem.get(1));
+    }
+
+    @Test
+    public void wearAnArmourTest() {
+        // wear an armour for the left arm
+        Pujima.wearAnArmour(mArmour);
+        assertTrue(Pujima.isProtected(mProtectedParts.keySet().iterator().next()));
+        assertEquals(mArmour, Pujima.takeOffArmour(mArmour));
+        assertFalse(Pujima.isProtected(mProtectedParts.keySet().iterator().next()));
+
+        // wear an armour for the right arm and left leg
+        Map<CharacterWarhammer.BodyPart, Integer> multipleBodyParts =
+                new EnumMap<>(CharacterWarhammer.BodyPart.class);
+        multipleBodyParts.put(CharacterWarhammer.BodyPart.RIGHT_ARM, 1);
+        multipleBodyParts.put(CharacterWarhammer.BodyPart.LEFT_LEG, 1);
+
+        Armour multipleArmour = new Armour(
+                mArmour.getName(),
+                mArmour.getEncumbering(),
+                mArmour.getPrice(),
+                mArmour.getQuality(),
+                mArmour.getDescription(),
+                multipleBodyParts
+        );
+        Pujima.wearAnArmour(multipleArmour);
+        assertTrue(Pujima.isProtected(multipleBodyParts.keySet().iterator().next()));
+        assertTrue(Pujima.isProtected(CharacterWarhammer.BodyPart.LEFT_LEG));
+        assertEquals(multipleArmour, Pujima.takeOffArmour(multipleArmour));
+        assertFalse(Pujima.isProtected(multipleBodyParts.keySet().iterator().next()));
+        assertFalse(Pujima.isProtected(CharacterWarhammer.BodyPart.LEFT_LEG));
+
+        // wear multiple armour for the right arm and left leg
+        Pujima.wearAnArmour(mArmour);
+        Pujima.wearAnArmour(multipleArmour);
+
+        assertTrue(Pujima.isProtected(mProtectedParts.keySet().iterator().next()));
+        assertTrue(Pujima.isProtected(multipleBodyParts.keySet().iterator().next()));
+        assertTrue(Pujima.isProtected(CharacterWarhammer.BodyPart.LEFT_LEG));
+        assertEquals(mArmour, Pujima.takeOffArmour(mArmour));
+        assertEquals(multipleArmour, Pujima.takeOffArmour(multipleArmour));
+        assertFalse(Pujima.isProtected(mProtectedParts.keySet().iterator().next()));
+        assertFalse(Pujima.isProtected(multipleBodyParts.keySet().iterator().next()));
+        assertFalse(Pujima.isProtected(CharacterWarhammer.BodyPart.LEFT_LEG));
+
+        // wear a null armour should throw an exception
+        try {
+            Pujima.wearAnArmour(null);
+            fail("wear a null armour should throw an exception");
+        } catch (IllegalArgumentException e) {
+            assertEquals("The armour must be not null", e.getMessage());
+        }
+
+        // wear an armour on an already occupied body part should throw an exception
+        Pujima.wearAnArmour(mArmour);
+        try {
+            Armour differentArmour = new Armour(
+                    "Not the same",
+                    mArmour.getEncumbering(),
+                    mArmour.getPrice(),
+                    mArmour.getQuality(),
+                    mArmour.getDescription(),
+                    mProtectedParts
+            );
+            Pujima.wearAnArmour(differentArmour);
+        } catch (IllegalStateException e) {
+            assertEquals("The armour could not be wore, there is already an armour on this body " +
+                    "part " + mProtectedParts.keySet().iterator().next().toString(), e.getMessage());
+        }
+    }
+
+    @Test
+    public void takeOffTest() {
+        // take off an armour
+        Pujima.wearAnArmour(mArmour);
+        Pujima.takeOffArmour(mArmour);
+
+        // take off from a body part
+        Pujima.wearAnArmour(mArmour);
+        Pujima.takeOffArmour(CharacterWarhammer.BodyPart.LEFT_ARM);
+
+        // take off a null armour should throw an exception
+        try {
+            Pujima.takeOffArmour((Armour) null);
+            fail("take off a null armour should throw an exception");
+        } catch (IllegalArgumentException e) {
+            assertEquals("The armour must not be null", e.getMessage());
+        }
+
+        // take off from a null body part should throw an exception
+        try {
+            Pujima.takeOffArmour((CharacterWarhammer.BodyPart) null);
+            fail("take off a null armour should throw an exception");
+        } catch (IllegalArgumentException e) {
+            assertEquals("The body part must not be null", e.getMessage());
+        }
+
+        // take off an armor that is not actually wore should throw an exception
+        try {
+            Pujima.takeOffArmour(mArmour);
+            fail("take off an armor that is not actually wore should throw an exception");
+        } catch (IllegalArgumentException e) {
+            assertEquals("The armour given must be actually wore", e.getMessage());
+        }
+
+        // take off with a non protected parts should throw an exception
+        try {
+            Pujima.takeOffArmour(CharacterWarhammer.BodyPart.LEFT_ARM);
+        } catch (IllegalStateException e) {
+            assertEquals("The body part must be protected", e.getMessage());
+        }
     }
 
     // endregion====================================================================================
