@@ -28,46 +28,6 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     }
 
     /**
-     * The hand used by a weapon
-     */
-    public enum Handle {
-        LEFT,
-        RIGHT,
-        BOTH
-    }
-
-    private class Hand {
-        private Equipment mLeft;
-        private Equipment mRight;
-
-        public Hand(Equipment left, Equipment right) {
-            mLeft = left;
-            mRight = right;
-        }
-
-        public Equipment getLeft() {
-            return mLeft;
-        }
-
-        public Equipment getRight() {
-            return mRight;
-        }
-
-        public void useLeft(Equipment equipment) {
-            mLeft = equipment;
-        }
-
-        public void useRight(Equipment equipment) {
-            mRight = equipment;
-        }
-
-        public void useBoth(Equipment equipment) {
-            mLeft = equipment;
-            mRight = equipment;
-        }
-    }
-
-    /**
      * The personal information of the character
      */
     private final String mEyeColour;
@@ -236,7 +196,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         }
     }
 
-    public void handleEquipment(@NonNull Equipment equipment, @NonNull Handle handle) {
+    public void handleEquipment(@NonNull Equipment equipment, @NonNull Hand.Handle handle) {
         if (equipment == null) {
             throw new IllegalArgumentException("The equipment must be not null");
         }
@@ -258,7 +218,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
                 mActualWeapons.useBoth(equipment);
                 break;
             default:
-                throw new EnumConstantNotPresentException(Handle.class, "The hand asked is not present");
+                throw new EnumConstantNotPresentException(Hand.Handle.class, "The hand asked is not present");
         }
     }
 
