@@ -12,7 +12,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lancer le dés"
+        android:text="Throw the dice"
         android:id="@+id/button_throw"
         android:layout_marginTop="87dp"
         android:layout_alignParentTop="true"
@@ -24,8 +24,27 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Result :"
         android:id="@+id/textView_Result"
-        android:layout_marginTop="57dp"
-        android:layout_below="@+id/button_throw"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/numberPicker_Range"
         android:layout_centerHorizontal="true" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPicker_Range"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/button_throw"
+        android:layout_alignEnd="@+id/button_throw"
+        android:orientation="vertical" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Size of dice : "
+        android:id="@+id/textView96"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/numberPicker_Range"
+        android:layout_toStartOf="@+id/numberPicker_Range" />
 
 </RelativeLayout>
