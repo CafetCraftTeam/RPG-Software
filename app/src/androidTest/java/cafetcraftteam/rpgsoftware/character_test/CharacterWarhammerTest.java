@@ -7,8 +7,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.List;
+
 import cafetcraftteam.rpgsoftware.character.Character;
 import cafetcraftteam.rpgsoftware.character.CharacterWarhammer;
+import cafetcraftteam.rpgsoftware.character.Hands;
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
 
 import static junit.framework.Assert.assertEquals;
@@ -82,6 +85,7 @@ public class CharacterWarhammerTest {
         assertEquals(mBirthplace, Pujima.getBirthplace());
         assertEquals(mDistinguishingMarks, Pujima.getDistinguishingMarks());
         assertEquals(mProfession, Pujima.getProfession());
+        assertEquals(0, Pujima.getInventory().size());
     }
 
     // region CONTRACT RESPECT======================================================================
@@ -345,6 +349,104 @@ public class CharacterWarhammerTest {
         } catch (IllegalArgumentException e) {
             assertEquals("The equipment to remove should not be null", e.getMessage());
         }
+    }
+
+    @Test
+    public void takeItemTest() {
+        // take an equipment in the left hand
+        Pujima.takeItem(mEquipment, Hands.Handle.LEFT);
+
+        List<Equipment> leftDroppedItem = Pujima.dropItem(Hands.Handle.BOTH);
+        assertEquals(1, leftDroppedItem.size());
+        assertEquals(mEquipment, leftDroppedItem.get(0));
+
+        // take an equipment in the right hand
+        Pujima.takeItem(mEquipment, Hands.Handle.RIGHT);
+
+        List<Equipment> rightDroppedItem = Pujima.dropItem(Hands.Handle.BOTH);
+        assertEquals(1, rightDroppedItem.size());
+        assertEquals(mEquipment, rightDroppedItem.get(0));
+
+        // take an equipment in both hands
+        Pujima.takeItem(mEquipment, Hands.Handle.BOTH);
+
+        List<Equipment> bothDroppedItem = Pujima.dropItem(Hands.Handle.BOTH);
+        assertEquals(2, bothDroppedItem.size());
+        assertEquals(mEquipment, bothDroppedItem.get(0));
+        assertEquals(mEquipment, bothDroppedItem.get(1));
+
+        // take a null equipment should throw an exception
+        try {
+            Pujima.takeItem(null, Hands.Handle.BOTH);
+            fail("take a null equipment should throw an exception");
+        } catch (IllegalArgumentException e) {
+            assertEquals("The equipment to take must not be null", e.getMessage());
+        }
+
+        // take a equipment with a null handle should throw an exception
+        try {
+            Pujima.takeItem(mEquipment, null);
+            fail("take a equipment with a null handle should throw an exception");
+        } catch (IllegalArgumentException e) {
+            assertEquals("The handle for taking must not be null", e.getMessage());
+        }
+
+        // take a equipment with an already occupied handle should throw an exception
+        Pujima.takeItem(mEquipment, Hands.Handle.RIGHT);
+
+        try {
+            Pujima.takeItem(mEquipment, Hands.Handle.BOTH);
+            fail("take a equipment with an already occupied handle should throw an exception");
+        } catch (IllegalStateException e) {
+            assertEquals("Both hands must be empty to unsheathe something with it",
+                    e.getMessage());
+        }
+    }
+
+    @Test
+    public void dropItemTest() {
+        // drop an empty handle should throw an exception
+        try {
+            Pujima.dropItem(Hands.Handle.LEFT);
+            fail("drop an empty handle should throw an exception");
+        } catch (IllegalStateException e) {
+            assertEquals("The left hand must not be empty", e.getMessage());
+        }
+
+        try {
+            Pujima.dropItem(Hands.Handle.RIGHT);
+            fail("drop an empty handle should throw an exception");
+        } catch (IllegalStateException e) {
+            assertEquals("The right hand must not be empty", e.getMessage());
+        }
+
+        try {
+            Pujima.dropItem(Hands.Handle.BOTH);
+            fail("drop an empty handle should throw an exception");
+        } catch (IllegalStateException e) {
+            assertEquals("Both hand must not be empty", e.getMessage());
+        }
+
+        // drop an item at left
+        Pujima.takeItem(mEquipment, Hands.Handle.BOTH);
+        List<Equipment> leftDroppedItem = Pujima.dropItem(Hands.Handle.LEFT);
+        assertEquals(1, leftDroppedItem.size());
+        assertEquals(mEquipment, leftDroppedItem.get(0));
+        assertEquals(mEquipment, Pujima.dropItem(Hands.Handle.RIGHT).get(0));
+
+        // drop an item at right
+        Pujima.takeItem(mEquipment, Hands.Handle.BOTH);
+        List<Equipment> rightDroppedItem = Pujima.dropItem(Hands.Handle.RIGHT);
+        assertEquals(1, rightDroppedItem.size());
+        assertEquals(mEquipment, rightDroppedItem.get(0));
+        assertEquals(mEquipment, Pujima.dropItem(Hands.Handle.LEFT).get(0));
+
+        // drop an item at both
+        Pujima.takeItem(mEquipment, Hands.Handle.BOTH);
+        List<Equipment> bothDroppedItem = Pujima.dropItem(Hands.Handle.BOTH);
+        assertEquals(2, bothDroppedItem.size());
+        assertEquals(mEquipment, bothDroppedItem.get(0));
+        assertEquals(mEquipment, bothDroppedItem.get(1));
     }
 
     // endregion====================================================================================

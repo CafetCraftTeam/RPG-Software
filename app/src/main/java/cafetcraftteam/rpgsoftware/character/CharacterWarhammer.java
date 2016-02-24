@@ -63,7 +63,8 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     private HashMap<String, String> mAdvanSkills;
 
     /**
-     * Constructor of a Warhammer character
+     * Constructor of a Warhammer character, the character have nothing in his hand, inventory and
+     * wear nothing
      *
      * @param name                the name of the character, must be not null and non empty
      * @param race                the race of the character, must be not null
@@ -139,9 +140,9 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         mProfession = profession;
 
         // initialization of the equipment
-        mActualWeapons = new Hands(null, null);
-        mActualArmour = new ArrayList<>();
-        mInventory = new HashMap<>();
+        mActualWeapons = new Hands(null, null); // nothing in the hands
+        mActualArmour = new ArrayList<>(); // wear nothing
+        mInventory = new HashMap<>(); // nothing in the inventory
 
         // initialization of the skills
         mBasicSkills = new HashMap<>();
@@ -270,6 +271,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
     /**
      * Getter of the inventory, the part of the equipment of the player that is not actually in use
+     *
      * @return the inventory of the character
      */
     public Map<Equipment, Integer> getInventory() {
@@ -284,6 +286,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
     /**
      * Setter of the profession
+     *
      * @param profession the profession, could be null or empty, if null it will be replace by an
      *                   empty string
      */
@@ -392,7 +395,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
      * @return the equipment previously in the hand(s), always not null
      */
     @NonNull
-    public List<Equipment> dropObject(@NonNull Hands.Handle handle) {
+    public List<Equipment> dropItem(@NonNull Hands.Handle handle) {
         if (handle == null) {
             throw new IllegalArgumentException("The handle must not be null");
         }
