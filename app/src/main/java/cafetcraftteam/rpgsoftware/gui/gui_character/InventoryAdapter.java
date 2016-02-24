@@ -32,9 +32,9 @@ public class InventoryAdapter extends ArrayAdapter<InventoryItem> {
 
             // initialize the view holder
             viewHolder = new ViewHolder();
-            viewHolder.ivIcon = (ImageView) convertView.findViewById(R.id.ivIcon);
-            viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
-            viewHolder.tvDescription = (TextView) convertView.findViewById(R.id.tvDescription);
+            viewHolder.mIcon = (ImageView) convertView.findViewById(R.id.ivIcon);
+            viewHolder.mTitle = (TextView) convertView.findViewById(R.id.tvTitle);
+            viewHolder.mDescription = (TextView) convertView.findViewById(R.id.tvDescription);
             convertView.setTag(viewHolder);
         } else {
             // recycle the already inflated view
@@ -43,9 +43,9 @@ public class InventoryAdapter extends ArrayAdapter<InventoryItem> {
 
         // update the item view
         InventoryItem item = getItem(position);
-        viewHolder.ivIcon.setImageDrawable(item.icon);
-        viewHolder.tvTitle.setText(item.title);
-        viewHolder.tvDescription.setText(item.description);
+        viewHolder.mIcon.setImageDrawable(item.mIcon);
+        viewHolder.mTitle.setText(item.mTitle);
+        viewHolder.mDescription.setText(item.mDescription);
 
         return convertView;
     }
@@ -54,11 +54,11 @@ public class InventoryAdapter extends ArrayAdapter<InventoryItem> {
      * The view holder design pattern prevents using findViewById()
      * repeatedly in the getView() method of the adapter.
      *
-     * @see http://developer.android.com/training/improving-layouts/smooth-scrolling.html#ViewHolder
+     *
      */
     private static class ViewHolder {
-        ImageView ivIcon;
-        TextView tvTitle;
-        TextView tvDescription;
+        ImageView mIcon;
+        TextView mTitle;
+        TextView mDescription;
     }
 }
