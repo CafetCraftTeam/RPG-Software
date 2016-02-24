@@ -5,7 +5,6 @@ package cafetcraftteam.rpgsoftware.gui.gui_character;
  */
 
 import android.content.Context;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +15,14 @@ import cafetcraftteam.rpgsoftware.R;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
-    private Context mContext;
-    private final LayoutInflater mInf;
+    private final LayoutInflater mInflater;
     private String[] mGroups;
     private String[][] mChildren;
 
-    public ExpandableListAdapter(Context context,String[] groups, String[][] children) {
-        this.mContext = context;
-        this.mGroups = groups;
-        this.mChildren = children;
-        mInf = LayoutInflater.from(context);
+    public ExpandableListAdapter(Context context, String[] groups, String[][] children) {
+        mGroups = groups;
+        mChildren = children;
+        mInflater = LayoutInflater.from(context);
     }
 
     @Override
@@ -68,7 +65,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         ViewHolder holder;
         if (convertView == null) {
-            convertView = mInf.inflate(R.layout.list_skill_item, parent, false);
+            convertView = mInflater.inflate(R.layout.list_skill_item, parent, false);
             holder = new ViewHolder();
 
             holder.text = (TextView) convertView.findViewById(R.id.lblListItem);
@@ -87,7 +84,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         ViewHolder holder;
 
         if (convertView == null) {
-            convertView = mInf.inflate(R.layout.list_skill_group, parent, false);
+            convertView = mInflater.inflate(R.layout.list_skill_group, parent, false);
 
             holder = new ViewHolder();
             holder.text = (TextView) convertView.findViewById(R.id.lblListHeader);

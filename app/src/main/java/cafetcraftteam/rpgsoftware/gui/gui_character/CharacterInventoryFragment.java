@@ -1,6 +1,5 @@
 package cafetcraftteam.rpgsoftware.gui.gui_character;
 
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.content.ContextCompat;
@@ -46,6 +45,6 @@ public class CharacterInventoryFragment extends ListFragment {
         InventoryItem item = mItems.get(position);
 
         // do something
-        Toast.makeText(getActivity(), item.mTitle, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), item.title, Toast.LENGTH_SHORT).show();
     }
 }

@@ -25,7 +25,7 @@ public class InventoryAdapter extends ArrayAdapter<InventoryItem> {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
 
-        if(convertView == null) {
+        if (convertView == null) {
             // inflate the GridView item layout
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.list_inventory_item, parent, false);
@@ -43,9 +43,9 @@ public class InventoryAdapter extends ArrayAdapter<InventoryItem> {
 
         // update the item view
         InventoryItem item = getItem(position);
-        viewHolder.mIcon.setImageDrawable(item.mIcon);
-        viewHolder.mTitle.setText(item.mTitle);
-        viewHolder.mDescription.setText(item.mDescription);
+        viewHolder.mIcon.setImageDrawable(item.icon);
+        viewHolder.mTitle.setText(item.title);
+        viewHolder.mDescription.setText(item.description);
 
         return convertView;
     }
@@ -53,8 +53,6 @@ public class InventoryAdapter extends ArrayAdapter<InventoryItem> {
     /**
      * The view holder design pattern prevents using findViewById()
      * repeatedly in the getView() method of the adapter.
-     *
-     *
      */
     private static class ViewHolder {
         ImageView mIcon;
