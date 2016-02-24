@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.List;
+
 import cafetcraftteam.rpgsoftware.character.Hands;
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
 
@@ -198,30 +200,31 @@ public class HandsTest {
     @Test
     public void sheatheBothTest() {
         // sheathe both hands
-        Pair<Equipment, Equipment> previousBoth = mHands.sheatheBoth();
+        List<Equipment> previousBoth = mHands.sheatheBoth();
 
-        assertEquals(mLeft, previousBoth.first);
-        assertEquals(mRight, previousBoth.second);
+        assertEquals(2, previousBoth.size());
+        assertEquals(mLeft, previousBoth.get(0));
+        assertEquals(mRight, previousBoth.get(1));
         assertEquals(null, mHands.getLeft());
         assertEquals(null, mHands.getRight());
 
         // sheathe when a null equipment is in the right hand should not throw an exception
         mHands.unsheatheLeft(mLeft);
 
-        Pair<Equipment, Equipment> nullRight = mHands.sheatheBoth();
+        List<Equipment> nullRight = mHands.sheatheBoth();
 
-        assertEquals(mLeft, nullRight.first);
-        assertEquals(null, nullRight.second);
+        assertEquals(1, nullRight.size());
+        assertEquals(mLeft, nullRight.get(0));
         assertEquals(null, mHands.getLeft());
         assertEquals(null, mHands.getRight());
 
         // sheathe when a null equipment is in the left hand should not throw an exception
         mHands.unsheatheRight(mRight);
 
-        Pair<Equipment, Equipment> nullLeft = mHands.sheatheBoth();
+        List<Equipment> nullLeft = mHands.sheatheBoth();
 
-        assertEquals(null, nullLeft.first);
-        assertEquals(mRight, nullLeft.second);
+        assertEquals(1, nullLeft.size());
+        assertEquals(mRight, nullLeft.get(0));
         assertEquals(null, mHands.getLeft());
         assertEquals(null, mHands.getRight());
     }

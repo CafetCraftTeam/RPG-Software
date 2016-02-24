@@ -4,6 +4,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Pair;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
 
 /**
@@ -154,20 +157,27 @@ public class Hands {
      * Sheathe the equipment actually in both hand. The hand must not be both empty, otherwise an
      * IllegalStateException is thrown
      *
-     * @return the equipments previously in the both hand as a Pair, with the left equipment in
-     * first and the right one in second, always not null, but one of the argument of the pair
-     * could be null
+     * @return the equipments previously in the both hand as a list, with the left equipment in
+     * first and the right one in second, always not null, but if one of the hands was empty, the
+     * array contains only the equipment of the not empty hands
      */
     @NonNull
-    public Pair<Equipment, Equipment> sheatheBoth() {
-        // verify that the both hand are empty
+    public List<Equipment> sheatheBoth() {
+        // verify that the both hand are not empty
         if (mLeft == null && mRight == null) {
             throw new IllegalStateException("Both hand must not be empty");
         }
 
-        Pair<Equipment, Equipment> sheatheEquipments = new Pair<>(mLeft, mRight);
+        List<Equipment> sheatheEquipments = new ArrayList<>();
+        if (mLeft != null) {
+            sheatheEquipments.add(mLeft);
+        }
+        if (mRight != null) {
+            sheatheEquipments.add(mRight);
+        }
         mLeft = null;
         mRight = null;
+
         return sheatheEquipments;
     }
 }
