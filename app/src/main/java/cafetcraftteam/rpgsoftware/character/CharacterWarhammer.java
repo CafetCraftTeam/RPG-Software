@@ -53,7 +53,8 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
      */
     private Hands mActualWeapons; // the weapons actually in the hand of the character
     private List<Armour> mActualArmor; // the armor(s) actually wore by the character
-    private Map<Equipment, Integer> mEquipment; // all the equipment of the player
+    // all the equipment of the character that is not actually used
+    private Map<Equipment, Integer> mInventory;
 
     /**
      * Abilities and Talents
@@ -133,7 +134,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         // initialization of the equipment
         mActualWeapons = new Hands(null, null);
         mActualArmor = new ArrayList<>();
-        mEquipment = new HashMap<>();
+        mInventory = new HashMap<>();
 
         // initialization of the skills
         mBasicSkills = new HashMap<>();
@@ -295,29 +296,62 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
             throw new IllegalArgumentException("The equipment must be not null");
         }
 
-        if (mEquipment.containsKey(equipment)) {
-            mEquipment.put(equipment, mEquipment.get(equipment) + 1);
+        if (mInventory.containsKey(equipment)) {
+            mInventory.put(equipment, mInventory.get(equipment) + 1);
         } else {
-            mEquipment.put(equipment, 1);
+            mInventory.put(equipment, 1);
         }
+    }
+
+    /**
+     * Method that remove one equipment from the inventory. It decrease the quantity of the object
+     * by one and remove it definitely if it's the last one
+     *
+     * @param equipment the equipment to remove, must already be in the inventory, must not be null
+     */
+    public void removeEquipment(@NonNull Equipment equipment) {
+        if (equipment == null) {
+            throw new IllegalArgumentException("The equipment to remove should not be null");
+        }
+        if (!mInventory.containsKey(equipment)) {
+            throw new IllegalArgumentException("The equipment to remove must already be in the" +
+                    " inventory");
+        }
+
+        mInventory.put(equipment, mInventory.get(equipment) - 1);
+
+        if (mInventory.get(equipment) <= 0) {
+            mInventory.remove(equipment);
+        }
+    }
+
+    public void take(@NonNull Equipment equipment,@NonNull Hands.Handle handle) {
+        if (equipment == null) {
+            throw new IllegalArgumentException("The equipment to take must not be null");
+        }
+        if (handle == null) {
+            throw new IllegalArgumentException("The handle for taking must not be null");
+        }
+
+        //TODO
     }
 
     /**
      * Define the equipment handle in the hand(s) given.
      *
-     * @param equipment the equipment to handle, if the equipment is not already in the inventory
-     *                  of the character, it will be added, must be not null
+     * @param equipment the equipment to handle, the equipment must be already in the inventory
+     *                  of the character, must be not null
      * @param handle    the hand(s) in which the equipment will be handle, must be not null
      */
-    public void handleEquipment(@NonNull Equipment equipment, @NonNull Hands.Handle handle) {
+    public void equip(@NonNull Equipment equipment, @NonNull Hands.Handle handle) {
         if (equipment == null) {
             throw new IllegalArgumentException("The equipment must be not null");
         }
         if (handle == null) {
             throw new IllegalArgumentException("The handle must be not null");
         }
-        if (!mEquipment.containsKey(equipment)) {
-            mEquipment.put(equipment, 1);
+        if (!mInventory.containsKey(equipment)) {
+            mInventory.put(equipment, 1);
         }
 
         switch (handle) {
@@ -337,6 +371,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
     /**
      * Wear the armour given
+     *
      * @param armour the armour to wear, must be not null. If the body part(s) used by this armour
      *               is(are) already occupy by an armour throw an IllegalArgumentException
      */
@@ -344,8 +379,8 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         if (armour == null) {
             throw new IllegalArgumentException("The armour must be not null");
         }
-        if (!mEquipment.containsKey(armour)) {
-            mEquipment.put(armour, 1);
+        if (!mInventory.containsKey(armour)) {
+            mInventory.put(armour, 1);
         }
 
         // verify that there is no other armour on the body part covered by this one
