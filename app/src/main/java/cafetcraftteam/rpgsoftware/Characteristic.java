@@ -1,5 +1,7 @@
 package cafetcraftteam.rpgsoftware;
 
+import android.support.annotation.NonNull;
+
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -315,4 +317,31 @@ public class Characteristic {
         mSecondary.put(Secondary.FP, fatePoints);
     }
     // endregion====================================================================================
+
+    @NonNull
+    public static Characteristic ancestorGurdill() {
+        Characteristic ancestorGurdill = null;
+        try {
+            ancestorGurdill = new Characteristic(
+                    45,
+                    25,
+                    50,
+                    55,
+                    23,
+                    30,
+                    42,
+                    30,
+                    2,
+                    18,
+                    4,
+                    0,
+                    3,
+                    0
+            );
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+            throw new InstantiationError("Error in the constructor of Characteristic");
+        }
+        return ancestorGurdill;
+    }
 }
