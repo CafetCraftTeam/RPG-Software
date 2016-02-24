@@ -16,13 +16,13 @@ import cafetcraftteam.rpgsoftware.R;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
-    private Context context;
+    private Context mContext;
     private final LayoutInflater mInf;
     private String[] mGroups;
     private String[][] mChildren;
 
     public ExpandableListAdapter(Context context,String[] groups, String[][] children) {
-        this.context = context;
+        this.mContext = context;
         this.mGroups = groups;
         this.mChildren = children;
         mInf = LayoutInflater.from(context);
