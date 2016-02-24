@@ -33,6 +33,7 @@ public class CharacterWarhammerTest {
     private final int mNumberOfSiblings = 2;
     private final String mBirthplace = "Birthplace";
     private final String mDistinguishingMarks = "None";
+    private final String mProfession = "";
 
     private CharacterWarhammer Pujima;
 
@@ -50,7 +51,8 @@ public class CharacterWarhammerTest {
                 mStarSign,
                 mNumberOfSiblings,
                 mBirthplace,
-                mDistinguishingMarks
+                mDistinguishingMarks,
+                mProfession
         );
     }
 
@@ -68,6 +70,7 @@ public class CharacterWarhammerTest {
         assertEquals(mNumberOfSiblings, Pujima.getNumberOfSiblings());
         assertEquals(mBirthplace, Pujima.getBirthplace());
         assertEquals(mDistinguishingMarks, Pujima.getDistinguishingMarks());
+        assertEquals(mProfession, Pujima.getProfession());
     }
 
     // region CONTRACT RESPECT======================================================================
@@ -86,7 +89,8 @@ public class CharacterWarhammerTest {
                 mStarSign,
                 mNumberOfSiblings,
                 mBirthplace,
-                mDistinguishingMarks
+                mDistinguishingMarks,
+                mProfession
         );
         assertEquals("", nullEyeColour.getEyeColour());
     }
@@ -106,7 +110,8 @@ public class CharacterWarhammerTest {
                 mStarSign,
                 mNumberOfSiblings,
                 mBirthplace,
-                mDistinguishingMarks
+                mDistinguishingMarks,
+                mProfession
         );
         assertEquals("", nullHairColour.getHairColour());
     }
@@ -126,7 +131,8 @@ public class CharacterWarhammerTest {
                 null,
                 mNumberOfSiblings,
                 mBirthplace,
-                mDistinguishingMarks
+                mDistinguishingMarks,
+                mProfession
         );
         assertEquals("", nullStarSign.getStarSign());
     }
@@ -146,7 +152,8 @@ public class CharacterWarhammerTest {
                 mStarSign,
                 0,
                 mBirthplace,
-                mDistinguishingMarks
+                mDistinguishingMarks,
+                mProfession
         );
         assertEquals(0, zeroNumberOfSiblings.getNumberOfSiblings());
 
@@ -164,7 +171,8 @@ public class CharacterWarhammerTest {
                     mStarSign,
                     -mNumberOfSiblings,
                     mBirthplace,
-                    mDistinguishingMarks
+                    mDistinguishingMarks,
+                    mProfession
             );
             fail("A negative number of siblings have not throw an exception");
         } catch (InstantiationException e) {
@@ -187,7 +195,8 @@ public class CharacterWarhammerTest {
                 mStarSign,
                 mNumberOfSiblings,
                 null,
-                mDistinguishingMarks
+                mDistinguishingMarks,
+                mProfession
         );
         assertEquals("", nullBirthplace.getBirthplace());
     }
@@ -207,12 +216,36 @@ public class CharacterWarhammerTest {
                 mStarSign,
                 mNumberOfSiblings,
                 mBirthplace,
-                null
+                null,
+                mProfession
         );
         assertEquals("", nullDistinguishingMarks.getDistinguishingMarks());
     }
 
+    @Test
+    public void contractRespectProfession() throws InstantiationException {
+        // the profession could be null and will be replace by an empty string
+        CharacterWarhammer nullProfession = new CharacterWarhammer(
+                mName,
+                mRace,
+                mSex,
+                mWeight,
+                mHeight,
+                mAge,
+                mEyeColour,
+                mHairColour,
+                mStarSign,
+                mNumberOfSiblings,
+                mBirthplace,
+                mDistinguishingMarks,
+                null
+        );
+        assertEquals("", nullProfession.getProfession());
+    }
+
     // endregion====================================================================================
+
+
 
     @Test
     public void TestProfession() {
@@ -220,37 +253,12 @@ public class CharacterWarhammerTest {
         assertEquals("Worker", Pujima.getProfession());
     }
 
-    /*@Test
-    public void TestPrimaryProfile() {
-        Pujima.setPrimaryProfile(PrimCharacteristic.CC, 30);
-        assertEquals(Integer.valueOf(30),Pujima.getPrimaryProfile(PrimCharacteristic.CC));
-    }
-    @Test
-    public void TestSecondaryProfile() {
-        Pujima.setSecondaryProfile(SecondCharacteristic.A, 30);
-        assertEquals(Integer.valueOf(30),Pujima.getSecondaryProfile(SecondCharacteristic.A));
-    }
-    @Test
-    public void TestMovement() {
-        Pujima.setMovement(5);
-        assertEquals(5, Pujima.getMovement());
-    }
-    @Test
-    public void TestTotalFortune() {
-        Pujima.setTotalFortune(2);
-        assertEquals(2,Pujima.getTotalFortune());
-    }*/
     @Test
     public void TestActualFortune() {
         Pujima.setActualFortune(2);
         assertEquals(2, Pujima.getActualFortunePoints());
     }
 
-    /*@Test
-    public void TestTotalWounds() {
-        Pujima.setTotalWounds(2);
-        assertEquals(2,Pujima.getTotalWounds());
-    }*/
     @Test
     public void TestActualWounds() {
         Pujima.setActualWounds(2);

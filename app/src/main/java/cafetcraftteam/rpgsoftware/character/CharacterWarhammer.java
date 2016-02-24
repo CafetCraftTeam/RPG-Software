@@ -82,6 +82,8 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
      *                            could be null or empty, if null replace by an empty string
      * @param distinguishingMarks the distinguishing marks of the character as a string,
      *                            could be null or empty, if null replace by an empty string
+     * @param profession          the profession of the character, could null or empty, if null
+     *                            replace by an empty string
      * @throws InstantiationException
      */
     public CharacterWarhammer(
@@ -96,7 +98,8 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
             @Nullable String starSign,
             int numberOfSiblings,
             @Nullable String birthPlace,
-            @Nullable String distinguishingMarks
+            @Nullable String distinguishingMarks,
+            @Nullable String profession
     ) throws InstantiationException {
         super(name, race, sex, weight, height, age);
 
@@ -120,6 +123,9 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         if (distinguishingMarks == null) {
             distinguishingMarks = "";
         }
+        if (profession == null) {
+            profession = "";
+        }
 
         // endregion--------------------------------------------------------------------------------
 
@@ -130,6 +136,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         mNumberOfSiblings = numberOfSiblings;
         mBirthPlace = birthPlace;
         mDistinguishingMarks = distinguishingMarks;
+        mProfession = profession;
 
         // initialization of the equipment
         mActualWeapons = new Hands(null, null);
@@ -430,7 +437,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         }
 
         Armour removedArmour = null;
-        for (Armour armour: mActualArmour){
+        for (Armour armour : mActualArmour) {
             if (armour.isProtected(bodyPart)) {
                 removedArmour = armour;
                 break;
@@ -444,6 +451,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     /**
      * Take off the armour given in argument. If this armour is not actually wore throw an
      * IllegalArgumentException.
+     *
      * @param armour the armour that will be take off, must be not null
      * @return the armour take off, always not null
      */
@@ -577,7 +585,8 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
                     "The Big Cross",
                     2,
                     "Karak-a-karak",
-                    "Dwarf");
+                    "Dwarf",
+                    "Miner");
         } catch (InstantiationException instantiationError) {
             throw new InstantiationError("There is a problem in the constructor of CharacterWarhammer");
         }
