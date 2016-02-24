@@ -246,11 +246,17 @@ public class CharacterWarhammerTest {
     // endregion====================================================================================
 
 
-
     @Test
-    public void TestProfession() {
-        Pujima.setProfession("Worker");
-        assertEquals("Worker", Pujima.getProfession());
+    public void TestSetterProfession() {
+        // set a profession
+        String profession = "Worker";
+        Pujima.setProfession(profession);
+        assertEquals(profession, Pujima.getProfession());
+
+        // setting a null profession should throw an exception and be replace by an empty string
+        String nullProfession = null;
+        Pujima.setProfession(nullProfession);
+        assertEquals("", Pujima.getProfession());
     }
 
     @Test

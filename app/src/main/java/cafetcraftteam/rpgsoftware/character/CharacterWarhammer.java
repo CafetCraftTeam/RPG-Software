@@ -269,8 +269,17 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     //endregion=====================================================================================
 
     //region SETTER=================================================================================
-    public void setProfession(String Profession) {
-        this.mProfession = Profession;
+
+    /**
+     * Setter of the profession
+     * @param profession the profession, could be null or empty, if null it will be replace by an
+     *                   empty string
+     */
+    public void setProfession(@Nullable String profession) {
+        if (profession == null) {
+            profession = "";
+        }
+        mProfession = profession;
     }
 
     public int getPrimaryProfile(Characteristic.Primary primaryCharacteristic) {
