@@ -76,15 +76,21 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
             String distinguishingMarks
     ) {
         super(name, year, race, sex, weight, height, age);
+
+        // initialization of the personal informations
         mEyeColour = eyeColour;
         mHairColour = hairColour;
         mStarSign = starSign;
         mNumberOfSiblings = numberOfSiblings;
         mBirthPlace = birthPlace;
         mDistinguishingMarks = distinguishingMarks;
+
+        // initialization of the equipment
         mActualWeapons = new Hands(null, null);
         mActualArmor = new ArrayList<>();
         mEquipment = new HashMap<>();
+
+        // initialization of the skills
         mBasicSkills = new HashMap<>();
         mAdvanSkills = new HashMap<>();
 
@@ -112,30 +118,59 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
 
     // region GETTER================================================================================
+
+    /**
+     * Getter of the eyes colour of the character
+     * @return the eyes colour as a string
+     */
     public String getEyeColour() {
         return mEyeColour;
     }
 
+    /**
+     * Getter of the hair colour of the character
+     * @return the hair colour as a string
+     */
     public String getHairColour() {
         return mHairColour;
     }
 
+    /**
+     * Getter of the star sign of the character
+     * @return the star sign as a string
+     */
     public String getStarSign() {
         return mStarSign;
     }
 
+    /**
+     * Getter of the number of siblings of the character
+     * @return the number of siblings as a positive integer
+     */
     public int getNumberOfSiblings() {
         return mNumberOfSiblings;
     }
 
+    /**
+     * Getter of the birthplace of the character
+     * @return the birthplace as a string
+     */
     public String getBirthPlace() {
         return mBirthPlace;
     }
 
+    /**
+     * Getter of the distinguishing marks of the character
+     * @return the distinguishing marks as a string
+     */
     public String getDistinguishingMark() {
         return mDistinguishingMarks;
     }
 
+    /**
+     * Getter of the profession of the character
+     * @return the profession as a string
+     */
     public String getProfession() {
         return mProfession;
     }
