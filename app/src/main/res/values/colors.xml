@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="red">#ff3831</color>
+    <color name="white">#ffffff</color>
+    <color name="dark">#000000</color>
+    <color name="tabsScrollColor">#8a140e</color>
+    <color name="colorDisableMonth">#8396b3</color>
+    <color name="defaultTextColor">#3F4043</color>
+    <color name="backgroundLoginScreen">#0b0a01</color>
+    <color name="textColorLoginScreen">#747165</color>
+    <color name="frame">#b4b4b4</color>
+    <color name="frame_solid">#eee</color>
+    <color name="frame_background">#bcbcbc</color>
+</resources>
