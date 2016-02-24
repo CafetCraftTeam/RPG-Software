@@ -46,6 +46,6 @@ public class CharacterInventoryFragment extends ListFragment {
         InventoryItem item = mItems.get(position);
 
         // do something
-        Toast.makeText(getActivity(), item.title, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), item.mTitle, Toast.LENGTH_SHORT).show();
     }
 }

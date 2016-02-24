@@ -16,36 +16,36 @@ import cafetcraftteam.rpgsoftware.R;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
-    private Context context;
-    private final LayoutInflater inf;
-    private String[] groups;
-    private String[][] children;
+    private Context mContext;
+    private final LayoutInflater mInf;
+    private String[] mGroups;
+    private String[][] mChildren;
 
     public ExpandableListAdapter(Context context,String[] groups, String[][] children) {
-        this.context = context;
-        this.groups = groups;
-        this.children = children;
-        inf = LayoutInflater.from(context);
+        this.mContext = context;
+        this.mGroups = groups;
+        this.mChildren = children;
+        mInf = LayoutInflater.from(context);
     }
 
     @Override
     public int getGroupCount() {
-        return groups.length;
+        return mGroups.length;
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return children[groupPosition].length;
+        return mChildren[groupPosition].length;
     }
 
     @Override
     public Object getGroup(int groupPosition) {
-        return groups[groupPosition];
+        return mGroups[groupPosition];
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return children[groupPosition][childPosition];
+        return mChildren[groupPosition][childPosition];
     }
 
     @Override
@@ -68,7 +68,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         ViewHolder holder;
         if (convertView == null) {
-            convertView = inf.inflate(R.layout.list_skill_item, parent, false);
+            convertView = mInf.inflate(R.layout.list_skill_item, parent, false);
             holder = new ViewHolder();
 
             holder.text = (TextView) convertView.findViewById(R.id.lblListItem);
@@ -87,7 +87,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         ViewHolder holder;
 
         if (convertView == null) {
-            convertView = inf.inflate(R.layout.list_skill_group, parent, false);
+            convertView = mInf.inflate(R.layout.list_skill_group, parent, false);
 
             holder = new ViewHolder();
             holder.text = (TextView) convertView.findViewById(R.id.lblListHeader);
