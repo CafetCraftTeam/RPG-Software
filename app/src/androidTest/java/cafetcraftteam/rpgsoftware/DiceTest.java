@@ -30,6 +30,24 @@ public class DiceTest
         assertEquals(1, D6.getInf());
         assertEquals(100, D100.getMax());
         assertEquals(2, D100.getInf());
+        try {
+            new Dice(-1,6);
+        }
+        catch(IllegalArgumentException e){
+            assertEquals("The size of dice is not correct",e.getMessage());
+        }
+        try {
+            new Dice(1,0);
+        }
+        catch(IllegalArgumentException e){
+            assertEquals("The size of dice is not correct",e.getMessage());
+        }
+        try {
+            new Dice(-1);
+        }
+        catch(IllegalArgumentException e){
+            assertEquals("The maximum of dice is too low",e.getMessage());
+        }
     }
 
     @Test
@@ -46,15 +64,5 @@ public class DiceTest
         }
     }
 
-    @Test
-    public void DiceOneTest(){
-        Dice D1 = new Dice(1);
-        try{
-            int number = D1.diceGenerator();
-        }
-        catch(Exception error){
-            fail("Un dés de 1 n'a pas pu être créé");
-        }
 
-    }
 }
