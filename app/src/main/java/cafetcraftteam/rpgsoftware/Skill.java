@@ -7,7 +7,7 @@ import static cafetcraftteam.rpgsoftware.Characteristic.Primary;
 /**
  * Class that represent a Warhammer skill
  */
-public class Skill {
+public abstract class Skill {
 
     /**
      * Level of mastery of a skill
@@ -68,15 +68,7 @@ public class Skill {
         this(name, characteristic, level, 0);
     }
 
-    /*
-    //Attendre révision de la classe characteristic
-    public int computeSkillValue(){
-        int temp = 10;
-        //Verifier la formule de calcul :
-        return CharacterWarhammer.getPrimaryProfile(mChar)*(1+0.1*mLevel) + mBonus;
-    }
-    */
-
+    // region GETTER================================================================================
     /**
      * Getter of the name of the skill
      *
@@ -116,6 +108,12 @@ public class Skill {
         return mBonus;
     }
 
+    public abstract int getValue();
+
+    // endregion====================================================================================
+
+    // region SETTER================================================================================
+
     /**
      * Setter of the bonus for this skill
      *
@@ -128,4 +126,6 @@ public class Skill {
 
         mBonus = bonus;
     }
+
+    // endregion====================================================================================
 }

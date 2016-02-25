@@ -1,5 +1,6 @@
 package cafetcraftteam.rpgsoftware;
 
+import android.support.annotation.NonNull;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 
@@ -17,12 +18,38 @@ import static junit.framework.Assert.fail;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class SkillTest {
+
+    // region DEFINE A CONCRETE CLASS===============================================================
+
+    private class ConcreteSkill extends Skill {
+
+        public ConcreteSkill(@NonNull String name,
+                             @NonNull Primary characteristic,
+                             @NonNull Level level,
+                             int bonus) {
+            super(name, characteristic, level, bonus);
+        }
+
+        public ConcreteSkill(@NonNull String name,
+                             @NonNull Primary characteristic,
+                             @NonNull Level level) {
+            super(name, characteristic, level, 0);
+        }
+
+        @Override
+        public int getValue() {
+            return 0;
+        }
+    }
+
+    // endregion====================================================================================
+
     private final String mName = "Charm";
     private final Primary mAssociatedCharacteristic = Primary.FEL;
     private final Level mLevel = Level.NONE;
     private final int mBonus = 5;
 
-    private final Skill mSkill = new Skill(mName, mAssociatedCharacteristic, mLevel, mBonus);
+    private final Skill mSkill = new ConcreteSkill(mName, mAssociatedCharacteristic, mLevel, mBonus);
 
     @Test
     public void creationTest() {
@@ -31,7 +58,7 @@ public class SkillTest {
         assertEquals(mLevel, mSkill.getLevel());
         assertEquals(mBonus, mSkill.getBonus());
 
-        Skill noBonusSkill = new Skill(mName, mAssociatedCharacteristic, mLevel);
+        Skill noBonusSkill = new ConcreteSkill(mName, mAssociatedCharacteristic, mLevel);
         assertEquals(mName, noBonusSkill.getName());
         assertEquals(mAssociatedCharacteristic, noBonusSkill.getAssociatedCharacteristic());
         assertEquals(mLevel, noBonusSkill.getLevel());
@@ -42,7 +69,7 @@ public class SkillTest {
     public void contractRespectName() {
         // give a null name should throw an exception
         try {
-            new Skill(null, mAssociatedCharacteristic, mLevel, mBonus);
+            new ConcreteSkill(null, mAssociatedCharacteristic, mLevel, mBonus);
             fail("give a null name should throw an exception");
         } catch (IllegalArgumentException e) {
             assertEquals("The name must be not null or empty", e.getMessage());
@@ -50,7 +77,7 @@ public class SkillTest {
 
         // give an empty name should throw an exception
         try {
-            new Skill("", mAssociatedCharacteristic, mLevel, mBonus);
+            new ConcreteSkill("", mAssociatedCharacteristic, mLevel, mBonus);
             fail("give an empty name should throw an exception");
         } catch (IllegalArgumentException e) {
             assertEquals("The name must be not null or empty", e.getMessage());
@@ -61,7 +88,7 @@ public class SkillTest {
     public void contractRespectCharacteristic() {
         // give a null characteristic should throw an exception
         try {
-            new Skill(mName, null, mLevel);
+            new ConcreteSkill(mName, null, mLevel);
             fail("give a null characteristic should throw an exception");
         } catch (IllegalArgumentException e) {
             assertEquals("The characteristic must not be null", e.getMessage());
@@ -72,7 +99,7 @@ public class SkillTest {
     public void contractRespectLevel() {
         // give a null level should throw an exception
         try {
-            new Skill(mName, mAssociatedCharacteristic, null);
+            new ConcreteSkill(mName, mAssociatedCharacteristic, null);
             fail("give a null level should throw an exception");
         } catch (IllegalArgumentException e) {
             assertEquals("The level of mastery of the skill must not be null", e.getMessage());
@@ -83,14 +110,14 @@ public class SkillTest {
     public void contractRespectBonus() {
         // give a negative bonus should throw an exception
         try {
-            new Skill(mName, mAssociatedCharacteristic, mLevel, -mBonus);
+            new ConcreteSkill(mName, mAssociatedCharacteristic, mLevel, -mBonus);
             fail("give a negative bonus should throw an exception");
         } catch (IllegalArgumentException e) {
             assertEquals("The bonus must be positive", e.getMessage());
         }
 
         // give a zero bonus should not throw an exception
-        Skill zeroBonusSkill = new Skill(mName, mAssociatedCharacteristic, mLevel, 0);
+        Skill zeroBonusSkill = new ConcreteSkill(mName, mAssociatedCharacteristic, mLevel, 0);
         assertEquals(0, zeroBonusSkill.getBonus());
     }
 
