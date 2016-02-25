@@ -1,4 +1,4 @@
-package cafetcraftteam.rpgsoftware;
+package cafetcraftteam.rpgsoftware.skill_test;
 
 import android.support.annotation.NonNull;
 import android.support.test.runner.AndroidJUnit4;
@@ -7,8 +7,10 @@ import android.test.suitebuilder.annotation.LargeTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import cafetcraftteam.rpgsoftware.skill.Skill;
+
 import static cafetcraftteam.rpgsoftware.Characteristic.Primary;
-import static cafetcraftteam.rpgsoftware.Skill.Level;
+import static cafetcraftteam.rpgsoftware.skill.Skill.Level;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.fail;
 

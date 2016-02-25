@@ -1,4 +1,4 @@
-package cafetcraftteam.rpgsoftware;
+package cafetcraftteam.rpgsoftware.skill;
 
 import android.support.annotation.NonNull;
 
