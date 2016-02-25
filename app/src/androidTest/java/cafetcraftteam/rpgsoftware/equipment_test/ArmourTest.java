@@ -64,7 +64,7 @@ public class ArmourTest
         {
             new Armour(mName, mEncumbering, mPrice, mQuality, mDescription, null);
         }
-        catch (InstantiationError e){
+        catch (IllegalArgumentException e){
             // success
         }
 
@@ -76,7 +76,7 @@ public class ArmourTest
             new Armour(mName, mEncumbering, mPrice, mQuality, mDescription, emptyProtectedParts);
             fail("Null protected parts don't generate an error");
         }
-        catch (InstantiationError e){
+        catch (IllegalArgumentException e){
             // success
         }
 
@@ -88,7 +88,7 @@ public class ArmourTest
             new Armour(mName, mEncumbering, mPrice, mQuality, mDescription, negativeProtectedParts);
             fail("A negative value of protection in protected parts have not generate an error");
         }
-        catch (InstantiationError e) {
+        catch (IllegalArgumentException e) {
             // success
         }
 
@@ -102,7 +102,7 @@ public class ArmourTest
                     onlyZeroProtectedParts);
             fail("Zero as protection value will be remove, leading to an empty map");
         }
-        catch (InstantiationError e) {
+        catch (IllegalArgumentException e) {
             // success error generated
         }
 
