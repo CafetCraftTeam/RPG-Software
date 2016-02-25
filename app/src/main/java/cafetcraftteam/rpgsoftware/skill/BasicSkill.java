@@ -23,7 +23,11 @@ public class BasicSkill extends Skill {
     }
 
     @Override
-    public int getSkillValue(Profile characterProfile) {
+    public int getSkillValue(@NonNull Profile characterProfile) {
+        if (characterProfile == null) {
+            throw new IllegalArgumentException("The Profile should not be null");
+        }
+
         if (getLevel() == Level.NONE) {
             return characterProfile.getCharacteristic(getAssociatedCharacteristic()) / 2;
         } else {
