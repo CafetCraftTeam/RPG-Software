@@ -10,7 +10,6 @@ import cafetcraftteam.rpgsoftware.Profile;
 import cafetcraftteam.rpgsoftware.skill.BasicSkill;
 import cafetcraftteam.rpgsoftware.skill.Skill.Level;
 
-import static cafetcraftteam.rpgsoftware.Profile.Primary;
 import static cafetcraftteam.rpgsoftware.skill.BasicSkill.BasicSkills;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.fail;
@@ -38,10 +37,10 @@ public class BasicSkillTest {
         assertEquals(mLevel, mBasicSkill.getLevel());
         assertEquals(mBonus, mBasicSkill.getBonus());
 
-        BasicSkill zeroBonusBasicSkill = new BasicSkill(mBasicSkills, mLevel);
-        assertEquals(mBasicSkills.toString(), zeroBonusBasicSkill.getName());
-        assertEquals(mBasicSkills.getCharacteristic(),
-                zeroBonusBasicSkill.getAssociatedCharacteristic());
+        BasicSkills zeroBonus = BasicSkills.PERCEPTION;
+        BasicSkill zeroBonusBasicSkill = new BasicSkill(zeroBonus, mLevel);
+        assertEquals(zeroBonus.toString(), zeroBonusBasicSkill.getName());
+        assertEquals(zeroBonus.getCharacteristic(), zeroBonusBasicSkill.getAssociatedCharacteristic());
         assertEquals(mLevel, zeroBonusBasicSkill.getLevel());
         assertEquals(0, zeroBonusBasicSkill.getBonus());
     }
@@ -53,19 +52,21 @@ public class BasicSkillTest {
                 mBasicSkill.getSkillValue(mAncestorGurdillProfile));
 
         // with a level of master
+        BasicSkills masterLevel = BasicSkills.CHARM;
         BasicSkill masterSkill = new BasicSkill(
-                mBasicSkills,
+                masterLevel,
                 Level.MASTER
         );
-        assertEquals(mAncestorGurdillProfile.getCharacteristic(mBasicSkills.getCharacteristic()) + 20,
+        assertEquals(mAncestorGurdillProfile.getCharacteristic(masterLevel.getCharacteristic()) + 20,
                 masterSkill.getSkillValue(mAncestorGurdillProfile));
 
         // with a level of None
+        BasicSkills noneLevel = BasicSkills.CONCEALMENT;
         BasicSkill noneSkill = new BasicSkill(
-                mBasicSkills,
+                noneLevel,
                 Level.NONE
         );
-        assertEquals(mAncestorGurdillProfile.getCharacteristic(mBasicSkills.getCharacteristic()) / 2,
+        assertEquals(mAncestorGurdillProfile.getCharacteristic(noneLevel.getCharacteristic()) / 2,
                 noneSkill.getSkillValue(mAncestorGurdillProfile));
 
         // give a null Profile should throw an exception
