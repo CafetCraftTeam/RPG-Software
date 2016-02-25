@@ -14,6 +14,7 @@ import cafetcraftteam.rpgsoftware.equipment.Armour;
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
 import cafetcraftteam.rpgsoftware.skill.AdvancedSkill;
 import cafetcraftteam.rpgsoftware.skill.BasicSkill;
+import cafetcraftteam.rpgsoftware.skill.BasicSkill.BasicSkillName;
 import cafetcraftteam.rpgsoftware.skill.Skill;
 
 /**
@@ -150,11 +151,14 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
         // initialization of the skills
         mBasicSkills = new ArrayList<>();
-        for (BasicSkill.BasicSkillName basicSkillName : BasicSkill.BasicSkillName.values()) {
+        for (BasicSkillName basicSkillName : BasicSkillName.values()) {
             mBasicSkills.add(new BasicSkill(basicSkillName, Skill.Level.NONE));
         }
 
         mAdvancedSkills = new TreeMap<>();
+
+        //TODO initialize correctly the profile
+        mProfile = Profile.ancestorGurdillProfile();
     }
 
 
@@ -486,6 +490,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
     /**
      * Getter of the number of armour point on the localisation given
+     *
      * @param bodyPart the localisation wanted, must be not null
      * @return the number of armour point on this body part
      */
@@ -502,6 +507,38 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     //endregion=====================================================================================
 
     // region SKILL=================================================================================
+
+    /**
+     * Getter of the value of an advanced skill
+     *
+     * @param advancedSkillName the name of the skill, must be not null, if not actually there
+     *                          throw an IllegalArgumentException
+     * @return the value of the Skill, always positive and not zero
+     */
+    public int getAdvancedSkillValue(@NonNull String advancedSkillName) {
+        if (advancedSkillName == null) {
+            throw new IllegalArgumentException("The name of the advanced skill must not be null");
+        }
+        if (!mAdvancedSkills.containsKey(advancedSkillName)) {
+            throw new IllegalArgumentException("The Skill given is not actually there");
+        }
+
+        return mAdvancedSkills.get(advancedSkillName).getSkillValue(mProfile);
+    }
+
+    /**
+     * Getter of the value of an basic skill
+     *
+     * @param basicSkillName the name of the skill, must be not null
+     * @return the value of the Skill, always positive and not zero
+     */
+    public int getBasicSkillValue(@NonNull BasicSkillName basicSkillName) {
+        if (basicSkillName == null) {
+            throw new IllegalArgumentException("The name of the basic skill must not be null");
+        }
+
+        return mBasicSkills.get(basicSkillName.ordinal()).getSkillValue(mProfile);
+    }
 
     /**
      * Method that permit to add an advanced skill to the character
@@ -524,6 +561,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
     /**
      * Improve the advanced skill with the same name as the one given
+     *
      * @param advancedSkillName the name of the advanced skill to improve, must not be null,
      *                          throw an exception if there is no skill with this name
      */
@@ -532,7 +570,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
             throw new IllegalArgumentException("The name of the advanced skill must not be null");
         }
         if (!mAdvancedSkills.containsKey(advancedSkillName)) {
-            throw new IllegalArgumentException("The Skill given is actually there");
+            throw new IllegalArgumentException("The Skill given is not actually there");
         }
 
         mAdvancedSkills.get(advancedSkillName).improve();
@@ -540,10 +578,11 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
     /**
      * Improve the basic skill with the same name as the one given
+     *
      * @param basicSkillName the name of the basic skill to improve, must not be null,
-     *                          throw an exception if there is no skill with this name
+     *                       throw an exception if there is no skill with this name
      */
-    public void improveBasicSkill(@NonNull BasicSkill.BasicSkillName basicSkillName) {
+    public void improveBasicSkill(@NonNull BasicSkillName basicSkillName) {
         if (basicSkillName == null) {
             throw new IllegalArgumentException("The name of the basic skill must not be null");
         }
@@ -556,6 +595,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
     /**
      * Give quickly an CharacterWarhammer
+     *
      * @return the ancestor Gurdill (take care of him)
      */
     public static CharacterWarhammer ancestorGurdill() {

@@ -11,16 +11,20 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
+import cafetcraftteam.rpgsoftware.Profile;
 import cafetcraftteam.rpgsoftware.character.Character;
 import cafetcraftteam.rpgsoftware.character.CharacterWarhammer;
 import cafetcraftteam.rpgsoftware.character.CharacterWarhammer.BodyPart;
 import cafetcraftteam.rpgsoftware.character.Hands;
 import cafetcraftteam.rpgsoftware.equipment.Armour;
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
+import cafetcraftteam.rpgsoftware.skill.AdvancedSkill;
+import cafetcraftteam.rpgsoftware.skill.BasicSkill;
+import cafetcraftteam.rpgsoftware.skill.BasicSkill.BasicSkillName;
+import cafetcraftteam.rpgsoftware.skill.Skill;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertNotSame;
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
 
@@ -596,6 +600,112 @@ public class CharacterWarhammerTest {
 
         assertEquals(0, Pujima.getArmorPoints(mBodyPart));
         assertEquals(0, Pujima.getArmorPoints(BodyPart.TORSO));
+    }
+
+    // endregion====================================================================================
+
+    //region SKILL==================================================================================
+
+    @Test
+    public void addAdvancedSkillTest() {
+        AdvancedSkill advancedSkill = new AdvancedSkill("Heal", Profile.Primary.INT,
+                Skill.Level.ACQUIRE);
+
+        // getting the value from a non existing advanced skill should throw an exception
+        try {
+            Pujima.getAdvancedSkillValue(advancedSkill.getName());
+            fail("getting the value from a non existing advanced skill should throw an exception");
+        } catch (IllegalArgumentException e) {
+            assertEquals("The Skill given is not actually there", e.getMessage());
+        }
+
+        // adding an advanced skill
+
+        Pujima.addAdvancedSkill(advancedSkill);
+
+        assertEquals(advancedSkill.getSkillValue(Profile.ancestorGurdillProfile()),
+                Pujima.getAdvancedSkillValue(advancedSkill.getName()));
+
+        // adding a null skill should throw an exception
+        try {
+            Pujima.addAdvancedSkill(null);
+            fail("adding a null skill should throw an exception");
+        } catch (IllegalArgumentException e) {
+            assertEquals("The advanced Skill given must not be null", e.getMessage());
+        }
+
+        // adding again the same skill should throw an exception
+        try {
+            Pujima.addAdvancedSkill(advancedSkill);
+            fail("adding again the same skill should throw an exception");
+        } catch (IllegalStateException e) {
+            assertEquals("The advanced skill given is already there", e.getMessage());
+        }
+
+        // testing the deep copy
+        advancedSkill.improve();
+
+        assertEquals(advancedSkill.getSkillValue(Profile.ancestorGurdillProfile()) - 10,
+                Pujima.getAdvancedSkillValue(advancedSkill.getName()));
+    }
+
+    @Test
+    public void improveAdvancedSkillTest() {
+        AdvancedSkill advancedSkill = new AdvancedSkill("Heal", Profile.Primary.INT,
+                Skill.Level.ACQUIRE);
+
+        // improving a not acquire skill should throw an exception
+        try {
+            Pujima.improveAdvancedSkill(advancedSkill.getName());
+            fail("improving a not acquire skill should throw an exception");
+        } catch (IllegalArgumentException e) {
+            assertEquals("The Skill given is not actually there", e.getMessage());
+        }
+
+        // improving a null skill should throw an exception
+        try {
+            Pujima.improveAdvancedSkill(null);
+            fail("improving a null skill should throw an exception");
+        } catch (IllegalArgumentException e) {
+            assertEquals("The name of the advanced skill must not be null", e.getMessage());
+        }
+
+        // improving a skill
+        Pujima.addAdvancedSkill(advancedSkill);
+
+        assertEquals(advancedSkill.getSkillValue(Profile.ancestorGurdillProfile()),
+                Pujima.getAdvancedSkillValue(advancedSkill.getName()));
+
+        Pujima.improveAdvancedSkill(advancedSkill.getName());
+        advancedSkill.improve();
+
+        assertEquals(advancedSkill.getSkillValue(Profile.ancestorGurdillProfile()),
+                Pujima.getAdvancedSkillValue(advancedSkill.getName()));
+    }
+
+    @Test
+    public void improveBasicSkillTest() {
+        BasicSkillName basicSkillName = BasicSkillName.DISGUISE;
+        BasicSkill basicSkill = new BasicSkill(basicSkillName,
+                Skill.Level.NONE);
+
+        // improving a null skill should throw an exception
+        try {
+            Pujima.improveBasicSkill(null);
+            fail("improving a null skill should throw an exception");
+        } catch (IllegalArgumentException e) {
+            assertEquals("The name of the basic skill must not be null", e.getMessage());
+        }
+
+        // improving a skill
+        assertEquals(basicSkill.getSkillValue(Profile.ancestorGurdillProfile()),
+                Pujima.getBasicSkillValue(basicSkillName));
+
+        Pujima.improveBasicSkill(basicSkillName);
+        basicSkill.improve();
+
+        assertEquals(basicSkill.getSkillValue(Profile.ancestorGurdillProfile()),
+                Pujima.getBasicSkillValue(basicSkillName));
     }
 
     // endregion====================================================================================
