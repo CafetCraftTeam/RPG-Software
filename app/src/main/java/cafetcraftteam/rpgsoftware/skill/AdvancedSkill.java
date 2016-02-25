@@ -4,42 +4,36 @@ import android.support.annotation.NonNull;
 
 import cafetcraftteam.rpgsoftware.Profile;
 
-import static cafetcraftteam.rpgsoftware.Profile.Primary;
-
 /**
- * The basic skill that could be used by everyone at half the value of the characteristic
+ * Created by Tago on 25/02/2016.
  */
-public class BasicSkill extends Skill {
+public class AdvancedSkill extends Skill {
     /**
-     * Constructor of a basic skill
+     * Constructor of a skill
      *
      * @param name           the name of the skill, must be not null or empty
      * @param characteristic the characteristic associated to the skill, must be not null
      * @param level          the level of mastery of this skill, must be not null
      * @param bonus          the bonus on this skill
      */
-    public BasicSkill(@NonNull String name,
-                      @NonNull Primary characteristic,
-                      @NonNull Level level, int bonus) {
+    public AdvancedSkill(@NonNull String name, @NonNull Profile.Primary characteristic, @NonNull Level level, int bonus) {
         super(name, characteristic, level, bonus);
     }
 
     /**
-     * Constructor of a basic skill without any bonus
+     * Constructor of a skill without any bonus
      *
      * @param name           the name of the skill, must be not null or empty
      * @param characteristic the characteristic associated to the skill, must be not null
      * @param level          the level of mastery of this skill, must be not null
      */
-    public BasicSkill(@NonNull String name,
-                      @NonNull Primary characteristic,
-                      @NonNull Level level) {
+    public AdvancedSkill(@NonNull String name, @NonNull Profile.Primary characteristic, @NonNull Level level) {
         super(name, characteristic, level);
     }
 
     /**
      * Getter of the value of the skill with the actual bonus and the given profile
-     * If the level of mastering is NONE, calculate with the characteristic divided by 2
+     * If the level of mastering is NONE, throw an IllegalStateException
      *
      * @param characterProfile the profile that use the skill, must be not null
      * @return the value as a positive integer
@@ -51,7 +45,7 @@ public class BasicSkill extends Skill {
         }
 
         if (getLevel() == Level.NONE) {
-            return characterProfile.getCharacteristic(getAssociatedCharacteristic()) / 2;
+            throw new IllegalStateException("The skill must be at least acquired to be used");
         } else {
             return characterProfile.getCharacteristic(getAssociatedCharacteristic())
                     + 10 * (getLevel().ordinal() - 1) + getBonus();

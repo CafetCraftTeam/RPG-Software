@@ -112,10 +112,10 @@ public abstract class Skill {
 
     /**
      * Getter of the value of the skill with the actual bonus and the given profile
-     * @param characterProfile the profile that use the skill
+     * @param characterProfile the profile that use the skill, must be not null
      * @return the value as a positive integer
      */
-    public abstract int getSkillValue(Profile characterProfile);
+    public abstract int getSkillValue(@NonNull Profile characterProfile);
 
     // endregion====================================================================================
 
