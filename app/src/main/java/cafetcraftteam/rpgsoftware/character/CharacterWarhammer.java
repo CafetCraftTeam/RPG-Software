@@ -8,7 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cafetcraftteam.rpgsoftware.Characteristic;
+import cafetcraftteam.rpgsoftware.Profile;
+import cafetcraftteam.rpgsoftware.Profile.Primary;
+import cafetcraftteam.rpgsoftware.Profile.Secondary;
 import cafetcraftteam.rpgsoftware.equipment.Armour;
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
 
@@ -43,7 +45,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     /**
      * Main profile
      */
-    private Characteristic mCharacteristic;
+    private Profile mProfile;
 
     private int mActualFortune;
     private int mActualWounds;
@@ -297,12 +299,12 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         mProfession = profession;
     }
 
-    public int getPrimaryProfile(Characteristic.Primary primaryCharacteristic) {
-        return mCharacteristic.getPrimaryCharacteristic(primaryCharacteristic);
+    public int getPrimaryProfile(Primary primaryCharacteristic) {
+        return mProfile.getCharacteristic(primaryCharacteristic);
     }
 
-    public int getSecondaryProfile(Characteristic.Secondary secondaryCharacteristic) {
-        return mCharacteristic.getSecondaryCharacteristic(secondaryCharacteristic);
+    public int getSecondaryProfile(Secondary secondaryCharacteristic) {
+        return mProfile.getCharacteristic(secondaryCharacteristic);
     }
 
     public void setActualFortune(int ActualFortune) {

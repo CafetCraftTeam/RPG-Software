@@ -748,41 +748,41 @@ public class ProfileTest {
     @Test
     public void getPrimaryTest() {
         assertEquals(mWeaponSkill,
-                mCharacteristic.getPrimaryCharacteristic(Characteristic.Primary.WS));
+                mProfile.getCharacteristic(Profile.Primary.WS));
         assertEquals(mBallisticSkill,
-                mCharacteristic.getPrimaryCharacteristic(Characteristic.Primary.BS));
+                mProfile.getCharacteristic(Profile.Primary.BS));
         assertEquals(mStrength,
-                mCharacteristic.getPrimaryCharacteristic(Characteristic.Primary.S));
+                mProfile.getCharacteristic(Profile.Primary.S));
         assertEquals(mToughness,
-                mCharacteristic.getPrimaryCharacteristic(Characteristic.Primary.T));
+                mProfile.getCharacteristic(Profile.Primary.T));
         assertEquals(mAgility,
-                mCharacteristic.getPrimaryCharacteristic(Characteristic.Primary.AG));
+                mProfile.getCharacteristic(Profile.Primary.AG));
         assertEquals(mIntelligence,
-                mCharacteristic.getPrimaryCharacteristic(Characteristic.Primary.INT));
+                mProfile.getCharacteristic(Profile.Primary.INT));
         assertEquals(mWillPower,
-                mCharacteristic.getPrimaryCharacteristic(Characteristic.Primary.WP));
+                mProfile.getCharacteristic(Profile.Primary.WP));
         assertEquals(mFellowship,
-                mCharacteristic.getPrimaryCharacteristic(Characteristic.Primary.FEL));
+                mProfile.getCharacteristic(Profile.Primary.FEL));
     }
 
     @Test
     public void getSecondaryTest() {
         assertEquals(mAttacks,
-                mCharacteristic.getSecondaryCharacteristic(Characteristic.Secondary.A));
+                mProfile.getCharacteristic(Profile.Secondary.A));
         assertEquals(mWounds,
-                mCharacteristic.getSecondaryCharacteristic(Characteristic.Secondary.W));
+                mProfile.getCharacteristic(Profile.Secondary.W));
         assertEquals(mStrength/10,
-                mCharacteristic.getSecondaryCharacteristic(Characteristic.Secondary.SB));
+                mProfile.getCharacteristic(Profile.Secondary.SB));
         assertEquals(mToughness/10,
-                mCharacteristic.getSecondaryCharacteristic(Characteristic.Secondary.TB));
+                mProfile.getCharacteristic(Profile.Secondary.TB));
         assertEquals(mMovement,
-                mCharacteristic.getSecondaryCharacteristic(Characteristic.Secondary.M));
+                mProfile.getCharacteristic(Profile.Secondary.M));
         assertEquals(mMagic,
-                mCharacteristic.getSecondaryCharacteristic(Characteristic.Secondary.MAG));
+                mProfile.getCharacteristic(Profile.Secondary.MAG));
         assertEquals(mInsanityPoints,
-                mCharacteristic.getSecondaryCharacteristic(Characteristic.Secondary.IP));
+                mProfile.getCharacteristic(Profile.Secondary.IP));
         assertEquals(mFatePoints,
-                mCharacteristic.getSecondaryCharacteristic(Characteristic.Secondary.FP));
+                mProfile.getCharacteristic(Profile.Secondary.FP));
     }
 
     // region SETTER TEST===========================================================================
