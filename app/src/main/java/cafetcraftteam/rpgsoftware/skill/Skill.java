@@ -18,7 +18,25 @@ public abstract class Skill {
         NONE,
         ACQUIRE,
         ADVANCE,
-        MASTER
+        MASTER {
+            @Override
+            public Level improve() {
+                return this;
+            }
+        };
+
+        // to avoid copy of the array
+        private static Level[] sValues = values();
+
+        /**
+         * Improve the level of mastering by one, capped at the level Master
+         *
+         * @return the next level of mastering, capped at the level Master
+         */
+        public Level improve() {
+            // no bound checking as the last element override the method to capped
+            return sValues[ordinal() + 1];
+        }
     }
 
     private String mName; // the name of the skill
@@ -71,6 +89,7 @@ public abstract class Skill {
     }
 
     // region GETTER================================================================================
+
     /**
      * Getter of the name of the skill
      *
@@ -112,6 +131,7 @@ public abstract class Skill {
 
     /**
      * Getter of the value of the skill with the actual bonus and the given profile
+     *
      * @param characterProfile the profile that use the skill, must be not null
      * @return the value as a positive integer
      */
@@ -135,4 +155,11 @@ public abstract class Skill {
     }
 
     // endregion====================================================================================
+
+    /**
+     * Method that improve the level of mastery of the skill
+     */
+    public void improve() {
+        mLevel.improve();
+    }
 }
