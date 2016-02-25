@@ -7,6 +7,7 @@ import android.test.suitebuilder.annotation.LargeTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import cafetcraftteam.rpgsoftware.CharacterWarhammer;
 import cafetcraftteam.rpgsoftware.skill.Skill;
 
 import static cafetcraftteam.rpgsoftware.Characteristic.Primary;
@@ -39,7 +40,7 @@ public class SkillTest {
         }
 
         @Override
-        public int getValue() {
+        public int getSkillValue(CharacterWarhammer characterCharacteristic) {
             return 0;
         }
     }

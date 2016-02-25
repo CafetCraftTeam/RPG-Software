@@ -2,6 +2,8 @@ package cafetcraftteam.rpgsoftware.skill;
 
 import android.support.annotation.NonNull;
 
+import cafetcraftteam.rpgsoftware.CharacterWarhammer;
+
 import static cafetcraftteam.rpgsoftware.Characteristic.Primary;
 
 /**
@@ -108,7 +110,7 @@ public abstract class Skill {
         return mBonus;
     }
 
-    public abstract int getValue();
+    public abstract int getSkillValue(CharacterWarhammer characterCharacteristic);
 
     // endregion====================================================================================
 
