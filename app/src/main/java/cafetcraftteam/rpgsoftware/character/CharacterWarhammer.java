@@ -7,10 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import cafetcraftteam.rpgsoftware.Profile;
-import cafetcraftteam.rpgsoftware.Profile.Primary;
-import cafetcraftteam.rpgsoftware.Profile.Secondary;
 import cafetcraftteam.rpgsoftware.equipment.Armour;
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
 import cafetcraftteam.rpgsoftware.skill.AdvancedSkill;
@@ -56,16 +55,16 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     /**
      * Equipment
      */
-    private Hands mActualWeapons; // the weapons actually in the hand of the character
-    private List<Armour> mActualArmour; // the armor(s) actually wore by the character
+    private final Hands mActualWeapons; // the weapons actually in the hand of the character
+    private final List<Armour> mActualArmour; // the armor(s) actually wore by the character
     // all the equipment of the character that is not actually used
-    private Map<Equipment, Integer> mInventory;
+    private final Map<Equipment, Integer> mInventory;
 
     /**
      * Abilities and Talents
      */
-    private List<BasicSkill> mBasicSkills;
-    private List<AdvancedSkill> mAdvancedSkills;
+    private final List<BasicSkill> mBasicSkills;
+    private final Map<String, AdvancedSkill> mAdvancedSkills;
 
     /**
      * Constructor of a Warhammer character, the character have nothing in his hand, inventory and
@@ -151,11 +150,11 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
         // initialization of the skills
         mBasicSkills = new ArrayList<>();
-        for (BasicSkill.BasicSkills basicSkills : BasicSkill.BasicSkills.values()) {
-            mBasicSkills.add(new BasicSkill(basicSkills, Skill.Level.NONE));
+        for (BasicSkill.BasicSkillName basicSkillName : BasicSkill.BasicSkillName.values()) {
+            mBasicSkills.add(new BasicSkill(basicSkillName, Skill.Level.NONE));
         }
 
-        mAdvancedSkills = new ArrayList<>();
+        mAdvancedSkills = new TreeMap<>();
     }
 
 
@@ -266,6 +265,17 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         return mInventory;
     }
 
+
+    public int getDefensePoints(BodyPart bodyPart) {
+        int defensePoints = 0;
+
+        for (Armour armour : mActualArmour) {
+            defensePoints += armour.getArmourPoint(bodyPart);
+        }
+
+        return defensePoints;
+    }
+
     // endregion------------------------------------------------------------------------------------
 
     //endregion=====================================================================================
@@ -285,14 +295,6 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         mProfession = profession;
     }
 
-    public int getPrimaryProfile(Primary primaryCharacteristic) {
-        return mProfile.getCharacteristic(primaryCharacteristic);
-    }
-
-    public int getSecondaryProfile(Secondary secondaryCharacteristic) {
-        return mProfile.getCharacteristic(secondaryCharacteristic);
-    }
-
     public void setActualFortune(int ActualFortune) {
         mActualFortune = ActualFortune;
     }
@@ -301,9 +303,9 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         mActualWounds = ActualWounds;
     }
 
-            /*
-    Under Constructions waiting for Equipment class
-     */
+    // endregion====================================================================================
+
+    // region EQUIPMENT=============================================================================
 
     /**
      * Method that allow to add some equipment to the character
@@ -500,17 +502,61 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         return isProtected;
     }
 
-    public int getDefensePoints(BodyPart bodyPart) {
-        int defensePoints = 0;
+    //endregion=====================================================================================
 
-        for (Armour armour : mActualArmour) {
-            defensePoints += armour.getArmourPoint(bodyPart);
+    // region SKILL=================================================================================
+
+    /**
+     * Method that permit to add an advanced skill to the character
+     *
+     * @param advancedSkill the advanced skill to add, must be not null, if it's already present
+     *                      throw an exception. The skill will be copy to avoid external modification
+     */
+    public void addAdvancedSkill(@NonNull AdvancedSkill advancedSkill) {
+        if (advancedSkill == null) {
+            throw new IllegalArgumentException("The advanced Skill given must not be null");
         }
 
-        return defensePoints;
+        if (mAdvancedSkills.containsValue(advancedSkill)) {
+            throw new IllegalStateException("The advanced skill given is already there");
+        }
+
+        AdvancedSkill deepCopy = advancedSkill.deepCopy();
+        mAdvancedSkills.put(deepCopy.getName(), deepCopy);
     }
 
-    //endregion=====================================================================================
+    /**
+     * Improve the advanced skill with the same name as the one given
+     * @param advancedSkillName the name of the advanced skill to improve, must not be null,
+     *                          throw an exception if there is no skill with this name
+     */
+    public void improveAdvancedSkill(@NonNull String advancedSkillName) {
+        if (advancedSkillName == null) {
+            throw new IllegalArgumentException("The name of the advanced skill must not be null");
+        }
+        if (!mAdvancedSkills.containsKey(advancedSkillName)) {
+            throw new IllegalArgumentException("The Skill given is actually there");
+        }
+
+        mAdvancedSkills.get(advancedSkillName).improve();
+    }
+
+    /**
+     * Improve the basic skill with the same name as the one given
+     * @param basicSkillName the name of the basic skill to improve, must not be null,
+     *                          throw an exception if there is no skill with this name
+     */
+    public void improveBasicSkill(@NonNull BasicSkill.BasicSkillName basicSkillName) {
+        if (basicSkillName == null) {
+            throw new IllegalArgumentException("The name of the basic skill must not be null");
+        }
+
+        mBasicSkills.get(basicSkillName.ordinal()).improve();
+    }
+
+
+    // endregion====================================================================================
+
 
     public static CharacterWarhammer ancestorGurdill() {
         CharacterWarhammer characterWarhammer;

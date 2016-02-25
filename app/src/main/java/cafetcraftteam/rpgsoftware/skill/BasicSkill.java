@@ -11,7 +11,7 @@ import cafetcraftteam.rpgsoftware.Profile.Primary;
  */
 public class BasicSkill extends Skill {
 
-    public enum BasicSkills {
+    public enum BasicSkillName {
         ANIMAL_CARE("Animal Care", Primary.INT),
         CHARM("Charm", Primary.FEL),
         COMMAND("Command", Primary.FEL),
@@ -36,7 +36,7 @@ public class BasicSkill extends Skill {
         private final String mName;
         private final Primary mCharacteristic;
 
-        BasicSkills(String name, Primary characteristic) {
+        BasicSkillName(String name, Primary characteristic) {
             mName = name;
             mCharacteristic = characteristic;
         }
@@ -54,14 +54,14 @@ public class BasicSkill extends Skill {
     /**
      * Constructor of a basic skill
      *
-     * @param basicSkills    the basic skill wanted, must be not null
+     * @param basicSkillName    the basic skill wanted, must be not null
      * @param level          the level of mastery of this skill, must be not null
      * @param bonus          the bonus on this skill
      */
-    public BasicSkill(@NonNull BasicSkills basicSkills,
+    public BasicSkill(@NonNull BasicSkillName basicSkillName,
                       @NonNull Level level,
                       int bonus) {
-        super(basicSkills.toString(), basicSkills.getCharacteristic(), level, bonus);
+        super(basicSkillName.toString(), basicSkillName.getCharacteristic(), level, bonus);
     }
 
     /**
@@ -82,12 +82,12 @@ public class BasicSkill extends Skill {
     /**
      * Constructor of a basic skill without any bonus
      *
-     * @param basicSkills    the basic skill wanted, must be not null
+     * @param basicSkillName    the basic skill wanted, must be not null
      * @param level          the level of mastery of this skill, must be not null
      */
-    public BasicSkill(@NonNull BasicSkills basicSkills,
+    public BasicSkill(@NonNull BasicSkillName basicSkillName,
                       @NonNull Level level) {
-        super(basicSkills.toString(), basicSkills.getCharacteristic(), level);
+        super(basicSkillName.toString(), basicSkillName.getCharacteristic(), level);
     }
 
     /**
