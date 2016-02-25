@@ -81,7 +81,8 @@ public class CharacterWarhammerTest {
                 mNumberOfSiblings,
                 mBirthplace,
                 mDistinguishingMarks,
-                mProfession
+                mProfession,
+                Profile.ancestorGurdillProfile()
         );
 
         mProtectedParts.put(mBodyPart, mArmourPoint);
@@ -131,7 +132,8 @@ public class CharacterWarhammerTest {
                 mNumberOfSiblings,
                 mBirthplace,
                 mDistinguishingMarks,
-                mProfession
+                mProfession,
+                Profile.ancestorGurdillProfile()
         );
         assertEquals("", nullEyeColour.getEyeColour());
     }
@@ -152,7 +154,8 @@ public class CharacterWarhammerTest {
                 mNumberOfSiblings,
                 mBirthplace,
                 mDistinguishingMarks,
-                mProfession
+                mProfession,
+                Profile.ancestorGurdillProfile()
         );
         assertEquals("", nullHairColour.getHairColour());
     }
@@ -173,7 +176,8 @@ public class CharacterWarhammerTest {
                 mNumberOfSiblings,
                 mBirthplace,
                 mDistinguishingMarks,
-                mProfession
+                mProfession,
+                Profile.ancestorGurdillProfile()
         );
         assertEquals("", nullStarSign.getStarSign());
     }
@@ -194,7 +198,8 @@ public class CharacterWarhammerTest {
                 0,
                 mBirthplace,
                 mDistinguishingMarks,
-                mProfession
+                mProfession,
+                Profile.ancestorGurdillProfile()
         );
         assertEquals(0, zeroNumberOfSiblings.getNumberOfSiblings());
 
@@ -213,7 +218,8 @@ public class CharacterWarhammerTest {
                     -mNumberOfSiblings,
                     mBirthplace,
                     mDistinguishingMarks,
-                    mProfession
+                    mProfession,
+                    Profile.ancestorGurdillProfile()
             );
             fail("A negative number of siblings have not throw an exception");
         } catch (InstantiationException e) {
@@ -237,7 +243,8 @@ public class CharacterWarhammerTest {
                 mNumberOfSiblings,
                 null,
                 mDistinguishingMarks,
-                mProfession
+                mProfession,
+                Profile.ancestorGurdillProfile()
         );
         assertEquals("", nullBirthplace.getBirthplace());
     }
@@ -258,7 +265,8 @@ public class CharacterWarhammerTest {
                 mNumberOfSiblings,
                 mBirthplace,
                 null,
-                mProfession
+                mProfession,
+                Profile.ancestorGurdillProfile()
         );
         assertEquals("", nullDistinguishingMarks.getDistinguishingMarks());
     }
@@ -279,9 +287,36 @@ public class CharacterWarhammerTest {
                 mNumberOfSiblings,
                 mBirthplace,
                 mDistinguishingMarks,
-                null
+                null,
+                Profile.ancestorGurdillProfile()
         );
         assertEquals("", nullProfession.getProfession());
+    }
+
+    @Test
+    public void contractRespectProfile() {
+        // a null profile should throw an exception
+        try {
+            new CharacterWarhammer(
+                    mName,
+                    mRace,
+                    mSex,
+                    mWeight,
+                    mHeight,
+                    mAge,
+                    mEyeColour,
+                    mHairColour,
+                    mStarSign,
+                    mNumberOfSiblings,
+                    mBirthplace,
+                    mDistinguishingMarks,
+                    mProfession,
+                    null
+            );
+            fail("a null profile should throw an exception");
+        } catch (InstantiationException e) {
+            assertEquals("The profile must not be null", e.getMessage());
+        }
     }
 
     // endregion====================================================================================

@@ -90,6 +90,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
      *                            could be null or empty, if null replace by an empty string
      * @param profession          the profession of the character, could null or empty, if null
      *                            replace by an empty string
+     * @param profile             the profile of the character, must be not null
      * @throws InstantiationException
      */
     public CharacterWarhammer(
@@ -105,7 +106,8 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
             int numberOfSiblings,
             @Nullable String birthPlace,
             @Nullable String distinguishingMarks,
-            @Nullable String profession
+            @Nullable String profession,
+            @NonNull Profile profile
     ) throws InstantiationException {
         super(name, race, sex, weight, height, age);
 
@@ -132,6 +134,9 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         if (profession == null) {
             profession = "";
         }
+        if (profile == null) {
+            throw new InstantiationException("The profile must not be null");
+        }
 
         // endregion--------------------------------------------------------------------------------
 
@@ -157,8 +162,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
         mAdvancedSkills = new TreeMap<>();
 
-        //TODO initialize correctly the profile
-        mProfile = Profile.ancestorGurdillProfile();
+        mProfile = profile.deepCopy();
     }
 
 
@@ -614,7 +618,8 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
                     2,
                     "Karak-a-karak",
                     "Dwarf",
-                    "Miner");
+                    "Miner",
+                    Profile.ancestorGurdillProfile());
         } catch (InstantiationException instantiationError) {
             throw new InstantiationError("There is a problem in the constructor of CharacterWarhammer");
         }
