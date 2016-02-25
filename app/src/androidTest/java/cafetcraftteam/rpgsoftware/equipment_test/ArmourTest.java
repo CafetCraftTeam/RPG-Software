@@ -26,15 +26,15 @@ import static junit.framework.Assert.fail;
 @LargeTest
 public class ArmourTest
 {
-    private String mName = "Leather Jerkin";
-    private int mEncumbering = 40;
-    private int mPrice = 100;
-    private Equipment.Quality mQuality = Equipment.Quality.COMMON;
-    private String mDescription = "It's a simple leather jerkin";
+    private final String mName = "Leather Jerkin";
+    private final int mEncumbering = 40;
+    private final int mPrice = 100;
+    private final Equipment.Quality mQuality = Equipment.Quality.COMMON;
+    private final String mDescription = "It's a simple leather jerkin";
 
-    private int mArmourPoint = 1;
-    private BodyPart mBodyPart = BodyPart.TORSO;
-    private Map<BodyPart, Integer> mProtectedParts = new EnumMap<>(BodyPart.class);
+    private final int mArmourPoint = 1;
+    private final BodyPart mBodyPart = BodyPart.TORSO;
+    private final Map<BodyPart, Integer> mProtectedParts = new EnumMap<>(BodyPart.class);
 
     private Armour mArmour;
 

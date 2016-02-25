@@ -16,8 +16,8 @@ import cafetcraftteam.rpgsoftware.R;
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private final LayoutInflater mInflater;
-    private String[] mGroups;
-    private String[][] mChildren;
+    private final String[] mGroups;
+    private final String[][] mChildren;
 
     public ExpandableListAdapter(Context context, String[] groups, String[][] children) {
         mGroups = groups;

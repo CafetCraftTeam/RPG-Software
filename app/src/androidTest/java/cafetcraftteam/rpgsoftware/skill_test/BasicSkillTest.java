@@ -28,7 +28,7 @@ public class BasicSkillTest {
     private final BasicSkill mBasicSkill
             = new BasicSkill(mBasicSkills, mLevel, mBonus);
 
-    private Profile mAncestorGurdillProfile = Profile.ancestorGurdillProfile();
+    private final Profile mAncestorGurdillProfile = Profile.ancestorGurdillProfile();
 
     @Test
     public void creationTest() {

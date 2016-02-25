@@ -40,7 +40,7 @@ public class SkillTest {
         }
 
         @Override
-        public int getSkillValue(Profile characterProfile) {
+        public int getSkillValue(@NonNull Profile characterProfile) {
             return 0;
         }
     }

@@ -7,8 +7,8 @@ import java.util.Random;
  */
 public class Dice
 {
-    private int mInf;
-    private int mMax;
+    private final int mInf;
+    private final int mMax;
 
     public int diceGenerator()
     {

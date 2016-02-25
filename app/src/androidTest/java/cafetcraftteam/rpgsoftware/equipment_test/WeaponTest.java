@@ -20,24 +20,24 @@ import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
 
 /**
- * Created by Gautier on 11/02/2016.
+ * Class that test the Weapon class
  */
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class WeaponTest
 {
-    private String mName = "Bottle";
-    private int mEncumbering = 10;
-    private int mPrice = 100;
-    private Equipment.Quality mQuality = Equipment.Quality.COMMON;
-    private String mDescription = "It's a simple bottle";
+    private final String mName = "Bottle";
+    private final int mEncumbering = 10;
+    private final int mPrice = 100;
+    private final Equipment.Quality mQuality = Equipment.Quality.COMMON;
+    private final String mDescription = "It's a simple bottle";
 
-    private Weapon.Group mGroup = Weapon.Group.TWO_HANDED;
-    private Set<Weapon.Qualities> mQualities = EnumSet.of(Weapon.Qualities.ARMOUR_PIERCING);
+    private final Weapon.Group mGroup = Weapon.Group.TWO_HANDED;
+    private final Set<Weapon.Qualities> mQualities = EnumSet.of(Weapon.Qualities.ARMOUR_PIERCING);
 
-    private Weapon mWeapon = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription, mGroup,
-            mQualities);
+    private final Weapon mWeapon = new Weapon(mName, mEncumbering, mPrice, mQuality, mDescription,
+            mGroup, mQualities);
 
     @Test
     public void creationTest()

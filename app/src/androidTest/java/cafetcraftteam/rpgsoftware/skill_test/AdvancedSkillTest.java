@@ -28,7 +28,7 @@ public class AdvancedSkillTest {
     private final AdvancedSkill mAdvancedSkill
             = new AdvancedSkill(mName, mAssociatedCharacteristic, mLevel, mBonus);
 
-    private Profile mAncestorGurdillProfile = Profile.ancestorGurdillProfile();
+    private final Profile mAncestorGurdillProfile = Profile.ancestorGurdillProfile();
 
     @Test
     public void creationTest() {

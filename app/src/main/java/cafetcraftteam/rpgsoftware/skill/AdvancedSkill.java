@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import cafetcraftteam.rpgsoftware.Profile;
 
 /**
- * Created by Tago on 25/02/2016.
+ * Class that represent the advanced skills of Warhammer
  */
 public class AdvancedSkill extends Skill {
     /**

@@ -36,7 +36,7 @@ public class BasicSkill extends Skill {
         private final String mName;
         private final Primary mCharacteristic;
 
-        private BasicSkills(String name, Primary characteristic) {
+        BasicSkills(String name, Primary characteristic) {
             mName = name;
             mCharacteristic = characteristic;
         }

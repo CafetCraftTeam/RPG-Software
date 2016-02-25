@@ -18,8 +18,8 @@ import static junit.framework.Assert.assertTrue;
 @LargeTest
 public class DiceTest
 {
-    private Dice D6 = new Dice(6);
-    private Dice D100 = new Dice(2, 100);
+    private final Dice D6 = new Dice(6);
+    private final Dice D100 = new Dice(2, 100);
 
     @Before
     public void init()
