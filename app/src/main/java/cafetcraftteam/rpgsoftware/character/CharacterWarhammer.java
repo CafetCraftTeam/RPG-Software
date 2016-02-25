@@ -158,9 +158,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     }
 
 
-    // region GETTER================================================================================
-
-    // region Personal information------------------------------------------------------------------
+    // region Personal information==================================================================
 
     /**
      * Getter of the eyes colour of the character
@@ -230,9 +228,23 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     public String getProfession() {
         return mProfession;
     }
-    // endregion------------------------------------------------------------------------------------
 
-    // region Main Profile--------------------------------------------------------------------------
+    /**
+     * Setter of the profession
+     *
+     * @param profession the profession, could be null or empty, if null it will be replace by an
+     *                   empty string
+     */
+    public void setProfession(@Nullable String profession) {
+        if (profession == null) {
+            profession = "";
+        }
+        mProfession = profession;
+    }
+
+    // endregion====================================================================================
+
+    // region Main Profile==========================================================================
 
     /**
      * The actual number of fortune points of the character
@@ -252,49 +264,6 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         return mActualWounds;
     }
 
-    // endregion------------------------------------------------------------------------------------
-
-    // region Equipment-----------------------------------------------------------------------------
-
-    /**
-     * Getter of the inventory, the part of the equipment of the player that is not actually in use
-     *
-     * @return the inventory of the character
-     */
-    public Map<Equipment, Integer> getInventory() {
-        return mInventory;
-    }
-
-
-    public int getDefensePoints(BodyPart bodyPart) {
-        int defensePoints = 0;
-
-        for (Armour armour : mActualArmour) {
-            defensePoints += armour.getArmourPoint(bodyPart);
-        }
-
-        return defensePoints;
-    }
-
-    // endregion------------------------------------------------------------------------------------
-
-    //endregion=====================================================================================
-
-    //region SETTER=================================================================================
-
-    /**
-     * Setter of the profession
-     *
-     * @param profession the profession, could be null or empty, if null it will be replace by an
-     *                   empty string
-     */
-    public void setProfession(@Nullable String profession) {
-        if (profession == null) {
-            profession = "";
-        }
-        mProfession = profession;
-    }
-
     public void setActualFortune(int ActualFortune) {
         mActualFortune = ActualFortune;
     }
@@ -306,6 +275,15 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     // endregion====================================================================================
 
     // region EQUIPMENT=============================================================================
+
+    /**
+     * Getter of the inventory, the part of the equipment of the player that is not actually in use
+     *
+     * @return the inventory of the character
+     */
+    public Map<Equipment, Integer> getInventory() {
+        return mInventory;
+    }
 
     /**
      * Method that allow to add some equipment to the character
@@ -408,6 +386,10 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         return dropEquipment;
     }
 
+    // endregion====================================================================================
+
+    // region ARMOUR================================================================================
+
     /**
      * Wear the armour given
      *
@@ -502,6 +484,21 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         return isProtected;
     }
 
+    /**
+     * Getter of the number of armour point on the localisation given
+     * @param bodyPart the localisation wanted, must be not null
+     * @return the number of armour point on this body part
+     */
+    public int getArmorPoints(@NonNull BodyPart bodyPart) {
+        int defensePoints = 0;
+
+        for (Armour armour : mActualArmour) {
+            defensePoints += armour.getArmourPoint(bodyPart);
+        }
+
+        return defensePoints;
+    }
+
     //endregion=====================================================================================
 
     // region SKILL=================================================================================
@@ -557,7 +554,10 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
 
     // endregion====================================================================================
 
-
+    /**
+     * Give quickly an CharacterWarhammer
+     * @return the ancestor Gurdill (take care of him)
+     */
     public static CharacterWarhammer ancestorGurdill() {
         CharacterWarhammer characterWarhammer;
         try {

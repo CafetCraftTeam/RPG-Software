@@ -13,12 +13,14 @@ import java.util.Map;
 
 import cafetcraftteam.rpgsoftware.character.Character;
 import cafetcraftteam.rpgsoftware.character.CharacterWarhammer;
+import cafetcraftteam.rpgsoftware.character.CharacterWarhammer.BodyPart;
 import cafetcraftteam.rpgsoftware.character.Hands;
 import cafetcraftteam.rpgsoftware.equipment.Armour;
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertNotSame;
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
 
@@ -55,8 +57,10 @@ public class CharacterWarhammerTest {
     );
 
     private Armour mArmour;
-    private final Map<CharacterWarhammer.BodyPart, Integer> mProtectedParts
-            = new EnumMap<>(CharacterWarhammer.BodyPart.class);
+    private final Map<BodyPart, Integer> mProtectedParts
+            = new EnumMap<>(BodyPart.class);
+    private final BodyPart mBodyPart = BodyPart.LEFT_ARM;
+    private final int mArmourPoint = 1;
 
     @Before
     public void init() throws InstantiationException {
@@ -76,7 +80,7 @@ public class CharacterWarhammerTest {
                 mProfession
         );
 
-        mProtectedParts.put(CharacterWarhammer.BodyPart.LEFT_ARM, 1);
+        mProtectedParts.put(mBodyPart, mArmourPoint);
 
         mArmour = new Armour(
                 "Leather",
@@ -467,6 +471,10 @@ public class CharacterWarhammerTest {
         assertEquals(mEquipment, bothDroppedItem.get(1));
     }
 
+    // endregion====================================================================================
+
+    // region ARMOUR================================================================================
+
     @Test
     public void wearAnArmourTest() {
         // wear an armour for the left arm
@@ -476,10 +484,10 @@ public class CharacterWarhammerTest {
         assertFalse(Pujima.isProtected(mProtectedParts.keySet().iterator().next()));
 
         // wear an armour for the right arm and left leg
-        Map<CharacterWarhammer.BodyPart, Integer> multipleBodyParts =
-                new EnumMap<>(CharacterWarhammer.BodyPart.class);
-        multipleBodyParts.put(CharacterWarhammer.BodyPart.RIGHT_ARM, 1);
-        multipleBodyParts.put(CharacterWarhammer.BodyPart.LEFT_LEG, 1);
+        Map<BodyPart, Integer> multipleBodyParts =
+                new EnumMap<>(BodyPart.class);
+        multipleBodyParts.put(BodyPart.RIGHT_ARM, 1);
+        multipleBodyParts.put(BodyPart.LEFT_LEG, 1);
 
         Armour multipleArmour = new Armour(
                 mArmour.getName(),
@@ -491,10 +499,10 @@ public class CharacterWarhammerTest {
         );
         Pujima.wearAnArmour(multipleArmour);
         assertTrue(Pujima.isProtected(multipleBodyParts.keySet().iterator().next()));
-        assertTrue(Pujima.isProtected(CharacterWarhammer.BodyPart.LEFT_LEG));
+        assertTrue(Pujima.isProtected(BodyPart.LEFT_LEG));
         assertEquals(multipleArmour, Pujima.takeOffArmour(multipleArmour));
         assertFalse(Pujima.isProtected(multipleBodyParts.keySet().iterator().next()));
-        assertFalse(Pujima.isProtected(CharacterWarhammer.BodyPart.LEFT_LEG));
+        assertFalse(Pujima.isProtected(BodyPart.LEFT_LEG));
 
         // wear multiple armour for the right arm and left leg
         Pujima.wearAnArmour(mArmour);
@@ -502,12 +510,12 @@ public class CharacterWarhammerTest {
 
         assertTrue(Pujima.isProtected(mProtectedParts.keySet().iterator().next()));
         assertTrue(Pujima.isProtected(multipleBodyParts.keySet().iterator().next()));
-        assertTrue(Pujima.isProtected(CharacterWarhammer.BodyPart.LEFT_LEG));
+        assertTrue(Pujima.isProtected(BodyPart.LEFT_LEG));
         assertEquals(mArmour, Pujima.takeOffArmour(mArmour));
         assertEquals(multipleArmour, Pujima.takeOffArmour(multipleArmour));
         assertFalse(Pujima.isProtected(mProtectedParts.keySet().iterator().next()));
         assertFalse(Pujima.isProtected(multipleBodyParts.keySet().iterator().next()));
-        assertFalse(Pujima.isProtected(CharacterWarhammer.BodyPart.LEFT_LEG));
+        assertFalse(Pujima.isProtected(BodyPart.LEFT_LEG));
 
         // wear a null armour should throw an exception
         try {
@@ -543,7 +551,7 @@ public class CharacterWarhammerTest {
 
         // take off from a body part
         Pujima.wearAnArmour(mArmour);
-        Pujima.takeOffArmour(CharacterWarhammer.BodyPart.LEFT_ARM);
+        Pujima.takeOffArmour(BodyPart.LEFT_ARM);
 
         // take off a null armour should throw an exception
         try {
@@ -555,7 +563,7 @@ public class CharacterWarhammerTest {
 
         // take off from a null body part should throw an exception
         try {
-            Pujima.takeOffArmour((CharacterWarhammer.BodyPart) null);
+            Pujima.takeOffArmour((BodyPart) null);
             fail("take off a null armour should throw an exception");
         } catch (IllegalArgumentException e) {
             assertEquals("The body part must not be null", e.getMessage());
@@ -571,10 +579,23 @@ public class CharacterWarhammerTest {
 
         // take off with a non protected parts should throw an exception
         try {
-            Pujima.takeOffArmour(CharacterWarhammer.BodyPart.LEFT_ARM);
+            Pujima.takeOffArmour(BodyPart.LEFT_ARM);
         } catch (IllegalStateException e) {
             assertEquals("The body part must be protected", e.getMessage());
         }
+    }
+
+    @Test
+    public void getArmourPointsTest() {
+        Pujima.wearAnArmour(mArmour);
+
+        assertEquals(mArmourPoint, Pujima.getArmorPoints(mBodyPart));
+        assertEquals(0, mArmour.getArmourPoint(BodyPart.HEAD));
+
+        Pujima.takeOffArmour(mArmour);
+
+        assertEquals(0, Pujima.getArmorPoints(mBodyPart));
+        assertEquals(0, Pujima.getArmorPoints(BodyPart.TORSO));
     }
 
     // endregion====================================================================================
