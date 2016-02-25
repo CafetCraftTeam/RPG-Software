@@ -192,6 +192,14 @@ public class Profile {
     public int getFatePoints() {
         return mSecondary.get(Secondary.FP);
     }
+
+    public int getCharacteristic(Primary c) {
+        return mPrimary.get(c);
+    }
+
+    public int getCharacteristic(Secondary c) {
+        return mSecondary.get(c);
+    }
     //endregion=====================================================================================
 
     // region SETTER================================================================================
