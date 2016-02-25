@@ -11,11 +11,11 @@ import cafetcraftteam.rpgsoftware.character.Character;
 public class User
 {
     // the name of the user
-    private String mName;
+    private final String mName;
     // the email of the user
-    private String mEmail;
+    private final String mEmail;
     // store all the characters of this user
-    private Set<Character> mCharacter;
+    private final Set<Character> mCharacter;
     // store all the campaigns where this user is the game master
 
     /**

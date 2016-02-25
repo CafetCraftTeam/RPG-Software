@@ -19,9 +19,9 @@ import static junit.framework.Assert.assertEquals;
 @LargeTest
 public class UserTest
 {
-    private String mName = "Toto";
-    private String mEmail = "toto@plop.fr";
-    private User mUser = new User(mName, mEmail);
+    private final String mName = "Toto";
+    private final String mEmail = "toto@plop.fr";
+    private final User mUser = new User(mName, mEmail);
 
     @Test
     public void creationTest() {

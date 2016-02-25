@@ -17,7 +17,7 @@ public class CharacterActivity extends AppCompatActivity {
 
     private static final String TAG = "CharacterActivity";
 
-    private List<CharSequence> mTitles = new ArrayList<CharSequence>(
+    private final List<CharSequence> mTitles = new ArrayList<CharSequence>(
             Arrays.asList("General", "Inventory", "Skill"));
 
     @Override

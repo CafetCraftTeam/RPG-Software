@@ -12,8 +12,8 @@ import cafetcraftteam.rpgsoftware.R;
 
 public class CharacterSkillFragment extends Fragment {
 
-    View mRootView;
-    ExpandableListView mListView;
+    private View mRootView;
+    private ExpandableListView mListView;
     private String[] mGroups;
     private String[][] mChildren;
 

@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Class that contains all the characteristic of a Warhammer character
  */
-public class Characteristic {
+public class Profile {
     /**
      * Enum containing the abbreviation of the primary profile
      */
@@ -33,7 +33,7 @@ public class Characteristic {
     private final Map<Secondary, Integer> mSecondary;
 
     /**
-     * Constructor of the Characteristic class
+     * Constructor of the Profile class
      *
      * @param weaponSkill    the value of weapon skill, must be strictly positive
      * @param ballisticSkill the value of the ballistic skill, must be strictly positive
@@ -50,20 +50,20 @@ public class Characteristic {
      * @param insanityPoints the number of insanity points, must be positive
      * @param fatePoints     the number of fate points, must be positive
      */
-    public Characteristic(int weaponSkill,
-                          int ballisticSkill,
-                          int strength,
-                          int toughness,
-                          int agility,
-                          int intelligence,
-                          int willPower,
-                          int fellowship,
-                          int attacks,
-                          int wounds,
-                          int movement,
-                          int magic,
-                          int insanityPoints,
-                          int fatePoints) throws InstantiationException {
+    public Profile(int weaponSkill,
+                   int ballisticSkill,
+                   int strength,
+                   int toughness,
+                   int agility,
+                   int intelligence,
+                   int willPower,
+                   int fellowship,
+                   int attacks,
+                   int wounds,
+                   int movement,
+                   int magic,
+                   int insanityPoints,
+                   int fatePoints) throws InstantiationException {
         //region CONTRACT CONTROL-------------------------------------------------------------------
         if (weaponSkill <= 0) {
             throw new InstantiationException("The weapon skill must be strictly positive");
@@ -195,12 +195,12 @@ public class Characteristic {
         return mSecondary.get(Secondary.FP);
     }
 
-    public int getPrimaryCharacteristic(Primary primaryCharacteristic) {
-        return mPrimary.get(primaryCharacteristic);
+    public int getCharacteristic(Primary c) {
+        return mPrimary.get(c);
     }
 
-    public int getSecondaryCharacteristic(Secondary secondaryCharacteristic) {
-        return mSecondary.get(secondaryCharacteristic);
+    public int getCharacteristic(Secondary c) {
+        return mSecondary.get(c);
     }
     //endregion=====================================================================================
 
@@ -319,18 +319,18 @@ public class Characteristic {
     // endregion====================================================================================
 
     @NonNull
-    public static Characteristic ancestorGurdill() {
-        Characteristic ancestorGurdill = null;
+    static public Profile ancestorGurdillProfile() {
+        Profile ancestorGurdillProfile;
         try {
-            ancestorGurdill = new Characteristic(
+            ancestorGurdillProfile = new Profile(
                     45,
-                    25,
-                    50,
+                    30,
                     55,
-                    23,
-                    30,
-                    42,
-                    30,
+                    47,
+                    25,
+                    35,
+                    40,
+                    15,
                     2,
                     18,
                     4,
@@ -340,8 +340,8 @@ public class Characteristic {
             );
         } catch (InstantiationException e) {
             e.printStackTrace();
-            throw new InstantiationError("Error in the constructor of Characteristic");
+            throw new InstantiationError("Error in the Profile constructor");
         }
-        return ancestorGurdill;
+        return ancestorGurdillProfile;
     }
 }
