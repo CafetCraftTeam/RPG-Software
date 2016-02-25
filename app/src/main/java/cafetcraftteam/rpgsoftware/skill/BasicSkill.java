@@ -4,37 +4,75 @@ import android.support.annotation.NonNull;
 
 import cafetcraftteam.rpgsoftware.Profile;
 
-import static cafetcraftteam.rpgsoftware.Profile.Primary;
+import cafetcraftteam.rpgsoftware.Profile.Primary;
 
 /**
  * The basic skill that could be used by everyone at half the value of the characteristic
  */
 public class BasicSkill extends Skill {
+
+    public enum BasicSkills {
+        ANIMAL_CARE("Animal Care", Primary.INT),
+        CHARM("Charm", Primary.FEL),
+        COMMAND("Command", Primary.FEL),
+        CONCEALMENT("Concealment", Primary.AG),
+        CONSUME_ALCOHOL("Consume alcohol", Primary.T),
+        DISGUISE("Disguise", Primary.FEL),
+        DRIVE("Drive", Primary.S),
+        EVALUATE("Evaluate", Primary.INT),
+        GAMBLE("Gamble", Primary.INT),
+        GOSSIP("Gossip", Primary.FEL),
+        HAGGLE("Haggle", Primary.FEL),
+        INTIMIDATE("Intimidate", Primary.S),
+        OUTDOOR_SURVIVAL("Outdoor survival", Primary.INT),
+        PERCEPTION("Perception", Primary.INT),
+        RIDE("Ride", Primary.AG),
+        ROW("Row", Primary.S),
+        SCALE_SHEER_SURFACE("Scale sheer surface", Primary.S),
+        SEARCH("Search", Primary.INT),
+        SILENT_MOVE("Silent move", Primary.AG),
+        SWIM("Swim", Primary.S);
+
+        private final String mName;
+        private final Primary mCharacteristic;
+
+        private BasicSkills(String name, Primary characteristic) {
+            mName = name;
+            mCharacteristic = characteristic;
+        }
+
+        @Override
+        public String toString() {
+            return mName;
+        }
+
+        public Primary getCharacteristic() {
+            return mCharacteristic;
+        }
+    }
+
     /**
      * Constructor of a basic skill
      *
-     * @param name           the name of the skill, must be not null or empty
-     * @param characteristic the characteristic associated to the skill, must be not null
+     * @param basicSkills    the basic skill wanted, must be not null
      * @param level          the level of mastery of this skill, must be not null
      * @param bonus          the bonus on this skill
      */
-    public BasicSkill(@NonNull String name,
-                      @NonNull Primary characteristic,
-                      @NonNull Level level, int bonus) {
-        super(name, characteristic, level, bonus);
+    public BasicSkill(@NonNull BasicSkills basicSkills,
+                      @NonNull Level level,
+                      int bonus) {
+        super(basicSkills.toString(), basicSkills.getCharacteristic(), level, bonus);
     }
 
     /**
      * Constructor of a basic skill without any bonus
      *
-     * @param name           the name of the skill, must be not null or empty
-     * @param characteristic the characteristic associated to the skill, must be not null
+     * @param basicSkills    the basic skill wanted, must be not null
      * @param level          the level of mastery of this skill, must be not null
      */
-    public BasicSkill(@NonNull String name,
-                      @NonNull Primary characteristic,
+    public BasicSkill(@NonNull BasicSkills basicSkills,
                       @NonNull Level level) {
-        super(name, characteristic, level);
+        super(basicSkills.toString(), basicSkills.getCharacteristic(), level);
     }
 
     /**
