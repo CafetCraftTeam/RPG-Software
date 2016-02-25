@@ -76,23 +76,56 @@ public class Skill {
         return CharacterWarhammer.getPrimaryProfile(mChar)*(1+0.1*mLevel) + mBonus;
     }
     */
+
+    /**
+     * Getter of the name of the skill
+     *
+     * @return the name of the skill as a string, always not null
+     */
+    @NonNull
     public String getName() {
         return mName;
     }
 
+    /**
+     * Getter of the characteristic associated with this skill
+     *
+     * @return the characteristic associated as a Primary enum, always not null
+     */
+    @NonNull
     public Primary getAssociatedCharacteristic() {
         return mAssociatedCharacteristic;
     }
 
+    /**
+     * Getter of the level of mastery of this skill
+     *
+     * @return the level of mastery as a Level enum, always not null
+     */
+    @NonNull
     public Level getLevel() {
         return mLevel;
     }
 
+    /**
+     * Getter of the bonus for this skill
+     *
+     * @return the bonus as a positive integer
+     */
     public int getBonus() {
         return mBonus;
     }
 
-    public void setBonus(int Bonus) {
-        mBonus = Bonus;
+    /**
+     * Setter of the bonus for this skill
+     *
+     * @param bonus the bonus for this skill, must be positive
+     */
+    public void setBonus(int bonus) {
+        if (bonus < 0) {
+            throw new IllegalArgumentException("The bonus must be positive");
+        }
+
+        mBonus = bonus;
     }
 }

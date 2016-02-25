@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import static cafetcraftteam.rpgsoftware.Characteristic.Primary;
 import static cafetcraftteam.rpgsoftware.Skill.Level;
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.fail;
 
 /**
  * Class that test the skill
@@ -42,6 +43,7 @@ public class SkillTest {
         // give a null name should throw an exception
         try {
             new Skill(null, mAssociatedCharacteristic, mLevel, mBonus);
+            fail("give a null name should throw an exception");
         } catch (IllegalArgumentException e) {
             assertEquals("The name must be not null or empty", e.getMessage());
         }
@@ -49,6 +51,7 @@ public class SkillTest {
         // give an empty name should throw an exception
         try {
             new Skill("", mAssociatedCharacteristic, mLevel, mBonus);
+            fail("give an empty name should throw an exception");
         } catch (IllegalArgumentException e) {
             assertEquals("The name must be not null or empty", e.getMessage());
         }
@@ -59,6 +62,7 @@ public class SkillTest {
         // give a null characteristic should throw an exception
         try {
             new Skill(mName, null, mLevel);
+            fail("give a null characteristic should throw an exception");
         } catch (IllegalArgumentException e) {
             assertEquals("The characteristic must not be null", e.getMessage());
         }
@@ -69,6 +73,7 @@ public class SkillTest {
         // give a null level should throw an exception
         try {
             new Skill(mName, mAssociatedCharacteristic, null);
+            fail("give a null level should throw an exception");
         } catch (IllegalArgumentException e) {
             assertEquals("The level of mastery of the skill must not be null", e.getMessage());
         }
@@ -79,6 +84,7 @@ public class SkillTest {
         // give a negative bonus should throw an exception
         try {
             new Skill(mName, mAssociatedCharacteristic, mLevel, -mBonus);
+            fail("give a negative bonus should throw an exception");
         } catch (IllegalArgumentException e) {
             assertEquals("The bonus must be positive", e.getMessage());
         }
@@ -90,8 +96,17 @@ public class SkillTest {
 
     @Test
     public void setBonusTest() {
+        // set a bonus
         mSkill.setBonus(10);
 
         assertEquals(10, mSkill.getBonus());
+
+        // set a negative bonus should throw an exception
+        try {
+            mSkill.setBonus(-mBonus);
+            fail("set a negative bonus should throw an exception");
+        } catch (IllegalArgumentException e) {
+            assertEquals("The bonus must be positive", e.getMessage());
+        }
     }
 }
