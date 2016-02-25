@@ -65,6 +65,21 @@ public class BasicSkill extends Skill {
     }
 
     /**
+     * Private constructor of a skill used for make a copy
+     *
+     * @param name           the name of the skill, must be not null or empty
+     * @param characteristic the characteristic associated to the skill, must be not null
+     * @param level          the level of mastery of this skill, must be not null
+     * @param bonus          the bonus on this skill
+     */
+    private BasicSkill(@NonNull String name,
+                         @NonNull Profile.Primary characteristic,
+                         @NonNull Level level,
+                         int bonus) {
+        super(name, characteristic, level, bonus);
+    }
+
+    /**
      * Constructor of a basic skill without any bonus
      *
      * @param basicSkills    the basic skill wanted, must be not null
@@ -94,5 +109,10 @@ public class BasicSkill extends Skill {
             return characterProfile.getCharacteristic(getAssociatedCharacteristic())
                     + 10 * (getLevel().ordinal() - 1) + getBonus();
         }
+    }
+
+    @Override
+    public BasicSkill deepCopy() {
+        return new BasicSkill(getName(), getAssociatedCharacteristic(), getLevel(), getBonus());
     }
 }

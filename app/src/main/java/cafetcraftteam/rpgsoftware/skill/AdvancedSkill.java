@@ -16,7 +16,10 @@ public class AdvancedSkill extends Skill {
      * @param level          the level of mastery of this skill, must be not null
      * @param bonus          the bonus on this skill
      */
-    public AdvancedSkill(@NonNull String name, @NonNull Profile.Primary characteristic, @NonNull Level level, int bonus) {
+    public AdvancedSkill(@NonNull String name,
+                         @NonNull Profile.Primary characteristic,
+                         @NonNull Level level,
+                         int bonus) {
         super(name, characteristic, level, bonus);
     }
 
@@ -27,7 +30,9 @@ public class AdvancedSkill extends Skill {
      * @param characteristic the characteristic associated to the skill, must be not null
      * @param level          the level of mastery of this skill, must be not null
      */
-    public AdvancedSkill(@NonNull String name, @NonNull Profile.Primary characteristic, @NonNull Level level) {
+    public AdvancedSkill(@NonNull String name,
+                         @NonNull Profile.Primary characteristic,
+                         @NonNull Level level) {
         super(name, characteristic, level);
     }
 
@@ -50,5 +55,10 @@ public class AdvancedSkill extends Skill {
             return characterProfile.getCharacteristic(getAssociatedCharacteristic())
                     + 10 * (getLevel().ordinal() - 1) + getBonus();
         }
+    }
+
+    @Override
+    public AdvancedSkill deepCopy() {
+        return new AdvancedSkill(getName(), getAssociatedCharacteristic(), getLevel(), getBonus());
     }
 }

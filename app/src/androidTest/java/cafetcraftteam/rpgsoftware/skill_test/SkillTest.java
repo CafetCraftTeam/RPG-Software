@@ -46,6 +46,11 @@ public class SkillTest {
         public int getSkillValue(@NonNull Profile characterProfile) {
             return 0;
         }
+
+        @Override
+        public Skill deepCopy() {
+            return null;
+        }
     }
 
     // endregion====================================================================================

@@ -163,7 +163,7 @@ public abstract class Skill {
      * Method that improve the level of mastery of the skill
      */
     public void improve() {
-        mLevel.improve();
+        mLevel = mLevel.improve();
     }
 
     /**
@@ -210,4 +210,10 @@ public abstract class Skill {
                 .append(mAssociatedCharacteristic)
                 .hashCode();
     }
+
+    /**
+     * Return a deep copy of the actual object
+     * @return a deep copy of the actual object
+     */
+    public abstract Skill deepCopy();
 }
