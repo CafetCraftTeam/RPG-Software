@@ -318,6 +318,37 @@ public class Profile {
     }
     // endregion====================================================================================
 
+    /**
+     * Make a deep copy of the profile
+     * @return a deep copy of the profile, always not null
+     */
+    @NonNull
+    public Profile deepCopy() {
+        Profile deepCopy;
+        try {
+            deepCopy = new Profile(
+                    getWeaponSkill(),
+                    getBallisticSkill(),
+                    getStrength(),
+                    getToughness(),
+                    getAgility(),
+                    getIntelligence(),
+                    getWillPower(),
+                    getFellowship(),
+                    getAttacks(),
+                    getWounds(),
+                    getMovement(),
+                    getMagic(),
+                    getInsanityPoints(),
+                    getFatePoints()
+            );
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+            throw new InstantiationError("There is a problem in the Profile constructor");
+        }
+        return deepCopy;
+    }
+
     @NonNull
     static public Profile ancestorGurdillProfile() {
         Profile ancestorGurdillProfile;

@@ -1176,4 +1176,20 @@ public class ProfileTest {
         mProfile.setFatePoints(mFatePoints);
     }
     // endregion====================================================================================
+
+    @Test
+    public void deepCopyTest() {
+        Profile same = mProfile;
+        Profile deepCopy = mProfile.deepCopy();
+
+        assertEquals(mAgility, mProfile.getAgility());
+        assertEquals(mAgility, same.getAgility());
+        assertEquals(mAgility, deepCopy.getAgility());
+
+        mProfile.setAgility(mAgility + 20);
+
+        assertEquals(mAgility + 20, mProfile.getAgility());
+        assertEquals(mAgility + 20, same.getAgility());
+        assertEquals(mAgility, deepCopy.getAgility());
+    }
 }
