@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Class that contains all the characteristic of a Warhammer character
  */
-public class Characteristic {
+public class Profile {
     /**
      * Enum containing the abbreviation of the primary profile
      */
@@ -31,7 +31,7 @@ public class Characteristic {
     private final Map<Secondary, Integer> mSecondary;
 
     /**
-     * Constructor of the Characteristic class
+     * Constructor of the Profile class
      *
      * @param weaponSkill    the value of weapon skill, must be strictly positive
      * @param ballisticSkill the value of the ballistic skill, must be strictly positive
@@ -48,20 +48,20 @@ public class Characteristic {
      * @param insanityPoints the number of insanity points, must be positive
      * @param fatePoints     the number of fate points, must be positive
      */
-    public Characteristic(int weaponSkill,
-                          int ballisticSkill,
-                          int strength,
-                          int toughness,
-                          int agility,
-                          int intelligence,
-                          int willPower,
-                          int fellowship,
-                          int attacks,
-                          int wounds,
-                          int movement,
-                          int magic,
-                          int insanityPoints,
-                          int fatePoints) throws InstantiationException {
+    public Profile(int weaponSkill,
+                   int ballisticSkill,
+                   int strength,
+                   int toughness,
+                   int agility,
+                   int intelligence,
+                   int willPower,
+                   int fellowship,
+                   int attacks,
+                   int wounds,
+                   int movement,
+                   int magic,
+                   int insanityPoints,
+                   int fatePoints) throws InstantiationException {
         //region CONTRACT CONTROL-------------------------------------------------------------------
         if (weaponSkill <= 0) {
             throw new InstantiationException("The weapon skill must be strictly positive");

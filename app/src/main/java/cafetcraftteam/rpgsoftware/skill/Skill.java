@@ -2,9 +2,9 @@ package cafetcraftteam.rpgsoftware.skill;
 
 import android.support.annotation.NonNull;
 
-import cafetcraftteam.rpgsoftware.CharacterWarhammer;
+import cafetcraftteam.rpgsoftware.Profile;
 
-import static cafetcraftteam.rpgsoftware.Characteristic.Primary;
+import static cafetcraftteam.rpgsoftware.Profile.Primary;
 
 /**
  * Class that represent a Warhammer skill
@@ -110,7 +110,7 @@ public abstract class Skill {
         return mBonus;
     }
 
-    public abstract int getSkillValue(CharacterWarhammer characterCharacteristic);
+    public abstract int getSkillValue(Profile characterProfile);
 
     // endregion====================================================================================
 

@@ -2,9 +2,9 @@ package cafetcraftteam.rpgsoftware.skill;
 
 import android.support.annotation.NonNull;
 
-import cafetcraftteam.rpgsoftware.CharacterWarhammer;
+import cafetcraftteam.rpgsoftware.Profile;
 
-import static cafetcraftteam.rpgsoftware.Characteristic.Primary;
+import static cafetcraftteam.rpgsoftware.Profile.Primary;
 
 /**
  * The basic skill that could be used by everyone at half the value of the characteristic
@@ -23,13 +23,13 @@ public class BasicSkill extends Skill {
     }
 
     @Override
-    public int getSkillValue(CharacterWarhammer character) {
+    public int getSkillValue(Profile characterProfile) {
         if (getLevel() == Level.NONE) {
-            return character.getPrimaryProfile(getAssociatedCharacteristic())/2;
+            return 0;// characterProfile.getPrimaryProfile(getAssociatedCharacteristic())/2;
         }
         else {
-            return character.getPrimaryProfile(getAssociatedCharacteristic())
-                    + 10*(getLevel().ordinal() -1) + getBonus();
+            return 0;//characterProfile.getPrimaryProfile(getAssociatedCharacteristic())
+                    //+ 10*(getLevel().ordinal() -1) + getBonus();
         }
     }
 }

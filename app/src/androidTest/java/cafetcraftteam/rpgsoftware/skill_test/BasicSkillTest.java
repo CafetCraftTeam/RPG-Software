@@ -10,7 +10,7 @@ import cafetcraftteam.rpgsoftware.CharacterWarhammer;
 import cafetcraftteam.rpgsoftware.skill.BasicSkill;
 import cafetcraftteam.rpgsoftware.skill.Skill.Level;
 
-import static cafetcraftteam.rpgsoftware.Characteristic.Primary;
+import static cafetcraftteam.rpgsoftware.Profile.Primary;
 import static junit.framework.Assert.assertEquals;
 
 /**
