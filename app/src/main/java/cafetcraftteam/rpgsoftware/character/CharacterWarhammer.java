@@ -13,6 +13,9 @@ import cafetcraftteam.rpgsoftware.Profile.Primary;
 import cafetcraftteam.rpgsoftware.Profile.Secondary;
 import cafetcraftteam.rpgsoftware.equipment.Armour;
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
+import cafetcraftteam.rpgsoftware.skill.AdvancedSkill;
+import cafetcraftteam.rpgsoftware.skill.BasicSkill;
+import cafetcraftteam.rpgsoftware.skill.Skill;
 
 /**
  * Class that contains all the information of a Warhammer character
@@ -61,8 +64,8 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     /**
      * Abilities and Talents
      */
-    private HashMap<String, String> mBasicSkills;
-    private HashMap<String, String> mAdvanSkills;
+    private List<BasicSkill> mBasicSkills;
+    private List<AdvancedSkill> mAdvancedSkills;
 
     /**
      * Constructor of a Warhammer character, the character have nothing in his hand, inventory and
@@ -147,29 +150,12 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         mInventory = new HashMap<>(); // nothing in the inventory
 
         // initialization of the skills
-        mBasicSkills = new HashMap<>();
-        mAdvanSkills = new HashMap<>();
+        mBasicSkills = new ArrayList<>();
+        for (BasicSkill.BasicSkills basicSkills : BasicSkill.BasicSkills.values()) {
+            mBasicSkills.add(new BasicSkill(basicSkills, Skill.Level.NONE));
+        }
 
-        mBasicSkills.put("Animal Care", "Skill");
-        mBasicSkills.put("Charm", "Skill");
-        mBasicSkills.put("Command", "Skill");
-        mBasicSkills.put("Concealment", "Skill");
-        mBasicSkills.put("Consume Alcohol", "Skill");
-        mBasicSkills.put("Disguise", "Skill");
-        mBasicSkills.put("Drive", "Skill");
-        mBasicSkills.put("Evaluate", "Skill");
-        mBasicSkills.put("Gamble", "Skill");
-        mBasicSkills.put("Gossip", "Skill");
-        mBasicSkills.put("Haggle", "Skill");
-        mBasicSkills.put("Intimidate", "Skill");
-        mBasicSkills.put("Outdoor Survival", "Skill");
-        mBasicSkills.put("Perception", "Skill");
-        mBasicSkills.put("Ride", "Skill");
-        mBasicSkills.put("Row", "Skill");
-        mBasicSkills.put("Scale Sheer Surface", "Skill");
-        mBasicSkills.put("Search", "Skill");
-        mBasicSkills.put("Silent Move", "Skill");
-        mBasicSkills.put("Swim", "Skill");
+        mAdvancedSkills = new ArrayList<>();
     }
 
 
@@ -524,76 +510,6 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         return defensePoints;
     }
 
-    public void setBasicSkill(String Skillname, String Skill) throws IllegalAccessException {
-        switch (Skillname) {
-            case "Animal Care":
-                mBasicSkills.put("Animal Care", Skill);
-                break;
-            case "Charm":
-                mBasicSkills.put("Charm", Skill);
-                break;
-            case "Command":
-                mBasicSkills.put("Command", Skill);
-                break;
-            case "Concealment":
-                mBasicSkills.put("Concealment", Skill);
-                break;
-            case "Consume Alcohol":
-                mBasicSkills.put("Consume Alcohol", Skill);
-                break;
-            case "Disguise":
-                mBasicSkills.put("Disguise", Skill);
-                break;
-            case "Drive":
-                mBasicSkills.put("Drive", Skill);
-                break;
-            case "Evaluate":
-                mBasicSkills.put("Evaluate", Skill);
-                break;
-            case "Gamble":
-                mBasicSkills.put("Gamble", Skill);
-                break;
-            case "Gossip":
-                mBasicSkills.put("Gossip", Skill);
-                break;
-            case "Haggle":
-                mBasicSkills.put("Haggle", Skill);
-                break;
-            case "Intimidate":
-                mBasicSkills.put("Intimidate", Skill);
-                break;
-            case "Outdoor Survival":
-                mBasicSkills.put("Outdoor Survival", Skill);
-                break;
-            case "Perception":
-                mBasicSkills.put("Perception", Skill);
-                break;
-            case "Ride":
-                mBasicSkills.put("Ride", Skill);
-                break;
-            case "Row":
-                mBasicSkills.put("Row", Skill);
-                break;
-            case "Scale Sheer Surface":
-                mBasicSkills.put("Scale Sheer Surface", Skill);
-                break;
-            case "Search":
-                mBasicSkills.put("Search", Skill);
-                break;
-            case "Silent Move":
-                mBasicSkills.put("Silent Move", Skill);
-                break;
-            case "Swim":
-                mBasicSkills.put("Swim", Skill);
-                break;
-            default:
-                throw new IllegalArgumentException("No Skill is called like " + Skillname);
-        }
-    }
-
-    public void setAdvanSkills(String Skillname, String Skill) {
-        this.mAdvanSkills.put(Skillname, Skill);
-    }
     //endregion=====================================================================================
 
     public static CharacterWarhammer ancestorGurdill() {
