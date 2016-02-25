@@ -20,27 +20,27 @@ import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
 
 /**
- * Created by Gautier on 11/02/2016.
+ * Class that test the MissileWeapon class
  */
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class MissilesWeaponTest
 {
-    private String mName = "Bottle";
-    private int mEncumbering = 10;
-    private int mPrice = 100;
-    private Equipment.Quality mQuality = Equipment.Quality.COMMON;
-    private String mDescription = "It's a simple bottle";
-    private Weapon.Group mGroup = Weapon.Group.LONGBOW;
-    private Set<Weapon.Qualities> mQualities = EnumSet.of(Weapon.Qualities.DEFENSIVE);
+    private final String mName = "Bottle";
+    private final int mEncumbering = 10;
+    private final int mPrice = 100;
+    private final Equipment.Quality mQuality = Equipment.Quality.COMMON;
+    private final String mDescription = "It's a simple bottle";
+    private final Weapon.Group mGroup = Weapon.Group.LONGBOW;
+    private final Set<Weapon.Qualities> mQualities = EnumSet.of(Weapon.Qualities.DEFENSIVE);
 
-    private int mShortRange = 24;
-    private int mLongRange = 48;
-    private double mReload = 1;
+    private final int mShortRange = 24;
+    private final int mLongRange = 48;
+    private final double mReload = 1;
 
-    private MissilesWeapon mMissilesWeapon = new MissilesWeapon(mName, mEncumbering, mPrice, mQuality,
-            mDescription, mGroup, mQualities, mShortRange, mLongRange, mReload);
+    private final MissilesWeapon mMissilesWeapon = new MissilesWeapon(mName, mEncumbering, mPrice,
+            mQuality, mDescription, mGroup, mQualities, mShortRange, mLongRange, mReload);
 
     @Test
     public void creationTest()

@@ -1,12 +1,14 @@
 package cafetcraftteam.rpgsoftware;
 
+import android.support.annotation.NonNull;
+
 import java.util.EnumMap;
 import java.util.Map;
 
 /**
  * Class that contains all the characteristic of a Warhammer character
  */
-public class Characteristic {
+public class Profile {
     /**
      * Enum containing the abbreviation of the primary profile
      */
@@ -31,7 +33,7 @@ public class Characteristic {
     private final Map<Secondary, Integer> mSecondary;
 
     /**
-     * Constructor of the Characteristic class
+     * Constructor of the Profile class
      *
      * @param weaponSkill    the value of weapon skill, must be strictly positive
      * @param ballisticSkill the value of the ballistic skill, must be strictly positive
@@ -48,20 +50,20 @@ public class Characteristic {
      * @param insanityPoints the number of insanity points, must be positive
      * @param fatePoints     the number of fate points, must be positive
      */
-    public Characteristic(int weaponSkill,
-                          int ballisticSkill,
-                          int strength,
-                          int toughness,
-                          int agility,
-                          int intelligence,
-                          int willPower,
-                          int fellowship,
-                          int attacks,
-                          int wounds,
-                          int movement,
-                          int magic,
-                          int insanityPoints,
-                          int fatePoints) throws InstantiationException {
+    public Profile(int weaponSkill,
+                   int ballisticSkill,
+                   int strength,
+                   int toughness,
+                   int agility,
+                   int intelligence,
+                   int willPower,
+                   int fellowship,
+                   int attacks,
+                   int wounds,
+                   int movement,
+                   int magic,
+                   int insanityPoints,
+                   int fatePoints) throws InstantiationException {
         //region CONTRACT CONTROL-------------------------------------------------------------------
         if (weaponSkill <= 0) {
             throw new InstantiationException("The weapon skill must be strictly positive");
@@ -192,6 +194,14 @@ public class Characteristic {
     public int getFatePoints() {
         return mSecondary.get(Secondary.FP);
     }
+
+    public int getCharacteristic(Primary c) {
+        return mPrimary.get(c);
+    }
+
+    public int getCharacteristic(Secondary c) {
+        return mSecondary.get(c);
+    }
     //endregion=====================================================================================
 
     // region SETTER================================================================================
@@ -307,4 +317,31 @@ public class Characteristic {
         mSecondary.put(Secondary.FP, fatePoints);
     }
     // endregion====================================================================================
+
+    @NonNull
+    static public Profile ancestorGurdillProfile() {
+        Profile ancestorGurdillProfile;
+        try {
+            ancestorGurdillProfile = new Profile(
+                    45,
+                    30,
+                    55,
+                    47,
+                    25,
+                    35,
+                    40,
+                    15,
+                    2,
+                    18,
+                    4,
+                    0,
+                    3,
+                    0
+            );
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+            throw new InstantiationError("Error in the Profile constructor");
+        }
+        return ancestorGurdillProfile;
+    }
 }

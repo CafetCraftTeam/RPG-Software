@@ -14,7 +14,7 @@ import java.util.List;
  * Fragment page adapter that holds the creation and management of the 3 main tabs
  */
 public class ViewPageAdapter extends FragmentPagerAdapter {
-    private List<CharSequence> mTitles; // This will Store the Titles of the Tabs
+    private final List<CharSequence> mTitles; // This will Store the Titles of the Tabs
 
     // Build a Constructor and assign the passed Values to appropriate values in the class
     public ViewPageAdapter(FragmentManager fragmentManager, List<CharSequence> titles) {
