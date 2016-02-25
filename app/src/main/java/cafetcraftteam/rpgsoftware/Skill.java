@@ -1,15 +1,72 @@
 package cafetcraftteam.rpgsoftware;
 
+import android.support.annotation.NonNull;
+
+import static cafetcraftteam.rpgsoftware.Characteristic.Primary;
+
 /**
- * Created by defig on 11.02.2016.
+ * Class that represent a Warhammer skill
  */
 public class Skill {
 
-    private String mName;
-    //Verifier le type enum créé par Christoph dans CharacterWarhammer
-    private Characteristic.Primary mChar;
-    private int mLevel;
+    /**
+     * Level of mastery of a skill
+     */
+    public enum Level {
+        NONE,
+        ACQUIRE,
+        ADVANCE,
+        MASTER
+    }
+
+    private String mName; // the name of the skill
+    private Primary mAssociatedCharacteristic; // the characteristic from which the skill depends
+    private Level mLevel; //
     private int mBonus;
+
+    /**
+     * Constructor of a skill
+     *
+     * @param name           the name of the skill, must be not null or empty
+     * @param characteristic the characteristic associated to the skill, must be not null
+     * @param level          the level of mastery of this skill, must be not null
+     * @param bonus          the bonus on this skill
+     */
+    public Skill(@NonNull String name,
+                 @NonNull Primary characteristic,
+                 @NonNull Level level,
+                 int bonus) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("The name must be not null or empty");
+        }
+        if (characteristic == null) {
+            throw new IllegalArgumentException("The characteristic must not be null");
+        }
+        if (level == null) {
+            throw new IllegalArgumentException("The level of mastery of the skill must not be null");
+        }
+        if (bonus < 0) {
+            throw new IllegalArgumentException("The bonus must be positive");
+        }
+
+        mName = name;
+        mAssociatedCharacteristic = characteristic;
+        mLevel = level;
+        mBonus = bonus;
+    }
+
+    /**
+     * Constructor of a skill without any bonus
+     *
+     * @param name           the name of the skill, must be not null or empty
+     * @param characteristic the characteristic associated to the skill, must be not null
+     * @param level          the level of mastery of this skill, must be not null
+     */
+    public Skill(@NonNull String name,
+                 @NonNull Primary characteristic,
+                 @NonNull Level level) {
+        this(name, characteristic, level, 0);
+    }
 
     /*
     //Attendre révision de la classe characteristic
@@ -22,12 +79,12 @@ public class Skill {
     public String getName() {
         return mName;
     }
-    //Verifier le type de retour
-    public Characteristic.Primary getChar() {
-        return mChar;
+
+    public Primary getAssociatedCharacteritic() {
+        return mAssociatedCharacteristic;
     }
 
-    public int getLevel() {
+    public Level getLevel() {
         return mLevel;
     }
 
@@ -35,31 +92,7 @@ public class Skill {
         return mBonus;
     }
 
-    public void setLevel(int Level) {
-        mLevel = Level;
-    }
-
     public void setBonus(int Bonus) {
-        mBonus = Bonus;
-    }
-
-    //Changer le type de Char par le enum créé dans Charactere Warhamer
-    public Skill(String Name, Characteristic.Primary Charact, int Level, int Bonus) throws Exception {
-        //Verifier la longueur max d'un nom
-        if(Name.length() > 12 || Name.length() < 1) {
-            throw new Exception("Le nom est trop long ou trop court");
-        }
-        else if(Level > 2 || Level < 0) {
-            throw new Exception("Le niveau de compétence est trop faible ou trop fort");
-        }
-        //Verifier la valeur max du bonus
-        else if(Bonus > 5 || Level < 0) {
-            throw new Exception("Le niveau de bonus est trop faible ou trop fort");
-        }
-
-        mName = Name;
-        mChar = Charact;
-        mLevel = Level;
         mBonus = Bonus;
     }
 }
