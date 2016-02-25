@@ -110,6 +110,11 @@ public abstract class Skill {
         return mBonus;
     }
 
+    /**
+     * Getter of the value of the skill with the actual bonus and the given profile
+     * @param characterProfile the profile that use the skill
+     * @return the value as a positive integer
+     */
     public abstract int getSkillValue(Profile characterProfile);
 
     // endregion====================================================================================
