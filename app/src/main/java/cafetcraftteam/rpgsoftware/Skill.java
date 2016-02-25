@@ -21,8 +21,8 @@ public class Skill {
 
     private String mName; // the name of the skill
     private Primary mAssociatedCharacteristic; // the characteristic from which the skill depends
-    private Level mLevel; //
-    private int mBonus;
+    private Level mLevel; //the level of mastery of the skill
+    private int mBonus; // the bonus applied to this skill
 
     /**
      * Constructor of a skill
@@ -80,7 +80,7 @@ public class Skill {
         return mName;
     }
 
-    public Primary getAssociatedCharacteritic() {
+    public Primary getAssociatedCharacteristic() {
         return mAssociatedCharacteristic;
     }
 
