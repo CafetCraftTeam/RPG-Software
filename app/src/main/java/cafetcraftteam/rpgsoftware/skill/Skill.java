@@ -2,6 +2,9 @@ package cafetcraftteam.rpgsoftware.skill;
 
 import android.support.annotation.NonNull;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import cafetcraftteam.rpgsoftware.Profile;
 
 import static cafetcraftteam.rpgsoftware.Profile.Primary;
@@ -161,5 +164,50 @@ public abstract class Skill {
      */
     public void improve() {
         mLevel.improve();
+    }
+
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     *
+     * @param object the reference object with which to compare.
+     * @return true if this object is the same as the obj argument; false otherwise.
+     */
+    @Override
+    public boolean equals(Object object) {
+        if (object == null)
+        {
+            return false;
+        }
+
+        if (object == this)
+        {
+            return true;
+        }
+
+        // usage of instanceof for consistency with inheritance
+        if (!(object instanceof Skill))
+        {
+            return false;
+        }
+
+        Skill otherSkill = (Skill) object;
+
+        return new EqualsBuilder()
+                .append(mName, otherSkill.mName)
+                .append(mAssociatedCharacteristic, otherSkill.mAssociatedCharacteristic)
+                .isEquals();
+    }
+
+    /**
+     * Returns a hash code value for the object.
+     *
+     * @return a hash code value for this object.
+     */
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(397, 181)
+                .append(mName)
+                .append(mAssociatedCharacteristic)
+                .hashCode();
     }
 }
