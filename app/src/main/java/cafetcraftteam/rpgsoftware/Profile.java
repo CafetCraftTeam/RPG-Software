@@ -1,5 +1,7 @@
 package cafetcraftteam.rpgsoftware;
 
+import android.support.annotation.NonNull;
+
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -315,4 +317,31 @@ public class Profile {
         mSecondary.put(Secondary.FP, fatePoints);
     }
     // endregion====================================================================================
+
+    @NonNull
+    static public Profile ancestorGurdillProfile() {
+        Profile ancestorGurdillProfile;
+        try {
+            ancestorGurdillProfile = new Profile(
+                    45,
+                    30,
+                    55,
+                    47,
+                    25,
+                    35,
+                    40,
+                    15,
+                    2,
+                    18,
+                    4,
+                    0,
+                    3,
+                    0
+            );
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+            throw new InstantiationError("Error in the Profile constructor");
+        }
+        return ancestorGurdillProfile;
+    }
 }

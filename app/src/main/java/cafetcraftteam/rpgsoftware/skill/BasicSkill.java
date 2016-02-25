@@ -25,11 +25,10 @@ public class BasicSkill extends Skill {
     @Override
     public int getSkillValue(Profile characterProfile) {
         if (getLevel() == Level.NONE) {
-            return 0;// characterProfile.getPrimaryProfile(getAssociatedCharacteristic())/2;
-        }
-        else {
-            return 0;//characterProfile.getPrimaryProfile(getAssociatedCharacteristic())
-                    //+ 10*(getLevel().ordinal() -1) + getBonus();
+            return characterProfile.getCharacteristic(getAssociatedCharacteristic()) / 2;
+        } else {
+            return characterProfile.getCharacteristic(getAssociatedCharacteristic())
+                    + 10 * (getLevel().ordinal() - 1) + getBonus();
         }
     }
 }
