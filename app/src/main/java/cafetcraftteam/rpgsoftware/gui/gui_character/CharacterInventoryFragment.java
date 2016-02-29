@@ -1,8 +1,8 @@
 package cafetcraftteam.rpgsoftware.gui.gui_character;
 
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -21,12 +21,11 @@ public class CharacterInventoryFragment extends ListFragment {
         super.onCreate(savedInstanceState);
 
         // initialize the items list
-        mItems = new ArrayList<InventoryItem>();
-        Resources resources = getResources();
+        mItems = new ArrayList<>();
 
-        mItems.add(new InventoryItem(this.getResources().getDrawable(R.drawable.weapon), "title", "description"));
-        mItems.add(new InventoryItem(this.getResources().getDrawable(R.drawable.armor), "title", "description"));
-        mItems.add(new InventoryItem(this.getResources().getDrawable(R.drawable.equipment), "title", "description"));
+        mItems.add(new InventoryItem(ContextCompat.getDrawable(getActivity(), R.drawable.weapon), "title", "description"));
+        mItems.add(new InventoryItem(ContextCompat.getDrawable(getActivity(), R.drawable.armor), "title", "description"));
+        mItems.add(new InventoryItem(ContextCompat.getDrawable(getActivity(), R.drawable.equipment), "title", "description"));
 
 
         // initialize and set the list adapter
