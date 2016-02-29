@@ -17,7 +17,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Création de perso"
+        android:text="Affichage de perso"
         android:id="@+id/button_perso"
         android:layout_marginTop="83dp"
         android:layout_below="@+id/button_des"
