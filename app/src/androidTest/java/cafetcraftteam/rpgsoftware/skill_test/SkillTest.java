@@ -13,6 +13,9 @@ import cafetcraftteam.rpgsoftware.skill.Skill;
 import static cafetcraftteam.rpgsoftware.Profile.Primary;
 import static cafetcraftteam.rpgsoftware.skill.Skill.Level;
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertNotSame;
+import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
 
 /**
@@ -42,6 +45,11 @@ public class SkillTest {
         @Override
         public int getSkillValue(@NonNull Profile characterProfile) {
             return 0;
+        }
+
+        @Override
+        public Skill deepCopy() {
+            return null;
         }
     }
 
@@ -138,5 +146,44 @@ public class SkillTest {
         } catch (IllegalArgumentException e) {
             assertEquals("The bonus must be positive", e.getMessage());
         }
+    }
+
+    @Test
+    public void equalsTest() {
+        Skill same = mSkill;
+        Skill deepCopy = new ConcreteSkill(mName, mAssociatedCharacteristic, mLevel, mBonus);
+        Skill otherName = new ConcreteSkill("Other",mAssociatedCharacteristic, mLevel, mBonus);
+        Skill otherCharacteristic = new ConcreteSkill(mName, Primary.WS, mLevel, mBonus);
+        Skill otherLevel = new ConcreteSkill(mName, mAssociatedCharacteristic, mLevel.improve(), mBonus);
+        Skill otherBonus = new ConcreteSkill(mName, mAssociatedCharacteristic, mLevel, mBonus + 5);
+
+        assertFalse("x=null", mSkill.equals(null));
+        assertTrue("x=x", mSkill.equals(mSkill));
+        assertTrue("x = same", mSkill.equals(same));
+        assertTrue("x = deepCopy", mSkill.equals(deepCopy));
+        assertFalse("x = otherName", mSkill.equals(otherName));
+        assertFalse("otherName = x", otherName.equals(mSkill));
+        assertFalse("x = otherCharacteristic", mSkill.equals(otherCharacteristic));
+        assertTrue("x = otherLevel", mSkill.equals(otherLevel));
+        assertTrue("x = otherBonus", mSkill.equals(otherBonus));
+    }
+
+    @Test
+    public void hashCodeTest() {
+        Skill same = mSkill;
+        Skill deepCopy = new ConcreteSkill(mName, mAssociatedCharacteristic, mLevel, mBonus);
+        Skill otherName = new ConcreteSkill("Other",mAssociatedCharacteristic, mLevel, mBonus);
+        Skill otherCharacteristic = new ConcreteSkill(mName, Primary.WS, mLevel, mBonus);
+        Skill otherLevel = new ConcreteSkill(mName, mAssociatedCharacteristic,
+                mLevel.improve().improve(), mBonus);
+        Skill otherBonus = new ConcreteSkill(mName, mAssociatedCharacteristic, mLevel, mBonus + 10);
+
+        assertEquals("x=x", mSkill.hashCode(), mSkill.hashCode());
+        assertEquals("x = same", mSkill.hashCode(), same.hashCode());
+        assertEquals("x = deepCopy", mSkill.hashCode(), deepCopy.hashCode());
+        assertNotSame("x = otherName", mSkill.hashCode(), otherName.hashCode());
+        assertNotSame("x = otherCharacteristic", mSkill.hashCode(), otherCharacteristic.hashCode());
+        assertEquals("x = otherLevel", mSkill.hashCode(), otherLevel.hashCode());
+        assertEquals("x = otherBonus", mSkill.hashCode(), otherBonus.hashCode());
     }
 }

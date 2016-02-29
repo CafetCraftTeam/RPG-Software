@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import java.util.Collections;
 import java.util.Map;
 
-import cafetcraftteam.rpgsoftware.BodyPart;
+import cafetcraftteam.rpgsoftware.character.CharacterWarhammer.BodyPart;
 
 
 /**
@@ -26,7 +26,8 @@ public class Armour extends Equipment
      * @param quality        the quality of the equipment as an enum Quality, must be not null
      * @param description    the description of the equipment, could be empty, if null is passed the
      *                       description is set to an empty string
-     * @param protectedParts the protected parts and the value of the armour on this parts as a map
+     * @param protectedParts the protected parts and the value of the armour on this parts as a map,
+     *                       must be not null for at least one part or will throw an IllegalArgumentException
      */
     public Armour(@NonNull String name, int encumbering, int price, @NonNull Quality quality,
                   @Nullable String description,
@@ -36,19 +37,19 @@ public class Armour extends Equipment
 
         if (protectedParts == null)
         {
-            throw new InstantiationError("Protected parts should not be null");
+            throw new IllegalArgumentException("Protected parts should not be null");
         }
         // remove all the entry that are equals to zero
         protectedParts.values().removeAll(Collections.singleton(0));
         if (protectedParts.isEmpty())
         {
-            throw new InstantiationError("No body parts protected by this armour");
+            throw new IllegalArgumentException("No body parts protected by this armour");
         }
         for (Map.Entry<BodyPart, Integer> entry : protectedParts.entrySet())
         {
             if (entry.getValue() < 0)
             {
-                throw new InstantiationError("The value of protection must be greater than zero");
+                throw new IllegalArgumentException("The value of protection must be greater than zero");
             }
         }
 

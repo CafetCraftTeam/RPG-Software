@@ -2,6 +2,9 @@ package cafetcraftteam.rpgsoftware.skill;
 
 import android.support.annotation.NonNull;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import cafetcraftteam.rpgsoftware.Profile;
 
 import static cafetcraftteam.rpgsoftware.Profile.Primary;
@@ -18,7 +21,25 @@ public abstract class Skill {
         NONE,
         ACQUIRE,
         ADVANCE,
-        MASTER
+        MASTER {
+            @Override
+            public Level improve() {
+                return this;
+            }
+        };
+
+        // to avoid copy of the array
+        private static Level[] sValues = values();
+
+        /**
+         * Improve the level of mastering by one, capped at the level Master
+         *
+         * @return the next level of mastering, capped at the level Master
+         */
+        public Level improve() {
+            // no bound checking as the last element override the method to capped
+            return sValues[ordinal() + 1];
+        }
     }
 
     private String mName; // the name of the skill
@@ -71,6 +92,7 @@ public abstract class Skill {
     }
 
     // region GETTER================================================================================
+
     /**
      * Getter of the name of the skill
      *
@@ -112,6 +134,7 @@ public abstract class Skill {
 
     /**
      * Getter of the value of the skill with the actual bonus and the given profile
+     *
      * @param characterProfile the profile that use the skill, must be not null
      * @return the value as a positive integer
      */
@@ -135,4 +158,62 @@ public abstract class Skill {
     }
 
     // endregion====================================================================================
+
+    /**
+     * Method that improve the level of mastery of the skill
+     */
+    public void improve() {
+        mLevel = mLevel.improve();
+    }
+
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     *
+     * @param object the reference object with which to compare.
+     * @return true if this object is the same as the obj argument; false otherwise.
+     */
+    @Override
+    public boolean equals(Object object) {
+        if (object == null)
+        {
+            return false;
+        }
+
+        if (object == this)
+        {
+            return true;
+        }
+
+        // usage of instanceof for consistency with inheritance
+        if (!(object instanceof Skill))
+        {
+            return false;
+        }
+
+        Skill otherSkill = (Skill) object;
+
+        return new EqualsBuilder()
+                .append(mName, otherSkill.mName)
+                .append(mAssociatedCharacteristic, otherSkill.mAssociatedCharacteristic)
+                .isEquals();
+    }
+
+    /**
+     * Returns a hash code value for the object.
+     *
+     * @return a hash code value for this object.
+     */
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(397, 181)
+                .append(mName)
+                .append(mAssociatedCharacteristic)
+                .hashCode();
+    }
+
+    /**
+     * Return a deep copy of the actual object
+     * @return a deep copy of the actual object
+     */
+    public abstract Skill deepCopy();
 }

@@ -10,7 +10,7 @@ import cafetcraftteam.rpgsoftware.Profile;
 import cafetcraftteam.rpgsoftware.skill.BasicSkill;
 import cafetcraftteam.rpgsoftware.skill.Skill.Level;
 
-import static cafetcraftteam.rpgsoftware.skill.BasicSkill.BasicSkills;
+import static cafetcraftteam.rpgsoftware.skill.BasicSkill.BasicSkillName;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.fail;
 
@@ -21,23 +21,23 @@ import static junit.framework.Assert.fail;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class BasicSkillTest {
-    private final BasicSkills mBasicSkills = BasicSkills.DRIVE;
+    private final BasicSkillName mBasicSkillName = BasicSkillName.DRIVE;
     private final Level mLevel = Level.ACQUIRE;
     private final int mBonus = 10;
 
     private final BasicSkill mBasicSkill
-            = new BasicSkill(mBasicSkills, mLevel, mBonus);
+            = new BasicSkill(mBasicSkillName, mLevel, mBonus);
 
     private final Profile mAncestorGurdillProfile = Profile.ancestorGurdillProfile();
 
     @Test
     public void creationTest() {
-        assertEquals(mBasicSkills.toString(), mBasicSkill.getName());
-        assertEquals(mBasicSkills.getCharacteristic(), mBasicSkill.getAssociatedCharacteristic());
+        assertEquals(mBasicSkillName.toString(), mBasicSkill.getName());
+        assertEquals(mBasicSkillName.getCharacteristic(), mBasicSkill.getAssociatedCharacteristic());
         assertEquals(mLevel, mBasicSkill.getLevel());
         assertEquals(mBonus, mBasicSkill.getBonus());
 
-        BasicSkills zeroBonus = BasicSkills.PERCEPTION;
+        BasicSkillName zeroBonus = BasicSkillName.PERCEPTION;
         BasicSkill zeroBonusBasicSkill = new BasicSkill(zeroBonus, mLevel);
         assertEquals(zeroBonus.toString(), zeroBonusBasicSkill.getName());
         assertEquals(zeroBonus.getCharacteristic(), zeroBonusBasicSkill.getAssociatedCharacteristic());
@@ -48,11 +48,11 @@ public class BasicSkillTest {
     @Test
     public void getSkillValueTest() {
         // with a level of acquire
-        assertEquals(mAncestorGurdillProfile.getCharacteristic(mBasicSkills.getCharacteristic()) + mBonus,
+        assertEquals(mAncestorGurdillProfile.getCharacteristic(mBasicSkillName.getCharacteristic()) + mBonus,
                 mBasicSkill.getSkillValue(mAncestorGurdillProfile));
 
         // with a level of master
-        BasicSkills masterLevel = BasicSkills.CHARM;
+        BasicSkillName masterLevel = BasicSkillName.CHARM;
         BasicSkill masterSkill = new BasicSkill(
                 masterLevel,
                 Level.MASTER
@@ -61,7 +61,7 @@ public class BasicSkillTest {
                 masterSkill.getSkillValue(mAncestorGurdillProfile));
 
         // with a level of None
-        BasicSkills noneLevel = BasicSkills.CONCEALMENT;
+        BasicSkillName noneLevel = BasicSkillName.CONCEALMENT;
         BasicSkill noneSkill = new BasicSkill(
                 noneLevel,
                 Level.NONE
@@ -76,5 +76,24 @@ public class BasicSkillTest {
         } catch (IllegalArgumentException e) {
             assertEquals("The Profile should not be null", e.getMessage());
         }
+    }
+
+    @Test
+    public void deepCopyTest() {
+        BasicSkill same = mBasicSkill;
+        BasicSkill deepCopy = mBasicSkill.deepCopy();
+
+        int bonus = 12;
+        mBasicSkill.setBonus(bonus);
+
+        assertEquals(bonus, mBasicSkill.getBonus());
+        assertEquals(bonus, same.getBonus());
+        assertEquals(mBonus, deepCopy.getBonus());
+
+        mBasicSkill.improve();
+
+        assertEquals(mLevel.improve(), mBasicSkill.getLevel());
+        assertEquals(mLevel.improve(), same.getLevel());
+        assertEquals(mLevel, deepCopy.getLevel());
     }
 }

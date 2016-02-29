@@ -3,6 +3,8 @@ package cafetcraftteam.rpgsoftware;
 import java.util.HashSet;
 import java.util.Set;
 
+import cafetcraftteam.rpgsoftware.character.Character;
+
 /**
  * Class that contain all the information of a user
  */

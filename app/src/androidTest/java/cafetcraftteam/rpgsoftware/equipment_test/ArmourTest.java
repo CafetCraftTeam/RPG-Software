@@ -10,7 +10,8 @@ import org.junit.runner.RunWith;
 import java.util.EnumMap;
 import java.util.Map;
 
-import cafetcraftteam.rpgsoftware.BodyPart;
+import cafetcraftteam.rpgsoftware.character.CharacterWarhammer;
+import cafetcraftteam.rpgsoftware.character.CharacterWarhammer.BodyPart;
 import cafetcraftteam.rpgsoftware.equipment.Armour;
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
 
@@ -52,7 +53,7 @@ public class ArmourTest
         Equipment equipment = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
         assertEquals(equipment, mArmour);
         assertEquals(mArmourPoint, mArmour.getArmourPoint(mBodyPart));
-        assertEquals(0, mArmour.getArmourPoint(BodyPart.HEAD));
+        assertEquals(0, mArmour.getArmourPoint(CharacterWarhammer.BodyPart.HEAD));
         assertTrue(mArmour.isProtected(mBodyPart));
     }
 
@@ -63,18 +64,19 @@ public class ArmourTest
         {
             new Armour(mName, mEncumbering, mPrice, mQuality, mDescription, null);
         }
-        catch (InstantiationError e){
+        catch (IllegalArgumentException e){
             // success
         }
 
         // protected parts must not be empty
-        Map<BodyPart, Integer> emptyProtectedParts = new EnumMap<>(BodyPart.class);
+        Map<CharacterWarhammer.BodyPart, Integer> emptyProtectedParts =
+                new EnumMap<>(CharacterWarhammer.BodyPart.class);
         try
         {
             new Armour(mName, mEncumbering, mPrice, mQuality, mDescription, emptyProtectedParts);
             fail("Null protected parts don't generate an error");
         }
-        catch (InstantiationError e){
+        catch (IllegalArgumentException e){
             // success
         }
 
@@ -86,7 +88,7 @@ public class ArmourTest
             new Armour(mName, mEncumbering, mPrice, mQuality, mDescription, negativeProtectedParts);
             fail("A negative value of protection in protected parts have not generate an error");
         }
-        catch (InstantiationError e) {
+        catch (IllegalArgumentException e) {
             // success
         }
 
@@ -100,7 +102,7 @@ public class ArmourTest
                     onlyZeroProtectedParts);
             fail("Zero as protection value will be remove, leading to an empty map");
         }
-        catch (InstantiationError e) {
+        catch (IllegalArgumentException e) {
             // success error generated
         }
 

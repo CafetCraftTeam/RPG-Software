@@ -80,4 +80,23 @@ public class AdvancedSkillTest {
             assertEquals("The Profile should not be null", e.getMessage());
         }
     }
+
+    @Test
+    public void deepCopyTest() {
+        AdvancedSkill same = mAdvancedSkill;
+        AdvancedSkill deepCopy = mAdvancedSkill.deepCopy();
+
+        int bonus = 12;
+        mAdvancedSkill.setBonus(bonus);
+
+        assertEquals(bonus, mAdvancedSkill.getBonus());
+        assertEquals(bonus, same.getBonus());
+        assertEquals(mBonus, deepCopy.getBonus());
+
+        mAdvancedSkill.improve();
+
+        assertEquals(mLevel.improve(), mAdvancedSkill.getLevel());
+        assertEquals(mLevel.improve(), same.getLevel());
+        assertEquals(mLevel, deepCopy.getLevel());
+    }
 }

@@ -745,6 +745,46 @@ public class ProfileTest {
     }
     //endregion=====================================================================================
 
+    @Test
+    public void getPrimaryTest() {
+        assertEquals(mWeaponSkill,
+                mProfile.getCharacteristic(Profile.Primary.WS));
+        assertEquals(mBallisticSkill,
+                mProfile.getCharacteristic(Profile.Primary.BS));
+        assertEquals(mStrength,
+                mProfile.getCharacteristic(Profile.Primary.S));
+        assertEquals(mToughness,
+                mProfile.getCharacteristic(Profile.Primary.T));
+        assertEquals(mAgility,
+                mProfile.getCharacteristic(Profile.Primary.AG));
+        assertEquals(mIntelligence,
+                mProfile.getCharacteristic(Profile.Primary.INT));
+        assertEquals(mWillPower,
+                mProfile.getCharacteristic(Profile.Primary.WP));
+        assertEquals(mFellowship,
+                mProfile.getCharacteristic(Profile.Primary.FEL));
+    }
+
+    @Test
+    public void getSecondaryTest() {
+        assertEquals(mAttacks,
+                mProfile.getCharacteristic(Profile.Secondary.A));
+        assertEquals(mWounds,
+                mProfile.getCharacteristic(Profile.Secondary.W));
+        assertEquals(mStrength/10,
+                mProfile.getCharacteristic(Profile.Secondary.SB));
+        assertEquals(mToughness/10,
+                mProfile.getCharacteristic(Profile.Secondary.TB));
+        assertEquals(mMovement,
+                mProfile.getCharacteristic(Profile.Secondary.M));
+        assertEquals(mMagic,
+                mProfile.getCharacteristic(Profile.Secondary.MAG));
+        assertEquals(mInsanityPoints,
+                mProfile.getCharacteristic(Profile.Secondary.IP));
+        assertEquals(mFatePoints,
+                mProfile.getCharacteristic(Profile.Secondary.FP));
+    }
+
     // region SETTER TEST===========================================================================
     @Test
     public void setterWeaponSkill() {
@@ -1136,4 +1176,20 @@ public class ProfileTest {
         mProfile.setFatePoints(mFatePoints);
     }
     // endregion====================================================================================
+
+    @Test
+    public void deepCopyTest() {
+        Profile same = mProfile;
+        Profile deepCopy = mProfile.deepCopy();
+
+        assertEquals(mAgility, mProfile.getAgility());
+        assertEquals(mAgility, same.getAgility());
+        assertEquals(mAgility, deepCopy.getAgility());
+
+        mProfile.setAgility(mAgility + 20);
+
+        assertEquals(mAgility + 20, mProfile.getAgility());
+        assertEquals(mAgility + 20, same.getAgility());
+        assertEquals(mAgility, deepCopy.getAgility());
+    }
 }
