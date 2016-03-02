@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import cafetcraftteam.rpgsoftware.DiceActivity;
 import cafetcraftteam.rpgsoftware.R;
+import cafetcraftteam.rpgsoftware.gui.open_gl_es.OpenGLActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +26,15 @@ public class MainActivity extends AppCompatActivity {
         button_des.setOnClickListener(new ButtonDiceListener(this));
 
         button_perso.setOnClickListener(new ButtonPersoListener(this));
+
+        Button buttonOpenGl = (Button) findViewById(R.id.button_open_gl);
+        buttonOpenGl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, OpenGLActivity.class);
+                MainActivity.this.startActivity(intent);
+            }
+        });
     }
 
     @Override
