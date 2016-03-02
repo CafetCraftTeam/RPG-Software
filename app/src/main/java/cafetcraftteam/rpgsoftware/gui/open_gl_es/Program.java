@@ -2,6 +2,7 @@ package cafetcraftteam.rpgsoftware.gui.open_gl_es;
 
 import android.opengl.GLES20;
 
+import java.nio.FloatBuffer;
 import java.util.Stack;
 
 /**
@@ -14,6 +15,8 @@ public class Program {
     private final Shader mFragmentShader;
 
     private final int mId;
+
+    protected FloatBuffer mVertexBuffer;
 
     public Program(String vertexShaderCode, String fragmentShaderCode) {
         mVertexShader = new Shader(Shader.ShaderType.VERTEX, vertexShaderCode);
@@ -30,7 +33,10 @@ public class Program {
     }
 
     public void use() {
-        mActualProgramInUse.add(mId);
+        // avoid to fill the stack with the same program
+        if (mActualProgramInUse.size() == 0 || mActualProgramInUse.peek() != mId) {
+            mActualProgramInUse.add(mId);
+        }
         GLES20.glUseProgram(mId);
     }
 
