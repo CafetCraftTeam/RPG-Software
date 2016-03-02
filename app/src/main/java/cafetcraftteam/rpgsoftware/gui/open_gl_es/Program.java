@@ -43,4 +43,8 @@ public class Program {
             GLES20.glUseProgram(0);
         }
     }
+
+    public int getOpenGLId() {
+        return mId;
+    }
 }
