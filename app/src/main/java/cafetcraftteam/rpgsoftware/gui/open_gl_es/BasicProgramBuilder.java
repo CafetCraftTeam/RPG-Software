@@ -3,7 +3,7 @@ package cafetcraftteam.rpgsoftware.gui.open_gl_es;
 /**
  * Created by Tago on 02/03/2016.
  */
-public class BasicProgram extends Program {
+public class BasicProgramBuilder {
 
     private static final String sVertexShaderCode =
             // This matrix member variable provides a hook to manipulate
@@ -23,7 +23,10 @@ public class BasicProgram extends Program {
             "  gl_FragColor = vColor;" +
             "}";
 
-    public BasicProgram() {
-        super(sVertexShaderCode, sFragmentShaderCode);
+    public static Program build(){
+        return new Program(
+                new VertexShader(sVertexShaderCode),
+                new FragmentShader(sFragmentShaderCode)
+        );
     }
 }

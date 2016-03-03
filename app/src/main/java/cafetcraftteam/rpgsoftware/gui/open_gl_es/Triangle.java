@@ -44,7 +44,7 @@ public class Triangle {
     }
 
     public Triangle() {
-        this(new BasicProgram());
+        this(BasicProgramBuilder.build());
     }
 
     /**
