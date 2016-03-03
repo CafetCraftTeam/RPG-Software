@@ -15,7 +15,6 @@ public class MyGLSurfaceView extends GLSurfaceView {
         super(openGLActivity);
 
         // creating the OpenGL ES 2.0 context
-        super.setEGLConfigChooser(8, 8, 8, 8, 16, 0);
         setEGLContextClientVersion(2);
 
         // Set the Renderer for drawing on the GLSurfaceView
