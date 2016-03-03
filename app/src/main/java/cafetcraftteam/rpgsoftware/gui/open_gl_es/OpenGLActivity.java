@@ -15,7 +15,7 @@ public class OpenGLActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         // Create a GLSurfaceView instance and set it as the ContentView for this Activity
-        mGLView = new MyGLSurfaceView(this);
+        mGLView = new MyGLSurfaceView(this, new MyGLRenderer(new BasicTriangleBuilder()));
         setContentView(mGLView);
     }
 

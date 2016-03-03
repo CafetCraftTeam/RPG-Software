@@ -9,16 +9,16 @@ import android.opengl.GLSurfaceView;
  * interacting with drawn objects.
  */
 public class MyGLSurfaceView extends GLSurfaceView {
-    private final MyGLRenderer mRenderer;
+    private final Renderer mRenderer;
 
-    public MyGLSurfaceView(Context openGLActivity) {
+    public MyGLSurfaceView(Context openGLActivity, Renderer renderer) {
         super(openGLActivity);
 
         // creating the OpenGL ES 2.0 context
         setEGLContextClientVersion(2);
 
         // Set the Renderer for drawing on the GLSurfaceView
-        mRenderer = new MyGLRenderer(new BasicTriangleBuilder());
+        mRenderer = renderer;
         setRenderer(mRenderer);
     }
 }
