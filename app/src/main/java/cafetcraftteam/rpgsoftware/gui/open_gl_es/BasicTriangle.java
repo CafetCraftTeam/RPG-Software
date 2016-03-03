@@ -7,13 +7,8 @@ import android.opengl.GLES20;
  */
 public class BasicTriangle extends Triangle
 {
-    // in counterclockwise order:
-    private static float[] sVertex1 = {0.0f, 0.622008459f, 0.3f};   // top
-    private static float[] sVertex2 = {-0.5f, -0.311004243f, 0.0f};   // bottom left
-    private static float[] sVertex3 = {0.5f, -0.311004243f, 0.0f};    // bottom right
-
-    public BasicTriangle() {
-        super(sVertex1, sVertex2, sVertex3, BasicProgramBuilder.build());
+    public BasicTriangle(float[] vertex1, float[] vertex2, float[] vertex3) {
+        super(vertex1, vertex2, vertex3, BasicProgramBuilder.build());
     }
 
     @Override
