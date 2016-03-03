@@ -5,6 +5,9 @@ import android.opengl.GLES20;
 import java.nio.FloatBuffer;
 import java.util.Stack;
 
+import cafetcraftteam.rpgsoftware.gui.open_gl_es.shader.FragmentShader;
+import cafetcraftteam.rpgsoftware.gui.open_gl_es.shader.VertexShader;
+
 /**
  * Created by Tago on 02/03/2016.
  */

@@ -1,4 +1,4 @@
-package cafetcraftteam.rpgsoftware.gui.open_gl_es;
+package cafetcraftteam.rpgsoftware.gui.open_gl_es.shader;
 
 import android.opengl.GLES20;
 

@@ -1,5 +1,8 @@
 package cafetcraftteam.rpgsoftware.gui.open_gl_es;
 
+import cafetcraftteam.rpgsoftware.gui.open_gl_es.shader.FragmentShader;
+import cafetcraftteam.rpgsoftware.gui.open_gl_es.shader.VertexShader;
+
 /**
  * Created by Tago on 02/03/2016.
  */
