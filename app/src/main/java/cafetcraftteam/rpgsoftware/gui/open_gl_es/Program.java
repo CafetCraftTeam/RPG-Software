@@ -11,16 +11,16 @@ import java.util.Stack;
 public class Program {
     private static final Stack<Integer> mActualProgramInUse = new Stack<>();
 
-    private final Shader mVertexShader;
-    private final Shader mFragmentShader;
+    private final VertexShader mVertexShader;
+    private final FragmentShader mFragmentShader;
 
     private final int mId;
 
     protected FloatBuffer mVertexBuffer;
 
-    public Program(String vertexShaderCode, String fragmentShaderCode) {
-        mVertexShader = new Shader(Shader.ShaderType.VERTEX, vertexShaderCode);
-        mFragmentShader = new Shader(Shader.ShaderType.FRAGMENT, fragmentShaderCode);
+    public Program(VertexShader vertexShader, FragmentShader fragmentShader) {
+        mVertexShader = vertexShader;
+        mFragmentShader = fragmentShader;
 
         // create an empty program (code to execute on the GPU)
         mId = GLES20.glCreateProgram();
