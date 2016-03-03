@@ -12,13 +12,15 @@ import javax.microedition.khronos.opengles.GL10;
  */
 public class MyGLRenderer implements GLSurfaceView.Renderer {
     private static final String TAG = "MyGLRenderer";
+    private final DrawableBuilder mDrawableBuilder;
     private Drawable mDrawable;
 
     private final float[] mMVPMatrix = new float[16];
     private final float[] mProjectionMatrix = new float[16];
     private final float[] mViewMatrix = new float[16];
 
-    public MyGLRenderer() {
+    public MyGLRenderer(DrawableBuilder drawableBuilder) {
+        mDrawableBuilder = drawableBuilder;
     }
 
 
@@ -51,8 +53,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         // Set the background frame color
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-        BasicTriangleBuilder builder = new BasicTriangleBuilder();
-        mDrawable = builder.build();
+        mDrawable = mDrawableBuilder.build();
     }
 
     /**
@@ -119,7 +120,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         // Calculate the projection and view transformation
         Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
 
-        // Draw triangle
+        // Draw the drawable
         mDrawable.draw(mMVPMatrix);
     }
 }
