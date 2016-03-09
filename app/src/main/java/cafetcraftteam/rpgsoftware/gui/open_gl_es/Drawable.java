@@ -6,4 +6,5 @@ package cafetcraftteam.rpgsoftware.gui.open_gl_es;
 public interface Drawable
 {
     void draw(float[] mvpMatrix);
+    void initialize();
 }

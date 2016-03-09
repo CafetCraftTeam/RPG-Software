@@ -22,4 +22,11 @@ public class Node implements Drawable
             drawable.draw(mvpMatrix);
         }
     }
+
+    @Override
+    public void initialize() {
+        for (Drawable drawable : mChildren) {
+            drawable.initialize();
+        }
+    }
 }

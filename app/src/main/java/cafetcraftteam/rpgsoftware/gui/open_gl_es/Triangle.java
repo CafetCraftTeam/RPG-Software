@@ -64,4 +64,11 @@ public abstract class Triangle implements Drawable
      */
     @Override
     public abstract void draw(float[] mvpMatrix);
+
+    /**
+     * Encapsulates the OpenGL ES instructions for initialize this shape.
+     *
+     */
+    @Override
+    public abstract void initialize();
 }

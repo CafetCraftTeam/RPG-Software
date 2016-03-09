@@ -54,6 +54,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
         mDrawable = mDrawableBuilder.build();
+        mDrawable.initialize();
     }
 
     /**
