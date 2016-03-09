@@ -15,11 +15,7 @@ public class BasicProgramBuilder implements ProgramBuilder {
     private final String mVertexShaderCode;
     private final String mFragmentShaderCode;
 
-    private final Context mContext;
-
     public BasicProgramBuilder(Context context) {
-        mContext = context;
-
         mVertexShaderCode = Utils.readFile(context, R.raw.basic_vertex);
         mFragmentShaderCode = Utils.readFile(context, R.raw.basic_fragment);
     }
