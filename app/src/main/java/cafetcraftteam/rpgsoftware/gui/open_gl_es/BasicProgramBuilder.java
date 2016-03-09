@@ -12,23 +12,6 @@ import cafetcraftteam.rpgsoftware.utils.Utils;
  */
 public class BasicProgramBuilder implements ProgramBuilder {
 
-    private static final String sVertexShaderCode =
-            // This matrix member variable provides a hook to manipulate
-            // the coordinates of the objects that use this vertex shader
-            "uniform mat4 u_MVPMatrix;              \n" +
-            "attribute vec4 a_Position;             \n" +
-            "void main() {                          \n" +
-            // the matrix must be included as a modifier of gl_Position
-            // Note that the uMVPMatrix factor *must be first* in order
-            // for the matrix multiplication product to be correct.
-            "  gl_Position = u_MVPMatrix * a_Position;\n" +
-            "}                                      \n";
-    private static final String sFragmentShaderCode =
-            "precision mediump float;   \n" +
-            "uniform vec4 v_Color;       \n" +
-            "void main() {              \n" +
-            "  gl_FragColor = v_Color;   \n" +
-            "}                          \n";
     private final String mVertexShaderCode;
     private final String mFragmentShaderCode;
 
