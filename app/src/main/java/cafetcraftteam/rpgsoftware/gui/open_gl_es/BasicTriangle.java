@@ -8,7 +8,7 @@ import android.opengl.GLES20;
 public class BasicTriangle extends Triangle
 {
     public BasicTriangle(float[] vertex1, float[] vertex2, float[] vertex3) {
-        super(vertex1, vertex2, vertex3, BasicProgramBuilder.build());
+        super(vertex1, vertex2, vertex3, new BasicProgramBuilder().build());
     }
 
     @Override

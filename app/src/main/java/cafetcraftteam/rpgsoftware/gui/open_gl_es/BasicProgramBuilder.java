@@ -6,7 +6,7 @@ import cafetcraftteam.rpgsoftware.gui.open_gl_es.shader.VertexShader;
 /**
  * Created by Tago on 02/03/2016.
  */
-public class BasicProgramBuilder {
+public class BasicProgramBuilder implements ProgramBuilder {
 
     private static final String sVertexShaderCode =
             // This matrix member variable provides a hook to manipulate
@@ -26,7 +26,8 @@ public class BasicProgramBuilder {
             "  gl_FragColor = v_Color;   \n" +
             "}                          \n";
 
-    public static Program build(){
+    @Override
+    public Program build(){
         return new Program(
                 new VertexShader(sVertexShaderCode),
                 new FragmentShader(sFragmentShaderCode)
