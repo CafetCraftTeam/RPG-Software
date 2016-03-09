@@ -1,5 +1,6 @@
 package cafetcraftteam.rpgsoftware.gui.open_gl_es;
 
+import android.content.Context;
 import android.opengl.GLES20;
 
 /**
@@ -7,8 +8,8 @@ import android.opengl.GLES20;
  */
 public class BasicTriangle extends Triangle
 {
-    public BasicTriangle(float[] vertex1, float[] vertex2, float[] vertex3) {
-        super(vertex1, vertex2, vertex3, new BasicProgramBuilder().build());
+    public BasicTriangle(float[] vertex1, float[] vertex2, float[] vertex3, Context context) {
+        super(vertex1, vertex2, vertex3, new BasicProgramBuilder(context).build());
     }
 
     @Override

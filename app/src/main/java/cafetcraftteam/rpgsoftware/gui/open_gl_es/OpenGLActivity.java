@@ -27,8 +27,8 @@ public class OpenGLActivity extends Activity
         float[] vertex2 = {-0.5f, -0.5f, 0.5f};
         float[] vertex3 = {0.5f, -0.5f, 0.5f};
         float[] vertex4 = {0.5f, 0.5f, 0.5f};
-        drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex2, vertex3));
-        drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex3, vertex4));
+        drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex2, vertex3, this));
+        drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex3, vertex4, this));
 
         NodeBuilder masterNodeBuilder = new NodeBuilder(drawablesBuilder);
 
