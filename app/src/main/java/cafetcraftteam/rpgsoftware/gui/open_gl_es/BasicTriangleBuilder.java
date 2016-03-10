@@ -34,6 +34,6 @@ public class BasicTriangleBuilder implements DrawableBuilder {
     public Drawable build() {
         return new BasicTriangle(mVertex1, mVertex2, mVertex3,
                 mColor1, mColor2, mColor3,
-                mContext);
+                new BasicProgramBuilder(mContext));
     }
 }

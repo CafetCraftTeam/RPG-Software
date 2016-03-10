@@ -13,10 +13,10 @@ public class BasicTriangle extends Triangle {
 
     public BasicTriangle(List<Float> vertex1, List<Float> vertex2, List<Float> vertex3,
                          List<Float> color1, List<Float> color2, List<Float> color3,
-                         Context context) {
+                         BasicProgramBuilder basicProgramBuilder) {
         super(vertex1, vertex2, vertex3,
                 color1, color2, color3,
-                new BasicProgramBuilder(context).build());
+                basicProgramBuilder.build());
         mProgram = (BasicProgram) super.mProgram;
     }
 
