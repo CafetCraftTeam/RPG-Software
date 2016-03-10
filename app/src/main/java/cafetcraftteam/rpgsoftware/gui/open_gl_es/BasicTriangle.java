@@ -26,7 +26,7 @@ public class BasicTriangle extends Triangle {
 
         // Set color for drawing the triangle
         mProgram.setColor(SIZE_OF_THE_COLORS, GLES20.GL_FLOAT, false,
-                COLOR_STRIDE, mVertexBuffer);
+                COLOR_STRIDE, mColorBuffer);
 
         // MyGLRenderer.checkGlError("glGetUniformLocation");
 
