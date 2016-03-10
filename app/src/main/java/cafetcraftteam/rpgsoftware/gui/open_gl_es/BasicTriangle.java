@@ -37,12 +37,4 @@ public class BasicTriangle extends Triangle {
 
         mProgram.unUse();
     }
-
-    /**
-     * Encapsulates the OpenGL ES instructions for initialize this shape.
-     */
-    @Override
-    public void initialize() {
-        mProgram.initialize();
-    }
 }

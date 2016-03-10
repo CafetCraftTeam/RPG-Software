@@ -68,8 +68,10 @@ public abstract class Triangle implements Drawable
 
     /**
      * Encapsulates the OpenGL ES instructions for initialize this shape.
-     *
+     * If overridden must call the super method
      */
     @Override
-    public abstract void initialize();
+    public void initialize() {
+        mProgram.initialize();
+    }
 }
