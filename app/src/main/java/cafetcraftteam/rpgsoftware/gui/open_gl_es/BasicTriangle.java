@@ -8,8 +8,11 @@ import android.opengl.GLES20;
  */
 public class BasicTriangle extends Triangle {
 
+    private BasicProgram mProgram;
+
     public BasicTriangle(float[] vertex1, float[] vertex2, float[] vertex3, Context context) {
         super(vertex1, vertex2, vertex3, new BasicProgramBuilder(context).build());
+        mProgram = (BasicProgram) super.mProgram;
     }
 
     @Override
@@ -17,20 +20,20 @@ public class BasicTriangle extends Triangle {
         mProgram.use();
 
         // Prepare the triangle coordinate data
-        ((BasicProgram) mProgram).setPosition(COORDINATES_PER_VERTEX, GLES20.GL_FLOAT, false,
+        mProgram.setPosition(COORDINATES_PER_VERTEX, GLES20.GL_FLOAT, false,
                 VERTEX_STRIDE, mVertexBuffer);
 
         // Set color for drawing the triangle
-        ((BasicProgram) mProgram).setColor(1, mColor, 0);
+        mProgram.setColor(1, mColor, 0);
 
         // MyGLRenderer.checkGlError("glGetUniformLocation");
 
         // Apply the projection and view transformation
-        ((BasicProgram) mProgram).setMVPMatrix(1, false, mvpMatrix, 0);
+        mProgram.setMVPMatrix(1, false, mvpMatrix, 0);
         // MyGLRenderer.checkGlError("glUniformMatrix4fv");
 
         // Draw the triangle
-        ((BasicProgram) mProgram).draw(GLES20.GL_TRIANGLES, 0, VERTEX_COUNT);
+        mProgram.draw(GLES20.GL_TRIANGLES, 0, VERTEX_COUNT);
 
         // Disable vertex array
         // GLES20.glDisableVertexAttribArray(mPositionHandle);
