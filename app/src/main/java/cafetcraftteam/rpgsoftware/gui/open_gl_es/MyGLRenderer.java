@@ -3,6 +3,7 @@ package cafetcraftteam.rpgsoftware.gui.open_gl_es;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
+import android.os.SystemClock;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -142,8 +143,17 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         // Clear the image and the Z buffer
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
+        // make the shape rotate, complete every 10sec
+        long time = SystemClock.uptimeMillis() % 10000L;
+        float angleInDegree = (360.0f / 10000.0f) * ((int) time);
+
+        float[] modelMatrix = new float[16];
+        Matrix.setIdentityM(modelMatrix, 0);
+        Matrix.rotateM(modelMatrix, 0, angleInDegree, 0.0f, 0.0f, 1.0f);
+        Matrix.multiplyMM(mMVPMatrix, 0, mViewMatrix, 0, modelMatrix, 0);
+
         // Calculate the projection and view transformation
-        Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
+        Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mMVPMatrix, 0);
 
         // Draw the drawable
         mDrawable.draw(mMVPMatrix);
