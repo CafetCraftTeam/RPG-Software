@@ -15,7 +15,7 @@ import cafetcraftteam.rpgsoftware.utils.Utils;
  */
 public class BasicProgram extends Program {
     private static final String POSITION_NAME = "a_Position";
-    private static final String COLOR_NAME = "v_Color";
+    private static final String COLOR_NAME = "a_Color";
     private static final String MVP_NAME = "u_MVPMatrix";
 
     private int mPositionHandle;
@@ -36,16 +36,17 @@ public class BasicProgram extends Program {
     public void initialize() {
         super.initialize();
 
-        GLES20.glEnableVertexAttribArray(mPositionHandle);
-
         // get reference to vertex shader's position member
         mPositionHandle = GLES20.glGetAttribLocation(mId, POSITION_NAME);
 
         // get reference to fragment shader's color member
-        mColorHandle = GLES20.glGetUniformLocation(mId, COLOR_NAME);
+        mColorHandle = GLES20.glGetAttribLocation(mId, COLOR_NAME);
 
         // get handle to shape's transformation matrix
         mMVPMatrixHandle = GLES20.glGetUniformLocation(mId, MVP_NAME);
+
+        GLES20.glEnableVertexAttribArray(mPositionHandle);
+        GLES20.glEnableVertexAttribArray(mColorHandle);
     }
 
     public void setPosition(int size,
@@ -64,11 +65,18 @@ public class BasicProgram extends Program {
         mIsVertexInstantiated = true;
     }
 
-    public void setColor(int count, float[] v, int offset) {
+    public void setColor(int size,
+                         int type,
+                         boolean normalized,
+                         int stride,
+                         Buffer colorBuffer) {
         use();
 
         // Set color for drawing the shape
-        GLES20.glUniform4fv(mColorHandle, count, v, offset);
+        GLES20.glVertexAttribPointer(
+                mColorHandle, size,
+                type, normalized,
+                stride, colorBuffer);
 
         mIsColorInstantiated = true;
     }
