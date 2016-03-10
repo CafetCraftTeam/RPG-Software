@@ -11,13 +11,13 @@ import cafetcraftteam.rpgsoftware.gui.open_gl_es.shader.VertexShader;
 /**
  * Created by Tago on 02/03/2016.
  */
-public class Program {
+public abstract class Program {
     private static final Stack<Integer> mActualProgramInUse = new Stack<>();
 
     private final VertexShader mVertexShader;
     private final FragmentShader mFragmentShader;
 
-    private final int mId;
+    protected final int mId;
 
     protected FloatBuffer mVertexBuffer;
 
@@ -34,6 +34,8 @@ public class Program {
         // create the executable of the program
         GLES20.glLinkProgram(mId);
     }
+
+    public abstract void initialize();
 
     public void use() {
         // avoid to fill the stack with the same program

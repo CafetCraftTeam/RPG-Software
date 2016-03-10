@@ -54,10 +54,12 @@ public class BasicTriangle extends Triangle
      */
     @Override
     public void initialize() {
-        // get reference to vertex shader's vPosition member
+        mProgram.initialize();
+
+        // get reference to vertex shader's position member
         mPositionHandle = GLES20.glGetAttribLocation(mProgram.getOpenGLId(), "a_Position");
 
-        // get reference to fragment shader's vColor member
+        // get reference to fragment shader's color member
         mColorHandle = GLES20.glGetUniformLocation(mProgram.getOpenGLId(), "v_Color");
 
         // get handle to shape's transformation matrix
