@@ -53,12 +53,14 @@ public abstract class Program {
         // avoid to fill the stack with the same program
         if (mActualProgramInUse.size() == 0 || mActualProgramInUse.peek() != mId) {
             mActualProgramInUse.add(mId);
+            GLES20.glUseProgram(mId);
         }
-        GLES20.glUseProgram(mId);
     }
 
     public void unUse() {
-        mActualProgramInUse.pop();
+        if (mActualProgramInUse.pop() != mId) {
+            throw new IllegalStateException("The actual program in use is not this one");
+        }
         if (mActualProgramInUse.size() > 0) {
             GLES20.glUseProgram(mActualProgramInUse.peek());
         } else {

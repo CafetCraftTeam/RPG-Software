@@ -53,6 +53,8 @@ public class BasicProgram extends Program {
                             boolean normalized,
                             int stride,
                             Buffer vertexBuffer) {
+        use();
+
         // set the shape coordinate data
         GLES20.glVertexAttribPointer(
                 mPositionHandle, size,
@@ -63,6 +65,8 @@ public class BasicProgram extends Program {
     }
 
     public void setColor(int count, float[] v, int offset) {
+        use();
+
         // Set color for drawing the shape
         GLES20.glUniform4fv(mColorHandle, count, v, offset);
 
@@ -70,6 +74,8 @@ public class BasicProgram extends Program {
     }
 
     public void setMVPMatrix(int count, boolean transpose, float[] mvpMatrix, int offset) {
+        use();
+
         // set the projection and view transformation
         GLES20.glUniformMatrix4fv(mMVPMatrixHandle, count, transpose, mvpMatrix, offset);
 
@@ -86,6 +92,9 @@ public class BasicProgram extends Program {
         if (!mIsMVPMatrixInstantiated) {
             throw new IllegalStateException("The MVP matrix is not instantiated");
         }
+
+        use();
+
         // Draw the shape
         GLES20.glDrawArrays(mode, first, count);
     }

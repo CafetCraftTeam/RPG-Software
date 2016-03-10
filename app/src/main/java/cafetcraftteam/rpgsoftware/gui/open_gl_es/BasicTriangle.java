@@ -17,8 +17,6 @@ public class BasicTriangle extends Triangle {
 
     @Override
     public void draw(float[] mvpMatrix) {
-        mProgram.use();
-
         // Prepare the triangle coordinate data
         mProgram.setPosition(COORDINATES_PER_VERTEX, GLES20.GL_FLOAT, false,
                 VERTEX_STRIDE, mVertexBuffer);
@@ -37,7 +35,5 @@ public class BasicTriangle extends Triangle {
 
         // Disable vertex array
         // GLES20.glDisableVertexAttribArray(mPositionHandle);
-
-        mProgram.unUse();
     }
 }
