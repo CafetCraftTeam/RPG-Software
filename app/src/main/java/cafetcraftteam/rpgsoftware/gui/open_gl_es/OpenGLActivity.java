@@ -21,12 +21,12 @@ public class OpenGLActivity extends Activity {
         List<DrawableBuilder> drawablesBuilder = new ArrayList<>();
 
         // in counterclockwise order:
-        float[] vertex1 = {-0.5f, 0.5f, 0.5f};
-        float[] vertex2 = {-0.5f, -0.5f, 0.5f};
-        float[] vertex3 = {0.5f, -0.5f, 0.5f};
-        float[] vertex4 = {0.5f, 0.5f, 0.5f};
+        float[] vertex1 = {-1.0f, 0.0f, 1.0f};
+        float[] vertex2 = {0.0f, 2.0f, 0.0f};
+        float[] vertex3 = {1.0f, 0.0f, 1.0f};
+        float[] vertex4 = {0.0f, 0.0f, -1.0f};
         drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex2, vertex3, this));
-        drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex3, vertex4, this));
+        drawablesBuilder.add(new BasicTriangleBuilder(vertex2, vertex1, vertex4, this));
 
         NodeBuilder masterNodeBuilder = new NodeBuilder(drawablesBuilder);
 
