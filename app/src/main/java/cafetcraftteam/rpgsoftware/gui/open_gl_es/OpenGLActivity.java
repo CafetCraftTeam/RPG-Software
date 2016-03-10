@@ -25,8 +25,14 @@ public class OpenGLActivity extends Activity {
         float[] vertex2 = {0.0f, 2.0f, 0.0f};
         float[] vertex3 = {1.0f, 0.0f, 1.0f};
         float[] vertex4 = {0.0f, 0.0f, -1.0f};
-        drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex2, vertex3, this));
-        drawablesBuilder.add(new BasicTriangleBuilder(vertex2, vertex1, vertex4, this));
+
+        final float[] COLOR = {0.63671875f, 0.76953125f, 0.22265625f, 1.0f};
+
+        drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex2, vertex3,
+                COLOR, COLOR, COLOR, this));
+        drawablesBuilder.add(new BasicTriangleBuilder(vertex2, vertex1, vertex4,
+                COLOR, COLOR, COLOR, this));
+
 
         NodeBuilder masterNodeBuilder = new NodeBuilder(drawablesBuilder);
 
