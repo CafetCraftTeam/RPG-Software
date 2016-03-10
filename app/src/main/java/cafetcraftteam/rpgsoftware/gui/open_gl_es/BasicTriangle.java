@@ -22,14 +22,14 @@ public class BasicTriangle extends Triangle
     {
         mProgram.use();
 
-        // Enable a handle to the triangle vertices
-        GLES20.glEnableVertexAttribArray(mPositionHandle);
-
         // Prepare the triangle coordinate data
         GLES20.glVertexAttribPointer(
                 mPositionHandle, COORDINATES_PER_VERTEX,
                 GLES20.GL_FLOAT, false,
                 VERTEX_STRIDE, mVertexBuffer);
+
+        // Enable a handle to the triangle vertices
+        GLES20.glEnableVertexAttribArray(mPositionHandle);
 
         // Set color for drawing the triangle
         GLES20.glUniform4fv(mColorHandle, 1, mColor, 0);

@@ -17,6 +17,7 @@ public abstract class Triangle implements Drawable
     protected final int COORDINATES_PER_VERTEX;
 
     protected final static int VERTEX_COUNT = 3;
+    private final static int BYTES_PER_FLOAT = 4;
     protected final int VERTEX_STRIDE;
     protected final FloatBuffer mVertexBuffer;
     protected final Program mProgram;
@@ -35,14 +36,14 @@ public abstract class Triangle implements Drawable
         }
 
         COORDINATES_PER_VERTEX = vertex1.length;
-        VERTEX_STRIDE = COORDINATES_PER_VERTEX * 4; // 4 bytes per float
+        VERTEX_STRIDE = COORDINATES_PER_VERTEX * BYTES_PER_FLOAT; // 4 bytes per float
 
         mProgram = program;
 
         // initialize vertex byte buffer for shape coordinates
         ByteBuffer byteBuffer = ByteBuffer.allocateDirect(
                 // (number of coordinate values * 4 bytes per float)
-                COORDINATES_PER_VERTEX * VERTEX_COUNT * 4);
+                COORDINATES_PER_VERTEX * VERTEX_COUNT * BYTES_PER_FLOAT);
         // use the device hardware's native byte order
         byteBuffer.order(ByteOrder.nativeOrder());
         // create a floating point buffer from the ByteBuffer
