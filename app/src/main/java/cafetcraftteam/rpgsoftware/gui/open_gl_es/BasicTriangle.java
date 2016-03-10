@@ -6,45 +6,34 @@ import android.opengl.GLES20;
 /**
  * Created by Gautier on 03/03/2016.
  */
-public class BasicTriangle extends Triangle
-{
-
-    private int mPositionHandle;
-    private int mColorHandle;
-    private int mMVPMatrixHandle;
+public class BasicTriangle extends Triangle {
 
     public BasicTriangle(float[] vertex1, float[] vertex2, float[] vertex3, Context context) {
         super(vertex1, vertex2, vertex3, new BasicProgramBuilder(context).build());
     }
 
     @Override
-    public void draw(float[] mvpMatrix)
-    {
+    public void draw(float[] mvpMatrix) {
         mProgram.use();
 
         // Prepare the triangle coordinate data
-        GLES20.glVertexAttribPointer(
-                mPositionHandle, COORDINATES_PER_VERTEX,
-                GLES20.GL_FLOAT, false,
+        ((BasicProgram) mProgram).setPosition(COORDINATES_PER_VERTEX, GLES20.GL_FLOAT, false,
                 VERTEX_STRIDE, mVertexBuffer);
 
-        // Enable a handle to the triangle vertices
-        GLES20.glEnableVertexAttribArray(mPositionHandle);
-
         // Set color for drawing the triangle
-        GLES20.glUniform4fv(mColorHandle, 1, mColor, 0);
+        ((BasicProgram) mProgram).setColor(1, mColor, 0);
 
         // MyGLRenderer.checkGlError("glGetUniformLocation");
 
         // Apply the projection and view transformation
-        GLES20.glUniformMatrix4fv(mMVPMatrixHandle, 1, false, mvpMatrix, 0);
+        ((BasicProgram) mProgram).setMVPMatrix(1, false, mvpMatrix, 0);
         // MyGLRenderer.checkGlError("glUniformMatrix4fv");
 
         // Draw the triangle
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, VERTEX_COUNT);
+        ((BasicProgram) mProgram).draw(GLES20.GL_TRIANGLES, 0, VERTEX_COUNT);
 
         // Disable vertex array
-        GLES20.glDisableVertexAttribArray(mPositionHandle);
+        // GLES20.glDisableVertexAttribArray(mPositionHandle);
 
         mProgram.unUse();
     }
@@ -55,14 +44,5 @@ public class BasicTriangle extends Triangle
     @Override
     public void initialize() {
         mProgram.initialize();
-
-        // get reference to vertex shader's position member
-        mPositionHandle = GLES20.glGetAttribLocation(mProgram.getOpenGLId(), "a_Position");
-
-        // get reference to fragment shader's color member
-        mColorHandle = GLES20.glGetUniformLocation(mProgram.getOpenGLId(), "v_Color");
-
-        // get handle to shape's transformation matrix
-        mMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram.getOpenGLId(), "u_MVPMatrix");
     }
 }

@@ -21,6 +21,9 @@ public class BasicProgram extends Program {
     private int mPositionHandle;
     private int mColorHandle;
     private int mMVPMatrixHandle;
+    private boolean mIsVertexInstantiated = false;
+    private boolean mIsMVPMatrixInstantiated = false;
+    private boolean mIsColorInstanciated = false;
 
 
     public BasicProgram(Context context) {
@@ -48,5 +51,47 @@ public class BasicProgram extends Program {
 
         // get handle to shape's transformation matrix
         mMVPMatrixHandle = GLES20.glGetUniformLocation(mId, MVP_NAME);
+    }
+
+    public void setPosition(int size,
+                            int type,
+                            boolean normalized,
+                            int stride,
+                            Buffer vertexBuffer) {
+        // set the shape coordinate data
+        GLES20.glVertexAttribPointer(
+                mPositionHandle, size,
+                type, normalized,
+                stride, vertexBuffer);
+
+        mIsVertexInstantiated = true;
+    }
+
+    public void setColor(int count, float[] v, int offset) {
+        // Set color for drawing the shape
+        GLES20.glUniform4fv(mColorHandle, count, v, offset);
+
+        mIsColorInstanciated = true;
+    }
+
+    public void setMVPMatrix(int count, boolean transpose, float[] mvpMatrix, int offset) {
+        // set the projection and view transformation
+        GLES20.glUniformMatrix4fv(mMVPMatrixHandle, count, transpose, mvpMatrix, offset);
+
+        mIsMVPMatrixInstantiated = true;
+    }
+
+    public void draw(int mode, int first, int count) {
+        if (!mIsVertexInstantiated) {
+            throw new IllegalStateException("The vertex buffer is not instantiated");
+        }
+        if (!mIsColorInstanciated) {
+            throw new IllegalStateException("The color is not instantiated");
+        }
+        if (!mIsMVPMatrixInstantiated) {
+            throw new IllegalStateException("The MVP matrix is not instantiated");
+        }
+        // Draw the shape
+        GLES20.glDrawArrays(mode, first, count);
     }
 }
