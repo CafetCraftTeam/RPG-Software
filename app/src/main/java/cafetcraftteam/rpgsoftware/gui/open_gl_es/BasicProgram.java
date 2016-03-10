@@ -33,15 +33,10 @@ public class BasicProgram extends Program {
     }
 
     @Override
-    public void use() {
-        super.use();
-
-        GLES20.glEnableVertexAttribArray(mPositionHandle);
-    }
-
-    @Override
     public void initialize() {
         super.initialize();
+
+        GLES20.glEnableVertexAttribArray(mPositionHandle);
 
         // get reference to vertex shader's position member
         mPositionHandle = GLES20.glGetAttribLocation(mId, POSITION_NAME);
