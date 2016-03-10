@@ -7,13 +7,13 @@ import android.opengl.GLES20;
  * Created by Gautier on 03/03/2016.
  */
 public class BasicTriangle extends Triangle {
-    private static final float[] COLOR = {0.63671875f, 0.76953125f, 0.22265625f, 1.0f};
-
     private BasicProgram mProgram;
 
-    public BasicTriangle(float[] vertex1, float[] vertex2, float[] vertex3, Context context) {
+    public BasicTriangle(float[] vertex1, float[] vertex2, float[] vertex3,
+                         float[] color1, float[] color2, float[] color3,
+                         Context context) {
         super(vertex1, vertex2, vertex3,
-                COLOR, COLOR, COLOR,
+                color1, color2, color3,
                 new BasicProgramBuilder(context).build());
         mProgram = (BasicProgram) super.mProgram;
     }
