@@ -20,6 +20,7 @@ public abstract class Program {
     protected final int mId;
 
     protected FloatBuffer mVertexBuffer;
+    private boolean mIsInitialized;
 
     public Program(VertexShader vertexShader, FragmentShader fragmentShader) {
         mVertexShader = vertexShader;
@@ -35,9 +36,21 @@ public abstract class Program {
         GLES20.glLinkProgram(mId);
     }
 
-    public abstract void initialize();
+    /**
+     * Must be override with a call of the super function
+     */
+    public void initialize() {
+        mIsInitialized = true;
+    }
 
+    /**
+     * Must be override with a call of the super function
+     */
     public void use() {
+        if (!mIsInitialized) {
+            initialize();
+        }
+
         // avoid to fill the stack with the same program
         if (mActualProgramInUse.size() == 0 || mActualProgramInUse.peek() != mId) {
             mActualProgramInUse.add(mId);
