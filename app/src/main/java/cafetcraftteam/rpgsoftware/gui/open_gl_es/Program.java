@@ -19,7 +19,6 @@ public abstract class Program {
 
     protected final int mId;
 
-    protected FloatBuffer mVertexBuffer;
     private boolean mIsInitialized;
 
     public Program(VertexShader vertexShader, FragmentShader fragmentShader) {
@@ -65,9 +64,5 @@ public abstract class Program {
         } else {
             GLES20.glUseProgram(0);
         }
-    }
-
-    public int getOpenGLId() {
-        return mId;
     }
 }
