@@ -60,8 +60,7 @@ public abstract class Program {
 
     public void unUse() {
         mActualProgramInUse.pop();
-        if (mActualProgramInUse.size() > 0)
-        {
+        if (mActualProgramInUse.size() > 0) {
             GLES20.glUseProgram(mActualProgramInUse.peek());
         } else {
             GLES20.glUseProgram(0);

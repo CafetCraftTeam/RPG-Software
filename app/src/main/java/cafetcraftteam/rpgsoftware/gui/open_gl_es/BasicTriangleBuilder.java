@@ -5,8 +5,7 @@ import android.content.Context;
 /**
  * Created by Gautier on 03/03/2016.
  */
-public class BasicTriangleBuilder implements DrawableBuilder
-{
+public class BasicTriangleBuilder implements DrawableBuilder {
     private final Context mContext;
     // in counterclockwise order:
     private final float[] mVertex1;     // top
@@ -21,8 +20,7 @@ public class BasicTriangleBuilder implements DrawableBuilder
     }
 
     @Override
-    public Drawable build()
-    {
+    public Drawable build() {
         return new BasicTriangle(mVertex1, mVertex2, mVertex3, mContext);
     }
 }

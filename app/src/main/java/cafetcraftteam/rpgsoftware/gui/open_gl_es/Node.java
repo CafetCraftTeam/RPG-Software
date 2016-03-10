@@ -5,20 +5,16 @@ import java.util.List;
 /**
  * A collection of Drawable that will be drawn at the same time in the given order
  */
-public class Node implements Drawable
-{
+public class Node implements Drawable {
     private List<Drawable> mChildren;
 
-    public Node(List<Drawable> children)
-    {
+    public Node(List<Drawable> children) {
         mChildren = children;
     }
 
     @Override
-    public void draw(float[] mvpMatrix)
-    {
-        for (Drawable drawable : mChildren)
-        {
+    public void draw(float[] mvpMatrix) {
+        for (Drawable drawable : mChildren) {
             drawable.draw(mvpMatrix);
         }
     }

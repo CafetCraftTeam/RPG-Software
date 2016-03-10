@@ -1,9 +1,5 @@
 package cafetcraftteam.rpgsoftware.gui.open_gl_es;
 
-import android.opengl.GLES20;
-
-import org.apache.commons.lang3.ArrayUtils;
-
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
@@ -11,8 +7,7 @@ import java.nio.FloatBuffer;
 /**
  * Created by Tago on 02/03/2016.
  */
-public abstract class Triangle implements Drawable
-{
+public abstract class Triangle implements Drawable {
 
     protected final int COORDINATES_PER_VERTEX;
 
@@ -24,14 +19,11 @@ public abstract class Triangle implements Drawable
 
     float mColor[] = {0.63671875f, 0.76953125f, 0.22265625f, 0.0f};
 
-    public Triangle(float[] vertex1, float[] vertex2, float[] vertex3, Program program)
-    {
-        if (vertex1.length != vertex2.length || vertex1.length != vertex3.length)
-        {
+    public Triangle(float[] vertex1, float[] vertex2, float[] vertex3, Program program) {
+        if (vertex1.length != vertex2.length || vertex1.length != vertex3.length) {
             throw new IllegalArgumentException("The vertices must have the same dimension");
         }
-        if (vertex1.length != 2 && vertex1.length != 3)
-        {
+        if (vertex1.length != 2 && vertex1.length != 3) {
             throw new IllegalArgumentException("The vertices must have a dimension of 2 or 3");
         }
 

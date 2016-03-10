@@ -10,13 +10,11 @@ import java.util.List;
 /**
  * Created by Tago on 02/03/2016.
  */
-public class OpenGLActivity extends Activity
-{
+public class OpenGLActivity extends Activity {
     private GLSurfaceView mGLView;
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // create the node that will be displayed
@@ -38,8 +36,7 @@ public class OpenGLActivity extends Activity
     }
 
     @Override
-    protected void onPause()
-    {
+    protected void onPause() {
         super.onPause();
         // The following call pauses the rendering thread.
         // If your OpenGL application is memory intensive,
@@ -49,8 +46,7 @@ public class OpenGLActivity extends Activity
     }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
         // The following call resumes a paused rendering thread.
         // If you de-allocated graphic objects for onPause()

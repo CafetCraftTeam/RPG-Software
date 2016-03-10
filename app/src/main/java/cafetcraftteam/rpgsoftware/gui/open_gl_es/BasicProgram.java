@@ -23,7 +23,7 @@ public class BasicProgram extends Program {
     private int mMVPMatrixHandle;
     private boolean mIsVertexInstantiated = false;
     private boolean mIsMVPMatrixInstantiated = false;
-    private boolean mIsColorInstanciated = false;
+    private boolean mIsColorInstantiated = false;
 
 
     public BasicProgram(Context context) {
@@ -71,7 +71,7 @@ public class BasicProgram extends Program {
         // Set color for drawing the shape
         GLES20.glUniform4fv(mColorHandle, count, v, offset);
 
-        mIsColorInstanciated = true;
+        mIsColorInstantiated = true;
     }
 
     public void setMVPMatrix(int count, boolean transpose, float[] mvpMatrix, int offset) {
@@ -85,7 +85,7 @@ public class BasicProgram extends Program {
         if (!mIsVertexInstantiated) {
             throw new IllegalStateException("The vertex buffer is not instantiated");
         }
-        if (!mIsColorInstanciated) {
+        if (!mIsColorInstantiated) {
             throw new IllegalStateException("The color is not instantiated");
         }
         if (!mIsMVPMatrixInstantiated) {
