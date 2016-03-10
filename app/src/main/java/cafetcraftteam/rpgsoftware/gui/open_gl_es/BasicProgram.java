@@ -20,11 +20,24 @@ public class BasicProgram extends Program {
     private int mColorHandle;
     private int mMVPMatrixHandle;
 
+    private boolean mIsInitialized = false;
+
 
     public BasicProgram(Context context) {
         super(new VertexShader(Utils.readFile(context, R.raw.basic_vertex)),
                 new FragmentShader(Utils.readFile(context, R.raw.basic_fragment))
         );
+    }
+
+    @Override
+    public void use() {
+        super.use();
+
+        if (!mIsInitialized) {
+            throw new IllegalStateException("The program have not been initialize");
+        }
+
+        GLES20.glEnableVertexAttribArray(mPositionHandle);
     }
 
     @Override
@@ -37,5 +50,7 @@ public class BasicProgram extends Program {
 
         // get handle to shape's transformation matrix
         mMVPMatrixHandle = GLES20.glGetUniformLocation(mId, MVP_NAME);
+
+        mIsInitialized = true;
     }
 }
