@@ -53,8 +53,8 @@ public abstract class Program {
         // avoid to fill the stack with the same program
         if (mActualProgramInUse.size() == 0 || mActualProgramInUse.peek() != mId) {
             mActualProgramInUse.add(mId);
-            GLES20.glUseProgram(mId);
         }
+        GLES20.glUseProgram(mId);
     }
 
     public void unUse() {
