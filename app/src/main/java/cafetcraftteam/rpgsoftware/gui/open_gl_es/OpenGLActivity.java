@@ -21,17 +21,25 @@ public class OpenGLActivity extends Activity {
         List<DrawableBuilder> drawablesBuilder = new ArrayList<>();
 
         // in counterclockwise order:
-        float[] vertex1 = {-1.0f, 0.0f, 1.0f};
-        float[] vertex2 = {0.0f, 2.0f, 0.0f};
-        float[] vertex3 = {1.0f, 0.0f, 1.0f};
-        float[] vertex4 = {0.0f, 0.0f, -1.0f};
+        float[] vertex1 = {0.0f, 0.0f, 0.0f};
+        float[] vertex2 = {-1.0f, -1.0f, 0.0f};
+        float[] vertex3 = {1.0f, -1.0f, 0.0f};
+        float[] vertex4 = {1.0f, 1.0f, 0.0f};
+        float[] vertex5 = {-1.0f, 1.0f, 0.0f};
 
-        final float[] COLOR = {0.63671875f, 0.76953125f, 0.22265625f, 1.0f};
+        float[] color1 = {1.0f, 0.0f, 0.0f, 1.0f};
+        float[] color2 = {0.0f, 1.0f, 0.0f, 1.0f};
+        float[] color3 = {0.0f, 0.0f, 1.0f, 1.0f};
+        float[] color4 = {1.0f, 1.0f, 0.0f, 1.0f};
 
         drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex2, vertex3,
-                COLOR, COLOR, COLOR, this));
-        drawablesBuilder.add(new BasicTriangleBuilder(vertex2, vertex1, vertex4,
-                COLOR, COLOR, COLOR, this));
+                color1, color1, color1, this));
+        drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex3, vertex4,
+                color2, color2, color2, this));
+        drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex4, vertex5,
+                color3, color3, color3, this));
+        drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex5, vertex2,
+                color4, color4, color4, this));
 
 
         NodeBuilder masterNodeBuilder = new NodeBuilder(drawablesBuilder);

@@ -59,7 +59,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         // Position the eye behind the origin.
         final float eyeX = 0.0f;
         final float eyeY = 0.0f;
-        final float eyeZ = -5.0f;
+        final float eyeZ = 5.0f;
 
         // We are looking toward the distance
         final float lookX = 0.0f;
