@@ -5,6 +5,7 @@ import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -20,17 +21,16 @@ public class OpenGLActivity extends Activity {
         // create the node that will be displayed
         List<DrawableBuilder> drawablesBuilder = new ArrayList<>();
 
-        // in counterclockwise order:
-        float[] vertex1 = {0.0f, 0.0f, 0.0f};
-        float[] vertex2 = {-1.0f, -1.0f, 0.0f};
-        float[] vertex3 = {1.0f, -1.0f, 0.0f};
-        float[] vertex4 = {1.0f, 1.0f, 0.0f};
-        float[] vertex5 = {-1.0f, 1.0f, 0.0f};
+        List<Float> vertex1 = new ArrayList<>(Arrays.asList(0.0f, 0.0f, 0.0f));
+        List<Float> vertex2 = new ArrayList<>(Arrays.asList(-1.0f, -1.0f, 0.0f));
+        List<Float> vertex3 = new ArrayList<>(Arrays.asList(1.0f, -1.0f, 0.0f));
+        List<Float> vertex4 = new ArrayList<>(Arrays.asList(1.0f, 1.0f, 0.0f));
+        List<Float> vertex5 = new ArrayList<>(Arrays.asList(-1.0f, 1.0f, 0.0f));
 
-        float[] color1 = {1.0f, 0.0f, 0.0f, 1.0f};
-        float[] color2 = {0.0f, 1.0f, 0.0f, 1.0f};
-        float[] color3 = {0.0f, 0.0f, 1.0f, 1.0f};
-        float[] color4 = {1.0f, 1.0f, 0.0f, 1.0f};
+        List<Float> color1 = new ArrayList<>(Arrays.asList(1.0f, 0.0f, 0.0f, 1.0f));
+        List<Float> color2 = new ArrayList<>(Arrays.asList(0.0f, 1.0f, 0.0f, 1.0f));
+        List<Float> color3 = new ArrayList<>(Arrays.asList(0.0f, 0.0f, 1.0f, 1.0f));
+        List<Float> color4 = new ArrayList<>(Arrays.asList(1.0f, 1.0f, 0.0f, 1.0f));
 
         drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex2, vertex3,
                 color1, color1, color1, this));

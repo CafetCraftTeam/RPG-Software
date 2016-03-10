@@ -2,22 +2,24 @@ package cafetcraftteam.rpgsoftware.gui.open_gl_es;
 
 import android.content.Context;
 
+import java.util.List;
+
 /**
  * Created by Gautier on 03/03/2016.
  */
 public class BasicTriangleBuilder implements DrawableBuilder {
     private final Context mContext;
     // in counterclockwise order:
-    private final float[] mVertex1;     // top
-    private final float[] mVertex2;     // bottom left
-    private final float[] mVertex3;     // bottom right
+    private final List<Float> mVertex1;     // top
+    private final List<Float> mVertex2;     // bottom left
+    private final List<Float> mVertex3;     // bottom right
 
-    private final float[] mColor1;
-    private final float[] mColor2;
-    private final float[] mColor3;
+    private final List<Float> mColor1;
+    private final List<Float> mColor2;
+    private final List<Float> mColor3;
 
-    public BasicTriangleBuilder(float[] vertex1, float[] vertex2, float[] vertex3,
-                                float[] color1, float[] color2, float[] color3,
+    public BasicTriangleBuilder(List<Float> vertex1, List<Float> vertex2, List<Float> vertex3,
+                                List<Float> color1, List<Float> color2, List<Float> color3,
                                 Context context) {
         mVertex1 = vertex1;
         mVertex2 = vertex2;

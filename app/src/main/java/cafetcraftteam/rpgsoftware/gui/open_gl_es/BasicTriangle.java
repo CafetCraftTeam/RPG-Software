@@ -3,14 +3,16 @@ package cafetcraftteam.rpgsoftware.gui.open_gl_es;
 import android.content.Context;
 import android.opengl.GLES20;
 
+import java.util.List;
+
 /**
  * Created by Gautier on 03/03/2016.
  */
 public class BasicTriangle extends Triangle {
     private BasicProgram mProgram;
 
-    public BasicTriangle(float[] vertex1, float[] vertex2, float[] vertex3,
-                         float[] color1, float[] color2, float[] color3,
+    public BasicTriangle(List<Float> vertex1, List<Float> vertex2, List<Float> vertex3,
+                         List<Float> color1, List<Float> color2, List<Float> color3,
                          Context context) {
         super(vertex1, vertex2, vertex3,
                 color1, color2, color3,
