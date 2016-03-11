@@ -33,13 +33,13 @@ public class OpenGLActivity extends Activity {
         List<Float> color4 = new ArrayList<>(Arrays.asList(1.0f, 1.0f, 0.0f, 1.0f));
 
         drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex2, vertex3,
-                color1, color1, color1, this));
+                color1, color1, color1));
         drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex3, vertex4,
-                color2, color2, color2, this));
+                color2, color2, color2));
         drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex4, vertex5,
-                color3, color3, color3, this));
+                color3, color3, color3));
         drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex5, vertex2,
-                color4, color4, color4, this));
+                color4, color4, color4));
 
 
         NodeBuilder masterNodeBuilder = new NodeBuilder(drawablesBuilder);
