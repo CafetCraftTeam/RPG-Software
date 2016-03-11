@@ -4,15 +4,22 @@ import android.app.Activity;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import cafetcraftteam.rpgsoftware.utils.ShapeOpenGLXMLParser;
 
 /**
  * Created by Tago on 02/03/2016.
  */
 public class OpenGLActivity extends Activity {
     private GLSurfaceView mGLView;
+
+    private static final String SHAPE_FILE = "xml/basic_shape.xml";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,6 +28,14 @@ public class OpenGLActivity extends Activity {
         // create the node that will be displayed
         List<DrawableBuilder> drawablesBuilder = new ArrayList<>();
 
+        ShapeOpenGLXMLParser parser = new ShapeOpenGLXMLParser();
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(SHAPE_FILE);
+        try {
+            drawablesBuilder = parser.parse(inputStream);
+        } catch (XmlPullParserException | IOException e) {
+            e.printStackTrace();
+        }
+        /*
         List<Float> vertex1 = new ArrayList<>(Arrays.asList(0.0f, 0.0f, 0.0f));
         List<Float> vertex2 = new ArrayList<>(Arrays.asList(-1.0f, -1.0f, 0.0f));
         List<Float> vertex3 = new ArrayList<>(Arrays.asList(1.0f, -1.0f, 0.0f));
@@ -40,12 +55,13 @@ public class OpenGLActivity extends Activity {
                 color3, color3, color3));
         drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex5, vertex2,
                 color4, color4, color4));
-
+        */
 
         NodeBuilder masterNodeBuilder = new NodeBuilder(drawablesBuilder);
 
-        // Create a GLSurfaceView instance and set it as the ContentView for this Activity
-        mGLView = new MyGLSurfaceView(this, new MyGLRenderer(masterNodeBuilder));
+
+                // Create a GLSurfaceView instance and set it as the ContentView for this Activity
+                mGLView = new MyGLSurfaceView(this, new MyGLRenderer(masterNodeBuilder));
         setContentView(mGLView);
     }
 
