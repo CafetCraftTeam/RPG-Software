@@ -38,10 +38,11 @@ public class Utils {
 
     /**
      * Read a file in the resources directory at the given file path. Return this file as a string
+     *
      * @param filePath the path to the file within the resources directory
      * @return A string containing all the file
      * @throws IOException if the asked file is not found throw an FileNotFoundException, if there
-     * some problem during the lecture of the file throw an IOException
+     *                     some problem during the lecture of the file throw an IOException
      */
     public static String readFile(String filePath) throws IOException {
         ClassLoader classLoader = Utils.class.getClassLoader();
@@ -70,7 +71,10 @@ public class Utils {
             reader.close();
             inputStream.close();
         }
-
+        // deleting the last \n
+        if (stringBuilder.length() > 0) {
+            stringBuilder.setLength(stringBuilder.length() - 1);
+        }
         return stringBuilder.toString();
     }
 }

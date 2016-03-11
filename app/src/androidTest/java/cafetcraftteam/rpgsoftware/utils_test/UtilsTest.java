@@ -15,7 +15,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.fail;
 
 /**
- * Created by Gautier on 11/03/2016.
+ * Class that testing the Utils class
  */
 
 @RunWith(AndroidJUnit4.class)
@@ -27,7 +27,7 @@ public class UtilsTest {
         // read a simple file (just one line)
         String simpleFilePath = "simple.test";
         try {
-            assertEquals("Only for the test\n", Utils.readFile(simpleFilePath));
+            assertEquals("Only for the test", Utils.readFile(simpleFilePath));
         } catch (IOException e) {
             e.printStackTrace();
             fail("The lecture of the file throw an exception");
@@ -46,7 +46,7 @@ public class UtilsTest {
         // reading a multiple line file
         String multipleLineFilePath = "multiple.test";
         try {
-            assertEquals("Just\nfor\ntesting\non\nmultiple\nlines\n",
+            assertEquals("Just\nfor\ntesting\non\nmultiple\nlines",
                     Utils.readFile(multipleLineFilePath));
         } catch (IOException e) {
             e.printStackTrace();
