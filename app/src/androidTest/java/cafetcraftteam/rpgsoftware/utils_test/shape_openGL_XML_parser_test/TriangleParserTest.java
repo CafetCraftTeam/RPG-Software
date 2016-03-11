@@ -21,7 +21,8 @@ public class TriangleParserTest {
 
     @Test
     public void triangleParserTest() {
-        InputStream inputStream = new FileInputStream()
-        mParser.parse()
+        //TODO
+        //InputStream inputStream = new FileInputStream()
+        //mParser.parse()
     }
 }

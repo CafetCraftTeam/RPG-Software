@@ -3,10 +3,12 @@ package cafetcraftteam.rpgsoftware.gui.open_gl_es;
 import android.content.Context;
 import android.opengl.GLES20;
 
+import java.io.IOException;
 import java.nio.Buffer;
 
 import cafetcraftteam.rpgsoftware.R;
 import cafetcraftteam.rpgsoftware.gui.open_gl_es.shader.FragmentShader;
+import cafetcraftteam.rpgsoftware.gui.open_gl_es.shader.Shader;
 import cafetcraftteam.rpgsoftware.gui.open_gl_es.shader.VertexShader;
 import cafetcraftteam.rpgsoftware.utils.Utils;
 
@@ -18,6 +20,9 @@ public class BasicProgram extends Program {
     private static final String COLOR_NAME = "a_Color";
     private static final String MVP_NAME = "u_MVPMatrix";
 
+    private static final String VERTEX_FILE = "shader/basic_vertex.glsl";
+    private static final String FRAGMENT_FILE = "shader/basic_fragment.glsl";
+
     private int mPositionHandle;
     private int mColorHandle;
     private int mMVPMatrixHandle;
@@ -27,8 +32,8 @@ public class BasicProgram extends Program {
 
 
     public BasicProgram(Context context) {
-        super(new VertexShader(Utils.readFile(context, R.raw.basic_vertex)),
-                new FragmentShader(Utils.readFile(context, R.raw.basic_fragment))
+        super((VertexShader) getShader(VERTEX_FILE, Shader.ShaderType.VERTEX),
+                (FragmentShader) getShader(FRAGMENT_FILE, Shader.ShaderType.FRAGMENT)
         );
     }
 
@@ -105,5 +110,25 @@ public class BasicProgram extends Program {
 
         // Draw the shape
         GLES20.glDrawArrays(mode, first, count);
+    }
+
+    private static Shader getShader(String shaderFilePath, Shader.ShaderType shaderType) {
+        String shaderCode;
+        try {
+            shaderCode = Utils.readFile(shaderFilePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new InstantiationError("There is a problem in the BasicProgram constructor");
+        }
+
+        switch (shaderType) {
+            case VERTEX:
+                return new VertexShader(shaderCode);
+            case FRAGMENT:
+                return new FragmentShader(shaderCode);
+            default:
+                throw new EnumConstantNotPresentException(Shader.ShaderType.class,
+                        "The shader type given doesn't exist");
+        }
     }
 }
