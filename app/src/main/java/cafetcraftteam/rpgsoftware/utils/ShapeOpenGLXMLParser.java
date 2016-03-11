@@ -55,14 +55,25 @@ public class ShapeOpenGLXMLParser {
             }
             String name = parser.getName();
 
-            if (name.equals(TRIANGLE)) {
-                drawables.add(readBasicTriangle(parser));
-            } else {
-                skip(parser);
+            switch (name) {
+                case TRIANGLE:
+                    drawables.add(readBasicTriangle(parser));
+                    break;
+                case NODE:
+                    drawables.add(readNode(parser));
+                    break;
+                default:
+                    skip(parser);
+                    break;
             }
         }
 
         return drawables;
+    }
+
+    private DrawableBuilder readNode(XmlPullParser parser) {
+        //TODO implement the node parser
+        return null;
     }
 
     private DrawableBuilder readBasicTriangle(XmlPullParser parser)
@@ -120,7 +131,7 @@ public class ShapeOpenGLXMLParser {
                 parser.require(XmlPullParser.START_TAG, NAMESPACE, GREEN);
                 color.add(readFloat(parser));
                 parser.require(XmlPullParser.END_TAG, NAMESPACE, GREEN);
-            }else if (name.equals(BLUE)) {
+            } else if (name.equals(BLUE)) {
                 parser.require(XmlPullParser.START_TAG, NAMESPACE, BLUE);
                 color.add(readFloat(parser));
                 parser.require(XmlPullParser.END_TAG, NAMESPACE, BLUE);
@@ -139,7 +150,8 @@ public class ShapeOpenGLXMLParser {
                     + color.size());
         }
 
-        return color;    }
+        return color;
+    }
 
     private List<Float> readVertex(XmlPullParser parser)
             throws IOException, XmlPullParserException {
@@ -161,7 +173,7 @@ public class ShapeOpenGLXMLParser {
                 parser.require(XmlPullParser.START_TAG, NAMESPACE, Y_TAG);
                 vertex.add(readFloat(parser));
                 parser.require(XmlPullParser.END_TAG, NAMESPACE, Y_TAG);
-            }else if (name.equals(Z_TAG)) {
+            } else if (name.equals(Z_TAG)) {
                 parser.require(XmlPullParser.START_TAG, NAMESPACE, Z_TAG);
                 vertex.add(readFloat(parser));
                 parser.require(XmlPullParser.END_TAG, NAMESPACE, Z_TAG);
