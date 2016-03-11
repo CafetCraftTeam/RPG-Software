@@ -30,7 +30,7 @@ public class UtilsTest {
             assertEquals("Only for the test", Utils.readFile(simpleFilePath));
         } catch (IOException e) {
             e.printStackTrace();
-            fail("The lecture of the file throw an exception");
+            fail("The lecture of the simple file throw an exception");
         }
 
         // trying to read a file that doesn't exist throw an exception
