@@ -36,6 +36,13 @@ public class Utils {
         return stringBuilder.toString();
     }
 
+    /**
+     * Read a file in the resources directory at the given file path. Return this file as a string
+     * @param filePath the path to the file within the resources directory
+     * @return A string containing all the file
+     * @throws IOException if the asked file is not found throw an FileNotFoundException, if there
+     * some problem during the lecture of the file throw an IOException
+     */
     public static String readFile(String filePath) throws IOException {
         ClassLoader classLoader = Utils.class.getClassLoader();
 
