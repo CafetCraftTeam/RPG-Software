@@ -18,7 +18,7 @@ import cafetcraftteam.rpgsoftware.gui.open_gl_es.DrawableBuilder;
  */
 public class ShapeOpenGLXMLParser {
     private static final String NAMESPACE = null;
-    private static final String SHAPE = "Shape";
+    private static final String ROOT = "Root";
     private static final String NODE = "Node";
     private static final String TRIANGLE = "Triangle";
     private static final String VERTEX = "Vertex";
@@ -48,7 +48,7 @@ public class ShapeOpenGLXMLParser {
             throws IOException, XmlPullParserException {
         List<DrawableBuilder> drawables = new ArrayList<>();
 
-        parser.require(XmlPullParser.START_TAG, null, SHAPE);
+        parser.require(XmlPullParser.START_TAG, null, ROOT);
         while (parser.next() != XmlPullParser.END_TAG) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
                 continue;
