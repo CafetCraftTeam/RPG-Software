@@ -31,7 +31,7 @@ public class BasicProgram extends Program {
     private boolean mIsColorInstantiated = false;
 
 
-    public BasicProgram(Context context) {
+    public BasicProgram() {
         super((VertexShader) getShader(VERTEX_FILE, Shader.ShaderType.VERTEX),
                 (FragmentShader) getShader(FRAGMENT_FILE, Shader.ShaderType.FRAGMENT)
         );
