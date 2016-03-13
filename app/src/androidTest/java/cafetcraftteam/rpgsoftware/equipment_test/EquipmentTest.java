@@ -22,13 +22,13 @@ import static junit.framework.Assert.fail;
 @LargeTest
 public class EquipmentTest
 {
-    private String mName = "Bottle";
-    private int mEncumbering = 10;
-    private int mPrice = 100;
-    private Equipment.Quality mQuality = Equipment.Quality.COMMON;
-    private String mDescription = "It's a simple bottle";
+    private final String mName = "Bottle";
+    private final int mEncumbering = 10;
+    private final int mPrice = 100;
+    private final Equipment.Quality mQuality = Equipment.Quality.COMMON;
+    private final String mDescription = "It's a simple bottle";
 
-    private Equipment mEquipment = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
+    private final Equipment mEquipment = new Equipment(mName, mEncumbering, mPrice, mQuality, mDescription);
 
     @Test
     public void creationTest()

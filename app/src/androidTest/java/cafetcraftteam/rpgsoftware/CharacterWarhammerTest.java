@@ -15,7 +15,7 @@ import static junit.framework.Assert.assertEquals;
 @LargeTest
 public class CharacterWarhammerTest {
 
-    private CharacterWarhammer Pujima = new CharacterWarhammer("Pujima","cerschae","Warhammer","1662",
+    private final CharacterWarhammer Pujima = new CharacterWarhammer("Pujima","cerschae","Warhammer","1662",
             "Human",36,"M","blue",185,"Braun",78,"Lion",2,"Birthplace","None");
 
     @Before
@@ -46,13 +46,13 @@ public class CharacterWarhammerTest {
     }
     @Test
     public void TestPrimaryProfile() {
-        Pujima.setPrimaryProfile(PrimCharacteristic.CC, 30);
-        assertEquals(Integer.valueOf(30),Pujima.getPrimaryProfile(PrimCharacteristic.CC));
+        Pujima.setPrimaryProfile(Profile.Primary.WS, 30);
+        assertEquals(Integer.valueOf(30),Pujima.getPrimaryProfile(Profile.Primary.WS));
     }
     @Test
     public void TestSecondaryProfile() {
-        Pujima.setSecondaryProfile(SecondCharacteristic.A, 30);
-        assertEquals(Integer.valueOf(30),Pujima.getSecondaryProfile(SecondCharacteristic.A));
+        Pujima.setSecondaryProfile(Profile.Secondary.A, 30);
+        assertEquals(Integer.valueOf(30),Pujima.getSecondaryProfile(Profile.Secondary.A));
     }
     @Test
     public void TestMovement() {

@@ -16,11 +16,8 @@ import cafetcraftteam.rpgsoftware.gui.sliding_tab.SlidingTabLayout;
 public class CharacterActivity extends AppCompatActivity {
 
     private static final String TAG = "CharacterActivity";
-    private ViewPager mPager;
-    private ViewPageAdapter mAdapter;
-    private SlidingTabLayout mTabs;
 
-    private List<CharSequence> mTitles = new ArrayList<CharSequence>(
+    private final List<CharSequence> mTitles = new ArrayList<CharSequence>(
             Arrays.asList("General", "Inventory", "Skill"));
 
     @Override
@@ -29,18 +26,18 @@ public class CharacterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_character);
 
         // Creating the ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs.
-        mAdapter = new ViewPageAdapter(getSupportFragmentManager(), mTitles);
+        ViewPageAdapter adapter = new ViewPageAdapter(getSupportFragmentManager(), mTitles);
 
         // Assigning ViewPager View and setting the adapter
-        mPager = (ViewPager) findViewById(R.id.pager);
-        mPager.setAdapter(mAdapter);
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        pager.setAdapter(adapter);
 
         // Assigning the Sliding Tab Layout View
-        mTabs = (SlidingTabLayout) findViewById(R.id.tabs);
-        mTabs.setDistributeEvenly(true); // This makes the tabs Space Evenly in Available width
+        SlidingTabLayout tabs = (SlidingTabLayout) findViewById(R.id.tabs);
+        tabs.setDistributeEvenly(true); // This makes the tabs Space Evenly in Available width
 
         // Setting Custom Color for the Scroll bar indicator of the Tab View
-        mTabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
+        tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {
                 return ContextCompat.getColor(getApplicationContext(), R.color.tabsScrollColor);
@@ -48,7 +45,7 @@ public class CharacterActivity extends AppCompatActivity {
         });
 
         // Setting the ViewPager For the SlidingTabsLayout
-        mTabs.setViewPager(mPager);
+        tabs.setViewPager(pager);
     }
 
 }

@@ -6,8 +6,8 @@ import java.util.Random;
  * Created by defig on 10.02.2016.
  */
 public class Dice {
-    private int mInf;
-    private int mMax;
+    private final int mInf;
+    private final int mMax;
 
     public int diceGenerator() {
         Random number = new Random();

@@ -21,7 +21,7 @@ public class Weapon extends Equipment
         CAVALRY,
         CROSSBOW,
         ENGINEER,
-        ESTANGLING,
+        ENTANGLING,
         FENCING,
         FLAIL,
         GUNPOWDER,
