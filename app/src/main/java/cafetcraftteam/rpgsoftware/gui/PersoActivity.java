@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 import cafetcraftteam.rpgsoftware.R;
 
-public abstract class PersoActivity extends AppCompatActivity implements InformationList.PersonneAdapterListener {
+public class PersoActivity extends AppCompatActivity implements InformationList.PersonneAdapterListener {
 
     private ListView mListViewInformation;
     private BaseAdapter mAdapter;
@@ -32,14 +32,16 @@ public abstract class PersoActivity extends AppCompatActivity implements Informa
         //Création et initialisation de l'Adapter pour les personnes
         InformationList adapter = new InformationList(this, listP);
 
+        //Ecoute des évènements sur votre liste
+        adapter.addListener(this);
+
         //Récupération du composant ListView
         ListView list = (ListView) findViewById(R.id.listView_Information);
 
         //Initialisation de la liste avec les données
         list.setAdapter(adapter);
 
-        //Ecoute des évènements sur votre liste
-        adapter.addListener(this);
+
     }
 
     public void onClickNom(Personne item, int position) {
