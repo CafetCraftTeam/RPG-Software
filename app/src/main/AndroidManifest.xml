@@ -16,8 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DiceActivity"></activity>
-        <activity android:name=".CharacterActivity"></activity>
+        <activity android:name=".gui.DiceActivity" />
+        <activity android:name=".CharacterActivity" />
+        <activity android:name=".gui.PersoActivity"></activity>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package cafetcraftteam.rpgsoftware;
+package cafetcraftteam.rpgsoftware.gui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+
+import cafetcraftteam.rpgsoftware.Dice;
+import cafetcraftteam.rpgsoftware.R;
 
 public class DiceActivity extends AppCompatActivity {
 
