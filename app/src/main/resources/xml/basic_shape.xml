@@ -94,4 +94,27 @@
             </Color>
         </Triangle>
     </Node>
+    <Triangle>
+        <Vertex>
+            <x>0.0f</x>
+            <y>-2.0f</y>
+            <z>0.0f</z>
+        </Vertex>
+        <Vertex>
+            <x>-1.0f</x>
+            <y>-1.0f</y>
+            <z>0.0f</z>
+        </Vertex>
+        <Vertex>
+            <x>1.0f</x>
+            <y>-1.0f</y>
+            <z>0.0f</z>
+        </Vertex>
+        <Color>
+            <red>1.0f</red>
+            <green>0.0f</green>
+            <blue>0.0f</blue>
+            <alpha>1.0f</alpha>
+        </Color>
+    </Triangle>
 </Root>

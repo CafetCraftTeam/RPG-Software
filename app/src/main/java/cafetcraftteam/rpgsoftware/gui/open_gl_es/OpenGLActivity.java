@@ -11,7 +11,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import cafetcraftteam.rpgsoftware.utils.ShapeOpenGLXMLParser;
+import cafetcraftteam.rpgsoftware.utils.parser.ShapeOpenGLXMLParser;
 
 /**
  * Created by Tago on 02/03/2016.

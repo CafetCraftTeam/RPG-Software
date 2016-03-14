@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.xmlpull.v1.XmlPullParserException;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -15,10 +14,8 @@ import java.util.List;
 
 import cafetcraftteam.rpgsoftware.gui.open_gl_es.BasicTriangle;
 import cafetcraftteam.rpgsoftware.gui.open_gl_es.BasicTriangleBuilder;
-import cafetcraftteam.rpgsoftware.gui.open_gl_es.Drawable;
 import cafetcraftteam.rpgsoftware.gui.open_gl_es.DrawableBuilder;
-import cafetcraftteam.rpgsoftware.gui.open_gl_es.Triangle;
-import cafetcraftteam.rpgsoftware.utils.ShapeOpenGLXMLParser;
+import cafetcraftteam.rpgsoftware.utils.parser.ShapeOpenGLXMLParser;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;

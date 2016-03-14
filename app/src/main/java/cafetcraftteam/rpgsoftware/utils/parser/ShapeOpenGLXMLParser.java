@@ -1,4 +1,4 @@
-package cafetcraftteam.rpgsoftware.utils;
+package cafetcraftteam.rpgsoftware.utils.parser;
 
 import android.util.Xml;
 
