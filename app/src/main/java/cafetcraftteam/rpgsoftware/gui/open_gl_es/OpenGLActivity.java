@@ -25,7 +25,7 @@ public class OpenGLActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // create the node that will be displayed
+        // create the drawables that will be displayed
         List<DrawableBuilder> drawablesBuilder = new ArrayList<>();
 
         ShapeOpenGLXMLParser parser = new ShapeOpenGLXMLParser();
@@ -35,33 +35,12 @@ public class OpenGLActivity extends Activity {
         } catch (XmlPullParserException | IOException e) {
             e.printStackTrace();
         }
-        /*
-        List<Float> vertex1 = new ArrayList<>(Arrays.asList(0.0f, 0.0f, 0.0f));
-        List<Float> vertex2 = new ArrayList<>(Arrays.asList(-1.0f, -1.0f, 0.0f));
-        List<Float> vertex3 = new ArrayList<>(Arrays.asList(1.0f, -1.0f, 0.0f));
-        List<Float> vertex4 = new ArrayList<>(Arrays.asList(1.0f, 1.0f, 0.0f));
-        List<Float> vertex5 = new ArrayList<>(Arrays.asList(-1.0f, 1.0f, 0.0f));
 
-        List<Float> color1 = new ArrayList<>(Arrays.asList(1.0f, 0.0f, 0.0f, 1.0f));
-        List<Float> color2 = new ArrayList<>(Arrays.asList(0.0f, 1.0f, 0.0f, 1.0f));
-        List<Float> color3 = new ArrayList<>(Arrays.asList(0.0f, 0.0f, 1.0f, 1.0f));
-        List<Float> color4 = new ArrayList<>(Arrays.asList(1.0f, 1.0f, 0.0f, 1.0f));
+        // create the root node that containing all the scene
+        NodeBuilder rootNodeBuilder = new NodeBuilder(drawablesBuilder);
 
-        drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex2, vertex3,
-                color1, color1, color1));
-        drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex3, vertex4,
-                color2, color2, color2));
-        drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex4, vertex5,
-                color3, color3, color3));
-        drawablesBuilder.add(new BasicTriangleBuilder(vertex1, vertex5, vertex2,
-                color4, color4, color4));
-        */
-
-        NodeBuilder masterNodeBuilder = new NodeBuilder(drawablesBuilder);
-
-
-                // Create a GLSurfaceView instance and set it as the ContentView for this Activity
-                mGLView = new MyGLSurfaceView(this, new MyGLRenderer(masterNodeBuilder));
+        // Create a GLSurfaceView instance and set it as the ContentView for this Activity
+        mGLView = new MyGLSurfaceView(this, new MyGLRenderer(rootNodeBuilder));
         setContentView(mGLView);
     }
 
