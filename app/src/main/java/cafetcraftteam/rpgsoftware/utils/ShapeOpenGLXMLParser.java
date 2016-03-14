@@ -50,6 +50,13 @@ public class ShapeOpenGLXMLParser {
         List<DrawableBuilder> drawables = new ArrayList<>();
 
         parser.require(XmlPullParser.START_TAG, NAMESPACE, ROOT);
+        drawables.addAll(scan(parser));
+
+        return drawables;
+    }
+
+    private List<DrawableBuilder> scan(XmlPullParser parser) throws XmlPullParserException, IOException {
+        List<DrawableBuilder> drawables = new ArrayList<>();
         while (parser.next() != XmlPullParser.END_TAG) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
                 continue;
@@ -74,30 +81,13 @@ public class ShapeOpenGLXMLParser {
 
     private DrawableBuilder readNode(XmlPullParser parser)
             throws IOException, XmlPullParserException {
-        NodeBuilder nodeBuilder = new NodeBuilder(new ArrayList<DrawableBuilder>());
+        List<DrawableBuilder> drawableBuilders = new ArrayList<>();
 
         parser.require(XmlPullParser.START_TAG, NAMESPACE, NODE);
 
-        while (parser.next() != XmlPullParser.END_TAG) {
-            if (parser.getEventType() != XmlPullParser.START_TAG) {
-                continue;
-            }
-            String name = parser.getName();
+        drawableBuilders.addAll(scan(parser));
 
-            switch (name) {
-                case TRIANGLE:
-                    nodeBuilder.add(readBasicTriangle(parser));
-                    break;
-                case NODE:
-                    nodeBuilder.add(readNode(parser));
-                    break;
-                default:
-                    skip(parser);
-                    break;
-            }
-        }
-
-        return nodeBuilder;
+        return new NodeBuilder(drawableBuilders);
     }
 
     private DrawableBuilder readBasicTriangle(XmlPullParser parser)
