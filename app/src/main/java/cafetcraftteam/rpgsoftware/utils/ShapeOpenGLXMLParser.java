@@ -12,6 +12,7 @@ import java.util.List;
 
 import cafetcraftteam.rpgsoftware.gui.open_gl_es.BasicTriangleBuilder;
 import cafetcraftteam.rpgsoftware.gui.open_gl_es.DrawableBuilder;
+import cafetcraftteam.rpgsoftware.gui.open_gl_es.NodeBuilder;
 
 /**
  * Created by Tago on 10/03/2016.
@@ -48,7 +49,7 @@ public class ShapeOpenGLXMLParser {
             throws IOException, XmlPullParserException {
         List<DrawableBuilder> drawables = new ArrayList<>();
 
-        parser.require(XmlPullParser.START_TAG, null, ROOT);
+        parser.require(XmlPullParser.START_TAG, NAMESPACE, ROOT);
         while (parser.next() != XmlPullParser.END_TAG) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
                 continue;
@@ -71,9 +72,32 @@ public class ShapeOpenGLXMLParser {
         return drawables;
     }
 
-    private DrawableBuilder readNode(XmlPullParser parser) {
-        //TODO implement the node parser
-        return null;
+    private DrawableBuilder readNode(XmlPullParser parser)
+            throws IOException, XmlPullParserException {
+        NodeBuilder nodeBuilder = new NodeBuilder(new ArrayList<DrawableBuilder>());
+
+        parser.require(XmlPullParser.START_TAG, NAMESPACE, NODE);
+
+        while (parser.next() != XmlPullParser.END_TAG) {
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+            String name = parser.getName();
+
+            switch (name) {
+                case TRIANGLE:
+                    nodeBuilder.add(readBasicTriangle(parser));
+                    break;
+                case NODE:
+                    nodeBuilder.add(readNode(parser));
+                    break;
+                default:
+                    skip(parser);
+                    break;
+            }
+        }
+
+        return nodeBuilder;
     }
 
     private DrawableBuilder readBasicTriangle(XmlPullParser parser)
