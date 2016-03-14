@@ -51,6 +51,7 @@ public class ShapeOpenGLXMLParser {
 
         parser.require(XmlPullParser.START_TAG, NAMESPACE, ROOT);
         drawables.addAll(scan(parser));
+        parser.require(XmlPullParser.END_TAG, NAMESPACE, ROOT);
 
         return drawables;
     }
@@ -87,6 +88,8 @@ public class ShapeOpenGLXMLParser {
 
         drawableBuilders.addAll(scan(parser));
 
+        parser.require(XmlPullParser.END_TAG, NAMESPACE, NODE);
+
         return new NodeBuilder(drawableBuilders);
     }
 
@@ -121,6 +124,9 @@ public class ShapeOpenGLXMLParser {
             colors.add(colors.get(0));
             colors.add(colors.get(0));
         }
+
+        parser.require(XmlPullParser.END_TAG, NAMESPACE, TRIANGLE);
+
         return new BasicTriangleBuilder(vertices.get(0), vertices.get(1), vertices.get(2),
                 colors.get(0), colors.get(1), colors.get(2));
     }
