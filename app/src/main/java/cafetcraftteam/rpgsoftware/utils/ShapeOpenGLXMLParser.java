@@ -123,24 +123,30 @@ public class ShapeOpenGLXMLParser {
             }
 
             String name = parser.getName();
-            if (name.equals(RED)) {
-                parser.require(XmlPullParser.START_TAG, NAMESPACE, RED);
-                color.add(readFloat(parser));
-                parser.require(XmlPullParser.END_TAG, NAMESPACE, RED);
-            } else if (name.equals(GREEN)) {
-                parser.require(XmlPullParser.START_TAG, NAMESPACE, GREEN);
-                color.add(readFloat(parser));
-                parser.require(XmlPullParser.END_TAG, NAMESPACE, GREEN);
-            } else if (name.equals(BLUE)) {
-                parser.require(XmlPullParser.START_TAG, NAMESPACE, BLUE);
-                color.add(readFloat(parser));
-                parser.require(XmlPullParser.END_TAG, NAMESPACE, BLUE);
-            } else if (name.equals(ALPHA)) {
-                parser.require(XmlPullParser.START_TAG, NAMESPACE, ALPHA);
-                color.add(readFloat(parser));
-                parser.require(XmlPullParser.END_TAG, NAMESPACE, ALPHA);
-            } else {
-                skip(parser);
+            switch (name) {
+                case RED:
+                    parser.require(XmlPullParser.START_TAG, NAMESPACE, RED);
+                    color.add(readFloat(parser));
+                    parser.require(XmlPullParser.END_TAG, NAMESPACE, RED);
+                    break;
+                case GREEN:
+                    parser.require(XmlPullParser.START_TAG, NAMESPACE, GREEN);
+                    color.add(readFloat(parser));
+                    parser.require(XmlPullParser.END_TAG, NAMESPACE, GREEN);
+                    break;
+                case BLUE:
+                    parser.require(XmlPullParser.START_TAG, NAMESPACE, BLUE);
+                    color.add(readFloat(parser));
+                    parser.require(XmlPullParser.END_TAG, NAMESPACE, BLUE);
+                    break;
+                case ALPHA:
+                    parser.require(XmlPullParser.START_TAG, NAMESPACE, ALPHA);
+                    color.add(readFloat(parser));
+                    parser.require(XmlPullParser.END_TAG, NAMESPACE, ALPHA);
+                    break;
+                default:
+                    skip(parser);
+                    break;
             }
         }
         parser.require(XmlPullParser.END_TAG, NAMESPACE, COLOR);
@@ -165,20 +171,25 @@ public class ShapeOpenGLXMLParser {
             }
 
             String name = parser.getName();
-            if (name.equals(X_TAG)) {
-                parser.require(XmlPullParser.START_TAG, NAMESPACE, X_TAG);
-                vertex.add(readFloat(parser));
-                parser.require(XmlPullParser.END_TAG, NAMESPACE, X_TAG);
-            } else if (name.equals(Y_TAG)) {
-                parser.require(XmlPullParser.START_TAG, NAMESPACE, Y_TAG);
-                vertex.add(readFloat(parser));
-                parser.require(XmlPullParser.END_TAG, NAMESPACE, Y_TAG);
-            } else if (name.equals(Z_TAG)) {
-                parser.require(XmlPullParser.START_TAG, NAMESPACE, Z_TAG);
-                vertex.add(readFloat(parser));
-                parser.require(XmlPullParser.END_TAG, NAMESPACE, Z_TAG);
-            } else {
-                skip(parser);
+            switch (name) {
+                case X_TAG:
+                    parser.require(XmlPullParser.START_TAG, NAMESPACE, X_TAG);
+                    vertex.add(readFloat(parser));
+                    parser.require(XmlPullParser.END_TAG, NAMESPACE, X_TAG);
+                    break;
+                case Y_TAG:
+                    parser.require(XmlPullParser.START_TAG, NAMESPACE, Y_TAG);
+                    vertex.add(readFloat(parser));
+                    parser.require(XmlPullParser.END_TAG, NAMESPACE, Y_TAG);
+                    break;
+                case Z_TAG:
+                    parser.require(XmlPullParser.START_TAG, NAMESPACE, Z_TAG);
+                    vertex.add(readFloat(parser));
+                    parser.require(XmlPullParser.END_TAG, NAMESPACE, Z_TAG);
+                    break;
+                default:
+                    skip(parser);
+                    break;
             }
         }
         parser.require(XmlPullParser.END_TAG, NAMESPACE, VERTEX);
