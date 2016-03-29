@@ -5,10 +5,9 @@ import cafetcraftteam.rpgsoftware.Profile;
 import cafetcraftteam.rpgsoftware.character.posture.Posture;
 
 /**
- * Created by Pujima on 29/03/2016.
+ * Created by Pujima on 30/03/2016.
  */
-public class Attack implements Action{
-
+public class Parry implements Action {
     public int doAction(Profile profile, Posture posture){
         int stat = 0;
         int result = 0;
@@ -23,4 +22,3 @@ public class Attack implements Action{
         return result;
     }
 }
-

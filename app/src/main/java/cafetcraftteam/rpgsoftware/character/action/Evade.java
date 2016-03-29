@@ -5,16 +5,15 @@ import cafetcraftteam.rpgsoftware.Profile;
 import cafetcraftteam.rpgsoftware.character.posture.Posture;
 
 /**
- * Created by Pujima on 29/03/2016.
+ * Created by Pujima on 30/03/2016.
  */
-public class Attack implements Action{
-
+public class Evade implements Action{
     public int doAction(Profile profile, Posture posture){
         int stat = 0;
         int result = 0;
         Dice dice = new Dice(100);
         //get the statistic
-        stat = profile.getWeaponSkill();
+        stat = profile.getAgility();
         stat = stat + posture.bonus(this);
         //throw the dice and get result
         result = stat - dice.diceGenerator();
@@ -23,4 +22,3 @@ public class Attack implements Action{
         return result;
     }
 }
-

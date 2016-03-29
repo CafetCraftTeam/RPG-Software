@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import cafetcraftteam.rpgsoftware.Profile;
+import cafetcraftteam.rpgsoftware.character.action.Action;
 import cafetcraftteam.rpgsoftware.character.posture.Posture;
 import cafetcraftteam.rpgsoftware.equipment.Armour;
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
@@ -276,7 +277,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     }
 
     public Profile getProfile() {
-        return mProfile;
+        return mProfile.deepCopy();
     }
 
     public Posture getPosture() {
@@ -603,6 +604,10 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         }
 
         mBasicSkills.get(basicSkillName.ordinal()).improve();
+    }
+
+    public void doAction(Action action) {
+        action.doAction(getProfile(), getPosture());
     }
 
 
