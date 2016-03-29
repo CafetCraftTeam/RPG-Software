@@ -111,9 +111,9 @@
             <z>0.0f</z>
         </Vertex>
         <Color>
-            <red>1.0f</red>
-            <green>0.0f</green>
-            <blue>0.0f</blue>
+            <red>0.0f</red>
+            <green>1.0f</green>
+            <blue>1.0f</blue>
             <alpha>1.0f</alpha>
         </Color>
     </Triangle>
