@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import cafetcraftteam.rpgsoftware.Profile;
+import cafetcraftteam.rpgsoftware.character.posture.Posture;
 import cafetcraftteam.rpgsoftware.equipment.Armour;
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
 import cafetcraftteam.rpgsoftware.skill.AdvancedSkill;
@@ -49,6 +50,8 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
      * Main profile
      */
     private Profile mProfile;
+
+    private Posture mPosture;
 
     private int mActualFortune;
     private int mActualWounds;
@@ -270,6 +273,14 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
      */
     public int getActualWounds() {
         return mActualWounds;
+    }
+
+    public Profile getProfile() {
+        return mProfile;
+    }
+
+    public Posture getPosture() {
+        return mPosture;
     }
 
     public void setActualFortune(int ActualFortune) {
