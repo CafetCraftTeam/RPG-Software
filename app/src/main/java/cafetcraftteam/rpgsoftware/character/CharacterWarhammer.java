@@ -292,6 +292,10 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         mActualWounds = ActualWounds;
     }
 
+    public void setPosture(Posture posture) {
+        mPosture = posture;
+    }
+
     // endregion====================================================================================
 
     // region EQUIPMENT=============================================================================
@@ -607,7 +611,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
     }
 
     public void doAction(Action action) {
-        action.doAction(getProfile(), getPosture());
+        action.doAction(this);
     }
 
 

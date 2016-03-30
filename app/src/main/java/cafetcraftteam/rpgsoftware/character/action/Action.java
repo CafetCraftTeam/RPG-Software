@@ -1,6 +1,7 @@
 package cafetcraftteam.rpgsoftware.character.action;
 
 import cafetcraftteam.rpgsoftware.Profile;
+import cafetcraftteam.rpgsoftware.character.CharacterWarhammer;
 import cafetcraftteam.rpgsoftware.character.posture.Posture;
 
 /**
@@ -8,6 +9,6 @@ import cafetcraftteam.rpgsoftware.character.posture.Posture;
  */
 public interface Action {
 
-    int doAction(Profile profile, Posture posture);
+    int doAction(CharacterWarhammer Char);
 
 }

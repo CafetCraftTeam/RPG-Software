@@ -1,14 +1,13 @@
 package cafetcraftteam.rpgsoftware.character.action;
 
 import cafetcraftteam.rpgsoftware.Dice;
-import cafetcraftteam.rpgsoftware.Profile;
-import cafetcraftteam.rpgsoftware.character.posture.Posture;
+import cafetcraftteam.rpgsoftware.character.CharacterWarhammer;
 
 /**
  * Created by Pujima on 30/03/2016.
  */
 public class Evade implements Action{
-    public int doAction(Profile profile, Posture posture){
+    public int doAction(CharacterWarhammer Char){
         int stat = 0;
         int result = 0;
         Dice dice = new Dice(100);

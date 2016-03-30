@@ -1,21 +1,20 @@
 package cafetcraftteam.rpgsoftware.character.action;
 
 import cafetcraftteam.rpgsoftware.Dice;
-import cafetcraftteam.rpgsoftware.Profile;
-import cafetcraftteam.rpgsoftware.character.posture.Posture;
+import cafetcraftteam.rpgsoftware.character.CharacterWarhammer;
 
 /**
  * Created by Pujima on 29/03/2016.
  */
 public class Attack implements Action{
 
-    public int doAction(Profile profile, Posture posture){
+    public int doAction(CharacterWarhammer Char){
         int stat = 0;
         int result = 0;
         Dice dice = new Dice(100);
         //get the statistic
-        stat = profile.getWeaponSkill();
-        stat = stat + posture.bonus(this);
+        stat = Char.getProfile().getWeaponSkill();
+        stat = stat + Char.getPosture().bonus(this);
         //throw the dice and get result
         result = stat - dice.diceGenerator();
         //remove old posture and add posture
