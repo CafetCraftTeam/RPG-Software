@@ -11,6 +11,7 @@ import java.util.TreeMap;
 
 import cafetcraftteam.rpgsoftware.Profile;
 import cafetcraftteam.rpgsoftware.character.action.Action;
+import cafetcraftteam.rpgsoftware.character.posture.None;
 import cafetcraftteam.rpgsoftware.character.posture.Posture;
 import cafetcraftteam.rpgsoftware.equipment.Armour;
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
@@ -167,6 +168,7 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         mAdvancedSkills = new TreeMap<>();
 
         mProfile = profile.deepCopy();
+        mPosture = new None();
     }
 
 
@@ -610,8 +612,8 @@ public class CharacterWarhammer extends cafetcraftteam.rpgsoftware.character.Cha
         mBasicSkills.get(basicSkillName.ordinal()).improve();
     }
 
-    public void doAction(Action action) {
-        action.doAction(this);
+    public int doAction(Action action) {
+        return action.doAction(this);
     }
 
 

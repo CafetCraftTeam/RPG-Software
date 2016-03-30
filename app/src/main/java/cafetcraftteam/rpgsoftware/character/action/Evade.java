@@ -12,8 +12,8 @@ public class Evade implements Action{
         int result = 0;
         Dice dice = new Dice(100);
         //get the statistic
-        stat = profile.getAgility();
-        stat = stat + posture.bonus(this);
+        stat = Char.getProfile().getAgility();
+        stat = stat + Char.getPosture().bonus(this);
         //throw the dice and get result
         result = stat - dice.diceGenerator();
         //remove old posture and add posture

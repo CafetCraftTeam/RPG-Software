@@ -16,6 +16,9 @@ import cafetcraftteam.rpgsoftware.character.Character;
 import cafetcraftteam.rpgsoftware.character.CharacterWarhammer;
 import cafetcraftteam.rpgsoftware.character.CharacterWarhammer.BodyPart;
 import cafetcraftteam.rpgsoftware.character.Hands;
+import cafetcraftteam.rpgsoftware.character.action.CautiousAttack;
+import cafetcraftteam.rpgsoftware.character.posture.Aim;
+import cafetcraftteam.rpgsoftware.character.posture.Cautious;
 import cafetcraftteam.rpgsoftware.equipment.Armour;
 import cafetcraftteam.rpgsoftware.equipment.Equipment;
 import cafetcraftteam.rpgsoftware.skill.AdvancedSkill;
@@ -345,6 +348,13 @@ public class CharacterWarhammerTest {
     public void TestActualWounds() {
         Pujima.setActualWounds(2);
         assertEquals(2, Pujima.getActualWounds());
+    }
+
+    @Test
+    public void TestPosture() {
+        Aim aim = new Aim();
+        Pujima.setPosture(aim);
+        assertEquals(aim, Pujima.getPosture());
     }
 
     // region EQUIPMENT=============================================================================
@@ -741,6 +751,13 @@ public class CharacterWarhammerTest {
 
         assertEquals(basicSkill.getSkillValue(Profile.ancestorGurdillProfile()),
                 Pujima.getBasicSkillValue(basicSkillName));
+    }
+
+    @Test
+    public void doActionTest() {
+        // doing a cautious attack should implement a Cautious stance.
+        Pujima.doAction(new CautiousAttack());
+        assertEquals(Pujima.getPosture().getClass(),new Cautious().getClass());
     }
 
     // endregion====================================================================================
