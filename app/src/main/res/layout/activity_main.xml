@@ -22,4 +22,15 @@
         android:layout_marginTop="83dp"
         android:layout_below="@+id/button_des"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Character Creation"
+        android:id="@+id/button_createcharacter"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/button_perso"
+        android:layout_alignLeft="@+id/button_perso"
+        android:layout_alignStart="@+id/button_perso"
+        android:layout_alignParentEnd="false" />
 </RelativeLayout>

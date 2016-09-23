@@ -21,10 +21,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button button_des = (Button)findViewById(R.id.button_des);
         Button button_perso = (Button)findViewById(R.id.button_perso);
+        Button button_createcharacter = (Button)findViewById(R.id.button_createcharacter);
 
         button_des.setOnClickListener(new ButtonDiceListener(this));
-
         button_perso.setOnClickListener(new ButtonPersoListener(this));
+        button_createcharacter.setOnClickListener(new ButtonCharacterCreationListener(this));
     }
 
     @Override
